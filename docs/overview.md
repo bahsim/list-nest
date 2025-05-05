@@ -10,7 +10,7 @@ A GenAI-powered collaborative grocery shopping app for families. Combines manual
 - GenAI adapts to your usage and budget
 
 ## Tech Stack
-- **Backend:** NestJS, PostgreSQL, Prisma, Redis, OpenAI/Ollama, WebSockets
+- **Backend:** NestJS, MySQL, Prisma, Redis, OpenAI/Ollama, WebSockets
 - **Frontend:** React, MUI, React Query, Zustand/Redux, Vite, Service Workers
 - **Other:** Clerk/Auth0/JWT, Railway/Vercel/Fly.io, Vitest, Jest, Nx/Turborepo
 

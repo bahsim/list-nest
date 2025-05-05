@@ -6,7 +6,7 @@ A GenAI-powered collaborative grocery shopping app for families. All household m
 ## Tech Stack
 **Backend:**
 - NestJS (TypeScript)
-- PostgreSQL
+- MySQL
 - Prisma ORM
 - Redis (caching, real-time)
 - OpenAI API or Ollama/local LLM
@@ -24,7 +24,6 @@ A GenAI-powered collaborative grocery shopping app for families. All household m
 - Auth: Clerk/Auth0 or custom JWT
 - Deployment: Railway, Vercel, or Fly.io
 - Testing: Vitest (frontend), Jest (backend)
-- Monorepo: Nx or Turborepo (optional)
 
 ## MVP Scope
 - Single shopping list (no categories, no multi-list)

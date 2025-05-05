@@ -9,7 +9,7 @@ Stack for a GenAI-powered grocery app (PWA, collaborative, analytics):
 
 *** Backend: ***
 - NestJS (TypeScript, modular, scalable)
-- PostgreSQL (analytics, JSONB for flexible data)
+- MySQL (analytics, JSON for flexible data)
 - Prisma ORM (type-safe, fast migrations, better DX than TypeORM)
 - Redis (caching, real-time pub/sub for collab editing)
 - OpenAI API or Ollama/local LLM (GenAI features)
@@ -25,9 +25,8 @@ Stack for a GenAI-powered grocery app (PWA, collaborative, analytics):
 
 *** Other: ***
 - Auth: Clerk/Auth0 or custom JWT (NestJS Passport)
-- Deployment: Railway, Vercel, or Fly.io (Postgres + Node)
+- Deployment: Railway, Vercel, or Fly.io (MySQL + Node)
 - Testing: Vitest (frontend), Jest (backend)
-- Monorepo: Nx or Turborepo (optional, for fullstack TS)
 
 *** Why: ***
 - All TypeScript, easy type sharing
