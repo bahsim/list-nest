@@ -7,7 +7,7 @@ Let's define MVP scope - list the absolute minimum features needed for a usable 
 
 MVP scope for your GenAI-powered collaborative grocery shopping app (absolute bare minimum, everything else is a nice-to-have):
 
-- User can create a single shopping list (no categories, no multi-list support)
+- Default user and default single shopping list (no categories, no multi-list support)
 - Add items to the list manually (name, quantity, optional price)
 - Edit or remove items from the list
 - Mark items as bought (move to simple history)
