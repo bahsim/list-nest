@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { AnalyticsPanel } from './AnalyticsPanel';
+import { AnalyticsSummaryPanel as AnalyticsPanel } from './AnalyticsSummaryPanel';
 import type { Meta, StoryObj } from '@storybook/react';
-import type { HistoryAnalytics } from './types';
+import type { HistoryAnalytics } from '../types';
 
 const mockAnalytics: HistoryAnalytics = {
   totalItems: 42,

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import type { ShoppingListItem } from './types';
-import { ShoppingListItemCard } from './ShoppingListItemCard';
+import type { ShoppingListItem } from '../types';
+import { ShoppingListItemCard } from '../molecule/ShoppingListItemCard';
 
 /**
  * ShoppingList component for displaying a list of shopping items.

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import type { HistoryGroup, HistoryAnalytics } from './types';
-import { AnalyticsPanel } from './AnalyticsPanel';
+import type { HistoryGroup, HistoryAnalytics } from '../types';
+import { AnalyticsSummaryPanel } from './AnalyticsSummaryPanel';
 
 /**
  * HistoryView displays the purchase history grouped by date, with analytics and restore.
@@ -45,7 +45,7 @@ export const HistoryView: React.FC<HistoryViewProps> = ({ groups, analytics, onR
           )}
         </div>
       ))}
-      <AnalyticsPanel analytics={analytics} />
+      <AnalyticsSummaryPanel analytics={analytics} />
     </section>
   );
 }; 

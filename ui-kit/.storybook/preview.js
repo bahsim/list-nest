@@ -1,3 +1,4 @@
+import React from 'react';
 import '../tokens/colors.scss';
 import '../tokens/typography.scss';
 import '../tokens/spacing.scss';
@@ -20,9 +21,5 @@ export const parameters = {
 };
 
 export const decorators = [
-  (Story) => (
-    <div style={{ padding: 24 }}>
-      <Story />
-    </div>
-  ),
+  (Story) => React.createElement('div', { style: { padding: 24 } }, React.createElement(Story)),
 ]; 
