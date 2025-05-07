@@ -1,0 +1,12 @@
+export const COLORS = {
+  PRIMARY: '#F76C5E',
+  SECONDARY: '#4A90E2',
+  DARK: '#2A2E35',
+  ACCENT: '#F9C74F',
+  BG: '#FFF6E5',
+  DARK_ALT: '#1C394B',
+  BG_ALT: '#FBF3DB',
+  PRIMARY_ALT: '#F17856',
+  CATEGORY_SAGE: '#99A49A',
+  CATEGORY_MAUVE: '#927A7D',
+} as const; 
