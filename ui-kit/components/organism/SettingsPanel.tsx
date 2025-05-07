@@ -17,7 +17,7 @@ export interface SettingsPanelProps {
 }
 
 export const SettingsPanel: React.FC<SettingsPanelProps> = ({ theme, onThemeChange, notificationsEnabled, onNotificationsChange, onAccountManage }) => (
-  <section style={{ background: '#FFF6E5', borderRadius: 12, boxShadow: 'var(--shadow-card, 0 2px 8px rgba(42,46,53,0.08))', padding: 24, maxWidth: 400, margin: '24px auto' }}>
+  <section style={{ background: '#FEF4DB', borderRadius: 12, boxShadow: 'var(--shadow-card, 0 2px 8px rgba(42,46,53,0.08))', padding: 24, maxWidth: 400, margin: '24px auto' }}>
     <h2>Settings</h2>
     <div style={{ marginBottom: 16 }}>
       <label style={{ display: 'flex', alignItems: 'center', gap: 8 }}>

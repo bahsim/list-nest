@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { Activity } from './types';
+import type { Activity } from '../types';
 
 /**
  * ActivityLog displays a list of recent user activities.

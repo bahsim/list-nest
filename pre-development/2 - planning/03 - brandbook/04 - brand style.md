@@ -30,7 +30,7 @@ The color palette is vibrant yet balanced, reflecting a sense of energy, trust, 
 
 - **Accent Colors**:  
   - **Golden Yellow (#F9C74F)**: Adds a pop of optimism and creativity.  
-  - **Soft Beige (#FFF6E5)**: A neutral background color that creates a calming and approachable feel.
+  - **Soft Beige (#FEF4DB)**: A neutral background color that creates a calming and approachable feel.
 
 ---
 

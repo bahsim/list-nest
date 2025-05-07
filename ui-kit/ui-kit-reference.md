@@ -15,7 +15,7 @@
 | Sky Blue       | #4A90E2  | 74,144,226         | Secondary, accents   | `color-secondary`         | 04 - brand style.md, 05 - atomic system.md |
 | Midnight Navy  | #2A2E35  | 42,46,53           | Text, icons, dark BG | `color-dark`              | 04 - brand style.md, 05 - atomic system.md |
 | Golden Yellow  | #F9C74F  | 249,199,79         | Accent, highlights   | `color-accent`            | 04 - brand style.md, 05 - atomic system.md |
-| Soft Beige     | #FFF6E5  | 255,246,229        | BG, cards, modals    | `color-bg`                | 04 - brand style.md, 05 - atomic system.md |
+| Soft Beige     | #FEF4DB  | 255,246,229        | BG, cards, modals    | `color-bg`                | 04 - brand style.md, 05 - atomic system.md |
 | Dark Blue      | #1C394B  | 28,57,75           | Alt. dark, contrast  | `color-dark-alt`          | 02 - brand colors palette.md |
 | Cream          | #FBF3DB  | 251,243,219        | Alt. BG, highlights  | `color-bg-alt`            | 02 - brand colors palette.md |
 | Coral          | #F17856  | 241,120,86         | Alt. primary         | `color-primary-alt`       | 02 - brand colors palette.md |
@@ -177,7 +177,7 @@ export const COLORS = {
   SECONDARY: '#4A90E2',
   DARK: '#2A2E35',
   ACCENT: '#F9C74F',
-  BG: '#FFF6E5',
+  BG: '#FEF4DB',
   DARK_ALT: '#1C394B',
   BG_ALT: '#FBF3DB',
   PRIMARY_ALT: '#F17856',

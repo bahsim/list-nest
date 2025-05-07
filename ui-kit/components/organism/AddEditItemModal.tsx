@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { AddEditItemInput, AISuggestion } from './types';
+import type { AddEditItemInput, AISuggestion } from '../types';
 
 /**
  * AddEditItemModal for adding or editing a shopping list item.
@@ -50,7 +50,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({ item, onSave
 
   return (
     <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', background: 'rgba(42,46,53,0.16)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000 }}>
-      <form onSubmit={handleSave} style={{ background: '#FFF6E5', borderRadius: 16, boxShadow: '0 4px 24px rgba(42,46,53,0.16)', padding: 32, minWidth: 320, maxWidth: 400, display: 'flex', flexDirection: 'column', gap: 16 }}>
+      <form onSubmit={handleSave} style={{ background: '#FEF4DB', borderRadius: 16, boxShadow: '0 4px 24px rgba(42,46,53,0.16)', padding: 32, minWidth: 320, maxWidth: 400, display: 'flex', flexDirection: 'column', gap: 16 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <h2 style={{ margin: 0 }}>{item ? 'Edit Item' : 'Add Item'}</h2>
           <button type="button" aria-label="Close" onClick={onCancel} style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer' }}>×</button>

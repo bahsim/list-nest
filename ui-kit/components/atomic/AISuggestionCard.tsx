@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { AISuggestion } from './types';
+import type { AISuggestion } from '../types';
 
 /**
  * AISuggestionCard displays a single AI suggestion with add action.

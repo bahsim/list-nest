@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { HeaderBar, SettingsPanel, FooterNav } from '../components';
+import { HeaderBar } from '../components/organism/HeaderBar';
+import { SettingsPanel } from '../components/organism/SettingsPanel';
 import type { User } from '../components/types';
+import { FooterNav } from '../components/organism/FooterNav';
 
 export const SettingsPage: React.FC = () => {
   const [theme, setTheme] = React.useState<'light' | 'dark'>('light');

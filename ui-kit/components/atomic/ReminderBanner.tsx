@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { Reminder } from './types';
+import type { Reminder } from '../types';
 
 /**
  * ReminderBanner displays reminders for low-stock or important items.

@@ -20,7 +20,7 @@ Atoms are the smallest building blocks of the design system. They include basic 
   - Midnight Navy (#2A2E35)  
 - **Accent Colors**:  
   - Golden Yellow (#F9C74F)  
-  - Soft Beige (#FFF6E5)  
+  - Soft Beige (#FEF4DB)  
 
 ##### **Typography**
 - **Font Family**:  

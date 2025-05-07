@@ -1,6 +1,6 @@
 // Requires React in scope (add import if needed for your setup)
-// NOTE: Update the logo path as needed for your build setup. Assumes '/logo.png' in public root.
-const logo = '/logo.png';
+// NOTE: Update the logo path as needed for your build setup. Assumes '/apple-touch-icon.png' in public root.
+const logo = '/favicon-96x96.png';
 
 /**
  * HeaderBar component for the Family Grocery App.
@@ -19,10 +19,10 @@ export interface HeaderBarProps {
 }
 
 export const HeaderBar = ({ user, onSettings }: HeaderBarProps) => (
-  <header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 56, padding: '0 16px', background: 'var(--color-bg, #FFF6E5)', borderBottom: '1px solid var(--color-bg-alt, #FBF3DB)' }}>
+  <header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 56, padding: '0 16px', background: 'var(--color-bg, #FEF4DB)', borderBottom: '1px solid var(--color-bg-alt, #FBF3DB)' }}>
     <div style={{ display: 'flex', alignItems: 'center' }}>
-      <img src={logo} alt="App Logo" style={{ height: 32, width: 32, borderRadius: '50%' }} />
-      <span style={{ fontFamily: 'var(--font-heading, Poppins)', fontWeight: 700, fontSize: 20, marginLeft: 12 }}>FamilyGrocer</span>
+      <img src={logo} alt="App Logo" style={{ height: 72, width: 72, borderRadius: '50%' }} />
+      <span style={{ fontFamily: 'var(--font-heading, Poppins)', fontWeight: 700, fontSize: 20, marginLeft: 12, color: 'var(--brand-color, #FF5733)' }}>ListNest</span>
     </div>
     <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
       {user.avatarUrl && <img src={user.avatarUrl} alt={user.name} style={{ height: 32, width: 32, borderRadius: '50%', objectFit: 'cover' }} />}

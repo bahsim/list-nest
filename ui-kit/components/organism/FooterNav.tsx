@@ -18,7 +18,7 @@ const tabs = [
 ];
 
 export const FooterNav: React.FC<FooterNavProps> = ({ activeTab, onTabChange }) => (
-  <nav style={{ position: 'fixed', bottom: 0, left: 0, width: '100vw', background: '#FFF6E5', borderTop: '1px solid #FBF3DB', display: 'flex', justifyContent: 'space-around', alignItems: 'center', height: 56, zIndex: 100 }}>
+  <nav style={{ position: 'fixed', bottom: 0, left: 0, width: '100vw', background: '#FEF4DB', borderTop: '1px solid #FBF3DB', display: 'flex', justifyContent: 'space-around', alignItems: 'center', height: 56, zIndex: 100 }}>
     {tabs.map(tab => (
       <button
         key={tab.key}

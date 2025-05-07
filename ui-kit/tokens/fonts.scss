@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Poppins:wght@300;400;700&family=Quicksand:wght@400;700&display=swap');
+
+:root {
+  --font-primary: 'Inter', system-ui, Arial, sans-serif;
+  --font-accent: 'Quicksand', system-ui, Arial, sans-serif;
+  --font-heading: 'Poppins', 'Inter', system-ui, Arial, sans-serif;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+  --font-size-caption: 12px;
+  --font-size-body: 16px;
+  --font-size-body-lg: 18px;
+  --font-size-heading: 24px;
+  --font-size-hero: 32px;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-bold);
+}
+
+button, .accent {
+  font-family: var(--font-accent);
+  font-weight: var(--font-weight-bold);
+}
+
+input, select, textarea {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-regular);
+} 

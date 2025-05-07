@@ -1,5 +1,8 @@
 module.exports = {
-  stories: ['../components/**/*.stories.@(js|jsx|ts|tsx)'],
+  stories: [
+    '../components/**/*.stories.@(js|jsx|ts|tsx)',
+    '../pages/**/*.stories.@(js|jsx|ts|tsx)'
+  ],
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
@@ -35,4 +38,5 @@ module.exports = {
     config.resolve.extensions.push('.ts', '.tsx');
     return config;
   },
+  staticDirs: ['../../frontend/public'],
 }; 

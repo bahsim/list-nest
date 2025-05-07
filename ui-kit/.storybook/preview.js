@@ -4,12 +4,13 @@ import '../tokens/typography.scss';
 import '../tokens/spacing.scss';
 import '../tokens/radii.scss';
 import '../tokens/shadows.scss';
+import '../tokens/fonts.scss';
 
 export const parameters = {
   backgrounds: {
     default: 'light',
     values: [
-      { name: 'light', value: '#FFF6E5' },
+      { name: 'light', value: '#FEF4DB' },
       { name: 'dark', value: '#2A2E35' },
     ],
   },

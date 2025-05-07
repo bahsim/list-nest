@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { AddEditItemInput } from './types';
+import type { AddEditItemInput } from '../types';
 
 /**
  * AddItemForm for adding a new item to the shopping list.

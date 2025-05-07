@@ -1,5 +1,10 @@
 import * as React from 'react';
-import { HeaderBar, ShoppingList, AddItemForm, ReminderBanner, ActivityLog, FooterNav } from '../components';
+import { HeaderBar } from '../components/organism/HeaderBar';
+import { ShoppingList } from '../components/organism/ShoppingList';
+import { AddItemForm } from '../components/molecule/AddItemForm';
+import { ReminderBanner } from '../components/atomic/ReminderBanner';
+import { ActivityLog } from '../components/organism/ActivityLog';
+import { FooterNav } from '../components/organism/FooterNav';
 import type { ShoppingListItem, User, Reminder, Activity, AddEditItemInput } from '../components/types';
 
 export const MainListPage: React.FC = () => {
