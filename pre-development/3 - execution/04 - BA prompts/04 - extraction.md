@@ -23,6 +23,7 @@ Updated requirements list with clarified task fields and bulk actions:
 - User must be able to delete tasks.
 - User must be able to filter and/or sort the list.
 - List must update in real time after add/edit/delete actions.
+- System must display empty state when no lists created.
 - System must display empty state when no tasks exist.
 - System must persist list state between sessions.
 - System must support pagination or infinite scroll if list exceeds screen size.
