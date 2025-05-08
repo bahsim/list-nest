@@ -1,4 +1,5 @@
 import * as React from 'react';
+import styles from './AISuggestionButton.module.scss';
 
 /**
  * AISuggestionButton triggers fetching or showing AI suggestions.
@@ -11,17 +12,7 @@ export interface AISuggestionButtonProps {
 export const AISuggestionButton: React.FC<AISuggestionButtonProps> = ({ onClick }) => (
   <button
     onClick={onClick}
-    style={{
-      background: '#D1E7DD',
-      color: '#2A2E35',
-      border: 'none',
-      borderRadius: 8,
-      padding: '8px 16px',
-      fontWeight: 700,
-      fontSize: 16,
-      cursor: 'pointer',
-      margin: '8px 0',
-    }}
+    className={styles.button}
     aria-label="Show AI Suggestions"
   >
     AI Suggestions

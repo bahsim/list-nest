@@ -1,0 +1,27 @@
+.analyticsSummaryPanel {
+  background: #FBF3DB;
+  border-radius: 12px;
+  box-shadow: var(--shadow-card, 0 2px 8px rgba(42,46,53,0.08));
+  padding: 16px;
+  margin: 16px 0;
+}
+
+.analyticsSummaryPanel__toggleBtn {
+  background: none;
+  border: none;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.analyticsSummaryPanel__content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.analyticsSummaryPanel__list {
+  margin: 0;
+  padding-left: 16px;
+} 

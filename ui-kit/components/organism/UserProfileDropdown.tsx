@@ -1,5 +1,6 @@
 import * as React from 'react';
 import type { User } from '../types';
+import styles from './UserProfileDropdown.module.scss';
 
 /**
  * UserProfileDropdown displays the current user and a dropdown for profile actions.
@@ -16,16 +17,16 @@ export interface UserProfileDropdownProps {
 export const UserProfileDropdown: React.FC<UserProfileDropdownProps> = ({ user, onLogout, onProfile }) => {
   const [open, setOpen] = React.useState(false);
   return (
-    <div style={{ position: 'relative', display: 'inline-block' }}>
-      <button onClick={() => setOpen(o => !o)} style={{ background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8 }}>
-        <img src={user.avatarUrl} alt={user.name} style={{ height: 32, width: 32, borderRadius: '50%', objectFit: 'cover' }} />
+    <div className={styles.userProfileDropdown}>
+      <button onClick={() => setOpen(o => !o)} className={styles.userProfileDropdown__button}>
+        <img src={user.avatarUrl} alt={user.name} className={styles.userProfileDropdown__avatar} />
         <span>{user.name}</span>
-        <span style={{ fontSize: 12 }}>{open ? '▲' : '▼'}</span>
+        <span className={styles.userProfileDropdown__arrow}>{open ? '▲' : '▼'}</span>
       </button>
       {open && (
-        <div style={{ position: 'absolute', right: 0, top: 40, background: '#FEF4DB', border: '1px solid #FBF3DB', borderRadius: 8, boxShadow: '0 2px 8px rgba(42,46,53,0.08)', minWidth: 120, zIndex: 10 }}>
-          <button onClick={onProfile} style={{ display: 'block', width: '100%', background: 'none', border: 'none', padding: 8, textAlign: 'left', cursor: 'pointer' }}>Profile</button>
-          <button onClick={onLogout} style={{ display: 'block', width: '100%', background: 'none', border: 'none', padding: 8, textAlign: 'left', cursor: 'pointer', color: '#F76C5E' }}>Logout</button>
+        <div className={styles.userProfileDropdown__menu}>
+          <button onClick={onProfile} className={styles.userProfileDropdown__menuButton}>Profile</button>
+          <button onClick={onLogout} className={`${styles.userProfileDropdown__menuButton} ${styles.userProfileDropdown__logout}`}>Logout</button>
         </div>
       )}
     </div>

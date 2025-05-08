@@ -1,5 +1,6 @@
 import * as React from 'react';
 import type { AddEditItemInput, AISuggestion } from '../types';
+import styles from './AddEditItemModal.module.scss';
 
 /**
  * AddEditItemModal for adding or editing a shopping list item.
@@ -49,11 +50,11 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({ item, onSave
   };
 
   return (
-    <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', background: 'rgba(42,46,53,0.16)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000 }}>
-      <form onSubmit={handleSave} style={{ background: '#FEF4DB', borderRadius: 16, boxShadow: '0 4px 24px rgba(42,46,53,0.16)', padding: 32, minWidth: 320, maxWidth: 400, display: 'flex', flexDirection: 'column', gap: 16 }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    <div className={styles.addEditItemModal__overlay}>
+      <form onSubmit={handleSave} className={styles.addEditItemModal__form}>
+        <div className={styles.addEditItemModal__header}>
           <h2 style={{ margin: 0 }}>{item ? 'Edit Item' : 'Add Item'}</h2>
-          <button type="button" aria-label="Close" onClick={onCancel} style={{ background: 'none', border: 'none', fontSize: 20, cursor: 'pointer' }}>×</button>
+          <button type="button" aria-label="Close" onClick={onCancel} className={styles.addEditItemModal__closeBtn}>×</button>
         </div>
         <input name="name" value={fields.name} onChange={handleChange} placeholder="Item name" />
         <input name="quantity" value={fields.quantity} onChange={handleChange} placeholder="Quantity" />
@@ -68,24 +69,24 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({ item, onSave
         <select name="category" value={fields.category} onChange={handleChange}>
           {categories.map(c => <option key={c} value={c}>{c}</option>)}
         </select>
-        <label style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <label className={styles.addEditItemModal__label}>
           <input type="checkbox" name="isFocused" checked={fields.isFocused} onChange={e => setFields({ ...fields, isFocused: e.target.checked })} /> Focus
         </label>
         {aiSuggestions && aiSuggestions.length > 0 && (
-          <div style={{ background: '#FBF3DB', borderRadius: 8, padding: 8, marginBottom: 8 }}>
-            <div style={{ fontSize: 14, marginBottom: 4 }}>AI Suggestions:</div>
-            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+          <div className={styles.addEditItemModal__aiSuggestions}>
+            <div className={styles.addEditItemModal__aiSuggestionsTitle}>AI Suggestions:</div>
+            <div className={styles.addEditItemModal__aiSuggestionsList}>
               {aiSuggestions.map(s => (
-                <button key={s.id} type="button" onClick={() => handleAISuggestion(s)} style={{ background: '#F9C74F', border: 'none', borderRadius: 4, padding: '4px 8px', cursor: 'pointer', fontSize: 14 }}>{s.name}</button>
+                <button key={s.id} type="button" onClick={() => handleAISuggestion(s)} className={styles.addEditItemModal__aiSuggestionBtn}>{s.name}</button>
               ))}
             </div>
           </div>
         )}
-        <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
-          <button type="submit" style={{ background: 'var(--color-primary, #F76C5E)', color: '#fff', border: 'none', borderRadius: 4, padding: '8px 16px', fontWeight: 700 }}>Save</button>
-          <button type="button" onClick={onCancel} style={{ background: '#99A49A', color: '#fff', border: 'none', borderRadius: 4, padding: '8px 16px' }}>Cancel</button>
+        <div className={styles.addEditItemModal__actions}>
+          <button type="submit" className={styles.addEditItemModal__saveBtn}>Save</button>
+          <button type="button" onClick={onCancel} className={styles.addEditItemModal__cancelBtn}>Cancel</button>
         </div>
-        {error && <span style={{ color: '#F76C5E' }}>{error}</span>}
+        {error && <span className={styles.addEditItemModal__error}>{error}</span>}
       </form>
     </div>
   );

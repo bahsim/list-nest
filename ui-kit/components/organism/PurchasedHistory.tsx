@@ -1,5 +1,6 @@
 import * as React from 'react';
-import type { HistoryItem } from './types';
+import type { HistoryItem } from '../types';
+import styles from './PurchasedHistory.module.scss';
 
 /**
  * PurchasedHistory displays a list of purchased items with restore action.
@@ -12,16 +13,16 @@ export interface PurchasedHistoryProps {
 }
 
 export const PurchasedHistory: React.FC<PurchasedHistoryProps> = ({ items, onRestore }) => (
-  <section style={{ background: '#FBF3DB', borderRadius: 12, boxShadow: 'var(--shadow-card, 0 2px 8px rgba(42,46,53,0.08))', padding: 16, margin: '16px 0' }}>
+  <section className={styles.purchasedHistory}>
     <h3>Purchased Items</h3>
-    <ul style={{ margin: 0, paddingLeft: 16 }}>
+    <ul className={styles.purchasedHistory__list}>
       {items.map(item => (
-        <li key={item.id} style={{ opacity: 0.5, display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-          <span style={{ fontWeight: 700 }}>{item.name}</span>
-          <span style={{ color: '#927A7D', fontSize: 14 }}>{item.quantity}</span>
-          <span style={{ color: '#F76C5E', fontSize: 14 }}>{item.estimatedPrice ? `$${item.estimatedPrice}` : ''}</span>
-          <span style={{ background: '#99A49A', color: '#fff', borderRadius: 4, padding: '2px 6px', fontSize: 12 }}>{item.category}</span>
-          <button onClick={() => onRestore(item.id)} style={{ background: 'none', border: 'none', color: '#4A90E2', cursor: 'pointer' }} aria-label="Restore">⟲</button>
+        <li key={item.id} className={styles.purchasedHistory__item}>
+          <span className={styles.purchasedHistory__itemName}>{item.name}</span>
+          <span className={styles.purchasedHistory__itemQuantity}>{item.quantity}</span>
+          <span className={styles.purchasedHistory__itemPrice}>{item.estimatedPrice ? `$${item.estimatedPrice}` : ''}</span>
+          <span className={styles.purchasedHistory__itemCategory}>{item.category}</span>
+          <button onClick={() => onRestore(item.id)} className={styles.purchasedHistory__restoreBtn} aria-label="Restore">⟲</button>
         </li>
       ))}
     </ul>

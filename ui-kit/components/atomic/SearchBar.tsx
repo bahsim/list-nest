@@ -1,4 +1,5 @@
 import * as React from 'react';
+import styles from './SearchBar.module.scss';
 
 /**
  * SearchBar provides a text input with optional voice input for searching.
@@ -17,15 +18,24 @@ export interface SearchBarProps {
 }
 
 export const SearchBar: React.FC<SearchBarProps> = ({ value, onChange, onVoice, placeholder, listening }) => (
-  <div style={{ display: 'flex', alignItems: 'center', gap: 8, background: '#FBF3DB', borderRadius: 8, padding: '4px 8px' }}>
+  <div className={styles.bar}>
     <input
       value={value}
       onChange={e => onChange(e.target.value)}
       placeholder={placeholder}
-      style={{ flex: 1, border: 'none', background: 'transparent', fontSize: 16 }}
+      className={styles.input}
     />
     {onVoice && (
-      <button type="button" onClick={onVoice} style={{ background: listening ? '#F76C5E' : '#FBF3DB', color: '#2A2E35', border: 'none', borderRadius: '50%', width: 28, height: 28, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, cursor: 'pointer' }} aria-label="Voice search">
+      <button
+        type="button"
+        onClick={onVoice}
+        className={
+          listening
+            ? `${styles.voiceButton} ${styles['voiceButton--listening']}`
+            : styles.voiceButton
+        }
+        aria-label="Voice search"
+      >
         <span role="img" aria-label="mic">🎤</span>
       </button>
     )}

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import styles from './ModalOverlay.module.scss';
 
 /**
  * ModalOverlay provides a dimmed background for modals.
@@ -12,18 +13,7 @@ export interface ModalOverlayProps {
 
 export const ModalOverlay: React.FC<ModalOverlayProps> = ({ children, onClick }) => (
   <div
-    style={{
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      width: '100vw',
-      height: '100vh',
-      background: 'rgba(42,46,53,0.16)',
-      zIndex: 1000,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }}
+    className={styles.overlay}
     onClick={onClick}
     aria-modal="true"
     role="dialog"

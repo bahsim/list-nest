@@ -1,4 +1,5 @@
 import * as React from 'react';
+import styles from './CategoryDropdown.module.scss';
 
 /**
  * CategoryDropdown for selecting or adding a new category.
@@ -27,7 +28,7 @@ export const CategoryDropdown: React.FC<CategoryDropdownProps> = ({ categories, 
   };
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+    <div className={styles.container}>
       <select value={value} onChange={e => onChange(e.target.value)}>
         {categories.map(c => <option key={c} value={c}>{c}</option>)}
         {onAddNew && <option value="__add_new__">Add new...</option>}
@@ -35,7 +36,7 @@ export const CategoryDropdown: React.FC<CategoryDropdownProps> = ({ categories, 
       {onAddNew && value === '__add_new__' && (
         <>
           <input value={newCat} onChange={e => setNewCat(e.target.value)} placeholder="New category" />
-          <button onClick={handleAdd} style={{ background: '#4A90E2', color: '#fff', border: 'none', borderRadius: 4, padding: '4px 8px', fontWeight: 700 }}>Add</button>
+          <button onClick={handleAdd} className={styles.addButton}>Add</button>
         </>
       )}
     </div>

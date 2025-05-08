@@ -1,5 +1,6 @@
 import * as React from 'react';
 import type { Reminder } from '../types';
+import styles from './ReminderBanner.module.scss';
 
 /**
  * ReminderBanner displays reminders for low-stock or important items.
@@ -12,14 +13,14 @@ export interface ReminderBannerProps {
 }
 
 export const ReminderBanner: React.FC<ReminderBannerProps> = ({ reminders, onAdd }) => (
-  <div style={{ background: '#FFFBE6', border: '1px solid #F9C74F', borderRadius: 8, padding: 12, margin: '16px 0', display: 'flex', alignItems: 'center', gap: 16 }}>
+  <div className={styles.banner}>
     {reminders.length === 0 ? (
-      <span style={{ color: '#99A49A' }}>No reminders</span>
+      <span className={styles.noReminders}>No reminders</span>
     ) : (
       reminders.map(r => (
-        <span key={r.id} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <span key={r.id} className={styles.reminder}>
           {r.text}
-          <button onClick={() => onAdd(r.id)} style={{ background: '#F76C5E', color: '#fff', border: 'none', borderRadius: 4, padding: '2px 8px', fontWeight: 700, marginLeft: 4 }}>Add</button>
+          <button onClick={() => onAdd(r.id)} className={styles.addButton}>Add</button>
         </span>
       ))
     )}

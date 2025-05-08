@@ -1,4 +1,5 @@
 import * as React from 'react';
+import styles from './SettingsPanel.module.scss';
 
 /**
  * SettingsPanel displays app settings (theme, notifications, account).
@@ -9,33 +10,45 @@ import * as React from 'react';
  * @param onAccountManage - Account management handler.
  */
 export interface SettingsPanelProps {
-  theme: 'light' | 'dark';
-  onThemeChange: (theme: 'light' | 'dark') => void;
+  theme: string;
+  onThemeChange: (theme: string) => void;
   notificationsEnabled: boolean;
   onNotificationsChange: (enabled: boolean) => void;
   onAccountManage: () => void;
 }
 
-export const SettingsPanel: React.FC<SettingsPanelProps> = ({ theme, onThemeChange, notificationsEnabled, onNotificationsChange, onAccountManage }) => (
-  <section style={{ background: '#FEF4DB', borderRadius: 12, boxShadow: 'var(--shadow-card, 0 2px 8px rgba(42,46,53,0.08))', padding: 24, maxWidth: 400, margin: '24px auto' }}>
-    <h2>Settings</h2>
-    <div style={{ marginBottom: 16 }}>
-      <label style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-        Theme:
-        <select value={theme} onChange={e => onThemeChange(e.target.value as 'light' | 'dark')}>
-          <option value="light">Light</option>
-          <option value="dark">Dark</option>
-        </select>
-      </label>
+export const SettingsPanel: React.FC<SettingsPanelProps> = ({
+  theme,
+  onThemeChange,
+  notificationsEnabled,
+  onNotificationsChange,
+  onAccountManage,
+}) => (
+  <section className={styles.settingsPanel}>
+    <div className={styles.settingsPanel__section}>
+      <label className={styles.settingsPanel__label}>Theme</label>
+      <select
+        className={styles.settingsPanel__input}
+        value={theme}
+        onChange={e => onThemeChange(e.target.value)}
+      >
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
     </div>
-    <div style={{ marginBottom: 16 }}>
-      <label style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-        <input type="checkbox" checked={notificationsEnabled} onChange={e => onNotificationsChange(e.target.checked)} />
+    <div className={styles.settingsPanel__section}>
+      <label className={styles.settingsPanel__label}>
+        <input
+          type="checkbox"
+          checked={notificationsEnabled}
+          onChange={e => onNotificationsChange(e.target.checked)}
+          className={styles.settingsPanel__input}
+        />
         Enable Notifications
       </label>
     </div>
-    <div>
-      <button onClick={onAccountManage} style={{ background: '#4A90E2', color: '#fff', border: 'none', borderRadius: 4, padding: '8px 16px', fontWeight: 700 }}>Manage Account</button>
-    </div>
+    <button className={styles.settingsPanel__button} onClick={onAccountManage}>
+      Manage Account
+    </button>
   </section>
 ); 

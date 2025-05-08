@@ -1,0 +1,97 @@
+.addEditItemModal__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(42,46,53,0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.addEditItemModal__form {
+  background: #FEF4DB;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(42,46,53,0.16);
+  padding: 32px;
+  min-width: 320px;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.addEditItemModal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.addEditItemModal__closeBtn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.addEditItemModal__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.addEditItemModal__aiSuggestions {
+  background: #FBF3DB;
+  border-radius: 8px;
+  padding: 8px;
+  margin-bottom: 8px;
+}
+
+.addEditItemModal__aiSuggestionsTitle {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.addEditItemModal__aiSuggestionsList {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.addEditItemModal__aiSuggestionBtn {
+  background: #F9C74F;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.addEditItemModal__actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.addEditItemModal__saveBtn {
+  background: var(--color-primary, #F76C5E);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-weight: 700;
+}
+
+.addEditItemModal__cancelBtn {
+  background: #99A49A;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+}
+
+.addEditItemModal__error {
+  color: #F76C5E;
+} 

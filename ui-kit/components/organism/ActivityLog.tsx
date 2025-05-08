@@ -1,5 +1,6 @@
 import * as React from 'react';
 import type { Activity } from '../types';
+import styles from './ActivityLog.module.scss';
 
 /**
  * ActivityLog displays a list of recent user activities.
@@ -14,15 +15,15 @@ export interface ActivityLogProps {
 }
 
 export const ActivityLog: React.FC<ActivityLogProps> = ({ activities, isCollapsed = false, onToggleCollapse }) => (
-  <section style={{ background: '#FBF3DB', borderRadius: 12, boxShadow: 'var(--shadow-card, 0 2px 8px rgba(42,46,53,0.08))', padding: 16, margin: '16px 0' }}>
-    <button onClick={onToggleCollapse} style={{ background: 'none', border: 'none', fontWeight: 700, fontSize: 16, cursor: 'pointer', marginBottom: 8 }}>
+  <section className={styles.activityLog}>
+    <button onClick={onToggleCollapse} className={styles.activityLog__toggleBtn}>
       Activity Log {isCollapsed ? '▼' : '▲'}
     </button>
     {!isCollapsed && (
-      <ul style={{ margin: 0, paddingLeft: 16 }}>
+      <ul className={styles.activityLog__list}>
         {activities.map(a => (
-          <li key={a.id} style={{ marginBottom: 4, fontSize: 14 }}>
-            <span style={{ fontWeight: 700 }}>{a.user.name}</span> {a.action} <span style={{ color: '#99A49A' }}>{a.timestamp.toLocaleString()}</span>
+          <li key={a.id} className={styles.activityLog__item}>
+            <span className={styles.activityLog__user}>{a.user.name}</span> {a.action} <span className={styles.activityLog__timestamp}>{a.timestamp.toLocaleString()}</span>
           </li>
         ))}
       </ul>

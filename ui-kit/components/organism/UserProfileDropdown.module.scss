@@ -1,0 +1,50 @@
+.userProfileDropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.userProfileDropdown__button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.userProfileDropdown__avatar {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.userProfileDropdown__arrow {
+  font-size: 12px;
+}
+
+.userProfileDropdown__menu {
+  position: absolute;
+  right: 0;
+  top: 40px;
+  background: #FEF4DB;
+  border: 1px solid #FBF3DB;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(42,46,53,0.08);
+  min-width: 120px;
+  z-index: 10;
+}
+
+.userProfileDropdown__menuButton {
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 8px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.userProfileDropdown__logout {
+  color: #F76C5E;
+} 

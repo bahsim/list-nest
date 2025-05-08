@@ -1,4 +1,5 @@
 import * as React from 'react';
+import styles from './VoiceInput.module.scss';
 
 /**
  * VoiceInput provides a text input with a microphone button for speech-to-text.
@@ -16,9 +17,18 @@ export interface VoiceInputProps {
 }
 
 export const VoiceInput: React.FC<VoiceInputProps> = ({ value, onChange, onVoice, listening = false, placeholder }) => (
-  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-    <input value={value} onChange={e => onChange(e.target.value)} placeholder={placeholder} style={{ flex: 1 }} />
-    <button type="button" onClick={onVoice} style={{ background: listening ? '#F76C5E' : '#FBF3DB', color: '#2A2E35', border: 'none', borderRadius: '50%', width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, cursor: 'pointer' }} aria-label="Voice input">
+  <div className={styles.container}>
+    <input value={value} onChange={e => onChange(e.target.value)} placeholder={placeholder} className={styles.input} />
+    <button
+      type="button"
+      onClick={onVoice}
+      className={
+        listening
+          ? `${styles.voiceButton} ${styles['voiceButton--listening']}`
+          : styles.voiceButton
+      }
+      aria-label="Voice input"
+    >
       <span role="img" aria-label="mic">🎤</span>
     </button>
   </div>

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import type { ShoppingListItem } from '../types';
+import styles from './ShoppingListItemCard.module.scss';
 
 /**
  * ShoppingListItemCard displays a single shopping list item with actions.
@@ -18,14 +19,44 @@ export interface ShoppingListItemCardProps {
 }
 
 export const ShoppingListItemCard: React.FC<ShoppingListItemCardProps> = ({ item, onEdit, onDelete, onToggleBought, onToggleFocus }) => (
-  <div style={{ display: 'flex', alignItems: 'center', background: 'var(--color-bg, #FEF4DB)', borderRadius: 8, boxShadow: 'var(--shadow-card, 0 2px 8px rgba(42,46,53,0.08))', padding: 12, gap: 12 }}>
+  <div className={styles.shoppingListItemCard}>
     <input type="checkbox" checked={item.isBought} onChange={onToggleBought} aria-label="Mark as bought" />
-    <span style={{ fontWeight: item.isFocused ? 700 : 400, color: item.isBought ? '#99A49A' : '#2A2E35', textDecoration: item.isBought ? 'line-through' : 'none' }}>{item.name}</span>
-    <span style={{ marginLeft: 8, color: '#927A7D', fontSize: 14 }}>{item.quantity}</span>
-    <span style={{ marginLeft: 8, color: '#F76C5E', fontSize: 14 }}>{item.estimatedPrice ? `$${item.estimatedPrice}` : ''}</span>
-    <span style={{ marginLeft: 8, background: '#99A49A', color: '#fff', borderRadius: 4, padding: '2px 6px', fontSize: 12 }}>{item.category}</span>
-    <button aria-label="Focus" onClick={onToggleFocus} style={{ marginLeft: 8, background: 'none', border: 'none', color: item.isFocused ? '#F9C74F' : '#99A49A', cursor: 'pointer' }}>★</button>
-    <button aria-label="Edit" onClick={onEdit} style={{ marginLeft: 8, background: 'none', border: 'none', color: '#4A90E2', cursor: 'pointer' }}>✎</button>
-    <button aria-label="Delete" onClick={onDelete} style={{ marginLeft: 8, background: 'none', border: 'none', color: '#F76C5E', cursor: 'pointer' }}>🗑️</button>
+    <span
+      className={[
+        styles.shoppingListItemCard__name,
+        item.isFocused ? styles["shoppingListItemCard__name--focused"] : '',
+        item.isBought ? styles["shoppingListItemCard__name--bought"] : '',
+      ].filter(Boolean).join(' ')}
+    >
+      {item.name}
+    </span>
+    <span className={styles.shoppingListItemCard__quantity}>{item.quantity}</span>
+    <span className={styles.shoppingListItemCard__price}>{item.estimatedPrice ? `$${item.estimatedPrice}` : ''}</span>
+    <span className={styles.shoppingListItemCard__category}>{item.category}</span>
+    <button
+      aria-label="Focus"
+      onClick={onToggleFocus}
+      className={
+        item.isFocused
+          ? `${styles.shoppingListItemCard__focusBtn} ${styles.shoppingListItemCard__focusBtnActive}`
+          : styles.shoppingListItemCard__focusBtn
+      }
+    >
+      ★
+    </button>
+    <button
+      aria-label="Edit"
+      onClick={onEdit}
+      className={styles.shoppingListItemCard__editBtn}
+    >
+      ✎
+    </button>
+    <button
+      aria-label="Delete"
+      onClick={onDelete}
+      className={styles.shoppingListItemCard__deleteBtn}
+    >
+      🗑️
+    </button>
   </div>
 ); 

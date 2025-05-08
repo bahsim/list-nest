@@ -1,0 +1,47 @@
+.row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.name {
+  font-weight: 700;
+}
+
+.quantity {
+  color: #927A7D;
+  font-size: 14px;
+}
+
+.estimatedPrice {
+  color: #F76C5E;
+  font-size: 14px;
+}
+
+.category {
+  background: #99A49A;
+  color: #fff;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 12px;
+}
+
+.focused {
+  color: #F9C74F;
+  font-size: 16px;
+}
+
+.avatar {
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.restoreButton {
+  background: none;
+  border: none;
+  color: #4A90E2;
+  cursor: pointer;
+} 

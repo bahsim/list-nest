@@ -1,0 +1,15 @@
+.filterBar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #FBF3DB;
+  border-radius: 8px;
+  padding: 8px;
+  margin: 8px 0;
+}
+
+.filterBar__focusLabel {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+} 

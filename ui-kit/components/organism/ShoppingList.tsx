@@ -1,6 +1,7 @@
 import * as React from 'react';
 import type { ShoppingListItem } from '../types';
 import { ShoppingListItemCard } from '../molecule/ShoppingListItemCard';
+import styles from './ShoppingList.module.scss';
 
 /**
  * ShoppingList component for displaying a list of shopping items.
@@ -19,9 +20,9 @@ export interface ShoppingListProps {
 }
 
 export const ShoppingList: React.FC<ShoppingListProps> = ({ items, onEdit, onDelete, onToggleBought, onToggleFocus }) => (
-  <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
+  <ul className={styles.shoppingList}>
     {items.map(item => (
-      <li key={item.id} style={{ marginBottom: 8 }}>
+      <li key={item.id} className={styles.shoppingList__item}>
         <ShoppingListItemCard
           item={item}
           onEdit={() => onEdit(item)}

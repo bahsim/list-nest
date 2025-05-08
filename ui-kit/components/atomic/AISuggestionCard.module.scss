@@ -1,0 +1,42 @@
+.card {
+  background: #FBF3DB;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(42,46,53,0.08);
+  padding: 12px;
+  margin: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.name {
+  font-weight: 700;
+}
+
+.quantity {
+  color: #927A7D;
+  font-size: 14px;
+}
+
+.estimatedPrice {
+  color: #F76C5E;
+  font-size: 14px;
+}
+
+.category {
+  background: #99A49A;
+  color: #fff;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 12px;
+}
+
+.addButton {
+  background: #F76C5E;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-weight: 700;
+  margin-left: 4px;
+} 

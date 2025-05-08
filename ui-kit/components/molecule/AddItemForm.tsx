@@ -1,5 +1,6 @@
 import * as React from 'react';
 import type { AddEditItemInput } from '../types';
+import styles from './AddItemForm.module.scss';
 
 /**
  * AddItemForm for adding a new item to the shopping list.
@@ -39,17 +40,17 @@ export const AddItemForm: React.FC<AddItemFormProps> = ({ onAdd, categories, uni
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-      <input name="name" value={fields.name} onChange={handleChange} placeholder="Item name" style={{ flex: 2 }} />
-      <input name="quantity" value={fields.quantity} onChange={handleChange} placeholder="Qty" style={{ width: 60 }} />
-      <select name="unit" value={fields.unit} onChange={handleChange} style={{ width: 80 }}>
+    <form onSubmit={handleSubmit} className={styles.addItemForm}>
+      <input name="name" value={fields.name} onChange={handleChange} placeholder="Item name" className={styles.addItemForm__inputName} />
+      <input name="quantity" value={fields.quantity} onChange={handleChange} placeholder="Qty" className={styles.addItemForm__inputQty} />
+      <select name="unit" value={fields.unit} onChange={handleChange} className={styles.addItemForm__selectUnit}>
         {units.map(u => <option key={u} value={u}>{u}</option>)}
       </select>
-      <select name="category" value={fields.category} onChange={handleChange} style={{ width: 100 }}>
+      <select name="category" value={fields.category} onChange={handleChange} className={styles.addItemForm__selectCategory}>
         {categories.map(c => <option key={c} value={c}>{c}</option>)}
       </select>
-      <button type="submit" style={{ background: 'var(--color-primary, #F76C5E)', color: '#fff', border: 'none', borderRadius: 4, padding: '8px 16px', fontWeight: 700 }}>Add</button>
-      {error && <span style={{ color: '#F76C5E', marginLeft: 8 }}>{error}</span>}
+      <button type="submit" className={styles.addItemForm__addBtn}>Add</button>
+      {error && <span className={styles.addItemForm__error}>{error}</span>}
     </form>
   );
 }; 
