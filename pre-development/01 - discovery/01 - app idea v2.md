@@ -24,5 +24,14 @@ Reflect on ther idea and give reworded version
 ### Result
 
 This is a GenAI-powered collaborative grocery shopping app for families. It’s a shared, smart, and interactive shopping list with quantity and price tracking, usage analytics, and AI-driven suggestions. The app is designed for flexibility, real-time collaboration, and actionable insights into shopping habits and budgets.
-Reworded version:
-A GenAI-driven family grocery app where all household members share a dynamic shopping list. The list includes both manually added and AI-suggested items, each with quantities and estimated prices. When adding items, users get autocomplete for names, plus smart suggestions for quantity and price. Each AI suggestion can be accepted or rejected individually. Users can edit any item—change quantity, price, add/remove, or attach notes (to the whole list or specific items). Items can be marked as “focused” for easier navigation in large lists, and optionally grouped into categories (with items allowed in multiple categories). As products are bought, they’re checked off and moved to history. The app tracks and analyzes both product quantities and costs over time, providing insights like average usage, frequency, and budget trends. GenAI tailors future suggestions based on this data. Multi-user support enables real-time collaboration, and the app can remind users when staple items are running low.
+
+#### Reworded version:
+- A GenAI-driven family grocery app where all household members share a dynamic shopping list. 
+- The list includes both manually added and AI-suggested items, each with quantities and estimated prices. 
+- When adding items, users get autocomplete for names, plus smart suggestions for quantity and price.
+- Each AI suggestion can be accepted or rejected individually.
+- Users can edit any item—change quantity, price, add/remove, or attach notes (to the whole list or specific items).
+- Items can be marked as “focused” for easier navigation in large lists, and optionally grouped into categories (with items allowed in multiple categories).
+- As products are bought, they’re checked off and moved to history.
+- The app tracks and analyzes both product quantities and costs over time, providing insights like average usage, frequency, and budget trends.
+- GenAI tailors future suggestions based on this data. Multi-user support enables real-time collaboration, and the app can remind users when staple items are running low.
