@@ -17,21 +17,21 @@ const MainListView: React.FC = () => {
 
   return (
     <div className={styles.mainListView}>
-      <HeaderBar user={mockUser} onSettings={() => {}} />
+      <HeaderBar user={mockUser} onSettings={() => { }} />
       <main className={styles.mainListView__main}>
         {items.length === 0 ? (
           <div className={styles.mainListView__empty}>
-            <div className={styles.mainListView__emptyIcon}>📝</div>
+            <div className={styles.mainListView__emptyIcon}><img src="/hero.png" alt="Empty list" /></div>
             <h2 className={styles.mainListView__emptyTitle}>No List Yet</h2>
             <p className={styles.mainListView__emptyText}>Create a new list to get started.</p>
           </div>
         ) : (
           <ShoppingList
             items={items}
-            onEdit={() => {}}
-            onDelete={() => {}}
-            onToggleBought={() => {}}
-            onToggleFocus={() => {}}
+            onEdit={() => { }}
+            onDelete={() => { }}
+            onToggleBought={() => { }}
+            onToggleFocus={() => { }}
           />
         )}
       </main>
