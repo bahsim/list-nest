@@ -7,6 +7,44 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
+---
+
+# UI Kit (Family Grocery App)
+
+## Structure
+
+- `ui-kit-reference.md` — Full code-oriented UI Kit reference
+- `tokens/` — Design tokens in TS, JS, SCSS
+- `components/` — React components (HeaderBar, ShoppingList, ShoppingListItemCard, AddItemForm, etc.)
+- `.storybook/` — Storybook config for component previews
+
+## Usage
+
+### Design Tokens
+- Import from `tokens/` in your app or stylesheets.
+- Use SCSS variables for global styles, or JS/TS exports for JS-in-CSS or theme providers.
+
+### React Components
+- Import from `components/`.
+- All components are typed and documented.
+- If you see linter errors about React imports, add `import * as React from 'react';` to your entry or component (depends on your build setup).
+
+### Storybook
+- Run Storybook in this directory to preview and test components:
+  ```sh
+  npx storybook dev -p 6006
+  # or
+  npm run storybook
+  ```
+- Stories are in `components/*.stories.tsx`.
+
+## Notes
+- All tokens and components are mapped to the UI Kit reference.
+- Extend components as needed for your app.
+- If you want more components, tokens, or a Figma mapping, just ask.
+
+---
+
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
