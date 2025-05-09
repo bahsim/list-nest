@@ -1,5 +1,9 @@
 import * as React from 'react';
 import styles from './FooterNav.module.scss';
+import ListAltIcon from '@mui/icons-material/ListAlt';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import HistoryIcon from '@mui/icons-material/History';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 /**
  * FooterNav displays bottom navigation for main app sections.
@@ -12,10 +16,10 @@ export interface FooterNavProps {
 }
 
 const tabs = [
-  { key: 'list', label: 'List', icon: '📝' },
-  { key: 'analytics', label: 'Analytics', icon: '📊' },
-  { key: 'history', label: 'History', icon: '🕑' },
-  { key: 'settings', label: 'Settings', icon: '⚙️' },
+  { key: 'list', label: 'List', icon: <ListAltIcon /> },
+  { key: 'analytics', label: 'Analytics', icon: <BarChartIcon /> },
+  { key: 'history', label: 'History', icon: <HistoryIcon /> },
+  { key: 'settings', label: 'Settings', icon: <SettingsIcon /> },
 ];
 
 export const FooterNav: React.FC<FooterNavProps> = ({ activeTab, onTabChange }) => (

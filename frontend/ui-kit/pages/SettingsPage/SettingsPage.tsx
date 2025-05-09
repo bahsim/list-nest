@@ -3,6 +3,7 @@ import { HeaderBar } from '../../components/organism/HeaderBar/HeaderBar';
 import { SettingsPanel } from '../../components/organism/SettingsPanel/SettingsPanel';
 import type { User } from '../../components/types';
 import { FooterNav } from '../../components/organism/FooterNav/FooterNav';
+import { SPACING } from '../../tokens/spacing';
 
 export const SettingsPage: React.FC = () => {
   const [theme, setTheme] = React.useState<'light' | 'dark'>('light');
@@ -11,7 +12,7 @@ export const SettingsPage: React.FC = () => {
   const user: User = { id: '1', name: 'Alice', avatarUrl: 'https://i.pravatar.cc/150?img=1' };
 
   return (
-    <div style={{ paddingBottom: 56 }}>
+    <div style={{ paddingBottom: SPACING.XL + SPACING.LG }}>
       <HeaderBar user={user} onSettings={() => {}} />
       <SettingsPanel
         theme={theme}

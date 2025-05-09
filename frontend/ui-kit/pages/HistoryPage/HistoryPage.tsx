@@ -5,6 +5,7 @@ import { FilterBar } from '../../components/molecule/FilterBar/FilterBar';
 import { HistoryView } from '../../components/organism/HistoryView/HistoryView';
 import { FooterNav } from '../../components/organism/FooterNav/FooterNav';
 import type { HistoryGroup, HistoryAnalytics, User } from '../../components/types';
+import { SPACING } from '../../tokens/spacing';
 
 export const HistoryPage: React.FC = () => {
   const [search, setSearch] = React.useState('');
@@ -17,7 +18,7 @@ export const HistoryPage: React.FC = () => {
   const analytics: HistoryAnalytics = { totalItems: 0, totalSpending: 0, frequentItems: [], categoryBreakdown: [] };
 
   return (
-    <div style={{ paddingBottom: 56 }}>
+    <div style={{ paddingBottom: SPACING.XL + SPACING.LG }}>
       <HeaderBar user={user} onSettings={() => {}} />
       <SearchBar value={search} onChange={setSearch} placeholder="Search for 'Milk'" />
       <FilterBar

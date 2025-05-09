@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styles from './VoiceInput.module.scss';
+import MicIcon from '@mui/icons-material/Mic';
 
 /**
  * VoiceInput provides a text input with a microphone button for speech-to-text.
@@ -29,7 +30,7 @@ export const VoiceInput: React.FC<VoiceInputProps> = ({ value, onChange, onVoice
       }
       aria-label="Voice input"
     >
-      <span role="img" aria-label="mic">🎤</span>
+      <MicIcon />
     </button>
   </div>
 ); 
