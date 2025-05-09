@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { AnalyticsSummaryPanel as AnalyticsPanel } from './AnalyticsSummaryPanel';
+import { AnalyticsSummaryPanel as AnalyticsPanel } from './AnalyticsSummaryPanel/AnalyticsSummaryPanel';
 import type { Meta, StoryObj } from '@storybook/react';
 import type { HistoryAnalytics } from '../types';
 

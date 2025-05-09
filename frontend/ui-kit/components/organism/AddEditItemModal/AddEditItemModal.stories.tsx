@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { AddEditItemModal } from './AddEditItemModal';
 import type { Meta, StoryObj } from '@storybook/react';
-import type { AddEditItemInput, AISuggestion } from './types';
+import type { AISuggestion } from '../../types';
 
 const categories = ['Dairy', 'Bakery', 'Produce'];
 const units = ['pcs', 'L', 'kg'];

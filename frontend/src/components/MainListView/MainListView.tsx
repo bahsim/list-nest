@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { HeaderBar } from '../../../../ui-kit/components/organism/HeaderBar/HeaderBar';
-import { FooterNav } from '../../../../ui-kit/components/organism/FooterNav/FooterNav';
-import { ShoppingList } from '../../../../ui-kit/components/organism/ShoppingList/ShoppingList';
-import type { ShoppingListItem, User } from '../../../../ui-kit/components/types';
+import { HeaderBar } from '@ui-kit/components/organism/HeaderBar/HeaderBar';
+import { FooterNav } from '@ui-kit/components/organism/FooterNav/FooterNav';
+import { ShoppingList } from '@ui-kit/components/organism/ShoppingList/ShoppingList';
+import type { ShoppingListItem, User } from '@ui-kit/components/types';
 import styles from './MainListView.module.scss';
 
 const mockUser: User = {

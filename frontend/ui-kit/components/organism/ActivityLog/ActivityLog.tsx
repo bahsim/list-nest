@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { Activity } from '../types';
+import type { Activity } from '../../types';
 import styles from './ActivityLog.module.scss';
 
 /**

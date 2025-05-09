@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ShoppingList } from './ShoppingList';
 import type { Meta, StoryObj } from '@storybook/react';
-import type { ShoppingListItem } from '../types';
+import type { ShoppingListItem } from '../../types';
 
 const mockItems: ShoppingListItem[] = [
   {

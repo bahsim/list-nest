@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { Reminder } from '../types';
+import type { Reminder } from '../../types';
 import styles from './ReminderBanner.module.scss';
 
 /**

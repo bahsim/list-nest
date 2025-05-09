@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { HeaderBar, User } from './HeaderBar';
+import { HeaderBar } from './HeaderBar';
 import type { Meta, StoryObj } from '@storybook/react';
+import type { User } from '../../types';
 
 const mockUser: User = {
   id: '1',

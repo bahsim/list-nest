@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { AddEditItemInput, AISuggestion } from '../types';
+import type { AddEditItemInput, AISuggestion } from '../../types';
 import styles from './AddEditItemModal.module.scss';
 
 /**

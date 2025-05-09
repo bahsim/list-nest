@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { HistoryAnalytics } from '../types';
+import type { HistoryAnalytics } from '../../types';
 import styles from './AnalyticsSummaryPanel.module.scss';
 
 /**

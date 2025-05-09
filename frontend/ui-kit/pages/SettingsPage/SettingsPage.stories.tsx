@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { SettingsPage } from './SettingsPage';
 import type { Meta, StoryObj } from '@storybook/react';
 
