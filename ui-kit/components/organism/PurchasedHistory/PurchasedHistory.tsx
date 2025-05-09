@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { HistoryItem } from '../types';
+import type { HistoryItem } from '../../types';
 import styles from './PurchasedHistory.module.scss';
 
 /**

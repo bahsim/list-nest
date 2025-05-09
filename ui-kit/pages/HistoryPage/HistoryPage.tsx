@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { HeaderBar } from '../components/organism/HeaderBar';
-import { SearchBar } from '../components/atomic/SearchBar';
-import { FilterBar } from '../components/molecule/FilterBar';
-import { HistoryView } from '../components/organism/HistoryView';
-import { FooterNav } from '../components/organism/FooterNav';
-import type { HistoryGroup, HistoryAnalytics, User } from '../components/types';
+import { HeaderBar } from '../../components/organism/HeaderBar/HeaderBar';
+import { SearchBar } from '../../components/atomic/SearchBar/SearchBar';
+import { FilterBar } from '../../components/molecule/FilterBar/FilterBar';
+import { HistoryView } from '../../components/organism/HistoryView/HistoryView';
+import { FooterNav } from '../../components/organism/FooterNav/FooterNav';
+import type { HistoryGroup, HistoryAnalytics, User } from '../../components/types';
 
 export const HistoryPage: React.FC = () => {
   const [search, setSearch] = React.useState('');

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { AddEditItemInput } from '../types';
+import type { AddEditItemInput } from '../../types';
 import styles from './AddItemForm.module.scss';
 
 /**

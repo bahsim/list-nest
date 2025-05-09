@@ -1,6 +1,6 @@
 import * as React from 'react';
-import type { ShoppingListItem } from '../types';
-import { ShoppingListItemCard } from '../molecule/ShoppingListItemCard';
+import type { ShoppingListItem } from '../../types';
+import { ShoppingListItemCard } from '../../molecule/ShoppingListItemCard/ShoppingListItemCard';
 import styles from './ShoppingList.module.scss';
 
 /**

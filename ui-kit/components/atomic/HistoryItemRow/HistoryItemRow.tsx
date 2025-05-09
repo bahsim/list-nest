@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { HistoryItem, User } from '../types';
+import type { HistoryItem, User } from '../../types';
 import styles from './HistoryItemRow.module.scss';
 
 /**
