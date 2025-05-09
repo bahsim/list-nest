@@ -30,7 +30,7 @@ const mockItems: ShoppingListItem[] = [
 ];
 
 const meta: Meta<typeof ShoppingList> = {
-  title: 'UI Kit/ShoppingList',
+  title: 'organism/ShoppingList',
   component: ShoppingList,
 };
 export default meta;

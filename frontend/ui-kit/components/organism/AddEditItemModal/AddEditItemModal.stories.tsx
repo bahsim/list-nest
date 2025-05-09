@@ -12,7 +12,7 @@ const aiSuggestions: AISuggestion[] = [
 ];
 
 const meta: Meta<typeof AddEditItemModal> = {
-  title: 'UI Kit/AddEditItemModal',
+  title: 'organism/AddEditItemModal',
   component: AddEditItemModal,
 };
 export default meta;

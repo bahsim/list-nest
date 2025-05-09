@@ -45,7 +45,7 @@ const mockAnalytics: HistoryAnalytics = {
 };
 
 const meta: Meta<typeof HistoryView> = {
-  title: 'UI Kit/HistoryView',
+  title: 'organism/HistoryView',
   component: HistoryView,
 };
 export default meta;

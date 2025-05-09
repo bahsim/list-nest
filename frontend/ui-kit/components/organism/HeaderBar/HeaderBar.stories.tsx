@@ -9,7 +9,7 @@ const mockUser: User = {
 };
 
 const meta: Meta<typeof HeaderBar> = {
-  title: 'UI Kit/HeaderBar',
+  title: 'organism/HeaderBar',
   component: HeaderBar,
 };
 export default meta;

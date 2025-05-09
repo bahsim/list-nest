@@ -6,7 +6,7 @@ const categories = ['Dairy', 'Bakery', 'Produce'];
 const units = ['pcs', 'L', 'kg'];
 
 const meta: Meta<typeof AddItemForm> = {
-  title: 'UI Kit/AddItemForm',
+  title: 'molecule/AddItemForm',
   component: AddItemForm,
 };
 export default meta;
