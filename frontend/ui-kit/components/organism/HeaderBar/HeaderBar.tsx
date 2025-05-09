@@ -3,7 +3,7 @@ import styles from './HeaderBar.module.scss';
 
 // NOTE: Update the logo path as needed for your build setup. Assumes '/apple-touch-icon.png' in public root.
 // @ts-ignore
-const logo = `${import.meta.env.BASE_URL}/favicon-96x96.png`;
+const logo = '/favicon-96x96.png';
 
 /**
  * HeaderBar component for the Family Grocery App.
