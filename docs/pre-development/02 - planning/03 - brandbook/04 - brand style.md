@@ -38,10 +38,10 @@ The color palette is vibrant yet balanced, reflecting a sense of energy, trust, 
 The typography is clean, modern, and highly legible, aligning with the brand's focus on simplicity and usability.
 
 - **Primary Font**:  
-  - **Poppins** (Google Font): A geometric sans-serif font that is approachable and versatile. Use for headings, titles, and key UI elements.  
+  - **Nunito** (Google Font): A geometric sans-serif font that is approachable and versatile. Use for headings, titles, and key UI elements.  
 
 - **Secondary Font**:  
-  - **Inter** (Google Font): A highly legible font designed for digital interfaces. Use for body text, descriptions, and smaller UI elements.
+  - **Quicksand** (Google Font): A highly legible font designed for digital interfaces. Use for body text, descriptions, and smaller UI elements.
 
 - **Font Weights**:  
   - **Bold (700)**: For headings and emphasis.  

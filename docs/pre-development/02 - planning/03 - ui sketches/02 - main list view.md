@@ -111,7 +111,7 @@ export interface AISuggestion {
 - **Color Palette:**  
   - Use pastel blues, greens, yellows for backgrounds, category tags, and highlights.
 - **Typography:**  
-  - Sans-serif, e.g., Inter, Roboto, or similar.
+  - Sans-serif, e.g., Quicksand, Roboto, or similar.
 - **Icons:**  
   - Use minimal SVGs for edit, delete, focus, restore, settings, etc.
 

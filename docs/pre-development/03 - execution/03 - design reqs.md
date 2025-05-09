@@ -25,7 +25,7 @@ Here’s a full, specific requirements list to start developing the MVP design f
 **1. Inputs/Assets You Already Have**
 - **Logo:** `logo.png` (use as primary app and favicon, see brand style for usage rules)
 - **Brand Colors:** See `02 - brand colors palette.md` (use only these for UI, backgrounds, accents, etc.)
-- **Font Stack:** See `03 - typography.md` (Inter for main text, Quicksand for accents/buttons)
+- **Font Stack:** See `03 - typography.md` (Quicksand for main text, Quicksand for accents/buttons)
 - **Brand Style:** See `04 - brand style.md` (follow all logo, color, icon, imagery, and tone guidelines)
 - **Atomic System:** See `05 - atomic system.md` (use atomic design for all UI components, from atoms to pages)
 

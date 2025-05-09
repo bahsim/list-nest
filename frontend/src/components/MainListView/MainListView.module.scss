@@ -3,7 +3,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: var(--color-bg, #FEF4DB);
+  background: var(--color-bg);
   padding-bottom: 56px;
   box-sizing: border-box;
 }
@@ -18,7 +18,7 @@
 
 .mainListView__empty {
   text-align: center;
-  color: var(--color-primary);
+  color: var(--color-accent);
   margin-top: 64px;
 }
 

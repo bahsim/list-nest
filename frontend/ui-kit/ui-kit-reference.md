@@ -25,11 +25,11 @@
 **Note:** Use CSS custom properties or design tokens for all colors.
 
 ### Typography (Design Tokens)
-- **Primary Font:** `Inter`, fallback: `system-ui, Arial, sans-serif`
+- **Primary Font:** `Quicksand`, fallback: `system-ui, Arial, sans-serif`
   - Use: Body, labels, descriptions.
 - **Accent Font:** `Quicksand`, fallback: `system-ui, Arial, sans-serif`
   - Use: Buttons, icons, interactive.
-- **Headings:** `Poppins`, fallback: `Inter, system-ui, Arial, sans-serif`
+- **Headings:** `Nunito`, fallback: `Quicksand, system-ui, Arial, sans-serif`
   - Use: Titles, hero, key UI.
 - **Font Weights:** 300 (Light), 400 (Regular), 700 (Bold)
 - **Font Sizes:** 12px (caption), 16/18px (body), 24/32px (heading)
@@ -187,9 +187,9 @@ export const COLORS = {
 
 // typography.ts
 export const FONTS = {
-  PRIMARY: '"Inter", system-ui, Arial, sans-serif',
+  PRIMARY: '"Quicksand", system-ui, Arial, sans-serif',
   ACCENT: '"Quicksand", system-ui, Arial, sans-serif',
-  HEADING: '"Poppins", "Inter", system-ui, Arial, sans-serif',
+  HEADING: '"Nunito", "Quicksand", system-ui, Arial, sans-serif',
   WEIGHTS: { LIGHT: 300, REGULAR: 400, BOLD: 700 },
   SIZES: { CAPTION: 12, BODY: 16, BODY_LG: 18, HEADING: 24, HERO: 32 },
 } as const;
@@ -262,7 +262,7 @@ export const SHADOWS = {
 ## 8. Missing/Unclear
 
 - **Logo SVG:** Only PNGs found; SVG or vector preferred for scaling.
-- **Some color/typography tokens**: Slight mismatch between brandbook and style guide (e.g., Poppins vs. Inter/Quicksand). Clarify which is heading/body/accent.
+- **Some color/typography tokens**: Slight mismatch between brandbook and style guide (e.g., Nunito vs. Quicksand/Quicksand). Clarify which is heading/body/accent.
 - **Icon set:** No SVG icon files found, only style guidance.
 - **Motion tokens:** No explicit motion tokens, only style notes.
 - **Voice input:** No details on speech-to-text API, just UI/UX notes.

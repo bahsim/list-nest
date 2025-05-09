@@ -24,8 +24,8 @@ Atoms are the smallest building blocks of the design system. They include basic 
 
 ##### **Typography**
 - **Font Family**:  
-  - Primary: **Poppins**  
-  - Secondary: **Inter**  
+  - Primary: **Nunito**  
+  - Secondary: **Quicksand**  
 - **Font Sizes**:  
   - Heading: 24px, 32px  
   - Body Text: 16px, 18px  
