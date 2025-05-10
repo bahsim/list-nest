@@ -6,5 +6,6 @@ declare const styles: {
   readonly headerBar__right: string;
   readonly headerBar__avatar: string;
   readonly headerBar__settingsBtn: string;
+  readonly headerBar__settingsIcon: string;
 };
 export default styles; 

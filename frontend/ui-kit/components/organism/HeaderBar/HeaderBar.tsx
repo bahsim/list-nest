@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styles from './HeaderBar.module.scss';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 // NOTE: Update the logo path as needed for your build setup. Assumes '/apple-touch-icon.png' in public root.
 // @ts-ignore
@@ -30,7 +31,7 @@ export const HeaderBar = ({ user, onSettings }: HeaderBarProps) => (
     <div className={styles.headerBar__right}>
       {user.avatarUrl && <img src={user.avatarUrl} alt={user.name} className={styles.headerBar__avatar} />}
       <button aria-label="Settings" onClick={onSettings} className={styles.headerBar__settingsBtn}>
-        <svg width="24" height="24" fill="none" stroke="var(--color-dark, #2A2E35)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        <AccessTimeIcon className={styles.headerBar__settingsIcon} />
       </button>
     </div>
   </header>
