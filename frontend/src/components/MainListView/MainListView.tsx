@@ -7,8 +7,8 @@ import styles from './MainListView.module.scss';
 
 const mockUser: User = {
   id: '1',
-  name: 'Alice',
-  avatarUrl: 'https://i.pravatar.cc/150?img=1',
+  name: 'Alice Johnson',
+  // avatarUrl: 'https://i.pravatar.cc/150?img=1',
 };
 
 const MainListView: React.FC = () => {
