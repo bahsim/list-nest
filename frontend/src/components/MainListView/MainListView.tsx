@@ -6,6 +6,8 @@ import type { ShoppingListItem, User } from '@ui-kit/components/types';
 import Box from '@mui/material/Box';
 import EmptyState from '@ui-kit/components/atomic/EmptyState/EmptyState';
 import { AddEditItemModal } from '@ui-kit/components/organism/AddEditItemModal/AddEditItemModal';
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
 
 const mockUser: User = {
   id: '1',
@@ -186,6 +188,27 @@ const MainListView: React.FC = () => {
             onToggleFocus={() => {}}
           />
         </Box>
+      )}
+      {items.length > 0 && (
+        <Fab
+          color="primary"
+          aria-label="Add Item"
+          sx={{
+            position: 'fixed',
+            bottom: 'calc(56px + 24px)', // 56px footer + 24px spacing
+            right: '24px',
+            zIndex: 20,
+            bgcolor: 'var(--color-primary)',
+            color: '#fff',
+            boxShadow: '0 2px 8px rgba(42,46,53,0.08)',
+            '&:hover': {
+              bgcolor: 'var(--color-primary-alt)',
+            },
+          }}
+          onClick={() => setIsAddModalOpen(true)}
+        >
+          <AddIcon />
+        </Fab>
       )}
       {isAddModalOpen && (
         <AddEditItemModal
