@@ -4,7 +4,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Checkbox from '@mui/material/Checkbox';
 import Typography from '@mui/material/Typography';
-import { useTheme } from '@mui/material/styles';
+import { useTheme, type Theme } from '@mui/material/styles';
 
 /**
  * ShoppingListItemCard displays a single shopping list item with actions.
@@ -20,6 +20,17 @@ export interface ShoppingListItemCardProps {
   onDelete: () => void;
   onToggleBought: () => void;
   onToggleFocus: () => void;
+}
+
+/**
+ * Returns the border color for the shopping list item card based on its state.
+ * @param params - Object containing isFocused, isBought, and theme.
+ * @returns The border color string.
+ */
+function getBorderColor({ isFocused, isBought, isDeleted, theme }: { isFocused: boolean; isBought: boolean; isDeleted: boolean; theme: Theme }): string {
+  if (isFocused) return theme.palette.primary.main;
+  if (isBought || isDeleted) return theme.palette.divider;
+  return theme.palette.info.main;
 }
 
 export const ShoppingListItemCard: React.FC<ShoppingListItemCardProps> = ({
@@ -42,11 +53,7 @@ export const ShoppingListItemCard: React.FC<ShoppingListItemCardProps> = ({
           ? theme.palette.info.main + '22'
           : theme.palette.background.paper,
         boxShadow: item.isFocused ? theme.shadows[3] : theme.shadows[1],
-        borderColor: item.isFocused
-          ? theme.palette.primary.main
-          : item.isBought
-            ? theme.palette.divider
-            : theme.palette.info.main,
+        borderColor: getBorderColor({ isFocused: item.isFocused, isBought: item.isBought, isDeleted: item.isDeleted, theme }),
         opacity: item.isBought ? 0.6 : 1,
         transition: 'box-shadow 0.2s, background 0.2s, opacity 0.2s, border-color 0.2s',
       }}
@@ -71,9 +78,9 @@ export const ShoppingListItemCard: React.FC<ShoppingListItemCardProps> = ({
         <Typography
           variant="body1"
           sx={{
-            textDecoration: item.isBought ? 'line-through' : 'none',
+            textDecoration: item.isBought || item.isDeleted ? 'line-through' : 'none',
             fontWeight: item.isFocused ? 700 : 400,
-            color: item.isBought ? theme.palette.text.secondary : theme.palette.text.primary,
+            color: item.isBought || item.isDeleted ? theme.palette.text.secondary : theme.palette.text.primary,
             transition: 'color 0.2s, font-weight 0.2s',
             flex: 2,
           }}

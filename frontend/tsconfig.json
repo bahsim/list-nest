@@ -23,8 +23,7 @@
       "@ui-kit/*": ["ui-kit/*"]
     }
   },
-  "include": ["src", "ui-kit"]
-  ,
+  "include": ["src", "ui-kit"],
   "rules": {
     "@typescript-eslint/no-unused-vars": "off"
   }
