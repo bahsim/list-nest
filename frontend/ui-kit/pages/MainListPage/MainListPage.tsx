@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { HeaderBar } from '../../components/organism/HeaderBar/HeaderBar';
 import { ShoppingList } from '../../components/organism/ShoppingList/ShoppingList';
-import { AddItemForm } from '../../components/molecule/AddItemForm/AddItemForm';
-import { ReminderBanner } from '../../components/atomic/ReminderBanner/ReminderBanner';
+\import { ReminderBanner } from '../../components/atomic/ReminderBanner/ReminderBanner';
 import { ActivityLog } from '../../components/organism/ActivityLog/ActivityLog';
 import { FooterNav } from '../../components/organism/FooterNav/FooterNav';
 import type { ShoppingListItem, User, Reminder, Activity, AddEditItemInput } from '../../components/types';
@@ -19,7 +18,6 @@ export const MainListPage: React.FC = () => {
     <div style={{ paddingBottom: SPACING.XL + SPACING.LG }}>
       <HeaderBar user={user} onSettings={() => {}} />
       <ReminderBanner reminders={reminders} onAdd={id => {}} />
-      <AddItemForm onAdd={(input: AddEditItemInput) => {}} categories={['Dairy', 'Bakery']} units={['pcs', 'L']} />
       <ShoppingList
         items={items}
         onEdit={() => {}}
