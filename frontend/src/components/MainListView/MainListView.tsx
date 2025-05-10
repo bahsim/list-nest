@@ -3,7 +3,8 @@ import { HeaderBar } from '@ui-kit/components/organism/HeaderBar/HeaderBar';
 import { FooterNav } from '@ui-kit/components/organism/FooterNav/FooterNav';
 import { ShoppingList } from '@ui-kit/components/organism/ShoppingList/ShoppingList';
 import type { ShoppingListItem, User } from '@ui-kit/components/types';
-import styles from './MainListView.module.scss';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 const mockUser: User = {
   id: '1',
@@ -16,15 +17,44 @@ const MainListView: React.FC = () => {
   const [items] = useState<ShoppingListItem[]>([]); // Empty list for now
 
   return (
-    <div className={styles.mainListView}>
+    <Box
+      width="100vw"
+      minHeight="100dvh"
+      display="flex"
+      flexDirection="column"
+      bgcolor="var(--color-bg)"
+      pb={7} // 56px
+      boxSizing="border-box"
+    >
       <HeaderBar user={mockUser} onSettings={() => { }} />
-      <main className={styles.mainListView__main}>
+      <Box
+        component="main"
+        flex={1}
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+      >
         {items.length === 0 ? (
-          <div className={styles.mainListView__empty}>
-            <div className={styles.mainListView__emptyIcon}><img src="/hero.png" alt="Empty list" /></div>
-            <h2 className={styles.mainListView__emptyTitle}>No List Yet</h2>
-            <p className={styles.mainListView__emptyText}>Create a new list to get started.</p>
-          </div>
+          <Box
+            textAlign="center"
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+            role="status"
+            aria-live="polite"
+          >
+            <Box sx={{ fontSize: 48, mb: 2 }}>
+              <img
+                src="/hero.png"
+                alt="Empty list"
+                style={{ width: '100%', height: 'auto', display: 'block', maxWidth: '100vw' }}
+              />
+            </Box>
+            <Typography variant="h5" color="primary.main" fontWeight={700} gutterBottom>No List Yet</Typography>
+            <Typography variant="body1" color="text.primary">Create a new list to get started.</Typography>
+          </Box>
         ) : (
           <ShoppingList
             items={items}
@@ -34,9 +64,9 @@ const MainListView: React.FC = () => {
             onToggleFocus={() => { }}
           />
         )}
-      </main>
+      </Box>
       <FooterNav activeTab={activeTab} onTabChange={setActiveTab} />
-    </div>
+    </Box>
   );
 };
 
