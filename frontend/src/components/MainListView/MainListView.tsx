@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 import { HeaderBar } from '@ui-kit/components/organism/HeaderBar/HeaderBar';
 import { FooterNav } from '@ui-kit/components/organism/FooterNav/FooterNav';
 import { ShoppingList } from '@ui-kit/components/organism/ShoppingList/ShoppingList';
-import type { ShoppingListItem, User } from '@ui-kit/components/types';
+import type {
+  ShoppingListItem,
+  User,
+} from '@ui-kit/components/types';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import EmptyState from '@ui-kit/components/atomic/EmptyState/EmptyState';
 
 const mockUser: User = {
   id: '1',
@@ -17,6 +21,11 @@ const MainListView: React.FC = () => {
   const [activeTab, setActiveTab] = useState('list');
   const [items] = useState<ShoppingListItem[]>([]); // Empty list for now
 
+  const handleAddFirstItem = (): void => {
+    // TODO: Open add item modal or similar
+    // Placeholder: alert('Add item modal');
+  };
+
   return (
     <Box
       width="100vw"
@@ -27,7 +36,7 @@ const MainListView: React.FC = () => {
       pb={7} // 56px
       boxSizing="border-box"
     >
-      <HeaderBar user={mockUser} onSettings={() => { }} />
+      <HeaderBar user={mockUser} onSettings={() => {}} />
       <Box
         component="main"
         flex={1}
@@ -37,39 +46,29 @@ const MainListView: React.FC = () => {
         justifyContent="center"
       >
         {items.length === 0 ? (
-          <Box
-            textAlign="center"
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            justifyContent="center"
-            role="status"
-            aria-live="polite"
-          >
-            <Box sx={{ fontSize: 48, mb: 2 }}>
-              <img
-                src="/hero.png"
-                alt="Empty list"
-                style={{ width: '100%', height: 'auto', display: 'block', maxWidth: '100vw' }}
-              />
-            </Box>
-            <Typography variant="h5" color="primary.main" fontWeight={700} gutterBottom>No List Yet</Typography>
-            <Typography variant="body1" color="text.primary">Create a new list to get started.</Typography>
-            <Button variant="contained" color="primary" sx={{ mt: 2 }} onClick={() => { }}>Create List</Button>
-          </Box>
+          <EmptyState
+            title="No items yet"
+            description="Add your first item to this list."
+            buttonLabel="Add First Item"
+            onButtonClick={handleAddFirstItem}
+            imageAlt="No items yet"
+          />
         ) : (
           <ShoppingList
             items={items}
-            onEdit={() => { }}
-            onDelete={() => { }}
-            onToggleBought={() => { }}
-            onToggleFocus={() => { }}
+            onEdit={() => {}}
+            onDelete={() => {}}
+            onToggleBought={() => {}}
+            onToggleFocus={() => {}}
           />
         )}
       </Box>
-      <FooterNav activeTab={activeTab} onTabChange={setActiveTab} />
+      <FooterNav
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+      />
     </Box>
   );
 };
 
-export default MainListView; 
+export default MainListView;
