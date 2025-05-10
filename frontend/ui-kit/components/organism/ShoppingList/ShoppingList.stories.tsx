@@ -14,6 +14,8 @@ const mockItems: ShoppingListItem[] = [
     isBought: false,
     addedBy: '1',
     addedAt: new Date(),
+    unit: 'L',
+    currency: 'USD',
   },
   {
     id: '2',
@@ -25,7 +27,8 @@ const mockItems: ShoppingListItem[] = [
     isBought: true,
     addedBy: '2',
     addedAt: new Date(),
-    boughtAt: new Date(),
+    unit: 'pcs',
+    currency: 'USD',
   },
 ];
 
