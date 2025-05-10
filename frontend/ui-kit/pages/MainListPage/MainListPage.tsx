@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { HeaderBar } from '../../components/organism/HeaderBar/HeaderBar';
 import { ShoppingList } from '../../components/organism/ShoppingList/ShoppingList';
-\import { ReminderBanner } from '../../components/atomic/ReminderBanner/ReminderBanner';
+import { ReminderBanner } from '../../components/atomic/ReminderBanner/ReminderBanner';
 import { ActivityLog } from '../../components/organism/ActivityLog/ActivityLog';
 import { FooterNav } from '../../components/organism/FooterNav/FooterNav';
 import type { ShoppingListItem, User, Reminder, Activity, AddEditItemInput } from '../../components/types';
