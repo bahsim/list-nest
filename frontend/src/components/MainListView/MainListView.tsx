@@ -17,6 +17,75 @@ const mockCategories = ['Produce', 'Bakery', 'Dairy', 'Meat', 'Snacks'];
 const mockUnits = ['pcs', 'kg', 'g', 'l', 'pack'];
 const mockCurrencies = ['USD', 'EUR', 'GBP'];
 
+// TODO: Add mock data
+const mockItems: ShoppingListItem[] = [
+  {
+    id: '1',
+    name: 'Milk',
+    quantity: '2',
+    unit: 'L',
+    category: 'Dairy',
+    isBought: false,
+    isFocused: false,
+    estimatedPrice: 10,
+    currency: 'USD',
+    addedBy: 'Alice',
+    addedAt: new Date(),
+  },
+  {
+    id: '2',
+    name: 'Bread',
+    quantity: '1',
+    unit: 'pcs',
+    category: 'Bakery',
+    isBought: false,
+    isFocused: true,
+    estimatedPrice: 5,
+    currency: 'USD',
+    addedBy: 'Alice',
+    addedAt: new Date(),
+  },
+  {
+    id: '3',
+    name: 'Eggs',
+    quantity: '12',
+    unit: 'pcs',
+    category: 'Dairy',
+    isBought: true,
+    isFocused: false,
+    estimatedPrice: 10,
+    currency: 'USD',
+    addedBy: 'Alice',
+    addedAt: new Date(),
+  },
+  {
+    id: '4',
+    name: 'Chicken',
+    quantity: '1',
+    unit: 'kg',
+    category: 'Meat',
+    isBought: false,
+    isFocused: false,
+    estimatedPrice: 10,
+    currency: 'USD',
+    addedBy: 'Alice',
+    addedAt: new Date(),
+  },
+  {
+    id: '5',
+    name: 'Beer',
+    quantity: '1',
+    unit: 'L',
+    category: 'Alcohol',
+    isBought: true,
+    isFocused: true,
+    estimatedPrice: 10,
+    currency: 'USD',
+    addedBy: 'Alice',
+    addedAt: new Date(),
+  },
+];
+
 const MainListView: React.FC = () => {
   const [activeTab, setActiveTab] = useState('list');
   const [items, setItems] = useState<ShoppingListItem[]>([]);
@@ -29,18 +98,20 @@ const MainListView: React.FC = () => {
   const handleSaveItem = (input: any): void => {
     setItems((prev) => [
       ...prev,
-      {
-        id: String(Date.now()),
-        name: input.name,
-        quantity: input.quantity,
-        unit: input.unit,
-        estimatedPrice: input.estimatedPrice || 0,
-        category: input.category,
-        isBought: false,
-        isFocused: input.isFocused || false,
-        addedBy: mockUser.id,
-        addedAt: new Date(),
-      },
+      ...mockItems,
+      // {
+      //   id: String(Date.now()),
+      //   name: input.name,
+      //   quantity: input.quantity,
+      //   currency: input.currency,
+      //   unit: input.unit,
+      //   estimatedPrice: input.estimatedPrice || 0,
+      //   category: input.category,
+      //   isBought: false,
+      //   isFocused: input.isFocused || false,
+      //   addedBy: mockUser.id,
+      //   addedAt: new Date(),
+      // },
     ]);
     setIsAddModalOpen(false);
   };
@@ -60,15 +131,15 @@ const MainListView: React.FC = () => {
       boxSizing="border-box"
     >
       <HeaderBar user={mockUser} onSettings={() => {}} />
-      <Box
-        component="main"
-        flex={1}
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
-      >
-        {items.length === 0 ? (
+      {items.length === 0 ? (
+        <Box
+          component="main"
+          flex={1}
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+        >
           <EmptyState
             title="No items yet"
             description="Add your first item to this list."
@@ -76,25 +147,36 @@ const MainListView: React.FC = () => {
             onButtonClick={handleAddFirstItem}
             imageAlt="No items yet"
           />
-        ) : (
+        </Box>
+      ) : (
+        <Box
+          component="main"
+          flex={1}
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="flex-start"
+          pt={5}
+        >
           <ShoppingList
+            sx={{ width: '100%', maxWidth: 600, px: 1 }}
             items={items}
             onEdit={() => {}}
             onDelete={() => {}}
             onToggleBought={() => {}}
             onToggleFocus={() => {}}
           />
-        )}
-        {isAddModalOpen && (
-          <AddEditItemModal
-            onSave={handleSaveItem}
-            onCancel={handleCancelAdd}
-            categories={mockCategories}
-            units={mockUnits}
-            currencies={mockCurrencies}
-          />
-        )}
-      </Box>
+        </Box>
+      )}
+      {isAddModalOpen && (
+        <AddEditItemModal
+          onSave={handleSaveItem}
+          onCancel={handleCancelAdd}
+          categories={mockCategories}
+          units={mockUnits}
+          currencies={mockCurrencies}
+        />
+      )}
       <FooterNav activeTab={activeTab} onTabChange={setActiveTab} />
     </Box>
   );

@@ -4,7 +4,9 @@ export interface ShoppingListItem {
   id: string;
   name: string;
   quantity: string;
+  unit: string;
   estimatedPrice: number;
+  currency: string;
   category: string;
   isFocused: boolean;
   isBought: boolean;

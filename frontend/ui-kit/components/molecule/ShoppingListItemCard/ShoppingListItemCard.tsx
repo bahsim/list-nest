@@ -3,12 +3,7 @@ import type { ShoppingListItem } from '../../types';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Checkbox from '@mui/material/Checkbox';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import StarIcon from '@mui/icons-material/Star';
 import { useTheme } from '@mui/material/styles';
 
 /**
@@ -46,21 +41,21 @@ export const ShoppingListItemCard: React.FC<ShoppingListItemCardProps> = ({
         background: item.isFocused
           ? theme.palette.info.main + '22'
           : theme.palette.background.paper,
-        boxShadow: item.isFocused
-          ? theme.shadows[3]
-          : theme.shadows[1],
-        borderColor: item.isBought
-          ? theme.palette.divider
-          : theme.palette.primary.main,
+        boxShadow: item.isFocused ? theme.shadows[3] : theme.shadows[1],
+        borderColor: item.isFocused
+          ? theme.palette.primary.main
+          : item.isBought
+            ? theme.palette.divider
+            : theme.palette.info.main,
         opacity: item.isBought ? 0.6 : 1,
-        transition: 'box-shadow 0.2s, background 0.2s, opacity 0.2s',
+        transition: 'box-shadow 0.2s, background 0.2s, opacity 0.2s, border-color 0.2s',
       }}
       data-testid="shopping-list-item-card"
     >
       <Checkbox
         checked={item.isBought}
         onChange={onToggleBought}
-        inputProps={{ 'aria-label': 'Mark as bought' }}
+        slotProps={{ input: { 'aria-label': 'Mark as bought' } }}
         color="primary"
         sx={{ ml: theme.spacing(1) }}
       />
@@ -78,9 +73,7 @@ export const ShoppingListItemCard: React.FC<ShoppingListItemCardProps> = ({
           sx={{
             textDecoration: item.isBought ? 'line-through' : 'none',
             fontWeight: item.isFocused ? 700 : 400,
-            color: item.isBought
-              ? theme.palette.text.secondary
-              : theme.palette.text.primary,
+            color: item.isBought ? theme.palette.text.secondary : theme.palette.text.primary,
             transition: 'color 0.2s, font-weight 0.2s',
             flex: 2,
           }}
@@ -101,50 +94,10 @@ export const ShoppingListItemCard: React.FC<ShoppingListItemCardProps> = ({
         >
           {item.estimatedPrice ? `$${item.estimatedPrice}` : ''}
         </Typography>
-        <Typography
-          variant="body2"
-          color="info.main"
-          sx={{ minWidth: 64, textAlign: 'center' }}
-        >
+        <Typography variant="body2" color="info.main" sx={{ minWidth: 64, textAlign: 'center' }}>
           {item.category}
         </Typography>
       </CardContent>
-      <Box sx={{ display: 'flex', alignItems: 'center', pr: 1 }}>
-        <IconButton
-          aria-label="Focus"
-          onClick={onToggleFocus}
-          color={item.isFocused ? 'primary' : 'default'}
-          sx={{
-            '&.Mui-selected, &[aria-selected="true"]': {
-              color: theme.palette.primary.main,
-            },
-          }}
-        >
-          <StarIcon
-            fontSize="small"
-            sx={{
-              color: item.isFocused
-                ? theme.palette.primary.main
-                : theme.palette.action.disabled,
-              transition: 'color 0.2s',
-            }}
-          />
-        </IconButton>
-        <IconButton
-          aria-label="Edit"
-          onClick={onEdit}
-          color="secondary"
-        >
-          <EditIcon fontSize="small" />
-        </IconButton>
-        <IconButton
-          aria-label="Delete"
-          onClick={onDelete}
-          color="error"
-        >
-          <DeleteIcon fontSize="small" />
-        </IconButton>
-      </Box>
     </Card>
   );
-}; 
+};

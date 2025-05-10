@@ -55,14 +55,14 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
 
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!fields.name || !fields.quantity || !fields.unit || !fields.category) {
-      setError('All fields are required');
-      return;
-    }
-    if (fields.estimatedPrice && !fields.currency) {
-      setError('Currency is required if estimated price is set');
-      return;
-    }
+    // if (!fields.name || !fields.quantity || !fields.unit || !fields.category) {
+    //   setError('All fields are required');
+    //   return;
+    // }
+    // if (fields.estimatedPrice && !fields.currency) {
+    //   setError('Currency is required if estimated price is set');
+    //   return;
+    // }
     setError(null);
     onSave(fields);
   };
@@ -82,7 +82,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
             value={fields.name}
             onChange={handleChange}
             fullWidth
-            required
+            // required
           />
           <TextField
             type="number"
@@ -91,7 +91,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
             value={fields.quantity}
             onChange={handleChange}
             fullWidth
-            required
+            // required
           />
           <TextField
             select
@@ -100,7 +100,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
             value={fields.unit}
             onChange={handleChange}
             fullWidth
-            required
+            // required
           >
             {units.map((u) => (
               <MenuItem key={u} value={u}>
@@ -123,7 +123,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
             value={fields.currency || ''}
             onChange={handleChange}
             fullWidth
-            required={!!fields.estimatedPrice}
+            // required={!!fields.estimatedPrice}
           >
             <MenuItem value="">Currency</MenuItem>
             {currencies.map((c) => (
@@ -139,7 +139,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
             value={fields.category}
             onChange={handleChange}
             fullWidth
-            required
+            // required
           >
             {categories.map((c) => (
               <MenuItem key={c} value={c}>
