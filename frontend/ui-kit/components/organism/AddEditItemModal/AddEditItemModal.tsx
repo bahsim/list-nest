@@ -1,6 +1,13 @@
 import * as React from 'react';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
+import Box from '@mui/material/Box';
 import type { AddEditItemInput, AISuggestion } from '../../types';
-import styles from './AddEditItemModal.module.scss';
 
 /**
  * AddEditItemModal for adding or editing a shopping list item.
@@ -21,7 +28,15 @@ export interface AddEditItemModalProps {
   aiSuggestions?: AISuggestion[];
 }
 
-export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({ item, onSave, onCancel, categories, units, currencies, aiSuggestions }) => {
+export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
+  item,
+  onSave,
+  onCancel,
+  categories,
+  units,
+  currencies,
+  aiSuggestions,
+}) => {
   const [fields, setFields] = React.useState<AddEditItemInput>(item || {
     name: '',
     quantity: '',
@@ -31,7 +46,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({ item, onSave
   });
   const [error, setError] = React.useState<string | null>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFields({ ...fields, [e.target.name]: e.target.value });
   };
 
@@ -50,44 +65,94 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({ item, onSave
   };
 
   return (
-    <div className={styles.addEditItemModal__overlay}>
-      <form onSubmit={handleSave} className={styles.addEditItemModal__form}>
-        <div className={styles.addEditItemModal__header}>
-          <h2 style={{ margin: 0 }}>{item ? 'Edit Item' : 'Add Item'}</h2>
-          <button type="button" aria-label="Close" onClick={onCancel} className={styles.addEditItemModal__closeBtn}>×</button>
-        </div>
-        <input name="name" value={fields.name} onChange={handleChange} placeholder="Item name" />
-        <input name="quantity" value={fields.quantity} onChange={handleChange} placeholder="Quantity" />
-        <select name="unit" value={fields.unit} onChange={handleChange}>
-          {units.map(u => <option key={u} value={u}>{u}</option>)}
-        </select>
-        <input name="estimatedPrice" value={fields.estimatedPrice || ''} onChange={handleChange} placeholder="Estimated Price" type="number" />
-        <select name="currency" value={fields.currency || ''} onChange={handleChange}>
-          <option value="">Currency</option>
-          {currencies.map(c => <option key={c} value={c}>{c}</option>)}
-        </select>
-        <select name="category" value={fields.category} onChange={handleChange}>
-          {categories.map(c => <option key={c} value={c}>{c}</option>)}
-        </select>
-        <label className={styles.addEditItemModal__label}>
-          <input type="checkbox" name="isFocused" checked={fields.isFocused} onChange={e => setFields({ ...fields, isFocused: e.target.checked })} /> Focus
-        </label>
-        {aiSuggestions && aiSuggestions.length > 0 && (
-          <div className={styles.addEditItemModal__aiSuggestions}>
-            <div className={styles.addEditItemModal__aiSuggestionsTitle}>AI Suggestions:</div>
-            <div className={styles.addEditItemModal__aiSuggestionsList}>
-              {aiSuggestions.map(s => (
-                <button key={s.id} type="button" onClick={() => handleAISuggestion(s)} className={styles.addEditItemModal__aiSuggestionBtn}>{s.name}</button>
-              ))}
-            </div>
-          </div>
-        )}
-        <div className={styles.addEditItemModal__actions}>
-          <button type="submit" className={styles.addEditItemModal__saveBtn}>Save</button>
-          <button type="button" onClick={onCancel} className={styles.addEditItemModal__cancelBtn}>Cancel</button>
-        </div>
-        {error && <span className={styles.addEditItemModal__error}>{error}</span>}
-      </form>
-    </div>
+    <Dialog open onClose={onCancel} maxWidth="xs" fullWidth>
+      <DialogTitle>{item ? 'Edit Item' : 'Add Item'}</DialogTitle>
+      <Box component="form" onSubmit={handleSave}>
+        <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          <TextField
+            name="name"
+            label="Item name"
+            value={fields.name}
+            onChange={handleChange}
+            fullWidth
+            required
+          />
+          <TextField
+            name="quantity"
+            label="Quantity"
+            value={fields.quantity}
+            onChange={handleChange}
+            fullWidth
+            required
+          />
+          <TextField
+            select
+            name="unit"
+            label="Unit"
+            value={fields.unit}
+            onChange={handleChange}
+            fullWidth
+            required
+            SelectProps={{ native: true }}
+          >
+            {units.map(u => <option key={u} value={u}>{u}</option>)}
+          </TextField>
+          <TextField
+            name="estimatedPrice"
+            label="Estimated Price"
+            value={fields.estimatedPrice || ''}
+            onChange={handleChange}
+            type="number"
+            fullWidth
+          />
+          <TextField
+            select
+            name="currency"
+            label="Currency"
+            value={fields.currency || ''}
+            onChange={handleChange}
+            fullWidth
+            SelectProps={{ native: true }}
+          >
+            <option value="">Currency</option>
+            {currencies.map(c => <option key={c} value={c}>{c}</option>)}
+          </TextField>
+          <TextField
+            select
+            name="category"
+            label="Category"
+            value={fields.category}
+            onChange={handleChange}
+            fullWidth
+            required
+            SelectProps={{ native: true }}
+          >
+            {categories.map(c => <option key={c} value={c}>{c}</option>)}
+          </TextField>
+          {aiSuggestions && aiSuggestions.length > 0 && (
+            <Box>
+              <Box sx={{ fontWeight: 'bold', mb: 1 }}>AI Suggestions:</Box>
+              <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+                {aiSuggestions.map(s => (
+                  <Button
+                    key={s.id}
+                    variant="outlined"
+                    size="small"
+                    onClick={() => handleAISuggestion(s)}
+                  >
+                    {s.name}
+                  </Button>
+                ))}
+              </Box>
+            </Box>
+          )}
+          {error && <Alert severity="error">{error}</Alert>}
+        </DialogContent>
+        <DialogActions>
+          <Button type="submit" variant="contained" color="primary">Save</Button>
+          <Button onClick={onCancel} variant="outlined">Cancel</Button>
+        </DialogActions>
+      </Box>
+    </Dialog>
   );
 }; 
