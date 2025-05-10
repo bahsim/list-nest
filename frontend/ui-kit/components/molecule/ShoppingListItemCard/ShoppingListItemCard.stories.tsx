@@ -21,6 +21,7 @@ const baseItem: ShoppingListItem = {
   category: 'Bakery',
   isFocused: false,
   isBought: false,
+  isDeleted: false,
   addedBy: 'user-1',
   addedAt: new Date(),
 };
