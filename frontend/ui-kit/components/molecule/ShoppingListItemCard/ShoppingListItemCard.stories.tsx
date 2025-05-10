@@ -2,12 +2,16 @@ import React from 'react';
 import { ShoppingListItemCard } from './ShoppingListItemCard';
 import type { ShoppingListItem } from '../../types';
 
+/**
+ * Storybook stories for ShoppingListItemCard (MUI version)
+ * Shows all main states: default, focused, bought, focused+bought
+ */
 export default {
   title: 'molecule/ShoppingListItemCard',
   component: ShoppingListItemCard,
 };
 
-const mockItem: ShoppingListItem = {
+const baseItem: ShoppingListItem = {
   id: '1',
   name: 'Bread',
   quantity: '1',
@@ -21,7 +25,37 @@ const mockItem: ShoppingListItem = {
 
 export const Basic = () => (
   <ShoppingListItemCard
-    item={mockItem}
+    item={baseItem}
+    onEdit={() => {}}
+    onDelete={() => {}}
+    onToggleBought={() => {}}
+    onToggleFocus={() => {}}
+  />
+);
+
+export const Focused = () => (
+  <ShoppingListItemCard
+    item={{ ...baseItem, isFocused: true }}
+    onEdit={() => {}}
+    onDelete={() => {}}
+    onToggleBought={() => {}}
+    onToggleFocus={() => {}}
+  />
+);
+
+export const Bought = () => (
+  <ShoppingListItemCard
+    item={{ ...baseItem, isBought: true }}
+    onEdit={() => {}}
+    onDelete={() => {}}
+    onToggleBought={() => {}}
+    onToggleFocus={() => {}}
+  />
+);
+
+export const FocusedAndBought = () => (
+  <ShoppingListItemCard
+    item={{ ...baseItem, isFocused: true, isBought: true }}
     onEdit={() => {}}
     onDelete={() => {}}
     onToggleBought={() => {}}
