@@ -27,7 +27,17 @@ export interface ShoppingListItemCardProps {
  * @param params - Object containing isFocused, isBought, and theme.
  * @returns The border color string.
  */
-function getBorderColor({ isFocused, isBought, isDeleted, theme }: { isFocused: boolean; isBought: boolean; isDeleted: boolean; theme: Theme }): string {
+function getBorderColor({
+  isFocused,
+  isBought,
+  isDeleted,
+  theme,
+}: {
+  isFocused: boolean;
+  isBought: boolean;
+  isDeleted: boolean;
+  theme: Theme;
+}): string {
   if (isFocused) return theme.palette.primary.main;
   if (isBought || isDeleted) return theme.palette.divider;
   return theme.palette.info.main;
@@ -47,13 +57,17 @@ export const ShoppingListItemCard: React.FC<ShoppingListItemCardProps> = ({
       sx={{
         display: 'flex',
         alignItems: 'center',
-        gap: theme.spacing(2),
         mb: theme.spacing(2),
         background: item.isFocused
           ? theme.palette.info.main + '22'
           : theme.palette.background.paper,
         boxShadow: item.isFocused ? theme.shadows[3] : theme.shadows[1],
-        borderColor: getBorderColor({ isFocused: item.isFocused, isBought: item.isBought, isDeleted: item.isDeleted, theme }),
+        borderColor: getBorderColor({
+          isFocused: item.isFocused,
+          isBought: item.isBought,
+          isDeleted: item.isDeleted,
+          theme,
+        }),
         opacity: item.isBought ? 0.6 : 1,
         transition: 'box-shadow 0.2s, background 0.2s, opacity 0.2s, border-color 0.2s',
       }}
@@ -71,8 +85,8 @@ export const ShoppingListItemCard: React.FC<ShoppingListItemCardProps> = ({
           flex: 1,
           display: 'flex',
           alignItems: 'center',
-          gap: theme.spacing(1),
           p: `${theme.spacing(1)} !important`,
+          pl: '0 !important',
         }}
       >
         <Typography
@@ -80,7 +94,10 @@ export const ShoppingListItemCard: React.FC<ShoppingListItemCardProps> = ({
           sx={{
             textDecoration: item.isBought || item.isDeleted ? 'line-through' : 'none',
             fontWeight: item.isFocused ? 700 : 400,
-            color: item.isBought || item.isDeleted ? theme.palette.text.secondary : theme.palette.text.primary,
+            color:
+              item.isBought || item.isDeleted
+                ? theme.palette.text.secondary
+                : theme.palette.text.primary,
             transition: 'color 0.2s, font-weight 0.2s',
             flex: 2,
           }}
