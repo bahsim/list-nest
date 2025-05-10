@@ -143,24 +143,46 @@ const MainListView: React.FC = () => {
 
   return (
     <Box
-      width="100vw"
-      minHeight="100dvh"
-      display="flex"
-      flexDirection="column"
-      bgcolor="var(--color-bg)"
-      pb={7} // 56px
-      boxSizing="border-box"
+      sx={{
+        position: 'relative',
+        height: '100vh',
+        width: '100vw',
+        bgcolor: 'var(--color-bg)',
+        overflow: 'hidden',
+      }}
     >
-      <HeaderBar user={mockUser} onSettings={() => {}} />
-      {items.length === 0 ? (
-        <Box
-          component="main"
-          flex={1}
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-        >
+      {/* Header */}
+      <Box
+        sx={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 56, // match your HeaderBar height
+          zIndex: 2,
+        }}
+      >
+        <HeaderBar user={mockUser} onSettings={() => {}} />
+      </Box>
+
+      {/* Main Content (scrollable) */}
+      <Box
+        sx={{
+          position: 'absolute',
+          top: 56, // header height
+          bottom: 56, // footer height
+          left: 0,
+          right: 0,
+          overflow: 'auto',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          pt: 5,
+          width: '100%',
+          paddingBottom: 12,
+        }}
+      >
+        {items.length === 0 ? (
           <EmptyState
             title="No items yet"
             description="Add your first item to this list."
@@ -168,17 +190,7 @@ const MainListView: React.FC = () => {
             onButtonClick={handleAddFirstItem}
             imageAlt="No items yet"
           />
-        </Box>
-      ) : (
-        <Box
-          component="main"
-          flex={1}
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="flex-start"
-          pt={5}
-        >
+        ) : (
           <ShoppingList
             sx={{ width: '100%', maxWidth: 600, px: 1 }}
             items={items}
@@ -187,17 +199,33 @@ const MainListView: React.FC = () => {
             onToggleBought={() => {}}
             onToggleFocus={() => {}}
           />
-        </Box>
-      )}
+        )}
+      </Box>
+
+      {/* Footer */}
+      <Box
+        sx={{
+          position: 'absolute',
+          left: 0,
+          right: 0,
+          bottom: 0,
+          height: 56, // match your FooterNav height
+          zIndex: 2,
+        }}
+      >
+        <FooterNav activeTab={activeTab} onTabChange={setActiveTab} />
+      </Box>
+
+      {/* FAB */}
       {items.length > 0 && (
         <Fab
           color="primary"
           aria-label="Add Item"
           sx={{
             position: 'fixed',
-            bottom: 'calc(56px + 24px)', // 56px footer + 24px spacing
-            right: '24px',
-            zIndex: 20,
+            right: 24,
+            bottom: 56 + 24, // footer height + spacing
+            zIndex: 10,
             bgcolor: 'var(--color-primary)',
             color: '#fff',
             boxShadow: '0 2px 8px rgba(42,46,53,0.08)',
@@ -210,6 +238,8 @@ const MainListView: React.FC = () => {
           <AddIcon />
         </Fab>
       )}
+
+      {/* Modal */}
       {isAddModalOpen && (
         <AddEditItemModal
           onSave={handleSaveItem}
@@ -219,7 +249,6 @@ const MainListView: React.FC = () => {
           currencies={mockCurrencies}
         />
       )}
-      <FooterNav activeTab={activeTab} onTabChange={setActiveTab} />
     </Box>
   );
 };
