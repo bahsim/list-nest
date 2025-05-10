@@ -10,6 +10,7 @@ export interface ShoppingListItem {
   category: string;
   isFocused: boolean;
   isBought: boolean;
+  isDeleted: boolean;
   addedBy: string;
   addedAt: Date;
   boughtAt?: Date;
