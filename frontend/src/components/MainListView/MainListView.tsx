@@ -21,14 +21,14 @@ const mockCurrencies = ['USD', 'EUR', 'GBP'];
 const mockItems: ShoppingListItem[] = [
   {
     id: '1',
-    name: 'Milk',
-    quantity: '2',
+    name: 'Milkkkkkk kkkkkkkkk kkkk and some other stuff',
+    quantity: '2000',
     unit: 'L',
     category: 'Dairy',
     isBought: false,
     isFocused: false,
     isDeleted: false,
-    estimatedPrice: 10,
+    estimatedPrice: 10000,
     currency: 'USD',
     addedBy: 'Alice',
     addedAt: new Date(),

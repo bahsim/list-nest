@@ -71,7 +71,7 @@ export const ShoppingListItemCard: React.FC<ShoppingListItemCardProps> = ({
           flex: 1,
           display: 'flex',
           alignItems: 'center',
-          gap: theme.spacing(2),
+          gap: theme.spacing(1),
           p: `${theme.spacing(1)} !important`,
         }}
       >
@@ -100,9 +100,6 @@ export const ShoppingListItemCard: React.FC<ShoppingListItemCardProps> = ({
           sx={{ minWidth: 48, textAlign: 'center' }}
         >
           {item.estimatedPrice ? `$${item.estimatedPrice}` : ''}
-        </Typography>
-        <Typography variant="body2" color="info.main" sx={{ minWidth: 64, textAlign: 'center' }}>
-          {item.category}
         </Typography>
       </CardContent>
     </Card>
