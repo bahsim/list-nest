@@ -1,9 +1,13 @@
 import * as React from 'react';
-import styles from './HeaderBar.module.scss';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Avatar from '@mui/material/Avatar';
+import Typography from '@mui/material/Typography';
 import AccessTimeIcon from '@mui/icons-material/AccessTimeRounded';
+import styles from './HeaderBar.module.scss';
 
 // NOTE: Update the logo path as needed for your build setup. Assumes '/apple-touch-icon.png' in public root.
-// @ts-ignore
 const logo = '/favicon-96x96.png';
 
 /**
@@ -22,17 +26,23 @@ export interface HeaderBarProps {
   onSettings: () => void;
 }
 
-export const HeaderBar = ({ user, onSettings }: HeaderBarProps) => (
-  <header className={styles.headerBar}>
-    <div className={styles.headerBar__left}>
-      <img src={logo} alt="App Logo" className={styles.headerBar__logo} />
-      <span className={styles.headerBar__title}>ListNest</span>
-    </div>
-    <div className={styles.headerBar__right}>
-      {user.avatarUrl && <img src={user.avatarUrl} alt={user.name} className={styles.headerBar__avatar} />}
-      <button aria-label="Settings" onClick={onSettings} className={styles.headerBar__settingsBtn}>
-        <AccessTimeIcon className={styles.headerBar__settingsIcon} />
-      </button>
-    </div>
-  </header>
+export const HeaderBar: React.FC<HeaderBarProps> = ({ user, onSettings }) => (
+  <AppBar position="static" elevation={0} color="default" sx={{ borderBottom: theme => `1px solid ${theme.palette.divider}` }}>
+    <Toolbar className={styles.headerBar__toolbar}>
+      <div className={styles.headerBar__left}>
+        <img src={logo} alt="App Logo" style={{ width: 32, height: 32, borderRadius: 8 }} />
+        <Typography variant="h6" color="inherit" sx={{ fontWeight: 700, letterSpacing: 1 }}>
+          ListNest
+        </Typography>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        {user.avatarUrl && (
+          <Avatar src={user.avatarUrl} alt={user.name} sx={{ width: 32, height: 32 }} />
+        )}
+        <IconButton aria-label="Settings" onClick={onSettings} color="inherit">
+          <AccessTimeIcon />
+        </IconButton>
+      </div>
+    </Toolbar>
+  </AppBar>
 ); 

@@ -1,52 +1,12 @@
-.headerBar {
+.headerBar__toolbar {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  height: 56px;
-  padding: 0 16px;
-  background: var(--color-bg, #FEF4DB);
-  border-bottom: 1px solid var(--color-bg-alt, #FBF3DB);
+  align-items: center;
+  min-height: 56px;
 }
 
 .headerBar__left {
   display: flex;
   align-items: center;
-}
-
-.headerBar__logo {
-  height: 72px;
-  width: 72px;
-  border-radius: 50%;
-}
-
-.headerBar__title {
-  font-family: var(--font-heading, Nunito);
-  font-weight: 700;
-  font-size: 20px;
-  margin-left: 12px;
-  color: var(--brand-color, #FF5733);
-}
-
-.headerBar__right {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.headerBar__avatar {
-  height: 32px;
-  width: 32px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.headerBar__settingsBtn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-}
-
-.headerBar__settingsIcon {
-  color: var(--color-secondary);
+  gap: 12px;
 } 
