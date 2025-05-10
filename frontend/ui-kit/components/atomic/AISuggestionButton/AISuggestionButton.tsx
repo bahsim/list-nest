@@ -9,7 +9,9 @@ export interface AISuggestionButtonProps {
   onClick: () => void;
 }
 
-export const AISuggestionButton: React.FC<AISuggestionButtonProps> = ({ onClick }) => (
+export const AISuggestionButton: React.FC<
+  AISuggestionButtonProps
+> = ({ onClick }) => (
   <button
     onClick={onClick}
     className={styles.button}
@@ -17,4 +19,4 @@ export const AISuggestionButton: React.FC<AISuggestionButtonProps> = ({ onClick 
   >
     AI Suggestions
   </button>
-); 
+);
