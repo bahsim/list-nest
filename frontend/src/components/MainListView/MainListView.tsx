@@ -5,6 +5,7 @@ import { ShoppingList } from '@ui-kit/components/organism/ShoppingList/ShoppingL
 import type { ShoppingListItem, User } from '@ui-kit/components/types';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 
 const mockUser: User = {
   id: '1',
@@ -54,6 +55,7 @@ const MainListView: React.FC = () => {
             </Box>
             <Typography variant="h5" color="primary.main" fontWeight={700} gutterBottom>No List Yet</Typography>
             <Typography variant="body1" color="text.primary">Create a new list to get started.</Typography>
+            <Button variant="contained" color="primary" sx={{ mt: 2 }} onClick={() => { }}>Create List</Button>
           </Box>
         ) : (
           <ShoppingList
