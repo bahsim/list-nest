@@ -2,14 +2,10 @@ import React, { useState } from 'react';
 import { HeaderBar } from '@ui-kit/components/organism/HeaderBar/HeaderBar';
 import { FooterNav } from '@ui-kit/components/organism/FooterNav/FooterNav';
 import { ShoppingList } from '@ui-kit/components/organism/ShoppingList/ShoppingList';
-import type {
-  ShoppingListItem,
-  User,
-} from '@ui-kit/components/types';
+import type { ShoppingListItem, User } from '@ui-kit/components/types';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import EmptyState from '@ui-kit/components/atomic/EmptyState/EmptyState';
+import { AddEditItemModal } from '@ui-kit/components/organism/AddEditItemModal/AddEditItemModal';
 
 const mockUser: User = {
   id: '1',
@@ -17,13 +13,40 @@ const mockUser: User = {
   // avatarUrl: 'https://i.pravatar.cc/150?img=1',
 };
 
+const mockCategories = ['Produce', 'Bakery', 'Dairy', 'Meat', 'Snacks'];
+const mockUnits = ['pcs', 'kg', 'g', 'l', 'pack'];
+const mockCurrencies = ['USD', 'EUR', 'GBP'];
+
 const MainListView: React.FC = () => {
   const [activeTab, setActiveTab] = useState('list');
-  const [items] = useState<ShoppingListItem[]>([]); // Empty list for now
+  const [items, setItems] = useState<ShoppingListItem[]>([]);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const handleAddFirstItem = (): void => {
-    // TODO: Open add item modal or similar
-    // Placeholder: alert('Add item modal');
+    setIsAddModalOpen(true);
+  };
+
+  const handleSaveItem = (input: any): void => {
+    setItems((prev) => [
+      ...prev,
+      {
+        id: String(Date.now()),
+        name: input.name,
+        quantity: input.quantity,
+        unit: input.unit,
+        estimatedPrice: input.estimatedPrice || 0,
+        category: input.category,
+        isBought: false,
+        isFocused: input.isFocused || false,
+        addedBy: mockUser.id,
+        addedAt: new Date(),
+      },
+    ]);
+    setIsAddModalOpen(false);
+  };
+
+  const handleCancelAdd = (): void => {
+    setIsAddModalOpen(false);
   };
 
   return (
@@ -62,11 +85,17 @@ const MainListView: React.FC = () => {
             onToggleFocus={() => {}}
           />
         )}
+        {isAddModalOpen && (
+          <AddEditItemModal
+            onSave={handleSaveItem}
+            onCancel={handleCancelAdd}
+            categories={mockCategories}
+            units={mockUnits}
+            currencies={mockCurrencies}
+          />
+        )}
       </Box>
-      <FooterNav
-        activeTab={activeTab}
-        onTabChange={setActiveTab}
-      />
+      <FooterNav activeTab={activeTab} onTabChange={setActiveTab} />
     </Box>
   );
 };
