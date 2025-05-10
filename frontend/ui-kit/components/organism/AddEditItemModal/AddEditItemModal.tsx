@@ -7,6 +7,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
+import MenuItem from '@mui/material/MenuItem';
 import type { AddEditItemInput, AISuggestion } from '../../types';
 
 /**
@@ -37,13 +38,15 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
   currencies,
   aiSuggestions,
 }) => {
-  const [fields, setFields] = React.useState<AddEditItemInput>(item || {
-    name: '',
-    quantity: '',
-    unit: units[0] || '',
-    category: categories[0] || '',
-    isFocused: false,
-  });
+  const [fields, setFields] = React.useState<AddEditItemInput>(
+    item || {
+      name: '',
+      quantity: '',
+      unit: units[0] || '',
+      category: categories[0] || '',
+      isFocused: false,
+    },
+  );
   const [error, setError] = React.useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -54,6 +57,10 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
     e.preventDefault();
     if (!fields.name || !fields.quantity || !fields.unit || !fields.category) {
       setError('All fields are required');
+      return;
+    }
+    if (fields.estimatedPrice && !fields.currency) {
+      setError('Currency is required if estimated price is set');
       return;
     }
     setError(null);
@@ -78,6 +85,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
             required
           />
           <TextField
+            type="number"
             name="quantity"
             label="Quantity"
             value={fields.quantity}
@@ -93,9 +101,12 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
             onChange={handleChange}
             fullWidth
             required
-            SelectProps={{ native: true }}
           >
-            {units.map(u => <option key={u} value={u}>{u}</option>)}
+            {units.map((u) => (
+              <MenuItem key={u} value={u}>
+                {u}
+              </MenuItem>
+            ))}
           </TextField>
           <TextField
             name="estimatedPrice"
@@ -112,10 +123,14 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
             value={fields.currency || ''}
             onChange={handleChange}
             fullWidth
-            SelectProps={{ native: true }}
+            required={!!fields.estimatedPrice}
           >
-            <option value="">Currency</option>
-            {currencies.map(c => <option key={c} value={c}>{c}</option>)}
+            <MenuItem value="">Currency</MenuItem>
+            {currencies.map((c) => (
+              <MenuItem key={c} value={c}>
+                {c}
+              </MenuItem>
+            ))}
           </TextField>
           <TextField
             select
@@ -125,15 +140,18 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
             onChange={handleChange}
             fullWidth
             required
-            SelectProps={{ native: true }}
           >
-            {categories.map(c => <option key={c} value={c}>{c}</option>)}
+            {categories.map((c) => (
+              <MenuItem key={c} value={c}>
+                {c}
+              </MenuItem>
+            ))}
           </TextField>
           {aiSuggestions && aiSuggestions.length > 0 && (
             <Box>
               <Box sx={{ fontWeight: 'bold', mb: 1 }}>AI Suggestions:</Box>
               <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                {aiSuggestions.map(s => (
+                {aiSuggestions.map((s) => (
                   <Button
                     key={s.id}
                     variant="outlined"
@@ -149,10 +167,14 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
           {error && <Alert severity="error">{error}</Alert>}
         </DialogContent>
         <DialogActions>
-          <Button type="submit" variant="contained" color="primary">Save</Button>
-          <Button onClick={onCancel} variant="outlined">Cancel</Button>
+          <Button type="submit" variant="contained" color="primary">
+            Save
+          </Button>
+          <Button onClick={onCancel} variant="outlined">
+            Cancel
+          </Button>
         </DialogActions>
       </Box>
     </Dialog>
   );
-}; 
+};
