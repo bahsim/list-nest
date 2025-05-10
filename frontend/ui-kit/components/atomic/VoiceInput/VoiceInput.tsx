@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styles from './VoiceInput.module.scss';
-import MicIcon from '@mui/icons-material/Mic';
+import MicIcon from '@mui/icons-material/MicRounded';
 
 /**
  * VoiceInput provides a text input with a microphone button for speech-to-text.

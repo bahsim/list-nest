@@ -1,8 +1,8 @@
 import * as React from 'react';
 import type { HistoryItem, User } from '../../types';
 import styles from './HistoryItemRow.module.scss';
-import StarIcon from '@mui/icons-material/Star';
-import RestoreIcon from '@mui/icons-material/Restore';
+import StarIcon from '@mui/icons-material/StarRounded';
+import RestoreIcon from '@mui/icons-material/RestoreRounded';
 
 /**
  * HistoryItemRow displays a single purchased item in history view.

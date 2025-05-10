@@ -1,9 +1,9 @@
 import * as React from 'react';
 import styles from './FooterNav.module.scss';
-import ListAltIcon from '@mui/icons-material/ListAlt';
-import BarChartIcon from '@mui/icons-material/BarChart';
-import HistoryIcon from '@mui/icons-material/History';
-import SettingsIcon from '@mui/icons-material/Settings';
+import ListAltIcon from '@mui/icons-material/ListAltRounded';
+import BarChartIcon from '@mui/icons-material/BarChartRounded';
+import HistoryIcon from '@mui/icons-material/HistoryRounded';
+import SettingsIcon from '@mui/icons-material/SettingsRounded';
 
 /**
  * FooterNav displays bottom navigation for main app sections.

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styles from './HeaderBar.module.scss';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import AccessTimeIcon from '@mui/icons-material/AccessTimeRounded';
 
 // NOTE: Update the logo path as needed for your build setup. Assumes '/apple-touch-icon.png' in public root.
 // @ts-ignore
