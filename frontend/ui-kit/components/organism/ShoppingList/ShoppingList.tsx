@@ -30,13 +30,15 @@ export const ShoppingList: React.FC<ShoppingListProps> = ({
   onToggleFocus,
   sx,
 }) => {
-  const sortedItems = items.sort((a, b) => {
-    if (a.isFocused && !b.isFocused) return -1;
-    if (!a.isFocused && b.isFocused) return 1;
-    if (a.isBought && !b.isBought) return 1;
-    if (!a.isBought && b.isBought) return -1;
-    return a.addedAt.getTime() - b.addedAt.getTime();
-  });
+
+  const getPriority = (item: ShoppingListItem): number => {
+    if (!item.isBought && !item.isDeleted) return 1; // Normal
+    if (item.isBought && !item.isDeleted) return 2;  // Bought
+    if (!item.isBought && item.isDeleted) return 3;  // Deleted
+    return 4; // fallback for any other case
+  };
+  
+  const sortedItems = [...items].sort((a, b) => getPriority(a) - getPriority(b));
 
   return (
     <List sx={sx} disablePadding>

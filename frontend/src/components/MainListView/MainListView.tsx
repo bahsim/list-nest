@@ -8,6 +8,7 @@ import EmptyState from '@ui-kit/components/atomic/EmptyState/EmptyState';
 import { AddEditItemModal } from '@ui-kit/components/organism/AddEditItemModal/AddEditItemModal';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
+import Typography from '@mui/material/Typography';
 
 const mockUser: User = {
   id: '1',
@@ -141,6 +142,46 @@ const MainListView: React.FC = () => {
     setIsAddModalOpen(false);
   };
 
+  // Grouping and sum logic
+  const focusedItems = items.filter(item => item.isFocused);
+  const otherItems = items.filter(item => !item.isFocused);
+
+  const getGroupSum = (group: ShoppingListItem[]) =>
+    group.reduce((sum, item) => sum + (item.estimatedPrice || 0), 0);
+
+  const renderGroup = (label: string, groupItems: ShoppingListItem[]): React.ReactNode => {
+    if (groupItems.length === 0) return null;
+    return (
+      <>
+        <Box
+          sx={{
+            width: '100%',
+            maxWidth: 600,
+            px: 1,
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            mt: 2,
+            mb: 1,
+          }}
+        >
+          <Typography variant="subtitle2">{label}</Typography>
+          <Typography variant="subtitle2" color="text.secondary">
+            ${getGroupSum(groupItems)}
+          </Typography>
+        </Box>
+        <ShoppingList
+          items={groupItems}
+          sx={{ width: '100%', maxWidth: 600, px: 1 }}
+          onEdit={() => {}}
+          onDelete={() => {}}
+          onToggleBought={() => {}}
+          onToggleFocus={() => {}}
+        />
+      </>
+    );
+  };
+
   return (
     <Box
       sx={{
@@ -191,14 +232,10 @@ const MainListView: React.FC = () => {
             imageAlt="No items yet"
           />
         ) : (
-          <ShoppingList
-            sx={{ width: '100%', maxWidth: 600, px: 1 }}
-            items={items}
-            onEdit={() => {}}
-            onDelete={() => {}}
-            onToggleBought={() => {}}
-            onToggleFocus={() => {}}
-          />
+          <>
+            {renderGroup('Focused', focusedItems)}
+            {renderGroup('All', items)}
+          </>
         )}
       </Box>
 
