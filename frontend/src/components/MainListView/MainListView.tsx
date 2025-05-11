@@ -108,6 +108,20 @@ const mockItems: ShoppingListItem[] = [
     addedBy: 'Alice',
     addedAt: new Date(),
   },
+  {
+    id: '7',
+    name: 'Other',
+    quantity: '1',
+    unit: 'L',
+    category: '',
+    isBought: false,
+    isCurrent: false,
+    isDeleted: false,
+    estimatedPrice: 0,
+    currency: 'USD',
+    addedBy: 'Alice',
+    addedAt: new Date(),
+  }
 ];
 
 const MainListView: React.FC = () => {
@@ -160,14 +174,33 @@ const MainListView: React.FC = () => {
   /**
    * Filter items by selected categories. If none selected, return all.
    * @param list - List of items to filter
+   * @returns Filtered list of items
    */
   const filterByCategory = (list: ShoppingListItem[]): ShoppingListItem[] => {
     if (selectedCategories.length === 0) return list;
     return list.filter((item) => selectedCategories.includes(item.category));
   };
 
+  /**
+   * Get unique categories from items list, replacing empty category with 'Other'
+   * @param items - List of shopping list items to extract categories from
+   * @returns Array of unique category names with empty category replaced by 'Other'
+   */
+  const getUniqueCategories = (items: ShoppingListItem[]): string[] => {
+    const categories = Array.from(new Set(items.map(item => item.category)));
+    return categories.includes('') ? [...categories.filter(c => c !== ''), 'Other'] : categories;
+  };
+
+  /**
+   * Map filter chip label to category value.
+   * @param label - Chip label
+   * @returns Category value
+   */
+  const getCategoryValue = (label: string): string => (label === 'Other' ? '' : label);
+
   // Grouping and sum logic
   const currentItems = filterByCategory(items.filter(item => item.isCurrent));
+  const allItems = filterByCategory(items);
 
   const getGroupSum = (group: ShoppingListItem[]) =>
     group.reduce((sum, item) => sum + (item.estimatedPrice || 0), 0);
@@ -233,7 +266,7 @@ const MainListView: React.FC = () => {
       <Box
         sx={{
           position: 'absolute',
-          top: 56, // header height
+          top: 32, // header height
           bottom: 56, // footer height
           left: 0,
           right: 0,
@@ -247,17 +280,22 @@ const MainListView: React.FC = () => {
         }}
       >
         {/* Category Filter Chips */}
-        {items.length > 0 && (
-          <Stack direction="row" spacing={1} sx={{ mb: 2, flexWrap: 'wrap', maxWidth: 600, width: '100%', justifyContent: 'center' }}>
-            {mockCategories.map((category) => (
+        {items.length > 0 && getUniqueCategories(items).length > 1 && (
+          <Stack
+            direction="row"
+            spacing={1}
+            rowGap={2}
+            sx={{ mb: 0, flexWrap: 'wrap', maxWidth: 600, width: '100%', justifyContent: 'center', px: 4 }}
+          >
+            {getUniqueCategories(items).map((label) => (
               <Chip
-                key={category}
-                label={category}
+                key={label}
+                label={label}
                 clickable
-                color={selectedCategories.includes(category) ? 'primary' : 'default'}
-                variant={selectedCategories.includes(category) ? 'filled' : 'outlined'}
-                onClick={() => handleToggleCategory(category)}
-                sx={{ mb: 1 }}
+                color={selectedCategories.includes(getCategoryValue(label)) ? 'primary' : 'default'}
+                variant={selectedCategories.includes(getCategoryValue(label)) ? 'filled' : 'outlined'}
+                onClick={() => handleToggleCategory(getCategoryValue(label))}
+                sx={{ mb: 0 }}
               />
             ))}
           </Stack>
@@ -273,7 +311,7 @@ const MainListView: React.FC = () => {
         ) : (
           <>
             {renderGroup('Current', currentItems)}
-            {renderGroup('All', items)}
+            {renderGroup('All', allItems)}
           </>
         )}
       </Box>
