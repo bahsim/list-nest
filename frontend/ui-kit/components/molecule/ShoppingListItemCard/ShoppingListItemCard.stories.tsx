@@ -33,6 +33,8 @@ export const Basic = () => (
     onDelete={() => {}}
     onToggleBought={() => {}}
     onToggleCurrent={() => {}}
+    onRestore={() => {}}
+    onUnmarkCurrent={() => {}}
   />
 );
 
@@ -43,6 +45,8 @@ export const Current = () => (
     onDelete={() => {}}
     onToggleBought={() => {}}
     onToggleCurrent={() => {}}
+    onRestore={() => {}}
+    onUnmarkCurrent={() => {}}
   />
 );
 
@@ -53,6 +57,8 @@ export const Bought = () => (
     onDelete={() => {}}
     onToggleBought={() => {}}
     onToggleCurrent={() => {}}
+    onRestore={() => {}}
+    onUnmarkCurrent={() => {}}
   />
 );
 
@@ -63,5 +69,7 @@ export const CurrentAndBought = () => (
     onDelete={() => {}}
     onToggleBought={() => {}}
     onToggleCurrent={() => {}}
+    onRestore={() => {}}
+    onUnmarkCurrent={() => {}}
   />
 ); 

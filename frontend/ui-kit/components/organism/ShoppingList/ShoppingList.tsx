@@ -12,6 +12,7 @@ import type { SxProps, Theme } from '@mui/material/styles';
  * @param onDelete - Delete handler.
  * @param onToggleBought - Mark as bought handler.
  * @param onToggleCurrent - Toggle current handler.
+ * @param onRestore - Restore handler.
  */
 export interface ShoppingListProps {
   items: ShoppingListItem[];
@@ -19,6 +20,7 @@ export interface ShoppingListProps {
   onDelete: (item: ShoppingListItem) => void;
   onToggleBought: (item: ShoppingListItem) => void;
   onToggleCurrent: (item: ShoppingListItem) => void;
+  onRestore?: (item: ShoppingListItem) => void;
   sx?: SxProps<Theme>;
 }
 
@@ -28,6 +30,7 @@ export const ShoppingList: React.FC<ShoppingListProps> = ({
   onDelete,
   onToggleBought,
   onToggleCurrent,
+  onRestore,
   sx,
 }) => {
 
@@ -50,6 +53,8 @@ export const ShoppingList: React.FC<ShoppingListProps> = ({
             onDelete={() => onDelete(item)}
             onToggleBought={() => onToggleBought(item)}
             onToggleCurrent={() => onToggleCurrent(item)}
+            onUnmarkCurrent={() => onToggleCurrent(item)}
+            onRestore={() => (onRestore ? onRestore(item) : undefined)}
           />
         </ListItem>
       ))}
