@@ -9,6 +9,8 @@ import { AddEditItemModal } from '@ui-kit/components/organism/AddEditItemModal/A
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import Typography from '@mui/material/Typography';
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
 
 const mockUser: User = {
   id: '1',
@@ -112,6 +114,7 @@ const MainListView: React.FC = () => {
   const [activeTab, setActiveTab] = useState('list');
   const [items, setItems] = useState<ShoppingListItem[]>([]);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
   const handleAddFirstItem = (): void => {
     setIsAddModalOpen(true);
@@ -142,8 +145,29 @@ const MainListView: React.FC = () => {
     setIsAddModalOpen(false);
   };
 
+  /**
+   * Toggle a category in the selectedCategories array.
+   * @param category - Category to toggle
+   */
+  const handleToggleCategory = (category: string): void => {
+    setSelectedCategories((prev) =>
+      prev.includes(category)
+        ? prev.filter((c) => c !== category)
+        : [...prev, category]
+    );
+  };
+
+  /**
+   * Filter items by selected categories. If none selected, return all.
+   * @param list - List of items to filter
+   */
+  const filterByCategory = (list: ShoppingListItem[]): ShoppingListItem[] => {
+    if (selectedCategories.length === 0) return list;
+    return list.filter((item) => selectedCategories.includes(item.category));
+  };
+
   // Grouping and sum logic
-  const currentItems = items.filter(item => item.isCurrent);
+  const currentItems = filterByCategory(items.filter(item => item.isCurrent));
 
   const getGroupSum = (group: ShoppingListItem[]) =>
     group.reduce((sum, item) => sum + (item.estimatedPrice || 0), 0);
@@ -222,6 +246,22 @@ const MainListView: React.FC = () => {
           paddingBottom: 12,
         }}
       >
+        {/* Category Filter Chips */}
+        {items.length > 0 && (
+          <Stack direction="row" spacing={1} sx={{ mb: 2, flexWrap: 'wrap', maxWidth: 600, width: '100%', justifyContent: 'center' }}>
+            {mockCategories.map((category) => (
+              <Chip
+                key={category}
+                label={category}
+                clickable
+                color={selectedCategories.includes(category) ? 'primary' : 'default'}
+                variant={selectedCategories.includes(category) ? 'filled' : 'outlined'}
+                onClick={() => handleToggleCategory(category)}
+                sx={{ mb: 1 }}
+              />
+            ))}
+          </Stack>
+        )}
         {items.length === 0 ? (
           <EmptyState
             title="No items yet"

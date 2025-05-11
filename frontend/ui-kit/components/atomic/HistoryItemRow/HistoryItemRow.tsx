@@ -22,7 +22,7 @@ export const HistoryItemRow: React.FC<HistoryItemRowProps> = ({ item, user, onRe
     <span className={styles.quantity}>{item.quantity}</span>
     <span className={styles.estimatedPrice}>{item.estimatedPrice ? `$${item.estimatedPrice}` : ''}</span>
     <span className={styles.category}>{item.category}</span>
-    {item.isFocused && <StarIcon className={styles.focused} />}
+    {item.isCurrent && <StarIcon className={styles.focused} />}
     {user && <img src={user.avatarUrl} alt={user.name} className={styles.avatar} />}
     <button onClick={() => onRestore(item.id)} className={styles.restoreButton} aria-label="Restore"><RestoreIcon /></button>
   </div>

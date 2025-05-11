@@ -53,6 +53,7 @@ export interface HistoryItem {
   isBought: boolean;
   purchasedAt: Date;
   checkedOffBy: string;
+  isDeleted: boolean;
 }
 
 export interface HistoryGroup {
