@@ -38,7 +38,7 @@ export const HistoryView: React.FC<HistoryViewProps> = ({ groups, analytics, onR
                   <span className={styles.historyView__itemQuantity}>{item.quantity}</span>
                   <span className={styles.historyView__itemPrice}>{item.estimatedPrice ? `$${item.estimatedPrice}` : ''}</span>
                   <span className={styles.historyView__itemCategory}>{item.category}</span>
-                  {item.isFocused && <span className={styles.historyView__itemFocus}>★</span>}
+                  {item.isCurrent && <span className={styles.historyView__itemFocus}>★</span>}
                   <button onClick={() => onRestore(item.id)} className={styles.historyView__restoreBtn} aria-label="Restore">⟲</button>
                 </li>
               ))}
