@@ -18,10 +18,10 @@ export interface FooterNavProps {
 }
 
 const tabs = [
-  { key: 'list', label: 'List', icon: <ListAltIcon /> },
-  { key: 'analytics', label: 'Analytics', icon: <BarChartIcon /> },
-  { key: 'history', label: 'History', icon: <HistoryIcon /> },
-  { key: 'settings', label: 'Settings', icon: <SettingsIcon /> },
+  { key: 'list', label: 'List', icon: <ListAltIcon />, isDisabled: false },
+  { key: 'analytics', label: 'Analytics', icon: <BarChartIcon />, isDisabled: true },
+  { key: 'history', label: 'History', icon: <HistoryIcon />, isDisabled: true },
+  { key: 'settings', label: 'Settings', icon: <SettingsIcon />, isDisabled: true },
 ];
 
 export const FooterNav: React.FC<FooterNavProps> = ({ activeTab, onTabChange }) => (
@@ -41,6 +41,7 @@ export const FooterNav: React.FC<FooterNavProps> = ({ activeTab, onTabChange }) 
         label={tab.label}
         value={tab.key}
         icon={tab.icon}
+        disabled={tab.isDisabled}
         sx={{
           color: theme => theme.palette.text.primary,
           fontWeight: 400,

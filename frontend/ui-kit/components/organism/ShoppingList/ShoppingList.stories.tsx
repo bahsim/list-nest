@@ -62,6 +62,6 @@ export const Default: Story = {
     onEdit: () => {},
     onDelete: () => {},
     onToggleBought: () => {},
-    onToggleFocus: () => {},
+    onToggleCurrent: () => {},
   },
 }; 

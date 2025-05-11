@@ -28,7 +28,7 @@ Here’s how to do it, clean and scalable:
 
 ```tsx
 // Grouping and sum logic
-const focusedItems = items.filter(item => item.isFocused && !item.isDeleted);
+const currentItems = items.filter(item => item.isFocused && !item.isDeleted);
 const otherItems = items.filter(item => !item.isFocused && !item.isDeleted);
 
 const getGroupSum = (group: ShoppingListItem[]) =>
@@ -37,7 +37,7 @@ const getGroupSum = (group: ShoppingListItem[]) =>
 // In your render:
 <>
   {/* Focused group */}
-  {focusedItems.length > 0 && (
+  {currentItems.length > 0 && (
     <>
       <Box
         sx={{
@@ -53,11 +53,11 @@ const getGroupSum = (group: ShoppingListItem[]) =>
       >
         <Typography variant="subtitle1" fontWeight={700}>Focused</Typography>
         <Typography variant="subtitle2" color="text.secondary">
-          ${getGroupSum(focusedItems)}
+          ${getGroupSum(currentItems)}
         </Typography>
       </Box>
       <ShoppingList
-        items={focusedItems}
+        items={currentItems}
         sx={{ width: '100%', maxWidth: 600, px: 1 }}
         onEdit={() => {}}
         onDelete={() => {}}

@@ -418,7 +418,7 @@ Copy-paste into [excalidraw.com](https://excalidraw.com/) → menu → "Load Sce
       "seed": 25
     },
     {
-      "id": "focus-label",
+      "id": "current-label",
       "type": "text",
       "x": 60,
       "y": 420,
@@ -427,7 +427,7 @@ Copy-paste into [excalidraw.com](https://excalidraw.com/) → menu → "Load Sce
       "angle": 0,
       "strokeColor": "#1a1a1a",
       "backgroundColor": "transparent",
-      "text": "Mark as Focused",
+      "text": "Mark as Current",
       "fontSize": 14,
       "fontFamily": 1,
       "textAlign": "left",
@@ -436,7 +436,7 @@ Copy-paste into [excalidraw.com](https://excalidraw.com/) → menu → "Load Sce
       "seed": 26
     },
     {
-      "id": "focus-toggle",
+      "id": "current-toggle",
       "type": "rectangle",
       "x": 190,
       "y": 420,

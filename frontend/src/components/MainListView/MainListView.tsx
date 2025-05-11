@@ -29,7 +29,7 @@ const mockItems: ShoppingListItem[] = [
     unit: 'L',
     category: 'Dairy',
     isBought: false,
-    isFocused: false,
+    isCurrent: false,
     isDeleted: false,
     estimatedPrice: 10000,
     currency: 'USD',
@@ -43,7 +43,7 @@ const mockItems: ShoppingListItem[] = [
     unit: 'pcs',
     category: 'Bakery',
     isBought: false,
-    isFocused: true,
+    isCurrent: true,
     isDeleted: false,
     estimatedPrice: 5,
     currency: 'USD',
@@ -57,7 +57,7 @@ const mockItems: ShoppingListItem[] = [
     unit: 'pcs',
     category: 'Dairy',
     isBought: true,
-    isFocused: false,
+    isCurrent: false,
     isDeleted: false,
     estimatedPrice: 10,
     currency: 'USD',
@@ -71,7 +71,7 @@ const mockItems: ShoppingListItem[] = [
     unit: 'kg',
     category: 'Meat',
     isBought: false,
-    isFocused: false,
+    isCurrent: false,
     isDeleted: false,
     estimatedPrice: 10,
     currency: 'USD',
@@ -85,7 +85,7 @@ const mockItems: ShoppingListItem[] = [
     unit: 'L',
     category: 'Alcohol',
     isBought: true,
-    isFocused: true,
+    isCurrent: true,
     isDeleted: false,
     estimatedPrice: 10,
     currency: 'USD',
@@ -99,7 +99,7 @@ const mockItems: ShoppingListItem[] = [
     unit: 'L',
     category: 'Alcohol',
     isBought: false,
-    isFocused: true,
+    isCurrent: true,
     isDeleted: true,
     estimatedPrice: 10,
     currency: 'USD',
@@ -130,7 +130,7 @@ const MainListView: React.FC = () => {
       //   estimatedPrice: input.estimatedPrice || 0,
       //   category: input.category,
       //   isBought: false,
-      //   isFocused: input.isFocused || false,
+      //   isCurrent: input.isCurrent || false,
       //   addedBy: mockUser.id,
       //   addedAt: new Date(),
       // },
@@ -143,8 +143,7 @@ const MainListView: React.FC = () => {
   };
 
   // Grouping and sum logic
-  const focusedItems = items.filter(item => item.isFocused);
-  const otherItems = items.filter(item => !item.isFocused);
+  const currentItems = items.filter(item => item.isCurrent);
 
   const getGroupSum = (group: ShoppingListItem[]) =>
     group.reduce((sum, item) => sum + (item.estimatedPrice || 0), 0);
@@ -176,7 +175,7 @@ const MainListView: React.FC = () => {
           onEdit={() => {}}
           onDelete={() => {}}
           onToggleBought={() => {}}
-          onToggleFocus={() => {}}
+          onToggleCurrent={() => {}}
         />
       </>
     );
@@ -233,7 +232,7 @@ const MainListView: React.FC = () => {
           />
         ) : (
           <>
-            {renderGroup('Focused', focusedItems)}
+            {renderGroup('Current', currentItems)}
             {renderGroup('All', items)}
           </>
         )}

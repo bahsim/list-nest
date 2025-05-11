@@ -12,33 +12,33 @@ import { useTheme, type Theme } from '@mui/material/styles';
  * @param onEdit - Edit handler.
  * @param onDelete - Delete handler.
  * @param onToggleBought - Mark as bought handler.
- * @param onToggleFocus - Toggle focus handler.
+ * @param onToggleCurrent - Toggle current handler.
  */
 export interface ShoppingListItemCardProps {
   item: ShoppingListItem;
   onEdit: () => void;
   onDelete: () => void;
   onToggleBought: () => void;
-  onToggleFocus: () => void;
+  onToggleCurrent: () => void;
 }
 
 /**
  * Returns the border color for the shopping list item card based on its state.
- * @param params - Object containing isFocused, isBought, and theme.
+ * @param params - Object containing isCurrent, isBought, and theme.
  * @returns The border color string.
  */
 function getBorderColor({
-  isFocused,
+  isCurrent,
   isBought,
   isDeleted,
   theme,
 }: {
-  isFocused: boolean;
+  isCurrent: boolean;
   isBought: boolean;
   isDeleted: boolean;
   theme: Theme;
 }): string {
-  if (isFocused) return theme.palette.primary.main;
+  if (isCurrent) return theme.palette.primary.main;
   if (isBought || isDeleted) return theme.palette.divider;
   return theme.palette.info.main;
 }
@@ -48,7 +48,7 @@ export const ShoppingListItemCard: React.FC<ShoppingListItemCardProps> = ({
   onEdit,
   onDelete,
   onToggleBought,
-  onToggleFocus,
+  onToggleCurrent,
 }) => {
   const theme = useTheme();
   return (
@@ -58,12 +58,12 @@ export const ShoppingListItemCard: React.FC<ShoppingListItemCardProps> = ({
         display: 'flex',
         alignItems: 'center',
         mb: theme.spacing(2),
-        background: item.isFocused
+        background: item.isCurrent
           ? theme.palette.info.main + '22'
           : theme.palette.background.paper,
-        boxShadow: item.isFocused ? theme.shadows[3] : theme.shadows[1],
+        boxShadow: item.isCurrent ? theme.shadows[3] : theme.shadows[1],
         borderColor: getBorderColor({
-          isFocused: item.isFocused,
+          isCurrent: item.isCurrent,
           isBought: item.isBought,
           isDeleted: item.isDeleted,
           theme,
@@ -93,7 +93,7 @@ export const ShoppingListItemCard: React.FC<ShoppingListItemCardProps> = ({
           variant="body1"
           sx={{
             textDecoration: item.isBought || item.isDeleted ? 'line-through' : 'none',
-            fontWeight: item.isFocused ? 700 : 400,
+            fontWeight: item.isCurrent ? 700 : 400,
             color:
               item.isBought || item.isDeleted
                 ? theme.palette.text.secondary

@@ -44,7 +44,9 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
       quantity: '',
       unit: units[0] || '',
       category: categories[0] || '',
-      isFocused: false,
+      isCurrent: false,
+      isBought: false,
+      isDeleted: false,
     },
   );
   const [error, setError] = React.useState<string | null>(null);
@@ -139,7 +141,6 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
             value={fields.category}
             onChange={handleChange}
             fullWidth
-            // required
           >
             {categories.map((c) => (
               <MenuItem key={c} value={c}>

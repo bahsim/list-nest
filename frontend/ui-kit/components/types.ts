@@ -8,7 +8,7 @@ export interface ShoppingListItem {
   estimatedPrice: number;
   currency: string;
   category: string;
-  isFocused: boolean;
+  isCurrent: boolean;
   isBought: boolean;
   isDeleted: boolean;
   addedBy: string;
@@ -24,7 +24,9 @@ export interface AddEditItemInput {
   estimatedPrice?: number;
   currency?: string;
   category: string;
-  isFocused: boolean;
+  isCurrent: boolean;
+  isBought: boolean;
+  isDeleted: boolean;
 }
 
 export interface User {
@@ -47,7 +49,8 @@ export interface HistoryItem {
   quantity: string;
   estimatedPrice?: number;
   category: string;
-  isFocused: boolean;
+  isCurrent: boolean;
+  isBought: boolean;
   purchasedAt: Date;
   checkedOffBy: string;
 }

@@ -11,14 +11,14 @@ import type { SxProps, Theme } from '@mui/material/styles';
  * @param onEdit - Edit handler.
  * @param onDelete - Delete handler.
  * @param onToggleBought - Mark as bought handler.
- * @param onToggleFocus - Toggle focus handler.
+ * @param onToggleCurrent - Toggle current handler.
  */
 export interface ShoppingListProps {
   items: ShoppingListItem[];
   onEdit: (item: ShoppingListItem) => void;
   onDelete: (item: ShoppingListItem) => void;
   onToggleBought: (item: ShoppingListItem) => void;
-  onToggleFocus: (item: ShoppingListItem) => void;
+  onToggleCurrent: (item: ShoppingListItem) => void;
   sx?: SxProps<Theme>;
 }
 
@@ -27,7 +27,7 @@ export const ShoppingList: React.FC<ShoppingListProps> = ({
   onEdit,
   onDelete,
   onToggleBought,
-  onToggleFocus,
+  onToggleCurrent,
   sx,
 }) => {
 
@@ -49,7 +49,7 @@ export const ShoppingList: React.FC<ShoppingListProps> = ({
             onEdit={() => onEdit(item)}
             onDelete={() => onDelete(item)}
             onToggleBought={() => onToggleBought(item)}
-            onToggleFocus={() => onToggleFocus(item)}
+            onToggleCurrent={() => onToggleCurrent(item)}
           />
         </ListItem>
       ))}

@@ -4,7 +4,7 @@ import type { ShoppingListItem } from '../../types';
 
 /**
  * Storybook stories for ShoppingListItemCard (MUI version)
- * Shows all main states: default, focused, bought, focused+bought
+ * Shows all main states: default, current, bought, current+bought
  */
 export default {
   title: 'molecule/ShoppingListItemCard',
@@ -19,7 +19,7 @@ const baseItem: ShoppingListItem = {
   estimatedPrice: 2.0,
   currency: 'USD',
   category: 'Bakery',
-  isFocused: false,
+  isCurrent: false,
   isBought: false,
   isDeleted: false,
   addedBy: 'user-1',
@@ -32,17 +32,17 @@ export const Basic = () => (
     onEdit={() => {}}
     onDelete={() => {}}
     onToggleBought={() => {}}
-    onToggleFocus={() => {}}
+    onToggleCurrent={() => {}}
   />
 );
 
-export const Focused = () => (
+export const Current = () => (
   <ShoppingListItemCard
-    item={{ ...baseItem, isFocused: true }}
+    item={{ ...baseItem, isCurrent: true }}
     onEdit={() => {}}
     onDelete={() => {}}
     onToggleBought={() => {}}
-    onToggleFocus={() => {}}
+    onToggleCurrent={() => {}}
   />
 );
 
@@ -52,16 +52,16 @@ export const Bought = () => (
     onEdit={() => {}}
     onDelete={() => {}}
     onToggleBought={() => {}}
-    onToggleFocus={() => {}}
+    onToggleCurrent={() => {}}
   />
 );
 
-export const FocusedAndBought = () => (
+export const CurrentAndBought = () => (
   <ShoppingListItemCard
-    item={{ ...baseItem, isFocused: true, isBought: true }}
+    item={{ ...baseItem, isCurrent: true, isBought: true }}
     onEdit={() => {}}
     onDelete={() => {}}
     onToggleBought={() => {}}
-    onToggleFocus={() => {}}
+    onToggleCurrent={() => {}}
   />
 ); 

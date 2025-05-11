@@ -23,7 +23,7 @@ export const MainListPage: React.FC = () => {
         onEdit={() => {}}
         onDelete={() => {}}
         onToggleBought={() => {}}
-        onToggleFocus={() => {}}
+        onToggleCurrent={() => {}}
       />
       <ActivityLog activities={activities} />
       <FooterNav activeTab={activeTab} onTabChange={setActiveTab} />
