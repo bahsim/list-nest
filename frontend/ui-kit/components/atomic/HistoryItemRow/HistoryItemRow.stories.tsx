@@ -13,9 +13,11 @@ const mockItem: HistoryItem = {
   quantity: '2L',
   estimatedPrice: 3.5,
   category: 'Dairy',
-  isFocused: true,
+  isCurrent: true,
   purchasedAt: new Date(),
   checkedOffBy: 'user-1',
+  isBought: true,
+  isDeleted: false,
 };
 
 const mockUser: User = {
