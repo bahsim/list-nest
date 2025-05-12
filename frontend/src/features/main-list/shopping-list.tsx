@@ -1,6 +1,6 @@
 import * as React from 'react';
-import type { ShoppingListItem } from '../../types';
-import { ShoppingListItemCard } from '../../molecule/ShoppingListItemCard/ShoppingListItemCard';
+import type { ShoppingListItem } from '@ui-kit/components/types';
+import { ShoppingListItemCard } from './shopping-list-item-card';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import type { SxProps, Theme } from '@mui/material/styles';

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { HeaderBar } from '@ui-kit/components/organism/HeaderBar/HeaderBar';
-import { FooterNav } from '@ui-kit/components/organism/FooterNav/FooterNav';
+import { HeaderBar } from '@ui-kit/components/organism/header-bar/header-bar';
+import { FooterNav } from '@ui-kit/components/organism/footer-nav/footer-nav';
 import { AddEditItemModal } from '@ui-kit/components/organism/AddEditItemModal/AddEditItemModal';
 import Box from '@mui/material/Box';
-import EmptyState from '@ui-kit/components/atomic/EmptyState/EmptyState';
+import EmptyState from '@ui-kit/components/atomic/empty-state/empty-state';
 import type { ShoppingListItem } from '@ui-kit/components/types';
 import { filterByCategory, getUniqueCategories, getCategoryValue, getGroupSum } from '../features/main-list/utils';
 import { CategoryFilterChips } from '../features/main-list/category-filter-chips';
@@ -132,18 +132,7 @@ const MainListView: React.FC = () => {
       </Box>
 
       {/* Footer */}
-      <Box
-        sx={{
-          position: 'absolute',
-          left: 0,
-          right: 0,
-          bottom: 0,
-          height: 56,
-          zIndex: 2,
-        }}
-      >
-        <FooterNav activeTab={activeTab} onTabChange={setActiveTab} />
-      </Box>
+      <FooterNav activeTab={activeTab} onTabChange={setActiveTab} />
 
       {/* FAB */}
       {items.length > 0 && <AddItemFab onClick={() => setIsAddModalOpen(true)} />}

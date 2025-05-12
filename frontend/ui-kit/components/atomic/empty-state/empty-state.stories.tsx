@@ -1,7 +1,6 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import EmptyState from './EmptyState';
-import type { EmptyStateProps } from './EmptyState';
+import EmptyState from './empty-state';
 
 const meta: Meta<typeof EmptyState> = {
   title: 'Atomic/EmptyState',

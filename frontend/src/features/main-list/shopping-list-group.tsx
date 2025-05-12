@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { ShoppingList } from '@ui-kit/components/organism/ShoppingList/ShoppingList';
+import { ShoppingList } from './shopping-list';
 import type { ShoppingListGroupProps } from './types';
 
 /**

@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { HeaderBar } from '../../components/organism/HeaderBar/HeaderBar';
+import { HeaderBar } from '../../components/organism/header-bar/header-bar';
 import { SearchBar } from '../../components/atomic/SearchBar/SearchBar';
 import { FilterBar } from '../../components/molecule/FilterBar/FilterBar';
 import { HistoryView } from '../../components/organism/HistoryView/HistoryView';
-import { FooterNav } from '../../components/organism/FooterNav/FooterNav';
+import { FooterNav } from '../../components/organism/footer-nav/footer-nav';
 import type { HistoryGroup, HistoryAnalytics, User } from '../../components/types';
 import { SPACING } from '../../tokens/spacing';
 

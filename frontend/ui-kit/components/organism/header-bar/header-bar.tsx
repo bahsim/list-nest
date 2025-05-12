@@ -5,7 +5,7 @@ import IconButton from '@mui/material/IconButton';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import AccessTimeIcon from '@mui/icons-material/AccessTimeRounded';
-import styles from './HeaderBar.module.scss';
+import styles from './header-bar.module.scss';
 
 // NOTE: Update the logo path as needed for your build setup. Assumes '/apple-touch-icon.png' in public root.
 const logo = '/favicon-96x96.png';

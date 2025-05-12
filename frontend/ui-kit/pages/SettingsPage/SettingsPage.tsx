@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { HeaderBar } from '../../components/organism/HeaderBar/HeaderBar';
+import { HeaderBar } from '../../components/organism/header-bar/header-bar';
 import { SettingsPanel } from '../../components/organism/SettingsPanel/SettingsPanel';
 import type { User } from '../../components/types';
-import { FooterNav } from '../../components/organism/FooterNav/FooterNav';
+import { FooterNav } from '../../components/organism/footer-nav/footer-nav';
 import { SPACING } from '../../tokens/spacing';
 
 export const SettingsPage: React.FC = () => {

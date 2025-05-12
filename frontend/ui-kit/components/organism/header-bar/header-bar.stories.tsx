@@ -1,4 +1,4 @@
-import { HeaderBar } from './HeaderBar';
+import { HeaderBar } from './header-bar';
 import type { Meta, StoryObj } from '@storybook/react';
 import type { User } from '../../types';
 
