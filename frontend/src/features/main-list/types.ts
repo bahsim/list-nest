@@ -24,6 +24,8 @@ export interface ShoppingListGroupProps {
   onToggleCurrent: (item: ShoppingListItem) => void;
   onRestore?: (item: ShoppingListItem) => void;
   sx?: SxProps<Theme>;
+  expandedItemId: string | null;
+  onExpandItem: (id: string) => void;
 }
 
 /**

@@ -12,6 +12,8 @@ import { ShoppingListItemCard } from './shopping-list-item-card';
  * @param onToggleBought - Mark as bought handler.
  * @param onToggleCurrent - Toggle current handler.
  * @param onRestore - Restore handler.
+ * @param expandedItemId - ID of the expanded item.
+ * @param onExpandItem - Handler to expand an item.
  */
 export interface ShoppingListProps {
   items: ShoppingListItem[];
@@ -20,6 +22,8 @@ export interface ShoppingListProps {
   onToggleBought: (item: ShoppingListItem) => void;
   onToggleCurrent: (item: ShoppingListItem) => void;
   onRestore?: (item: ShoppingListItem) => void;
+  expandedItemId: string | null;
+  onExpandItem: (id: string) => void;
   sx?: SxProps<Theme>;
 }
 
@@ -30,6 +34,8 @@ export const ShoppingList: React.FC<ShoppingListProps> = ({
   onToggleBought,
   onToggleCurrent,
   onRestore,
+  expandedItemId,
+  onExpandItem,
   sx,
 }) => {
   const getPriority = (item: ShoppingListItem): number => {
@@ -52,6 +58,8 @@ export const ShoppingList: React.FC<ShoppingListProps> = ({
           onToggleCurrent={() => onToggleCurrent(item)}
           onRestore={() => onRestore?.(item)}
           onUnmarkCurrent={() => onToggleCurrent(item)}
+          isExpanded={expandedItemId === item.id}
+          onExpand={() => onExpandItem(item.id)}
         />
       )}
       sx={sx}

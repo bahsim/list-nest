@@ -16,6 +16,7 @@ const MainListView: React.FC = () => {
   const [items, setItems] = useState<ShoppingListItem[]>([]);
   const [isAddModalOpen, setIsAddModalOpen] = useState<boolean>(false);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [expandedItemId, setExpandedItemId] = useState<string | null>(null);
 
   // Handlers
   const handleAddFirstItem = (): void => setIsAddModalOpen(true);
@@ -33,6 +34,9 @@ const MainListView: React.FC = () => {
         ? prev.filter((c) => c !== category)
         : [...prev, category]
     );
+  };
+  const handleExpandItem = (itemId: string): void => {
+    setExpandedItemId(itemId === expandedItemId ? null : itemId);
   };
 
   // ShoppingList handlers (stubbed, replace with real logic)
@@ -116,6 +120,8 @@ const MainListView: React.FC = () => {
               onToggleBought={handleToggleBought}
               onToggleCurrent={handleToggleCurrent}
               onRestore={handleRestoreItem}
+              expandedItemId={expandedItemId}
+              onExpandItem={handleExpandItem}
             />
             <ShoppingListGroup
               label="All"
@@ -126,6 +132,8 @@ const MainListView: React.FC = () => {
               onToggleBought={handleToggleBought}
               onToggleCurrent={handleToggleCurrent}
               onRestore={handleRestoreItem}
+              expandedItemId={expandedItemId}
+              onExpandItem={handleExpandItem}
             />
           </>
         )}

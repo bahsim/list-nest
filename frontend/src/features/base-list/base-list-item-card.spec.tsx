@@ -13,6 +13,8 @@ const defaultProps: BaseListItemCardProps = {
     icon: () => <span data-testid="swipe-icon" />,
     background: 'red',
   }),
+  isExpanded: false,
+  onExpand: jest.fn(),
 };
 
 describe('BaseListItemCard', () => {

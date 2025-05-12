@@ -72,6 +72,18 @@ export interface BaseListItemCardProps {
    * Optional style overrides.
    */
   readonly sx?: SxProps<Theme>;
+  /**
+   * Whether the card is expanded to show extra content (controlled mode only).
+   */
+  readonly isExpanded: boolean;
+  /**
+   * Handler to expand/collapse the card (controlled mode only).
+   */
+  readonly onExpand: () => void;
+  /**
+   * Optional render prop for expanded content below the card content.
+   */
+  readonly renderExpandedContent?: React.ReactNode;
 }
 
 /**
@@ -139,6 +151,9 @@ export const BaseListItemCard: React.FC<BaseListItemCardProps> = React.memo(
     onSwipeRight,
     getSwipeVisuals,
     sx,
+    isExpanded,
+    onExpand,
+    renderExpandedContent,
   }) => {
     const theme = useTheme();
     const handleToggle = React.useCallback(() => {
@@ -146,11 +161,7 @@ export const BaseListItemCard: React.FC<BaseListItemCardProps> = React.memo(
         onToggle();
       }
     }, [onToggle]);
-    const handleClick = React.useCallback(() => {
-      if (onClick) {
-        onClick();
-      }
-    }, [onClick]);
+
     const { translateX, swipeHandlers, absX } = useListItemSwipe({ onSwipeLeft, onSwipeRight });
     let actionIcon: React.ReactNode = null;
     let actionBg = 'transparent';
@@ -166,8 +177,16 @@ export const BaseListItemCard: React.FC<BaseListItemCardProps> = React.memo(
       actionBg = absX > 10 ? visuals.background : 'transparent';
     }
 
+    const handleCardClick = (e: React.MouseEvent) => {
+      console.log('BaseListItemCard clicked');
+      onExpand();
+      if (onClick) {
+        onClick();
+      }
+    };
+
     return (
-      <Box sx={{ position: 'relative', mb: theme.spacing(1), ...sx }} {...swipeHandlers}>
+      <Box sx={{ position: 'relative', mb: theme.spacing(1), ...sx }} {...(isExpanded ? {} : swipeHandlers)}>
         {/* Action background and icon */}
         <Box
           sx={{
@@ -205,6 +224,7 @@ export const BaseListItemCard: React.FC<BaseListItemCardProps> = React.memo(
           }}
           sx={{
             display: 'flex',
+            flexDirection: 'column',
             alignItems: 'center',
             background: highlighted
               ? alpha(theme.palette.info.main, HIGHLIGHT_ALPHA)
@@ -213,15 +233,22 @@ export const BaseListItemCard: React.FC<BaseListItemCardProps> = React.memo(
             borderColor: highlighted ? theme.palette.primary.main : theme.palette.divider,
             opacity: disabled ? 0.6 : 1,
             position: 'relative',
-            cursor: onClick ? 'pointer' : 'default',
+            cursor: 'pointer',
             transform: `translateX(${translateX}px)`,
             zIndex: 1,
             transition:
               translateX === 0
-                ? 'box-shadow 0.2s, background 0.2s, opacity 0.2s, border-color 0.2s, transform 0.2s'
+                ? 'box-shadow 0.2s, background 0.2s, opacity 0.2s, border-color 0.2s, transform 0.2s, height 0.3s'
                 : 'none',
+            minHeight: 56,
+            height: 'auto',
+            overflow: 'visible',
+            borderRadius: 2,
+            mb: 1,
+            p: 1,
+            WebkitTapHighlightColor: 'transparent',
           }}
-          onClick={handleClick}
+          onClick={handleCardClick}
         >
           <CardContent
             sx={{
@@ -245,11 +272,16 @@ export const BaseListItemCard: React.FC<BaseListItemCardProps> = React.memo(
               {title}
             </Typography>
             {secondaryText && (
-              <Typography variant="body1" color="text.secondary" sx={{ ml: 2, px: 1, textAlign: 'right' }}>
+              <Typography
+                variant="body1"
+                color="text.secondary"
+                sx={{ ml: 2, px: 1, textAlign: 'right' }}
+              >
                 {secondaryText}
               </Typography>
             )}
           </CardContent>
+          {isExpanded && renderExpandedContent}
         </Card>
       </Box>
     );
