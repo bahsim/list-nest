@@ -1,0 +1,56 @@
+import React from 'react';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import { ShoppingList } from '@ui-kit/components/organism/ShoppingList/ShoppingList';
+import type { ShoppingListItem } from '@ui-kit/components/types';
+import type { SxProps, Theme } from '@mui/material/styles';
+import type { ShoppingListGroupProps } from './types';
+
+/**
+ * Renders a group label, sum, and ShoppingList.
+ */
+export const ShoppingListGroup: React.FC<ShoppingListGroupProps> = ({
+  label,
+  items,
+  groupSum,
+  onEdit,
+  onDelete,
+  onToggleBought,
+  onToggleCurrent,
+  onRestore,
+  sx,
+}) => {
+  if (items.length === 0) return null;
+  return (
+    <>
+      <Box
+        sx={{
+          width: '100%',
+          maxWidth: 600,
+          px: 1,
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          mt: 2,
+          mb: 1,
+        }}
+      >
+        <Typography variant="subtitle2">{label}</Typography>
+        <Typography variant="subtitle2" color="text.secondary">
+          ${groupSum}
+        </Typography>
+      </Box>
+      <ShoppingList
+        items={items}
+        sx={{ width: '100%', maxWidth: 600, px: 1, ...sx }}
+        onEdit={onEdit}
+        onDelete={onDelete}
+        onToggleBought={onToggleBought}
+        onToggleCurrent={onToggleCurrent}
+        onRestore={onRestore}
+      />
+    </>
+  );
+};
+
+export default ShoppingListGroup; 
