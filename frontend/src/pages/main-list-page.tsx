@@ -75,7 +75,7 @@ const MainListView: React.FC = () => {
       <Box
         sx={{
           position: 'absolute',
-          top: 32,
+          top: 24,
           bottom: 56,
           left: 0,
           right: 0,

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import Checkbox from '@mui/material/Checkbox';
 import Typography from '@mui/material/Typography';
 import { useTheme, type Theme, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -168,7 +167,7 @@ export const BaseListItemCard: React.FC<BaseListItemCardProps> = React.memo(
     }
 
     return (
-      <Box sx={{ position: 'relative', mb: theme.spacing(2), ...sx }} {...swipeHandlers}>
+      <Box sx={{ position: 'relative', mb: theme.spacing(1), ...sx }} {...swipeHandlers}>
         {/* Action background and icon */}
         <Box
           sx={{
@@ -189,7 +188,7 @@ export const BaseListItemCard: React.FC<BaseListItemCardProps> = React.memo(
         </Box>
         <Card
           variant="outlined"
-          role="checkbox"
+          role="listitem"
           aria-checked={checked}
           aria-disabled={disabled}
           tabIndex={0}
@@ -224,25 +223,20 @@ export const BaseListItemCard: React.FC<BaseListItemCardProps> = React.memo(
           }}
           onClick={handleClick}
         >
-          <Checkbox
-            checked={checked}
-            onChange={handleToggle}
-            disabled={disabled}
-            color="primary"
-            sx={{ ml: theme.spacing(1), zIndex: 2 }}
-          />
           <CardContent
             sx={{
               flex: 1,
               display: 'flex',
               alignItems: 'center',
+              justifyContent: 'space-between',
+              width: '100%',
               p: `${theme.spacing(1)} !important`,
-              pl: '0 !important',
             }}
           >
             <Typography
               variant="body1"
               sx={{
+                px: 1,
                 textDecoration: disabled ? 'line-through' : 'none',
                 fontWeight: highlighted ? 700 : 400,
                 color: disabled ? theme.palette.text.secondary : theme.palette.text.primary,
@@ -251,7 +245,7 @@ export const BaseListItemCard: React.FC<BaseListItemCardProps> = React.memo(
               {title}
             </Typography>
             {secondaryText && (
-              <Typography variant="body2" color="text.secondary" sx={{ ml: 2 }}>
+              <Typography variant="body1" color="text.secondary" sx={{ ml: 2, px: 1, textAlign: 'right' }}>
                 {secondaryText}
               </Typography>
             )}

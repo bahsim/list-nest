@@ -5,7 +5,6 @@ import CheckIcon from '@mui/icons-material/CheckCircleOutline';
 import StarIcon from '@mui/icons-material/Star';
 import RestoreIcon from '@mui/icons-material/Restore';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
-import RefreshIcon from '@mui/icons-material/Refresh';
 import { BaseListItemCard } from '../base-list/base-list-item-card';
 
 /**
@@ -53,12 +52,12 @@ export const ShoppingListItemCard: React.FC<ShoppingListItemCardProps> = ({
       if (item.isDeleted) {
         return {
           icon: RestoreIcon,
-          background: theme.palette.success.main,
+          background: theme.palette.info.main,
         };
       }
       if (item.isBought) {
         return {
-          icon: RefreshIcon,
+          icon: RestoreIcon,
           background: theme.palette.info.main,
         };
       }
@@ -90,7 +89,7 @@ export const ShoppingListItemCard: React.FC<ShoppingListItemCardProps> = ({
   return (
     <BaseListItemCard
       title={item.name}
-      secondaryText={item.quantity}
+      secondaryText={`${item.quantity} ${item.unit}`}
       checked={item.isBought}
       highlighted={item.isCurrent}
       disabled={item.isDeleted}

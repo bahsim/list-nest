@@ -25,15 +25,17 @@ export const ShoppingListGroup: React.FC<ShoppingListGroupProps> = ({
         sx={{
           width: '100%',
           maxWidth: 600,
-          px: 1,
+          px: 1.5,
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          mt: 2,
-          mb: 1,
+          mt: 0.5,
+          mb: 0.5,
         }}
       >
-        <Typography variant="subtitle2">{label}</Typography>
+        <Typography variant="subtitle2" color="text.secondary">
+          {label}
+        </Typography>
         <Typography variant="subtitle2" color="text.secondary">
           ${groupSum}
         </Typography>
@@ -51,4 +53,4 @@ export const ShoppingListGroup: React.FC<ShoppingListGroupProps> = ({
   );
 };
 
-export default ShoppingListGroup; 
+export default ShoppingListGroup;
