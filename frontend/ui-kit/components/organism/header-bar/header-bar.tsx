@@ -1,10 +1,8 @@
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
-import AccessTimeIcon from '@mui/icons-material/AccessTimeRounded';
 import styles from './header-bar.module.scss';
 
 // NOTE: Update the logo path as needed for your build setup. Assumes '/apple-touch-icon.png' in public root.
@@ -55,9 +53,6 @@ export const HeaderBar: React.FC<HeaderBarProps> = ({ user, onSettings }) => (
             {user.name ? getInitialsFromName(user.name) : null}
           </Avatar>
         )}
-        <IconButton aria-label="Settings" onClick={onSettings} color="inherit">
-          <AccessTimeIcon />
-        </IconButton>
       </div>
     </Toolbar>
   </AppBar>

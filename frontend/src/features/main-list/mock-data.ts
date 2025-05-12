@@ -8,7 +8,6 @@ export const mockUser: User = {
 
 export const mockCategories: string[] = ['Produce', 'Bakery', 'Dairy', 'Meat', 'Snacks'];
 export const mockUnits: string[] = ['pcs', 'kg', 'g', 'l', 'pack'];
-export const mockCurrencies: string[] = ['USD', 'EUR', 'GBP'];
 
 export const mockItems: ShoppingListItem[] = [
   {

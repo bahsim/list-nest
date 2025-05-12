@@ -25,7 +25,6 @@ export interface AddEditItemModalProps {
   onCancel: () => void;
   categories: string[];
   units: string[];
-  currencies: string[];
   aiSuggestions?: AISuggestion[];
 }
 
@@ -35,7 +34,6 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
   onCancel,
   categories,
   units,
-  currencies,
   aiSuggestions,
 }) => {
   const [fields, setFields] = React.useState<AddEditItemInput>(
@@ -118,22 +116,6 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
             type="number"
             fullWidth
           />
-          <TextField
-            select
-            name="currency"
-            label="Currency"
-            value={fields.currency || ''}
-            onChange={handleChange}
-            fullWidth
-            // required={!!fields.estimatedPrice}
-          >
-            <MenuItem value="">Currency</MenuItem>
-            {currencies.map((c) => (
-              <MenuItem key={c} value={c}>
-                {c}
-              </MenuItem>
-            ))}
-          </TextField>
           <TextField
             select
             name="category"

@@ -9,7 +9,7 @@ import { filterByCategory, getUniqueCategories, getCategoryValue, getGroupSum } 
 import { CategoryFilterChips } from '../features/main-list/category-filter-chips';
 import { ShoppingListGroup } from '../features/main-list/shopping-list-group';
 import { AddItemFab } from '../features/main-list/add-item-fab';
-import { mockUser, mockCategories, mockUnits, mockCurrencies, mockItems } from '../features/main-list/mock-data';
+import { mockUser, mockCategories, mockUnits, mockItems } from '../features/main-list/mock-data';
 
 const MainListView: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('list');
@@ -144,7 +144,6 @@ const MainListView: React.FC = () => {
           onCancel={handleCancelAdd}
           categories={mockCategories}
           units={mockUnits}
-          currencies={mockCurrencies}
         />
       )}
     </Box>
