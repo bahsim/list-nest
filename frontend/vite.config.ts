@@ -13,4 +13,7 @@ export default defineConfig({
       '@ui-kit': path.resolve(__dirname, 'ui-kit')
     },
   },
+  test: {
+    setupFiles: ['./vitest.setup.ts'],
+  },
 })

@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BaseList applies sx prop 1`] = `
+<ul
+  class="MuiList-root css-10ly347-MuiList-root"
+>
+  <li
+    class="MuiListItem-root css-1li41ks-MuiListItem-root"
+  >
+    <span>
+      x
+    </span>
+  </li>
+</ul>
+`;

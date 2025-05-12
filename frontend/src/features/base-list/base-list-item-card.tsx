@@ -192,6 +192,18 @@ export const BaseListItemCard: React.FC<BaseListItemCardProps> = React.memo(
           role="checkbox"
           aria-checked={checked}
           aria-disabled={disabled}
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if ((e.key === ' ' || e.key === 'Enter') && !disabled) {
+              handleToggle();
+            }
+            if (e.key === 'ArrowLeft' && onSwipeLeft) {
+              onSwipeLeft();
+            }
+            if (e.key === 'ArrowRight' && onSwipeRight) {
+              onSwipeRight();
+            }
+          }}
           sx={{
             display: 'flex',
             alignItems: 'center',
