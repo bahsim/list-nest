@@ -57,6 +57,8 @@ export const WithBaseListItemCard = () => (
                 background: rightColors[i % rightColors.length],
               };
             }}
+            isExpanded={false}
+            onExpand={() => alert('Expanded')}
           />
         );
       }}
