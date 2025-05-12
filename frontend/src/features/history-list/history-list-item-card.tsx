@@ -1,0 +1,20 @@
+import * as React from 'react';
+import { BaseListItemCard } from '../base-list/base-list-item-card';
+import type { HistoryItem } from './types';
+
+export interface HistoryListItemCardProps {
+  item: HistoryItem;
+  onRestore: () => void;
+}
+
+export const HistoryListItemCard: React.FC<HistoryListItemCardProps> = ({ item, onRestore }) => (
+  <BaseListItemCard
+    title={item.name}
+    secondaryText={item.date}
+    checked={item.isRestored}
+    highlighted={false}
+    disabled={item.isDeleted}
+    onToggle={onRestore}
+    // Add custom icons or swipe logic if needed
+  />
+); 
