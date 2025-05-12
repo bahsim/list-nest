@@ -1,5 +1,5 @@
 import React from 'react';
-import MainListView from './components/MainListView/MainListView';
+import MainListView from './pages/main-list-page';
 
 const App: React.FC = () => {
   return <MainListView />;

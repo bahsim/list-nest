@@ -4,7 +4,7 @@ import { FooterNav } from '@ui-kit/components/organism/FooterNav/FooterNav';
 import { AddEditItemModal } from '@ui-kit/components/organism/AddEditItemModal/AddEditItemModal';
 import Box from '@mui/material/Box';
 import EmptyState from '@ui-kit/components/atomic/EmptyState/EmptyState';
-import type { ShoppingListItem, User } from '@ui-kit/components/types';
+import type { ShoppingListItem } from '@ui-kit/components/types';
 import { filterByCategory, getUniqueCategories, getCategoryValue, getGroupSum } from '../features/main-list/utils';
 import { CategoryFilterChips } from '../features/main-list/category-filter-chips';
 import { ShoppingListGroup } from '../features/main-list/shopping-list-group';
