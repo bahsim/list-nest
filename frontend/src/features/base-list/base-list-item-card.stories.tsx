@@ -23,6 +23,8 @@ export const Default = () => (
       onToggle={() => alert('Toggled')}
       onClick={() => alert('Clicked')}
       getSwipeVisuals={getSwipeVisuals}
+      isExpanded={false}
+      onExpand={() => alert('Expanded')}
     />
   </Box>
 );
@@ -34,6 +36,8 @@ export const Checked = () => (
       checked
       onToggle={() => alert('Toggled')}
       getSwipeVisuals={getSwipeVisuals}
+      isExpanded={false}
+      onExpand={() => alert('Expanded')}
     />
   </Box>
 );
@@ -45,6 +49,8 @@ export const Highlighted = () => (
       highlighted
       onClick={() => alert('Clicked')}
       getSwipeVisuals={getSwipeVisuals}
+      isExpanded={false}
+      onExpand={() => alert('Expanded')}
     />
   </Box>
 );
@@ -56,6 +62,8 @@ export const Disabled = () => (
       disabled
       onToggle={() => alert('Toggled')}
       getSwipeVisuals={getSwipeVisuals}
+      isExpanded={false}
+      onExpand={() => alert('Expanded')}
     />
   </Box>
 ); 

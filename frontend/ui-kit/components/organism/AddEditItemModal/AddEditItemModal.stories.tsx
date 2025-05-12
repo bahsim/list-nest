@@ -25,7 +25,6 @@ export const Add: Story = {
     onCancel: () => {},
     categories,
     units,
-    currencies,
     aiSuggestions,
   },
 };
@@ -48,7 +47,6 @@ export const Edit: Story = {
     onCancel: () => {},
     categories,
     units,
-    currencies,
     aiSuggestions,
   },
 }; 

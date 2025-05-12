@@ -16,5 +16,7 @@ export const HistoryListItemCard: React.FC<HistoryListItemCardProps> = ({ item, 
     disabled={item.isDeleted}
     onToggle={onRestore}
     // Add custom icons or swipe logic if needed
+    isExpanded={false}
+    onExpand={() => {}}
   />
 ); 
