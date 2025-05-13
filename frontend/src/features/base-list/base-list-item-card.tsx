@@ -239,7 +239,7 @@ export const BaseListItemCard: React.FC<BaseListItemCardProps> = React.memo(
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            background: isExpanded ? 'transparent' : alpha(theme.palette.secondary.light, theme.highlightAlpha),
+            background: isExpanded ? alpha(theme.palette.secondary.light, theme.highlightAlpha) : 'transparent',
             boxShadow: highlighted ? theme.shadows[3] : theme.shadows[1],
             border: '0.5px solid rgba(146,122,125,0.3)',
             position: 'relative',
