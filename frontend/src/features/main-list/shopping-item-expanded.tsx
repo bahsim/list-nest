@@ -56,6 +56,12 @@ export const ShoppingItemExpanded: React.FC<ShoppingItemExpandedProps> = ({
     onAddNote();
   };
 
+  const handleAddNoteOpen = () => {
+    setIsAddingNote(true);
+    setNoteInput(item.notes || '');
+    onAddNote();
+  };
+
   const handleSaveNote = () => {
     onSaveNote(noteInput.trim());
     setIsAddingNote(false);
@@ -137,7 +143,7 @@ export const ShoppingItemExpanded: React.FC<ShoppingItemExpandedProps> = ({
         <>
           {item.notes && (
             <>
-              <NoteDisplay note={item.notes} onClick={handleAddNoteClick} />
+              <NoteDisplay note={item.notes} onClick={handleAddNoteOpen} />
               <Divider sx={{ borderColor: (theme) => alpha(theme.palette.divider, 0.3), mb: 1 }} />
             </>
           )}

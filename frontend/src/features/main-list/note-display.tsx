@@ -10,7 +10,7 @@ interface NoteDisplayProps {
 
 const NoteDisplay: React.FC<NoteDisplayProps> = ({ note, onClick }) => (
   <ButtonBase
-    onClick={onClick}
+    onClick={e => { e.stopPropagation(); onClick(); }}
     sx={{
       display: 'flex',
       alignItems: 'center',
