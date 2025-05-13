@@ -28,7 +28,7 @@ export const mockItems: ShoppingListItem[] = [
   {
     id: '2',
     name: 'Bread',
-    quantity: 1,
+    quantity: 1000,
     unit: 'pcs',
     category: 'Bakery',
     isBought: false,
@@ -42,7 +42,7 @@ export const mockItems: ShoppingListItem[] = [
   {
     id: '3',
     name: 'Eggs',
-    quantity: 12,
+    quantity: 1200,
     unit: 'pcs',
     category: 'Dairy',
     isBought: true,

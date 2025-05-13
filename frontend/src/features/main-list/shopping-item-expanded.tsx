@@ -101,7 +101,7 @@ export const ShoppingItemExpanded: React.FC<ShoppingItemExpandedProps> = ({
             ml: 1,
           }}
         >
-          {`${item.quantity} x $${item.estimatedPrice} = $${(Number(item.quantity) * Number(item.estimatedPrice)).toFixed(2)}`}
+          {`${item.quantity} ${item.unit} x $${item.estimatedPrice} = $${(Number(item.quantity) * Number(item.estimatedPrice)).toFixed(2)}`}
         </Box>
       </Box>
       {/* Notes */}

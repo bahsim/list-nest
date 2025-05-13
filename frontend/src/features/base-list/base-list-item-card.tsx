@@ -294,8 +294,8 @@ export const BaseListItemCard: React.FC<BaseListItemCardProps> = React.memo(
             {secondaryText && (
               <Typography
                 variant="body1"
-                color="text.secondary"
-                sx={{ ml: 2, px: 1, textAlign: 'right' }}
+                color="text.primary"
+                sx={{ ml: 2, px: 1, textAlign: 'right', minWidth: 75 }}
               >
                 {secondaryText}
               </Typography>
