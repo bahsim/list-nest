@@ -34,7 +34,7 @@ export const Edit: Story = {
     item: {
       id: '1',
       name: 'Eggs',
-      quantity: '12',
+      quantity: 12,
       unit: 'pcs',
       estimatedPrice: 2.5,
       currency: 'USD',

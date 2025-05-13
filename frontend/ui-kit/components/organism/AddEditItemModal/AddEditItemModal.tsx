@@ -39,7 +39,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
   const [fields, setFields] = React.useState<AddEditItemInput>(
     item || {
       name: '',
-      quantity: '',
+      quantity: 0,
       unit: units[0] || '',
       category: categories[0] || '',
       isCurrent: false,
