@@ -7,44 +7,31 @@ import RestoreIcon from '@mui/icons-material/Restore';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import { BaseListItemCard } from '../base-list/base-list-item-card';
 import { ShoppingItemExpanded } from './shopping-item-expanded';
+import { useMainListContext } from './main-list-context';
 
 /**
  * ShoppingListItemCard displays a single shopping list item with actions.
+ * Uses context for all actions and expanded item.
  * @param item - The shopping list item.
- * @param onEdit - Edit handler.
- * @param onDelete - Delete handler.
- * @param onToggleBought - Mark as bought handler.
- * @param onToggleCurrent - Toggle current handler.
- * @param onRestore - Restore handler.
- * @param onUnmarkCurrent - Unmark current handler.
  */
 export interface ShoppingListItemCardProps {
   item: ShoppingListItem;
-  onEdit: () => void;
-  onDelete: () => void;
-  onToggleBought: () => void;
-  onToggleCurrent: () => void;
-  onRestore: () => void;
-  onUnmarkCurrent: () => void;
-  isExpanded: boolean;
-  onExpand: () => void;
-  onAddNote: () => void;
-  onSaveNote: (note: string) => void;
 }
 
-export const ShoppingListItemCard: React.FC<ShoppingListItemCardProps> = ({
-  item,
-  onEdit,
-  onDelete,
-  onToggleBought,
-  onToggleCurrent,
-  onRestore,
-  onUnmarkCurrent,
-  isExpanded,
-  onExpand,
-  onAddNote,
-  onSaveNote,
-}) => {
+export const ShoppingListItemCard: React.FC<ShoppingListItemCardProps> = ({ item }) => {
+  const {
+    handleToggleBought,
+    handleToggleCurrent,
+    handleRestoreItem,
+    handleExpandItem,
+    expandedItem,
+  } = useMainListContext();
+  const isExpanded = expandedItem && expandedItem.itemId === item.id ? true : false;
+  const onExpand = () =>
+    handleExpandItem(
+      expandedItem && expandedItem.itemId === item.id ? expandedItem.group : 'current',
+      item.id,
+    );
   const getSwipeVisuals = ({ direction, theme }: { direction: 'left' | 'right'; theme: Theme }) => {
     if (direction === 'left') {
       if (item.isCurrent) {
@@ -76,25 +63,22 @@ export const ShoppingListItemCard: React.FC<ShoppingListItemCardProps> = ({
       };
     }
   };
-
   const handleSwipeLeft = () => {
     if (item.isCurrent) {
-      onUnmarkCurrent();
+      handleToggleCurrent(item);
     } else {
-      onToggleCurrent();
+      handleToggleCurrent(item);
     }
   };
-
   const handleSwipeRight = () => {
     if (item.isDeleted) {
-      onRestore();
+      handleRestoreItem(item);
     } else if (item.isBought) {
-      onToggleBought();
+      handleToggleBought(item);
     } else {
-      onToggleBought();
+      handleToggleBought(item);
     }
   };
-
   return (
     <BaseListItemCard
       title={item.name}
@@ -102,24 +86,13 @@ export const ShoppingListItemCard: React.FC<ShoppingListItemCardProps> = ({
       checked={item.isBought}
       highlighted={item.isCurrent}
       disabled={item.isDeleted}
-      onToggle={onToggleBought}
+      onToggle={() => handleToggleBought(item)}
       isExpanded={isExpanded}
       onExpand={onExpand}
       onSwipeLeft={handleSwipeLeft}
       onSwipeRight={handleSwipeRight}
       getSwipeVisuals={getSwipeVisuals}
-      renderExpandedContent={
-        <ShoppingItemExpanded
-          item={item}
-          onToggleCurrent={onToggleCurrent}
-          onToggleBought={onToggleBought}
-          onDelete={onDelete}
-          onEdit={onEdit}
-          onAddNote={onAddNote}
-          onSaveNote={onSaveNote}
-          isExpanded={isExpanded}
-        />
-      }
+      renderExpandedContent={<ShoppingItemExpanded item={item} />}
     />
   );
 };

@@ -6,44 +6,39 @@ import EditIcon from '@mui/icons-material/Edit';
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
 import RestoreIcon from '@mui/icons-material/Restore';
 import type { ShoppingListItem } from '@ui-kit/components/types';
+import { useMainListContext } from './main-list-context';
 
+/**
+ * ItemActionButtons renders action buttons for a shopping list item.
+ * Uses context for main actions, onAddNote is passed as a prop.
+ * @param item - The shopping list item.
+ * @param isAddingNote - Whether a note is being added.
+ * @param onAddNote - Add note handler.
+ */
 interface ItemActionButtonsProps {
   item: ShoppingListItem;
   isAddingNote: boolean;
-  onEdit: () => void;
-  onDelete: () => void;
-  onToggleBought: () => void;
-  onAddNote: () => void;
+  onAddNoteOpen: () => void;
 }
 
-const ItemActionButtons: React.FC<ItemActionButtonsProps> = ({
-  item,
-  isAddingNote,
-  onEdit,
-  onDelete,
-  onToggleBought,
-  onAddNote,
-}) => {
-  const handleToggleBought = (e: React.MouseEvent) => {
+const ItemActionButtons: React.FC<ItemActionButtonsProps> = ({ item, isAddingNote, onAddNoteOpen }) => {
+  const { handleEditItem, handleDeleteItem, handleToggleBought } = useMainListContext();
+  const handleToggleBoughtClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    onToggleBought();
+    handleToggleBought(item);
   };
-
-  const handleEdit = (e: React.MouseEvent) => {
+  const handleEditClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    onEdit();
+    handleEditItem(item);
   };
-
-  const handleDelete = (e: React.MouseEvent) => {
+  const handleDeleteClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    onDelete();
+    handleDeleteItem(item);
   };
-
-  const handleAddNote = (e: React.MouseEvent) => {
+  const handleAddNoteClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    onAddNote();
+    onAddNoteOpen();
   };
-
   return (
     <Box
       sx={{
@@ -57,7 +52,7 @@ const ItemActionButtons: React.FC<ItemActionButtonsProps> = ({
       {/* Complete */}
       {!item.isDeleted && (
         <IconButton
-          onClick={handleToggleBought}
+          onClick={handleToggleBoughtClick}
           color="secondary"
           size="medium"
           sx={{
@@ -77,23 +72,22 @@ const ItemActionButtons: React.FC<ItemActionButtonsProps> = ({
           )}
         </IconButton>
       )}
-
       {/* Add Note */}
       {(!item.notes || item.notes.trim() === '') &&
         !isAddingNote &&
         !item.isBought &&
         !item.isDeleted && (
           <IconButton
-            onClick={handleAddNote}
+            onClick={handleAddNoteClick}
             color="primary"
             size="medium"
             sx={{
               width: 40,
               height: 40,
               borderRadius: '50%',
-              background: (theme) => theme.palette.primary.light,
+              background: (theme) => theme.palette.info.light,
               '&:hover': {
-                background: (theme) => theme.palette.primary.light,
+                background: (theme) => theme.palette.info.light,
               },
             }}
           >
@@ -103,7 +97,7 @@ const ItemActionButtons: React.FC<ItemActionButtonsProps> = ({
       {/* Edit */}
       {!item.isBought && !item.isDeleted && (
         <IconButton
-          onClick={handleEdit}
+          onClick={handleEditClick}
           color="info"
           size="medium"
           sx={{
@@ -122,7 +116,7 @@ const ItemActionButtons: React.FC<ItemActionButtonsProps> = ({
       {/* Delete */}
       {!item.isBought && (
         <IconButton
-          onClick={handleDelete}
+          onClick={handleDeleteClick}
           color="error"
           size="medium"
           sx={{
@@ -132,7 +126,11 @@ const ItemActionButtons: React.FC<ItemActionButtonsProps> = ({
             background: (theme) => theme.palette.error.light,
           }}
         >
-          {item.isDeleted ? <RestoreIcon sx={{ color: '#fff' }} /> : <DeleteIcon sx={{ color: '#fff' }} />}
+          {item.isDeleted ? (
+            <RestoreIcon sx={{ color: '#fff' }} />
+          ) : (
+            <DeleteIcon sx={{ color: '#fff' }} />
+          )}
         </IconButton>
       )}
     </Box>

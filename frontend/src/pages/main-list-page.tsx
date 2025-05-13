@@ -16,6 +16,8 @@ import { ShoppingList } from '../features/main-list/shopping-list';
 import { AddItemFab } from '../features/main-list/add-item-fab';
 import { mockUser, mockCategories, mockUnits, mockItems } from '../features/main-list/mock-data';
 import { Typography } from '@mui/material';
+import { MainListProvider } from '../features/main-list/main-list-context';
+import { MainLayout } from '../layouts/main-layout';
 
 const MainListView: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('list');
@@ -53,9 +55,7 @@ const MainListView: React.FC = () => {
   const handleToggleBought = (item: ShoppingListItem): void => {};
   const handleToggleCurrent = (item: ShoppingListItem): void => {};
   const handleRestoreItem = (item: ShoppingListItem): void => {};
-  const handleAddNote = (item: ShoppingListItem): void => {};
   const handleSaveNote = (id: string, note: string): void => {};
-
 
   // Derived data
   const filteredItems = filterByCategory(items, selectedCategories);
@@ -66,44 +66,22 @@ const MainListView: React.FC = () => {
   const uniqueCategories = getUniqueCategories(items);
 
   return (
-    <Box
-      sx={{
-        position: 'relative',
-        height: '100vh',
-        width: '100vw',
-        bgcolor: 'var(--color-bg)',
-        overflow: 'hidden',
-      }}
+    <MainLayout
+      user={mockUser}
+      onSettings={() => {}}
+      activeTab={activeTab}
+      onTabChange={setActiveTab}
     >
-      {/* Header */}
-      <Box
-        sx={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          height: 56,
-          zIndex: 2,
-        }}
-      >
-        <HeaderBar user={mockUser} onSettings={() => {}} />
-      </Box>
-
-      {/* Main Content (scrollable) */}
-      <Box
-        sx={{
-          position: 'absolute',
-          top: 24,
-          bottom: 56,
-          left: 0,
-          right: 0,
-          overflow: 'auto',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          pt: 5,
-          width: '100%',
-          paddingBottom: 12,
+      <MainListProvider
+        value={{
+          expandedItem,
+          handleEditItem,
+          handleDeleteItem,
+          handleToggleBought,
+          handleToggleCurrent,
+          handleRestoreItem,
+          handleSaveNote,
+          handleExpandItem,
         }}
       >
         {/* Category Filter Chips */}
@@ -150,15 +128,6 @@ const MainListView: React.FC = () => {
                 <ShoppingList
                   items={filteredCurrentItems}
                   sx={{ width: '100%', maxWidth: 600, px: 1 }}
-                  onEdit={handleEditItem}
-                  onDelete={handleDeleteItem}
-                  onToggleBought={handleToggleBought}
-                  onToggleCurrent={handleToggleCurrent}
-                  onRestore={handleRestoreItem}
-                  expandedItemId={expandedItem?.group === 'current' ? expandedItem.itemId : null}
-                  onExpandItem={(itemId) => handleExpandItem('current', itemId)}
-                  onAddNote={handleAddNote}
-                  onSaveNote={handleSaveNote}
                 />
               </>
             )}
@@ -184,41 +153,24 @@ const MainListView: React.FC = () => {
                     ${getGroupSum(filteredItems)}
                   </Typography>
                 </Box>
-                <ShoppingList
-                  items={filteredItems}
-                  sx={{ width: '100%', maxWidth: 600, px: 1 }}
-                  onEdit={handleEditItem}
-                  onDelete={handleDeleteItem}
-                  onToggleBought={handleToggleBought}
-                  onToggleCurrent={handleToggleCurrent}
-                  onRestore={handleRestoreItem}
-                  expandedItemId={expandedItem?.group === 'all' ? expandedItem.itemId : null}
-                  onExpandItem={(itemId) => handleExpandItem('all', itemId)}
-                  onAddNote={handleAddNote}
-                  onSaveNote={handleSaveNote}
-                />
+                <ShoppingList items={filteredItems} sx={{ width: '100%', maxWidth: 600, px: 1 }} />
               </>
             )}
           </>
         )}
-      </Box>
-
-      {/* Footer */}
-      <FooterNav activeTab={activeTab} onTabChange={setActiveTab} />
-
-      {/* FAB */}
-      {items.length > 0 && <AddItemFab onClick={() => setIsAddModalOpen(true)} />}
-
-      {/* Modal */}
-      {isAddModalOpen && (
-        <AddEditItemModal
-          onSave={handleSaveItem}
-          onCancel={handleCancelAdd}
-          categories={mockCategories}
-          units={mockUnits}
-        />
-      )}
-    </Box>
+        {/* FAB */}
+        {items.length > 0 && <AddItemFab onClick={() => setIsAddModalOpen(true)} />}
+        {/* Modal */}
+        {isAddModalOpen && (
+          <AddEditItemModal
+            onSave={handleSaveItem}
+            onCancel={handleCancelAdd}
+            categories={mockCategories}
+            units={mockUnits}
+          />
+        )}
+      </MainListProvider>
+    </MainLayout>
   );
 };
 

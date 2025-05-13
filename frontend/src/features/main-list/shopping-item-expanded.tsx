@@ -2,75 +2,41 @@ import * as React from 'react';
 import { Box, Switch, Divider } from '@mui/material';
 import type { ShoppingListItem } from '@ui-kit/components/types';
 import { alpha } from '@mui/material/styles';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import AddNoteInput from './add-note-input';
 import NoteDisplay from './note-display';
 import ItemActionButtons from './item-action-buttons';
+import { useMainListContext } from './main-list-context';
+import { useNoteInput } from './use-note-input';
 
+/**
+ * ShoppingItemExpanded displays expanded details and actions for a shopping list item.
+ * Uses context for all actions and expansion state.
+ * @param item - The shopping list item.
+ */
 export interface ShoppingItemExpandedProps {
   item: ShoppingListItem;
-  onToggleCurrent: () => void;
-  onToggleBought: () => void;
-  onDelete: () => void;
-  onEdit: () => void;
-  onAddNote: () => void;
-  onSaveNote: (note: string) => void;
-  isExpanded: boolean;
 }
 
-function getCostInfo(item: ShoppingListItem): string {
-  if (!item.quantity || !item.estimatedPrice) {
-    return '';
-  }
+export const ShoppingItemExpanded: React.FC<ShoppingItemExpandedProps> = ({ item }) => {
+  const { handleToggleCurrent, handleSaveNote, expandedItem } = useMainListContext();
+  const isExpanded = expandedItem && expandedItem.itemId === item.id ? true : false;
 
-  return `${item.quantity} ${item.unit} x $${item.estimatedPrice} = $${(
-    Number(item.quantity) * Number(item.estimatedPrice)
-  ).toFixed(2)}`;
-}
+  const getCostInfo = useCallback((item: ShoppingListItem): string => {
+    if (!item.quantity || !item.estimatedPrice) {
+      return '';
+    }
+    return `${item.quantity} ${item.unit} x $${item.estimatedPrice} = $${(
+      Number(item.quantity) * Number(item.estimatedPrice)
+    ).toFixed(2)}`;
+  }, []);
 
-export const ShoppingItemExpanded: React.FC<ShoppingItemExpandedProps> = ({
-  item,
-  onToggleCurrent,
-  onToggleBought,
-  onDelete,
-  onEdit,
-  onAddNote,
-  onSaveNote,
-  isExpanded,
-}) => {
-  const [isAddingNote, setIsAddingNote] = useState(false);
-  const [noteInput, setNoteInput] = useState('');
+  const { isAddingNote, noteInput, setNoteInput, openAddNote, openEditNote, saveNote, cancelNote } =
+    useNoteInput(item, handleSaveNote);
 
   if (!isExpanded) {
-    // automatically save note if it's not empty on collapse
-    if (noteInput.trim() !== '') {
-      onSaveNote(noteInput.trim());
-    }
-
     return null;
   }
-
-  const handleAddNoteClick = () => {
-    setIsAddingNote(true);
-    setNoteInput('');
-    onAddNote();
-  };
-
-  const handleAddNoteOpen = () => {
-    setIsAddingNote(true);
-    setNoteInput(item.notes || '');
-    onAddNote();
-  };
-
-  const handleSaveNote = () => {
-    onSaveNote(noteInput.trim());
-    setIsAddingNote(false);
-  };
-
-  const handleCancelNote = () => {
-    setIsAddingNote(false);
-    setNoteInput('');
-  };
 
   return (
     <Box
@@ -79,7 +45,6 @@ export const ShoppingItemExpanded: React.FC<ShoppingItemExpandedProps> = ({
         px: 1,
         display: 'flex',
         flexDirection: 'column',
-        // gap: 1,
       }}
     >
       <Divider sx={{ borderColor: (theme) => alpha(theme.palette.divider, 0.3) }} />
@@ -96,7 +61,7 @@ export const ShoppingItemExpanded: React.FC<ShoppingItemExpandedProps> = ({
         <Box
           onClick={(e) => {
             e.stopPropagation();
-            onToggleCurrent();
+            handleToggleCurrent(item);
           }}
           sx={{
             display: 'flex',
@@ -135,15 +100,15 @@ export const ShoppingItemExpanded: React.FC<ShoppingItemExpandedProps> = ({
         <AddNoteInput
           value={noteInput}
           onChange={setNoteInput}
-          onSave={handleSaveNote}
-          onCancel={handleCancelNote}
+          onSave={saveNote}
+          onCancel={cancelNote}
           autoFocus
         />
       ) : (
         <>
           {item.notes && (
             <>
-              <NoteDisplay note={item.notes} onClick={handleAddNoteOpen} />
+              <NoteDisplay note={item.notes} onClick={openEditNote} />
               <Divider sx={{ borderColor: (theme) => alpha(theme.palette.divider, 0.3), mb: 1 }} />
             </>
           )}
@@ -151,14 +116,7 @@ export const ShoppingItemExpanded: React.FC<ShoppingItemExpandedProps> = ({
       )}
       {/* Second row: all actions centered */}
       {!isAddingNote && (
-        <ItemActionButtons
-          item={item}
-          isAddingNote={isAddingNote}
-          onEdit={onEdit}
-          onDelete={onDelete}
-          onToggleBought={onToggleBought}
-          onAddNote={handleAddNoteClick}
-        />
+        <ItemActionButtons item={item} isAddingNote={isAddingNote} onAddNoteOpen={openAddNote} />
       )}
     </Box>
   );

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
+import Box from '@mui/material/Box';
 // import { Avatar } from '../../atomic/avatar';
 import Typography from '@mui/material/Typography';
 import styles from './header-bar.module.scss';
@@ -25,21 +26,23 @@ export interface HeaderBarProps {
 }
 
 export const HeaderBar: React.FC<HeaderBarProps> = ({ user, onSettings }) => (
-  <AppBar position="static" elevation={0} color="default" sx={{ borderBottom: theme => `1px solid ${theme.palette.divider}` }}>
-    <Toolbar className={styles.headerBar__toolbar}>
-      <div className={styles.headerBar__left}>
-        <img src={logo} alt="App Logo" style={{ width: 54, height: 54, borderRadius: 10 }} />
-        <Typography variant="h6" color="inherit" sx={{ fontWeight: 700, letterSpacing: 1 }}>
-          ListNest
-        </Typography>
-      </div>
-      {/* <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-        {user.avatarUrl ? (
-          <Avatar name={user.name} avatarUrl={user.avatarUrl} size={32} />
-        ) : (
-          <Avatar name={user.name} size={32} />
-        )}
-      </div> */}
-    </Toolbar>
-  </AppBar>
+  <Box sx={{ position: 'absolute', top: 0, left: 0, right: 0, height: 56, zIndex: 2 }}>
+    <AppBar position="static" elevation={0} color="default" sx={{ borderBottom: theme => `1px solid ${theme.palette.divider}` }}>
+      <Toolbar className={styles.headerBar__toolbar}>
+        <div className={styles.headerBar__left}>
+          <img src={logo} alt="App Logo" style={{ width: 54, height: 54, borderRadius: 10 }} />
+          <Typography variant="h6" color="inherit" sx={{ fontWeight: 700, letterSpacing: 1 }}>
+            ListNest
+          </Typography>
+        </div>
+        {/* <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          {user.avatarUrl ? (
+            <Avatar name={user.name} avatarUrl={user.avatarUrl} size={32} />
+          ) : (
+            <Avatar name={user.name} size={32} />
+          )}
+        </div> */}
+      </Toolbar>
+    </AppBar>
+  </Box>
 ); 
