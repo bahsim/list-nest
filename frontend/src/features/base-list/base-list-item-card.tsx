@@ -162,7 +162,9 @@ export const BaseListItemCard: React.FC<BaseListItemCardProps> = React.memo(
       }
     }, [onToggle]);
 
-    const { translateX, swipeHandlers, absX } = useListItemSwipe({ onSwipeLeft, onSwipeRight });
+    const { translateX, swipeHandlers, absX } = isExpanded
+      ? useListItemSwipe({})
+      : useListItemSwipe({ onSwipeLeft, onSwipeRight });
     let actionIcon: React.ReactNode = null;
     let actionBg = 'transparent';
 
