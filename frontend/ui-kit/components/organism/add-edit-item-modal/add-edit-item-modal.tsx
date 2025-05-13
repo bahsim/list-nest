@@ -9,6 +9,7 @@ import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import MenuItem from '@mui/material/MenuItem';
 import type { AddEditItemInput, AISuggestion } from '../../types';
+import Autocomplete from '@mui/material/Autocomplete';
 
 /**
  * AddEditItemModal for adding or editing a shopping list item.
@@ -116,20 +117,21 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
             type="number"
             fullWidth
           />
-          <TextField
-            select
-            name="category"
-            label="Category"
+          {/* Category field: allow free text or selection */}
+          <Autocomplete
+            freeSolo
+            options={categories}
             value={fields.category}
-            onChange={handleChange}
-            fullWidth
-          >
-            {categories.map((c) => (
-              <MenuItem key={c} value={c}>
-                {c}
-              </MenuItem>
-            ))}
-          </TextField>
+            onInputChange={(_, newValue) => setFields({ ...fields, category: newValue })}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                name="category"
+                label="Category"
+                fullWidth
+              />
+            )}
+          />
           {aiSuggestions && aiSuggestions.length > 0 && (
             <Box>
               <Box sx={{ fontWeight: 'bold', mb: 1 }}>AI Suggestions:</Box>
