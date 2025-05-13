@@ -10,7 +10,7 @@ export default {
 const mockItem: HistoryItem = {
   id: '1',
   name: 'Milk',
-  quantity: '2L',
+  quantity: 2,
   estimatedPrice: 3.5,
   category: 'Dairy',
   isCurrent: true,

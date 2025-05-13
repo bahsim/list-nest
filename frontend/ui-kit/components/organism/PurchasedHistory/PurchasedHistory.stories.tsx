@@ -13,7 +13,7 @@ const mockItems: HistoryItem[] = [
   {
     id: 'h1',
     name: 'Milk',
-    quantity: '2L',
+    quantity: 2,
     estimatedPrice: 3.5,
     category: 'Dairy',
     isCurrent: false,
@@ -25,7 +25,7 @@ const mockItems: HistoryItem[] = [
   {
     id: 'h2',
     name: 'Bread',
-    quantity: '1',
+    quantity: 1,
     estimatedPrice: 2.0,
     category: 'Bakery',
     isCurrent: false,

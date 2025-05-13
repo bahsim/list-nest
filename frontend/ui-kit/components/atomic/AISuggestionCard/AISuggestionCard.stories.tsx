@@ -10,7 +10,7 @@ export default {
 const mockSuggestion: AISuggestion = {
   id: 'ai-1',
   name: 'Eggs',
-  quantity: '12',
+  quantity: 12,
   estimatedPrice: 2.5,
   category: 'Dairy',
 };
