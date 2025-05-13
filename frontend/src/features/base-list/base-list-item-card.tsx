@@ -191,7 +191,6 @@ export const BaseListItemCard: React.FC<BaseListItemCardProps> = React.memo(
     });
 
     const handleCardClick = (e: React.MouseEvent) => {
-      console.log('BaseListItemCard clicked');
       onExpand();
       if (onClick) {
         onClick();

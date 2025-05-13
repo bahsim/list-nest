@@ -1,13 +1,11 @@
 import * as React from 'react';
-import { Box, IconButton, Tooltip, Switch, Divider, TextField, Button } from '@mui/material';
-import CheckIcon from '@mui/icons-material/CheckCircleOutline';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
-import NoteAddIcon from '@mui/icons-material/NoteAdd';
+import { Box, Switch, Divider } from '@mui/material';
 import type { ShoppingListItem } from '@ui-kit/components/types';
 import { alpha } from '@mui/material/styles';
 import { useState } from 'react';
 import AddNoteInput from './add-note-input';
+import NoteDisplay from './note-display';
+import ItemActionButtons from './item-action-buttons';
 
 export interface ShoppingItemExpandedProps {
   item: ShoppingListItem;
@@ -17,6 +15,17 @@ export interface ShoppingItemExpandedProps {
   onEdit: () => void;
   onAddNote: () => void;
   onSaveNote: (note: string) => void;
+  isExpanded: boolean;
+}
+
+function getCostInfo(item: ShoppingListItem): string {
+  if (!item.quantity || !item.estimatedPrice) {
+    return '';
+  }
+
+  return `${item.quantity} ${item.unit} x $${item.estimatedPrice} = $${(
+    Number(item.quantity) * Number(item.estimatedPrice)
+  ).toFixed(2)}`;
 }
 
 export const ShoppingItemExpanded: React.FC<ShoppingItemExpandedProps> = ({
@@ -27,9 +36,19 @@ export const ShoppingItemExpanded: React.FC<ShoppingItemExpandedProps> = ({
   onEdit,
   onAddNote,
   onSaveNote,
+  isExpanded,
 }) => {
   const [isAddingNote, setIsAddingNote] = useState(false);
   const [noteInput, setNoteInput] = useState('');
+
+  if (!isExpanded) {
+    // automatically save note if it's not empty on collapse
+    if (noteInput.trim() !== '') {
+      onSaveNote(noteInput.trim());
+    }
+
+    return null;
+  }
 
   const handleAddNoteClick = () => {
     setIsAddingNote(true);
@@ -101,7 +120,7 @@ export const ShoppingItemExpanded: React.FC<ShoppingItemExpandedProps> = ({
             ml: 1,
           }}
         >
-          {`${item.quantity} ${item.unit} x $${item.estimatedPrice} = $${(Number(item.quantity) * Number(item.estimatedPrice)).toFixed(2)}`}
+          {getCostInfo(item)}
         </Box>
       </Box>
       {/* Notes */}
@@ -112,14 +131,13 @@ export const ShoppingItemExpanded: React.FC<ShoppingItemExpandedProps> = ({
           onChange={setNoteInput}
           onSave={handleSaveNote}
           onCancel={handleCancelNote}
-          disabled={!noteInput.trim()}
           autoFocus
         />
       ) : (
         <>
           {item.notes && (
             <>
-              <Box sx={{ color: 'text.primary', mb: 1 }}>{item.notes}</Box>
+              <NoteDisplay note={item.notes} onClick={handleAddNoteClick} />
               <Divider sx={{ borderColor: (theme) => alpha(theme.palette.divider, 0.3), mb: 1 }} />
             </>
           )}
@@ -127,104 +145,14 @@ export const ShoppingItemExpanded: React.FC<ShoppingItemExpandedProps> = ({
       )}
       {/* Second row: all actions centered */}
       {!isAddingNote && (
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: 2,
-            width: '100%',
-          }}
-        >
-          {/* Complete */}
-          <IconButton
-            onClick={(e) => {
-              e.stopPropagation();
-              onToggleBought();
-            }}
-            color="secondary"
-            size="medium"
-            sx={{
-              width: 40,
-              height: 40,
-              borderRadius: '50%',
-              background: (theme) => theme.palette.secondary.main,
-              '&:hover': {
-                background: (theme) => theme.palette.secondary.main,
-              },
-            }}
-          >
-            <CheckIcon sx={{ color: '#fff' }} />
-          </IconButton>
-          {/* Add Note */}
-          {(!item.notes || item.notes.trim() === '') &&
-            !isAddingNote &&
-            !item.isBought &&
-            !item.isDeleted && (
-              <Tooltip title="Add Note">
-                <IconButton
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleAddNoteClick();
-                  }}
-                  color="primary"
-                  size="medium"
-                  sx={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: '50%',
-                    background: (theme) => theme.palette.primary.main,
-                    '&:hover': {
-                      background: (theme) => theme.palette.primary.main,
-                    },
-                  }}
-                >
-                  <NoteAddIcon sx={{ color: '#fff' }} />
-                </IconButton>
-              </Tooltip>
-            )}
-          {/* Edit */}
-          {!item.isBought && !item.isDeleted && (
-            <IconButton
-              onClick={(e) => {
-                e.stopPropagation();
-                onEdit();
-              }}
-              color="info"
-              size="medium"
-              sx={{
-                width: 40,
-                height: 40,
-                borderRadius: '50%',
-                background: (theme) => theme.palette.info.main,
-                '&:hover': {
-                  background: (theme) => theme.palette.info.main,
-                },
-              }}
-            >
-              <EditIcon sx={{ color: '#fff' }} />
-            </IconButton>
-          )}
-          {/* Delete */}
-          <Tooltip title="Delete">
-            <IconButton
-              onClick={(e) => {
-                e.stopPropagation();
-                onDelete();
-              }}
-              color="error"
-              size="medium"
-              sx={{
-                width: 40,
-                height: 40,
-                borderRadius: '50%',
-                background: (theme) => theme.palette.error.main,
-              }}
-            >
-              <DeleteIcon sx={{ color: '#fff' }} />
-            </IconButton>
-          </Tooltip>
-        </Box>
+        <ItemActionButtons
+          item={item}
+          isAddingNote={isAddingNote}
+          onEdit={onEdit}
+          onDelete={onDelete}
+          onToggleBought={onToggleBought}
+          onAddNote={handleAddNoteClick}
+        />
       )}
     </Box>
   );

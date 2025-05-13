@@ -11,7 +11,6 @@ export interface AddNoteInputProps {
   onChange: (value: string) => void;
   onSave: () => void;
   onCancel: () => void;
-  disabled?: boolean;
   autoFocus?: boolean;
 }
 
@@ -23,7 +22,6 @@ const AddNoteInput: React.FC<AddNoteInputProps> = ({
   onChange,
   onSave,
   onCancel,
-  disabled = false,
   autoFocus = false,
 }) => (
   <Box sx={{ mb: 1 }}>
@@ -50,7 +48,6 @@ const AddNoteInput: React.FC<AddNoteInputProps> = ({
         <span>
           <IconButton
             onClick={e => { e.stopPropagation(); onSave(); }}
-            disabled={disabled}
             color="primary"
             size="medium"
             sx={{
@@ -61,7 +58,6 @@ const AddNoteInput: React.FC<AddNoteInputProps> = ({
               '&:hover': {
                 background: (theme) => theme.palette.primary.main,
               },
-              opacity: disabled ? 0.5 : 1,
             }}
           >
             <CheckIcon sx={{ color: '#fff' }} />

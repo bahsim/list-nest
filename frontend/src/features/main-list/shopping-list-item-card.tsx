@@ -6,7 +6,6 @@ import StarIcon from '@mui/icons-material/Star';
 import RestoreIcon from '@mui/icons-material/Restore';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import { BaseListItemCard } from '../base-list/base-list-item-card';
-import { mockUser } from '../main-list/mock-data';
 import { ShoppingItemExpanded } from './shopping-item-expanded';
 
 /**
@@ -110,17 +109,16 @@ export const ShoppingListItemCard: React.FC<ShoppingListItemCardProps> = ({
       onSwipeRight={handleSwipeRight}
       getSwipeVisuals={getSwipeVisuals}
       renderExpandedContent={
-        isExpanded ? (
-          <ShoppingItemExpanded
-            item={item}
-            onToggleCurrent={onToggleCurrent}
-            onToggleBought={onToggleBought}
-            onDelete={onDelete}
-            onEdit={onEdit}
-            onAddNote={onAddNote}
-            onSaveNote={onSaveNote}
-          />
-        ) : null
+        <ShoppingItemExpanded
+          item={item}
+          onToggleCurrent={onToggleCurrent}
+          onToggleBought={onToggleBought}
+          onDelete={onDelete}
+          onEdit={onEdit}
+          onAddNote={onAddNote}
+          onSaveNote={onSaveNote}
+          isExpanded={isExpanded}
+        />
       }
     />
   );
