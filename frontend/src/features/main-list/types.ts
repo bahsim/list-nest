@@ -26,6 +26,8 @@ export interface ShoppingListGroupProps {
   sx?: SxProps<Theme>;
   expandedItemId: string | null;
   onExpandItem: (id: string) => void;
+  onAddNote: (item: ShoppingListItem) => void;
+  onSaveNote: (id: string, note: string) => void;
 }
 
 /**

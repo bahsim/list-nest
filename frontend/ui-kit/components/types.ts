@@ -3,7 +3,7 @@
 export interface ShoppingListItem {
   id: string;
   name: string;
-  quantity: string;
+  quantity: number;
   unit: string;
   estimatedPrice: number;
   currency: string;
@@ -14,12 +14,13 @@ export interface ShoppingListItem {
   addedBy: string;
   addedAt: Date;
   boughtAt?: Date;
+  notes?: string;
 }
 
 export interface AddEditItemInput {
   id?: string;
   name: string;
-  quantity: string;
+  quantity: number;
   unit: string;
   estimatedPrice?: number;
   currency?: string;

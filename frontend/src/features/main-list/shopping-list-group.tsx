@@ -19,6 +19,8 @@ export const ShoppingListGroup: React.FC<ShoppingListGroupProps> = ({
   sx,
   expandedItemId,
   onExpandItem,
+  onAddNote,
+  onSaveNote,
 }) => {
   if (items.length === 0) return null;
   return (
@@ -52,6 +54,8 @@ export const ShoppingListGroup: React.FC<ShoppingListGroupProps> = ({
         onRestore={onRestore}
         expandedItemId={expandedItemId}
         onExpandItem={onExpandItem}
+        onAddNote={onAddNote}
+        onSaveNote={onSaveNote}
       />
     </>
   );

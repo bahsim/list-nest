@@ -1,7 +1,7 @@
 import React from 'react';
 import Chip from '@mui/material/Chip';
 import Box from '@mui/material/Box';
-import { useTheme } from '@mui/material/styles';
+import { alpha, useTheme } from '@mui/material/styles';
 import type { CategoryFilterChipsProps } from './types';
 
 /**
@@ -19,13 +19,13 @@ export const CategoryFilterChips: React.FC<CategoryFilterChipsProps> = ({
       <Box
         sx={{
           border: '0.5px solid rgba(146,122,125,0.3)',
-          borderRadius: theme.shape.borderRadius / 5*2,
+          borderRadius: 2,
+          background: alpha(theme.palette.secondary.light, theme.highlightAlpha),
           display: 'flex',
           flexWrap: 'wrap',
           gap: theme.spacing(1),
           py: 1,
           px: 1.5,
-          bgcolor: 'var(--color-bg-alt)',
           maxWidth: 600,
           width: '100%',
           alignItems: 'center',
@@ -45,6 +45,10 @@ export const CategoryFilterChips: React.FC<CategoryFilterChipsProps> = ({
             sx={{
               mb: 0,
               fontWeight: selectedCategories.includes(getCategoryValue(label)) ? 700 : 400,
+              borderTopLeftRadius: theme.shape.borderRadius / 0.8,
+              borderBottomLeftRadius: theme.shape.borderRadius / 0.8,
+              borderTopRightRadius: theme.shape.borderRadius / 0.8,
+              borderBottomRightRadius: theme.shape.borderRadius / 0.8,
               bgcolor: selectedCategories.includes(getCategoryValue(label))
                 ? 'var(--color-primary-alt)'
                 : 'var(--color-bg-alt)',

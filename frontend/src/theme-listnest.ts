@@ -11,6 +11,8 @@ const COLOR_BG_ALT = '#FBF3DB'; // Cream
 const COLOR_PRIMARY_ALT = '#F17856'; // Coral
 const COLOR_CATEGORY_SAGE = '#99A49A'; // Sage
 const COLOR_CATEGORY_MAUVE = '#927A7D'; // Mauve
+const COLOR_NOTE_BG = '#FFF8ED'; // Soft note input background
+const COLOR_DELETED_ICON = '#E57373'; // Red for deleted icon
 
 // Spacing tokens
 const SPACING = { XS: 4, SM: 8, MD: 16, LG: 24, XL: 32 };
@@ -34,6 +36,30 @@ const muiShadows: any = [
   ...Array(21).fill('none'),
 ];
 
+// Custom highlight alpha for list items
+const HIGHLIGHT_ALPHA = 0.07;
+
+declare module '@mui/material/styles' {
+  interface PaletteBackground {
+    note?: string;
+  }
+  interface TypeBackground {
+    note?: string;
+  }
+  interface Palette {
+    deletedIcon?: string;
+  }
+  interface PaletteOptions {
+    deletedIcon?: string;
+  }
+  interface Theme {
+    highlightAlpha: number;
+  }
+  interface ThemeOptions {
+    highlightAlpha?: number;
+  }
+}
+
 const listNestTheme = createTheme({
   palette: {
     mode: 'light',
@@ -48,7 +74,9 @@ const listNestTheme = createTheme({
     background: {
       default: COLOR_BG,
       paper: COLOR_BG_ALT,
+      note: COLOR_NOTE_BG,
     },
+    deletedIcon: COLOR_DELETED_ICON,
     text: {
       primary: COLOR_DARK_ALT,
       secondary: COLOR_CATEGORY_MAUVE,
@@ -143,6 +171,7 @@ const listNestTheme = createTheme({
       },
     },
   },
+  highlightAlpha: HIGHLIGHT_ALPHA,
 });
 
 export default listNestTheme; 

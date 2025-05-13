@@ -5,7 +5,12 @@ import { AddEditItemModal } from '@ui-kit/components/organism/AddEditItemModal/A
 import Box from '@mui/material/Box';
 import EmptyState from '@ui-kit/components/atomic/empty-state/empty-state';
 import type { ShoppingListItem } from '@ui-kit/components/types';
-import { filterByCategory, getUniqueCategories, getCategoryValue, getGroupSum } from '../features/main-list/utils';
+import {
+  filterByCategory,
+  getUniqueCategories,
+  getCategoryValue,
+  getGroupSum,
+} from '../features/main-list/utils';
 import { CategoryFilterChips } from '../features/main-list/category-filter-chips';
 import { ShoppingListGroup } from '../features/main-list/shopping-list-group';
 import { AddItemFab } from '../features/main-list/add-item-fab';
@@ -16,27 +21,29 @@ const MainListView: React.FC = () => {
   const [items, setItems] = useState<ShoppingListItem[]>([]);
   const [isAddModalOpen, setIsAddModalOpen] = useState<boolean>(false);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [expandedItemId, setExpandedItemId] = useState<string | null>(null);
+  const [expandedItem, setExpandedItem] = useState<{
+    group: 'current' | 'all';
+    itemId: string;
+  } | null>(null);
 
   // Handlers
   const handleAddFirstItem = (): void => setIsAddModalOpen(true);
   const handleSaveItem = (input: any): void => {
-    setItems((prev) => [
-      ...prev,
-      ...mockItems,
-    ]);
+    setItems((prev) => [...prev, ...mockItems]);
     setIsAddModalOpen(false);
   };
   const handleCancelAdd = (): void => setIsAddModalOpen(false);
   const handleToggleCategory = (category: string): void => {
     setSelectedCategories((prev) =>
-      prev.includes(category)
-        ? prev.filter((c) => c !== category)
-        : [...prev, category]
+      prev.includes(category) ? prev.filter((c) => c !== category) : [...prev, category],
     );
   };
-  const handleExpandItem = (itemId: string): void => {
-    setExpandedItemId(itemId === expandedItemId ? null : itemId);
+  const handleExpandItem = (group: 'current' | 'all', itemId: string): void => {
+    if (expandedItem && expandedItem.group === group && expandedItem.itemId === itemId) {
+      setExpandedItem(null);
+      return;
+    }
+    setExpandedItem({ group, itemId });
   };
 
   // ShoppingList handlers (stubbed, replace with real logic)
@@ -45,10 +52,16 @@ const MainListView: React.FC = () => {
   const handleToggleBought = (item: ShoppingListItem): void => {};
   const handleToggleCurrent = (item: ShoppingListItem): void => {};
   const handleRestoreItem = (item: ShoppingListItem): void => {};
+  const handleAddNote = (item: ShoppingListItem): void => {};
+  const handleSaveNote = (id: string, note: string): void => {};
+
 
   // Derived data
   const filteredItems = filterByCategory(items, selectedCategories);
-  const filteredCurrentItems = filterByCategory(items.filter(item => item.isCurrent), selectedCategories);
+  const filteredCurrentItems = filterByCategory(
+    items.filter((item) => item.isCurrent),
+    selectedCategories,
+  );
   const uniqueCategories = getUniqueCategories(items);
 
   return (
@@ -120,8 +133,10 @@ const MainListView: React.FC = () => {
               onToggleBought={handleToggleBought}
               onToggleCurrent={handleToggleCurrent}
               onRestore={handleRestoreItem}
-              expandedItemId={expandedItemId}
-              onExpandItem={handleExpandItem}
+              expandedItemId={expandedItem?.group === 'current' ? expandedItem.itemId : null}
+              onExpandItem={(itemId) => handleExpandItem('current', itemId)}
+              onAddNote={handleAddNote}
+              onSaveNote={handleSaveNote}
             />
             <ShoppingListGroup
               label="All"
@@ -132,8 +147,10 @@ const MainListView: React.FC = () => {
               onToggleBought={handleToggleBought}
               onToggleCurrent={handleToggleCurrent}
               onRestore={handleRestoreItem}
-              expandedItemId={expandedItemId}
-              onExpandItem={handleExpandItem}
+              expandedItemId={expandedItem?.group === 'all' ? expandedItem.itemId : null}
+              onExpandItem={(itemId) => handleExpandItem('all', itemId)}
+              onAddNote={handleAddNote}
+              onSaveNote={handleSaveNote}
             />
           </>
         )}

@@ -24,6 +24,8 @@ export interface ShoppingListProps {
   onRestore?: (item: ShoppingListItem) => void;
   expandedItemId: string | null;
   onExpandItem: (id: string) => void;
+  onAddNote: (item: ShoppingListItem) => void;
+  onSaveNote: (id: string, note: string) => void;
   sx?: SxProps<Theme>;
 }
 
@@ -36,6 +38,8 @@ export const ShoppingList: React.FC<ShoppingListProps> = ({
   onRestore,
   expandedItemId,
   onExpandItem,
+  onAddNote,
+  onSaveNote,
   sx,
 }) => {
   const getPriority = (item: ShoppingListItem): number => {
@@ -60,6 +64,8 @@ export const ShoppingList: React.FC<ShoppingListProps> = ({
           onUnmarkCurrent={() => onToggleCurrent(item)}
           isExpanded={expandedItemId === item.id}
           onExpand={() => onExpandItem(item.id)}
+          onAddNote={() => onAddNote(item)}
+          onSaveNote={(note) => onSaveNote(item.id, note)}
         />
       )}
       sx={sx}

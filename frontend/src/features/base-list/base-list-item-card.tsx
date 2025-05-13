@@ -6,6 +6,10 @@ import { useTheme, type Theme, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import type { SxProps } from '@mui/material/styles';
 import { useSwipeable } from 'react-swipeable';
+import Collapse from '@mui/material/Collapse';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
+import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 
 /**
  * Usage Example:
@@ -93,20 +97,25 @@ export const SWIPE_ACTION_THRESHOLD = 80;
 /**
  * Alpha value for highlighted background (0.13 ~ 22 hex).
  */
-const HIGHLIGHT_ALPHA = 0.13;
 
 /**
  * Custom hook to encapsulate swipe logic for list item cards.
  * @param onSwipeLeft - Handler for swipe left action.
  * @param onSwipeRight - Handler for swipe right action.
- * @returns { translateX, swipeHandlers, absX }
+ * @param getSwipeVisuals - Function to get swipe visuals.
+ * @param theme - Current theme.
+ * @returns { translateX, swipeHandlers, absX, actionIcon, actionBg }
  */
 function useListItemSwipe({
   onSwipeLeft,
   onSwipeRight,
+  getSwipeVisuals,
+  theme,
 }: {
   onSwipeLeft?: () => void;
   onSwipeRight?: () => void;
+  getSwipeVisuals?: (args: { direction: 'left' | 'right'; theme: Theme }) => { icon: React.ElementType; background: string };
+  theme: Theme;
 }) {
   const [translateX, setTranslateX] = React.useState(0);
   const swipeHandlers = useSwipeable({
@@ -132,7 +141,19 @@ function useListItemSwipe({
     preventScrollOnSwipe: false,
   });
   const absX = Math.abs(translateX);
-  return { translateX, swipeHandlers, absX };
+  let actionIcon: React.ReactNode = null;
+  let actionBg = 'transparent';
+  if (translateX !== 0 && getSwipeVisuals) {
+    const direction = translateX < 0 ? 'left' : 'right';
+    const visuals = getSwipeVisuals({ direction, theme });
+    const IconComponent = visuals.icon;
+    const opacity = Math.min(absX / 80, 1);
+    actionIcon = (
+      <IconComponent sx={{ fontSize: 32, color: '#fff', opacity, transition: 'opacity 0.1s' }} />
+    );
+    actionBg = absX > 10 ? visuals.background : 'transparent';
+  }
+  return { translateX, swipeHandlers, absX, actionIcon, actionBg };
 }
 
 /**
@@ -162,22 +183,12 @@ export const BaseListItemCard: React.FC<BaseListItemCardProps> = React.memo(
       }
     }, [onToggle]);
 
-    const { translateX, swipeHandlers, absX } = isExpanded
-      ? useListItemSwipe({})
-      : useListItemSwipe({ onSwipeLeft, onSwipeRight });
-    let actionIcon: React.ReactNode = null;
-    let actionBg = 'transparent';
-
-    if (translateX !== 0 && getSwipeVisuals) {
-      const direction = translateX < 0 ? 'left' : 'right';
-      const visuals = getSwipeVisuals({ direction, theme });
-      const IconComponent = visuals.icon;
-      const opacity = Math.min(absX / 80, 1);
-      actionIcon = (
-        <IconComponent sx={{ fontSize: 32, color: '#fff', opacity, transition: 'opacity 0.1s' }} />
-      );
-      actionBg = absX > 10 ? visuals.background : 'transparent';
-    }
+    const { translateX, swipeHandlers, actionIcon, actionBg } = useListItemSwipe({
+      onSwipeLeft,
+      onSwipeRight,
+      getSwipeVisuals,
+      theme,
+    });
 
     const handleCardClick = (e: React.MouseEvent) => {
       console.log('BaseListItemCard clicked');
@@ -188,7 +199,7 @@ export const BaseListItemCard: React.FC<BaseListItemCardProps> = React.memo(
     };
 
     return (
-      <Box sx={{ position: 'relative', mb: theme.spacing(1), ...sx }} {...(isExpanded ? {} : swipeHandlers)}>
+      <Box sx={{ position: 'relative', mb: theme.spacing(1), ...sx }} {...swipeHandlers}>
         {/* Action background and icon */}
         <Box
           sx={{
@@ -228,12 +239,9 @@ export const BaseListItemCard: React.FC<BaseListItemCardProps> = React.memo(
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            background: highlighted
-              ? alpha(theme.palette.info.main, HIGHLIGHT_ALPHA)
-              : 'transparent',
+            background: alpha(theme.palette.secondary.light, theme.highlightAlpha),
             boxShadow: highlighted ? theme.shadows[3] : theme.shadows[1],
-            borderColor: highlighted ? theme.palette.primary.main : theme.palette.divider,
-            opacity: disabled ? 0.6 : 1,
+            border: '0.5px solid rgba(146,122,125,0.3)',
             position: 'relative',
             cursor: 'pointer',
             transform: `translateX(${translateX}px)`,
@@ -266,11 +274,21 @@ export const BaseListItemCard: React.FC<BaseListItemCardProps> = React.memo(
               variant="body1"
               sx={{
                 px: 1,
-                textDecoration: disabled ? 'line-through' : 'none',
+                textDecoration: (disabled || checked) ? 'line-through' : 'none',
                 fontWeight: highlighted ? 700 : 400,
-                color: disabled ? theme.palette.text.secondary : theme.palette.text.primary,
+                display: 'flex',
+                alignItems: 'center',
+                gap: 1,
               }}
             >
+              {/* Icon for bought, deleted, or active (placeholder) */}
+              {disabled ? (
+                <CancelOutlinedIcon sx={{ color: theme.palette.error.main, fontSize: 20 }} />
+              ) : checked ? (
+                <CheckCircleOutlineIcon sx={{ color: theme.palette.secondary.main, fontSize: 20 }} />
+              ) : (
+                <RadioButtonUncheckedIcon sx={{ color: theme.palette.text.secondary, fontSize: 20 }} />
+              )}
               {title}
             </Typography>
             {secondaryText && (
@@ -283,7 +301,9 @@ export const BaseListItemCard: React.FC<BaseListItemCardProps> = React.memo(
               </Typography>
             )}
           </CardContent>
-          {isExpanded && renderExpandedContent}
+          <Collapse in={isExpanded} timeout="auto" sx={{ width: '100%' }} unmountOnExit>
+            {renderExpandedContent}
+          </Collapse>
         </Card>
       </Box>
     );
