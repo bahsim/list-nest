@@ -12,9 +12,10 @@ import {
   getGroupSum,
 } from '../features/main-list/utils';
 import { CategoryFilterChips } from '../features/main-list/category-filter-chips';
-import { ShoppingListGroup } from '../features/main-list/shopping-list-group';
+import { ShoppingList } from '../features/main-list/shopping-list';
 import { AddItemFab } from '../features/main-list/add-item-fab';
 import { mockUser, mockCategories, mockUnits, mockItems } from '../features/main-list/mock-data';
+import { Typography } from '@mui/material';
 
 const MainListView: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('list');
@@ -124,34 +125,80 @@ const MainListView: React.FC = () => {
           />
         ) : (
           <>
-            <ShoppingListGroup
-              label="Current"
-              items={filteredCurrentItems}
-              groupSum={getGroupSum(filteredCurrentItems)}
-              onEdit={handleEditItem}
-              onDelete={handleDeleteItem}
-              onToggleBought={handleToggleBought}
-              onToggleCurrent={handleToggleCurrent}
-              onRestore={handleRestoreItem}
-              expandedItemId={expandedItem?.group === 'current' ? expandedItem.itemId : null}
-              onExpandItem={(itemId) => handleExpandItem('current', itemId)}
-              onAddNote={handleAddNote}
-              onSaveNote={handleSaveNote}
-            />
-            <ShoppingListGroup
-              label="All"
-              items={filteredItems}
-              groupSum={getGroupSum(filteredItems)}
-              onEdit={handleEditItem}
-              onDelete={handleDeleteItem}
-              onToggleBought={handleToggleBought}
-              onToggleCurrent={handleToggleCurrent}
-              onRestore={handleRestoreItem}
-              expandedItemId={expandedItem?.group === 'all' ? expandedItem.itemId : null}
-              onExpandItem={(itemId) => handleExpandItem('all', itemId)}
-              onAddNote={handleAddNote}
-              onSaveNote={handleSaveNote}
-            />
+            {/* Current Group */}
+            {filteredCurrentItems.length > 0 && (
+              <>
+                <Box
+                  sx={{
+                    width: '100%',
+                    maxWidth: 600,
+                    px: 1.5,
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    mt: 0.5,
+                    mb: 0.5,
+                  }}
+                >
+                  <Typography variant="subtitle2" color="text.secondary">
+                    Current
+                  </Typography>
+                  <Typography variant="subtitle2" color="text.secondary">
+                    ${getGroupSum(filteredCurrentItems)}
+                  </Typography>
+                </Box>
+                <ShoppingList
+                  items={filteredCurrentItems}
+                  sx={{ width: '100%', maxWidth: 600, px: 1 }}
+                  onEdit={handleEditItem}
+                  onDelete={handleDeleteItem}
+                  onToggleBought={handleToggleBought}
+                  onToggleCurrent={handleToggleCurrent}
+                  onRestore={handleRestoreItem}
+                  expandedItemId={expandedItem?.group === 'current' ? expandedItem.itemId : null}
+                  onExpandItem={(itemId) => handleExpandItem('current', itemId)}
+                  onAddNote={handleAddNote}
+                  onSaveNote={handleSaveNote}
+                />
+              </>
+            )}
+            {/* All Group */}
+            {filteredItems.length > 0 && (
+              <>
+                <Box
+                  sx={{
+                    width: '100%',
+                    maxWidth: 600,
+                    px: 1.5,
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    mt: 0.5,
+                    mb: 0.5,
+                  }}
+                >
+                  <Typography variant="subtitle2" color="text.secondary">
+                    All
+                  </Typography>
+                  <Typography variant="subtitle2" color="text.secondary">
+                    ${getGroupSum(filteredItems)}
+                  </Typography>
+                </Box>
+                <ShoppingList
+                  items={filteredItems}
+                  sx={{ width: '100%', maxWidth: 600, px: 1 }}
+                  onEdit={handleEditItem}
+                  onDelete={handleDeleteItem}
+                  onToggleBought={handleToggleBought}
+                  onToggleCurrent={handleToggleCurrent}
+                  onRestore={handleRestoreItem}
+                  expandedItemId={expandedItem?.group === 'all' ? expandedItem.itemId : null}
+                  onExpandItem={(itemId) => handleExpandItem('all', itemId)}
+                  onAddNote={handleAddNote}
+                  onSaveNote={handleSaveNote}
+                />
+              </>
+            )}
           </>
         )}
       </Box>
