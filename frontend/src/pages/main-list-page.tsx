@@ -22,20 +22,36 @@ import { MainLayout } from '../layouts/main-layout';
 const MainListView: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('list');
   const [items, setItems] = useState<ShoppingListItem[]>([]);
-  const [isAddModalOpen, setIsAddModalOpen] = useState<boolean>(false);
+  const [isAddEditModalOpen, setIsAddEditModalOpen] = useState<boolean>(false);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [expandedItem, setExpandedItem] = useState<{
     group: 'current' | 'all';
     itemId: string;
   } | null>(null);
+  const [editingItem, setEditingItem] = useState<ShoppingListItem | null>(null);
 
   // Handlers
-  const handleAddFirstItem = (): void => setIsAddModalOpen(true);
-  const handleSaveItem = (input: any): void => {
-    setItems((prev) => [...prev, ...mockItems]);
-    setIsAddModalOpen(false);
+  const handleNewItem = (): void => {
+    setEditingItem(null);
+    setIsAddEditModalOpen(true);
   };
-  const handleCancelAdd = (): void => setIsAddModalOpen(false);
+  const handleSaveItem = (input: any): void => {
+    // TODO: Replace with real add/edit logic
+    setItems((prev) => {
+      if (editingItem) {
+        // Edit mode: update item
+        return prev.map((i) => (i.id === editingItem.id ? { ...i, ...input } : i));
+      }
+      // Add mode: add new item
+      return [...prev, ...mockItems];
+    });
+    setIsAddEditModalOpen(false);
+    setEditingItem(null);
+  };
+  const handleCancelAdd = (): void => {
+    setIsAddEditModalOpen(false);
+    setEditingItem(null);
+  };
   const handleToggleCategory = (category: string): void => {
     setSelectedCategories((prev) =>
       prev.includes(category) ? prev.filter((c) => c !== category) : [...prev, category],
@@ -50,7 +66,10 @@ const MainListView: React.FC = () => {
   };
 
   // ShoppingList handlers (stubbed, replace with real logic)
-  const handleEditItem = (item: ShoppingListItem): void => {};
+  const handleEditItem = (item: ShoppingListItem): void => {
+    setEditingItem(item);
+    setIsAddEditModalOpen(true);
+  };
   const handleDeleteItem = (item: ShoppingListItem): void => {};
   const handleToggleBought = (item: ShoppingListItem): void => {};
   const handleToggleCurrent = (item: ShoppingListItem): void => {};
@@ -98,7 +117,7 @@ const MainListView: React.FC = () => {
             title="No items yet"
             description="Add your first item to this list."
             buttonLabel="Add First Item"
-            onButtonClick={handleAddFirstItem}
+            onButtonClick={handleNewItem}
             imageAlt="No items yet"
           />
         ) : (
@@ -128,6 +147,7 @@ const MainListView: React.FC = () => {
                 <ShoppingList
                   items={filteredCurrentItems}
                   sx={{ width: '100%', maxWidth: 600, px: 1 }}
+                  group="current"
                 />
               </>
             )}
@@ -153,20 +173,21 @@ const MainListView: React.FC = () => {
                     ${getGroupSum(filteredItems)}
                   </Typography>
                 </Box>
-                <ShoppingList items={filteredItems} sx={{ width: '100%', maxWidth: 600, px: 1 }} />
+                <ShoppingList items={filteredItems} sx={{ width: '100%', maxWidth: 600, px: 1 }} group="all" />
               </>
             )}
           </>
         )}
         {/* FAB */}
-        {items.length > 0 && <AddItemFab onClick={() => setIsAddModalOpen(true)} />}
+        {items.length > 0 && <AddItemFab onClick={handleNewItem} />}
         {/* Modal */}
-        {isAddModalOpen && (
+        {isAddEditModalOpen && (
           <AddEditItemModal
             onSave={handleSaveItem}
             onCancel={handleCancelAdd}
             categories={mockCategories}
             units={mockUnits}
+            item={editingItem || undefined}
           />
         )}
       </MainListProvider>

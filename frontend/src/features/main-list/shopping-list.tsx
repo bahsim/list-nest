@@ -10,13 +10,15 @@ import { useMainListContext } from './main-list-context';
  * Uses context for actions and expanded item.
  * @param items - Array of shopping list items.
  * @param sx - Style overrides.
+ * @param group - Group of the shopping list.
  */
 export interface ShoppingListProps {
   items: ShoppingListItem[];
   sx?: SxProps<Theme>;
+  group: 'current' | 'all';
 }
 
-export const ShoppingList: React.FC<ShoppingListProps> = ({ items, sx }) => {
+export const ShoppingList: React.FC<ShoppingListProps> = ({ items, sx, group }) => {
   const getPriority = (item: ShoppingListItem): number => {
     if (!item.isBought && !item.isDeleted) return 1; // Normal
     if (item.isBought && !item.isDeleted) return 2; // Bought
@@ -28,7 +30,7 @@ export const ShoppingList: React.FC<ShoppingListProps> = ({ items, sx }) => {
   return (
     <BaseList
       items={sortedItems}
-      renderItem={(item) => <ShoppingListItemCard item={item} />}
+      renderItem={(item) => <ShoppingListItemCard item={item} group={group} />}
       sx={sx}
     />
   );

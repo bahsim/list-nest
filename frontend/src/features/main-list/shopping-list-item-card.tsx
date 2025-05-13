@@ -13,12 +13,14 @@ import { useMainListContext } from './main-list-context';
  * ShoppingListItemCard displays a single shopping list item with actions.
  * Uses context for all actions and expanded item.
  * @param item - The shopping list item.
+ * @param group - The group of the shopping list item.
  */
 export interface ShoppingListItemCardProps {
   item: ShoppingListItem;
+  group: 'current' | 'all';
 }
 
-export const ShoppingListItemCard: React.FC<ShoppingListItemCardProps> = ({ item }) => {
+export const ShoppingListItemCard: React.FC<ShoppingListItemCardProps> = ({ item, group }) => {
   const {
     handleToggleBought,
     handleToggleCurrent,
@@ -27,11 +29,7 @@ export const ShoppingListItemCard: React.FC<ShoppingListItemCardProps> = ({ item
     expandedItem,
   } = useMainListContext();
   const isExpanded = expandedItem && expandedItem.itemId === item.id ? true : false;
-  const onExpand = () =>
-    handleExpandItem(
-      expandedItem && expandedItem.itemId === item.id ? expandedItem.group : 'current',
-      item.id,
-    );
+  const onExpand = () => handleExpandItem(group, item.id);
   const getSwipeVisuals = ({ direction, theme }: { direction: 'left' | 'right'; theme: Theme }) => {
     if (direction === 'left') {
       if (item.isCurrent) {
@@ -92,7 +90,7 @@ export const ShoppingListItemCard: React.FC<ShoppingListItemCardProps> = ({ item
       onSwipeLeft={handleSwipeLeft}
       onSwipeRight={handleSwipeRight}
       getSwipeVisuals={getSwipeVisuals}
-      renderExpandedContent={<ShoppingItemExpanded item={item} />}
+      renderExpandedContent={<ShoppingItemExpanded item={item} group={group} />}
     />
   );
 };

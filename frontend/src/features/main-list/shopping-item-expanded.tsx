@@ -13,14 +13,19 @@ import { useNoteInput } from './use-note-input';
  * ShoppingItemExpanded displays expanded details and actions for a shopping list item.
  * Uses context for all actions and expansion state.
  * @param item - The shopping list item.
+ * @param group - The group of the shopping list item.
  */
 export interface ShoppingItemExpandedProps {
   item: ShoppingListItem;
+  group: 'current' | 'all';
 }
 
-export const ShoppingItemExpanded: React.FC<ShoppingItemExpandedProps> = ({ item }) => {
+export const ShoppingItemExpanded: React.FC<ShoppingItemExpandedProps> = ({ item, group }) => {
   const { handleToggleCurrent, handleSaveNote, expandedItem } = useMainListContext();
-  const isExpanded = expandedItem && expandedItem.itemId === item.id ? true : false;
+  const isExpanded =
+    expandedItem &&
+    expandedItem.itemId === item.id &&
+    expandedItem.group === group;
 
   const getCostInfo = useCallback((item: ShoppingListItem): string => {
     if (!item.quantity || !item.estimatedPrice) {
