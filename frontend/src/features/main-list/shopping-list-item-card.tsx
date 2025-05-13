@@ -50,29 +50,29 @@ export const ShoppingListItemCard: React.FC<ShoppingListItemCardProps> = ({
       if (item.isCurrent) {
         return {
           icon: StarBorderIcon,
-          background: theme.palette.info.main,
+          background: theme.palette.info.light,
         };
       }
       return {
         icon: StarIcon,
-        background: theme.palette.warning.main,
+        background: theme.palette.warning.light,
       };
     } else {
       if (item.isDeleted) {
         return {
           icon: RestoreIcon,
-          background: theme.palette.info.main,
+          background: theme.palette.info.light,
         };
       }
       if (item.isBought) {
         return {
           icon: RestoreIcon,
-          background: theme.palette.info.main,
+          background: theme.palette.info.light,
         };
       }
       return {
         icon: CheckIcon,
-        background: theme.palette.secondary.main,
+        background: theme.palette.secondary.light,
       };
     }
   };
