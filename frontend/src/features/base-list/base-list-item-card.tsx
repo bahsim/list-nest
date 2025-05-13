@@ -271,7 +271,7 @@ export const BaseListItemCard: React.FC<BaseListItemCardProps> = React.memo(
             }}
           >
             <Typography
-              variant="body1"
+              variant={isExpanded ? 'subtitle1' : 'body1'}
               sx={{
                 px: 1,
                 textDecoration: (disabled || checked) ? 'line-through' : 'none',

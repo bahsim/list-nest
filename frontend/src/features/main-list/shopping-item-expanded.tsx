@@ -90,14 +90,11 @@ export const ShoppingItemExpanded: React.FC<ShoppingItemExpandedProps> = ({
             checked={item.isCurrent}
             color="primary"
             size="medium"
-            // sx={{ mr: 0.5 }}
-            inputProps={{ 'aria-label': 'Current toggle' }}
+            slotProps={{ input: { 'aria-label': 'Current toggle' } }}
           />
         </Box>
         <Box
           sx={{
-            fontWeight: 700,
-            fontSize: '1.1rem',
             color: 'text.primary',
             minWidth: 48,
             textAlign: 'right',
@@ -122,7 +119,7 @@ export const ShoppingItemExpanded: React.FC<ShoppingItemExpandedProps> = ({
         <>
           {item.notes && (
             <>
-              <Box sx={{ color: 'text.secondary', mb: 1 }}>{item.notes}</Box>
+              <Box sx={{ color: 'text.primary', mb: 1 }}>{item.notes}</Box>
               <Divider sx={{ borderColor: (theme) => alpha(theme.palette.divider, 0.3), mb: 1 }} />
             </>
           )}
