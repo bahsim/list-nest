@@ -57,19 +57,6 @@ export const ShoppingItemExpanded: React.FC<ShoppingItemExpandedProps> = ({
         // gap: 1,
       }}
     >
-      {/* Notes */}
-      {isAddingNote ? (
-        <AddNoteInput
-          value={noteInput}
-          onChange={setNoteInput}
-          onSave={handleSaveNote}
-          onCancel={handleCancelNote}
-          disabled={!noteInput.trim()}
-          autoFocus
-        />
-      ) : (
-        item.notes && <Box sx={{ color: 'text.secondary', mb: 1 }}>{item.notes}</Box>
-      )}
       <Divider sx={{ borderColor: (theme) => alpha(theme.palette.divider, 0.3) }} />
       {/* First row: info */}
       <Box
@@ -120,103 +107,128 @@ export const ShoppingItemExpanded: React.FC<ShoppingItemExpandedProps> = ({
           {`${item.quantity} x $${item.estimatedPrice} = $${(Number(item.quantity) * Number(item.estimatedPrice)).toFixed(2)}`}
         </Box>
       </Box>
+      {/* Notes */}
       <Divider sx={{ borderColor: (theme) => alpha(theme.palette.divider, 0.3), mb: 1 }} />
+      {isAddingNote ? (
+        <AddNoteInput
+          value={noteInput}
+          onChange={setNoteInput}
+          onSave={handleSaveNote}
+          onCancel={handleCancelNote}
+          disabled={!noteInput.trim()}
+          autoFocus
+        />
+      ) : (
+        <>
+          {item.notes && (
+            <>
+              <Box sx={{ color: 'text.secondary', mb: 1 }}>{item.notes}</Box>
+              <Divider sx={{ borderColor: (theme) => alpha(theme.palette.divider, 0.3), mb: 1 }} />
+            </>
+          )}
+        </>
+      )}
       {/* Second row: all actions centered */}
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: 2,
-          width: '100%',
-        }}
-      >
-        {/* Complete */}
-        <IconButton
-          onClick={(e) => {
-            e.stopPropagation();
-            onToggleBought();
-          }}
-          color="secondary"
-          size="medium"
+      {!isAddingNote && (
+        <Box
           sx={{
-            width: 40,
-            height: 40,
-            borderRadius: '50%',
-            background: (theme) => theme.palette.secondary.main,
-            '&:hover': {
-              background: (theme) => theme.palette.secondary.main,
-            },
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: 2,
+            width: '100%',
           }}
         >
-          <CheckIcon sx={{ color: '#fff' }} />
-        </IconButton>
-        {/* Add Note */}
-        {(!item.notes || item.notes.trim() === '') && !isAddingNote && !item.isBought && !item.isDeleted && (
-          <Tooltip title="Add Note">
-            <IconButton
-              onClick={(e) => {
-                e.stopPropagation();
-                handleAddNoteClick();
-              }}
-              color="primary"
-              size="medium"
-              sx={{
-                width: 40,
-                height: 40,
-                borderRadius: '50%',
-                background: (theme) => theme.palette.primary.main,
-                '&:hover': {
-                  background: (theme) => theme.palette.primary.main,
-                },
-              }}
-            >
-              <NoteAddIcon sx={{ color: '#fff' }} />
-            </IconButton>
-          </Tooltip>
-        )}
-        {/* Edit */}
-        {!item.isBought && !item.isDeleted && (
-        <IconButton
-          onClick={(e) => {
-            e.stopPropagation();
-            onEdit();
-          }}
-          color="info"
-          size="medium"
-          sx={{
-            width: 40,
-            height: 40,
-            borderRadius: '50%',
-            background: (theme) => theme.palette.info.main,
-            '&:hover': {
-              background: (theme) => theme.palette.info.main,
-            },
-          }}
-        >
-          <EditIcon sx={{ color: '#fff' }} />
-          </IconButton>
-        )}
-        {/* Delete */}
-        <Tooltip title="Delete">
+          {/* Complete */}
           <IconButton
             onClick={(e) => {
               e.stopPropagation();
-              onDelete();
+              onToggleBought();
             }}
-            color="error"
+            color="secondary"
             size="medium"
             sx={{
               width: 40,
               height: 40,
               borderRadius: '50%',
-              background: (theme) => theme.palette.error.main,
+              background: (theme) => theme.palette.secondary.main,
+              '&:hover': {
+                background: (theme) => theme.palette.secondary.main,
+              },
             }}
           >
-            <DeleteIcon sx={{ color: '#fff' }} />
+            <CheckIcon sx={{ color: '#fff' }} />
           </IconButton>
-        </Tooltip>
-      </Box>
+          {/* Add Note */}
+          {(!item.notes || item.notes.trim() === '') &&
+            !isAddingNote &&
+            !item.isBought &&
+            !item.isDeleted && (
+              <Tooltip title="Add Note">
+                <IconButton
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleAddNoteClick();
+                  }}
+                  color="primary"
+                  size="medium"
+                  sx={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: '50%',
+                    background: (theme) => theme.palette.primary.main,
+                    '&:hover': {
+                      background: (theme) => theme.palette.primary.main,
+                    },
+                  }}
+                >
+                  <NoteAddIcon sx={{ color: '#fff' }} />
+                </IconButton>
+              </Tooltip>
+            )}
+          {/* Edit */}
+          {!item.isBought && !item.isDeleted && (
+            <IconButton
+              onClick={(e) => {
+                e.stopPropagation();
+                onEdit();
+              }}
+              color="info"
+              size="medium"
+              sx={{
+                width: 40,
+                height: 40,
+                borderRadius: '50%',
+                background: (theme) => theme.palette.info.main,
+                '&:hover': {
+                  background: (theme) => theme.palette.info.main,
+                },
+              }}
+            >
+              <EditIcon sx={{ color: '#fff' }} />
+            </IconButton>
+          )}
+          {/* Delete */}
+          <Tooltip title="Delete">
+            <IconButton
+              onClick={(e) => {
+                e.stopPropagation();
+                onDelete();
+              }}
+              color="error"
+              size="medium"
+              sx={{
+                width: 40,
+                height: 40,
+                borderRadius: '50%',
+                background: (theme) => theme.palette.error.main,
+              }}
+            >
+              <DeleteIcon sx={{ color: '#fff' }} />
+            </IconButton>
+          </Tooltip>
+        </Box>
+      )}
     </Box>
   );
 };
