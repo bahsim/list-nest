@@ -39,7 +39,7 @@ export interface User {
 export interface AISuggestion {
   id: string;
   name: string;
-  quantity: string;
+  quantity: number;
   estimatedPrice: number;
   category: string;
 }
@@ -47,7 +47,7 @@ export interface AISuggestion {
 export interface HistoryItem {
   id: string;
   name: string;
-  quantity: string;
+  quantity: number;
   estimatedPrice?: number;
   category: string;
   isCurrent: boolean;

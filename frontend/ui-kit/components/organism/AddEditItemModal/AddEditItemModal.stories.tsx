@@ -7,8 +7,8 @@ const categories = ['Dairy', 'Bakery', 'Produce'];
 const units = ['pcs', 'L', 'kg'];
 const currencies = ['USD', 'EUR'];
 const aiSuggestions: AISuggestion[] = [
-  { id: '1', name: 'Eggs', quantity: '12', estimatedPrice: 2.5, category: 'Dairy' },
-  { id: '2', name: 'Bananas', quantity: '6', estimatedPrice: 1.2, category: 'Produce' },
+  { id: '1', name: 'Eggs', quantity: 12, estimatedPrice: 2.5, category: 'Dairy' },
+  { id: '2', name: 'Bananas', quantity: 6, estimatedPrice: 1.2, category: 'Produce' },
 ];
 
 const meta: Meta<typeof AddEditItemModal> = {
