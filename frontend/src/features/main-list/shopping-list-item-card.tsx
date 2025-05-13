@@ -61,13 +61,13 @@ export const ShoppingListItemCard: React.FC<ShoppingListItemCardProps> = ({
       if (item.isDeleted) {
         return {
           icon: RestoreIcon,
-          background: theme.palette.info.light,
+          background: theme.palette.error.light,
         };
       }
       if (item.isBought) {
         return {
           icon: RestoreIcon,
-          background: theme.palette.info.light,
+          background: theme.palette.secondary.light,
         };
       }
       return {
