@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { AddEditItemModal } from './AddEditItemModal';
+import { AddEditItemModal } from './add-edit-item-modal';
 import type { Meta, StoryObj } from '@storybook/react';
 import type { AISuggestion } from '../../types';
 
 const categories = ['Dairy', 'Bakery', 'Produce'];
 const units = ['pcs', 'L', 'kg'];
-const currencies = ['USD', 'EUR'];
 const aiSuggestions: AISuggestion[] = [
   { id: '1', name: 'Eggs', quantity: 12, estimatedPrice: 2.5, category: 'Dairy' },
   { id: '2', name: 'Bananas', quantity: 6, estimatedPrice: 1.2, category: 'Produce' },
