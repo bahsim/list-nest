@@ -8,6 +8,7 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import { BaseListItemCard } from '../base-list/base-list-item-card';
 import { ShoppingItemExpanded } from './shopping-item-expanded';
 import { useMainListContext } from './main-list-context';
+import { isItemExpanded } from '../base-list/utility';
 
 /**
  * ShoppingListItemCard displays a single shopping list item with actions.
@@ -28,7 +29,7 @@ export const ShoppingListItemCard: React.FC<ShoppingListItemCardProps> = ({ item
     handleExpandItem,
     expandedItem,
   } = useMainListContext();
-  const isExpanded = expandedItem && expandedItem.itemId === item.id ? true : false;
+  const isExpanded = isItemExpanded(expandedItem, group, item);
   const onExpand = () => handleExpandItem(group, item.id);
   const getSwipeVisuals = ({ direction, theme }: { direction: 'left' | 'right'; theme: Theme }) => {
     if (direction === 'left') {

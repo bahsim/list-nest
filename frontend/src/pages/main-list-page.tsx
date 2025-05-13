@@ -18,6 +18,7 @@ import { mockUser, mockCategories, mockUnits, mockItems } from '../features/main
 import { Typography } from '@mui/material';
 import { MainListProvider } from '../features/main-list/main-list-context';
 import { MainLayout } from '../layouts/main-layout';
+import { isItemExpanded } from '../features/base-list/utility';
 
 const MainListView: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('list');
@@ -58,7 +59,7 @@ const MainListView: React.FC = () => {
     );
   };
   const handleExpandItem = (group: 'current' | 'all', itemId: string): void => {
-    if (expandedItem && expandedItem.group === group && expandedItem.itemId === itemId) {
+    if (isItemExpanded(expandedItem, group, itemId)) {
       setExpandedItem(null);
       return;
     }

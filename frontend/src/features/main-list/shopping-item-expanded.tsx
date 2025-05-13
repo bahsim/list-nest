@@ -8,6 +8,7 @@ import NoteDisplay from './note-display';
 import ItemActionButtons from './item-action-buttons';
 import { useMainListContext } from './main-list-context';
 import { useNoteInput } from './use-note-input';
+import { isItemExpanded } from '../base-list/utility';
 
 /**
  * ShoppingItemExpanded displays expanded details and actions for a shopping list item.
@@ -22,10 +23,7 @@ export interface ShoppingItemExpandedProps {
 
 export const ShoppingItemExpanded: React.FC<ShoppingItemExpandedProps> = ({ item, group }) => {
   const { handleToggleCurrent, handleSaveNote, expandedItem } = useMainListContext();
-  const isExpanded =
-    expandedItem &&
-    expandedItem.itemId === item.id &&
-    expandedItem.group === group;
+  const isExpanded = isItemExpanded(expandedItem, group, item);
 
   const getCostInfo = useCallback((item: ShoppingListItem): string => {
     if (!item.quantity || !item.estimatedPrice) {
