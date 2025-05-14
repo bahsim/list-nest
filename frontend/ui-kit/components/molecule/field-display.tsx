@@ -25,7 +25,7 @@ export const FieldDisplay: React.FC<FieldDisplayProps> = ({ label, value, multil
       sx={{
         mb: 1,
         display: 'flex',
-        alignItems: multiline ? 'flex-start' : 'center',
+        alignItems: 'flex-start',
         gap: 1,
         cursor: onClick ? 'pointer' : 'default',
         borderRadius: 2,
@@ -42,13 +42,13 @@ export const FieldDisplay: React.FC<FieldDisplayProps> = ({ label, value, multil
       <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
         {multiline ? (
           <>
-            <Box sx={{ fontFamily: 'Nunito', fontWeight: 700, color: 'text.primary', fontSize: 16 }}>{label}</Box>
-            <Box sx={{ fontFamily: 'Nunito', fontWeight: 400, color: 'text.secondary', fontSize: 16, width: '100%', whiteSpace: 'pre-line' }}>{value}</Box>
+            <Box sx={{ fontFamily: 'Nunito', fontWeight: 700, color: 'text.secondary', fontSize: 16 }}>{label}</Box>
+            <Box sx={{ fontFamily: 'Nunito', fontWeight: 400, color: 'text.primary', fontSize: 16, width: '100%', whiteSpace: 'pre-line' }}>{value}</Box>
           </>
         ) : (
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <Box sx={{ fontFamily: 'Nunito', fontWeight: 700, color: 'text.primary', fontSize: 16 }}>{label}:</Box>
-            <Box sx={{ fontFamily: 'Nunito', fontWeight: 400, color: 'text.secondary', fontSize: 16 }}>{value}</Box>
+          <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1 }}>
+            <Box sx={{ fontFamily: 'Nunito', fontWeight: 700, color: 'text.secondary', fontSize: 16 }}>{label}:</Box>
+            <Box sx={{ fontFamily: 'Nunito', fontWeight: 400, color: 'text.primary', fontSize: 16 }}>{value}</Box>
           </Box>
         )}
       </Box>

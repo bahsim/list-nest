@@ -11,6 +11,8 @@ import MenuItem from '@mui/material/MenuItem';
 import type { AddEditItemInput, AISuggestion } from '../types';
 import Autocomplete from '@mui/material/Autocomplete';
 import { FieldDisplay } from '@ui-kit/components/molecule/field-display';
+import { alpha } from '@mui/material/styles';
+import Divider from '@mui/material/Divider';
 
 /**
  * AddEditItemModal for adding or editing a shopping list item.
@@ -134,6 +136,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
   return (
     <Dialog open onClose={onCancel} maxWidth="xs" fullWidth>
       <DialogTitle>{item ? 'Edit Item' : 'Add Item'}</DialogTitle>
+      <Divider sx={{ borderColor: (theme) => alpha(theme.palette.divider, 0.3), mb: 1 }} />
       <Box component="form" onSubmit={handleSave}>
         <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
           {/* Always show Name */}
@@ -149,11 +152,14 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
               autoFocus
             />
           ) : (
-            <FieldDisplay
-              label="Name"
-              value={fields.name}
-              onClick={() => handleOpenField('name')}
-            />
+            <>
+              <FieldDisplay
+                label="Name"
+                value={fields.name}
+                onClick={() => handleOpenField('name')}
+              />
+              <Divider sx={{ borderColor: (theme) => alpha(theme.palette.divider, 0.3), mb: 1 }} />
+            </>
           )}
           {/* Quantity field */}
           {openFields.quantity ? (
@@ -186,11 +192,14 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
             </Box>
           ) : (fields.quantity || DEFAULT_ITEM_VALUES.quantity) &&
             (fields.unit || DEFAULT_ITEM_VALUES.unit) ? (
-            <FieldDisplay
-              label="Quantity"
-              value={`${fields.quantity || DEFAULT_ITEM_VALUES.quantity} ${fields.unit || DEFAULT_ITEM_VALUES.unit}`}
-              onClick={() => handleOpenField('quantity')}
-            />
+            <>
+              <FieldDisplay
+                label="Quantity"
+                value={`${fields.quantity || DEFAULT_ITEM_VALUES.quantity} ${fields.unit || DEFAULT_ITEM_VALUES.unit}`}
+                onClick={() => handleOpenField('quantity')}
+              />
+              <Divider sx={{ borderColor: (theme) => alpha(theme.palette.divider, 0.3), mb: 1 }} />
+            </>
           ) : (
             renderActionChip('quantity', 'Add quantity')
           )}
@@ -207,11 +216,14 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
               sx={{ background: (theme) => theme.palette.background.note }}
             />
           ) : fields.estimatedPrice || DEFAULT_ITEM_VALUES.estimatedPrice ? (
-            <FieldDisplay
-              label="Estimated Price"
-              value={fields.estimatedPrice ?? DEFAULT_ITEM_VALUES.estimatedPrice ?? ''}
-              onClick={() => handleOpenField('estimatedPrice')}
-            />
+            <>
+              <FieldDisplay
+                label="Estimated Price"
+                value={fields.estimatedPrice ?? DEFAULT_ITEM_VALUES.estimatedPrice ?? ''}
+                onClick={() => handleOpenField('estimatedPrice')}
+              />
+              <Divider sx={{ borderColor: (theme) => alpha(theme.palette.divider, 0.3), mb: 1 }} />
+            </>
           ) : (
             renderActionChip('estimatedPrice', 'Add price')
           )}
@@ -229,12 +241,15 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
               sx={{ background: (theme) => theme.palette.background.note }}
             />
           ) : fields.notes || DEFAULT_ITEM_VALUES.notes ? (
-            <FieldDisplay
-              label="Notes"
-              value={fields.notes || DEFAULT_ITEM_VALUES.notes}
-              multiline
-              onClick={() => handleOpenField('notes')}
-            />
+            <>
+              <FieldDisplay
+                label="Notes"
+                value={fields.notes || DEFAULT_ITEM_VALUES.notes}
+                multiline
+                onClick={() => handleOpenField('notes')}
+              />
+              <Divider sx={{ borderColor: (theme) => alpha(theme.palette.divider, 0.3), mb: 1 }} />
+            </>
           ) : (
             renderActionChip('notes', 'Add note')
           )}
@@ -285,6 +300,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
           )}
           {error && <Alert severity="error">{error}</Alert>}
         </DialogContent>
+        <Divider sx={{ borderColor: (theme) => alpha(theme.palette.divider, 0.3), mb: 1 }} />
         <DialogActions>
           <Button type="submit" variant="contained" color="primary">
             Save
