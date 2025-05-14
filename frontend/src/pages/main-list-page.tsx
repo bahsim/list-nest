@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { HeaderBar } from '@ui-kit/components/organism/header-bar/header-bar';
-import { FooterNav } from '@ui-kit/components/organism/footer-nav/footer-nav';
-import { AddEditItemModal } from '@ui-kit/components/organism/add-edit-item-modal/add-edit-item-modal';
+import { AddEditItemModal } from '../features/main-list/add-edit-item-modal';
 import Box from '@mui/material/Box';
 import EmptyState from '@ui-kit/components/atomic/empty-state/empty-state';
 import type { ShoppingListItem } from '@ui-kit/components/types';

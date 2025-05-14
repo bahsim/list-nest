@@ -17,31 +17,10 @@ export interface ShoppingListItem {
   notes?: string;
 }
 
-export interface AddEditItemInput {
-  id?: string;
-  name: string;
-  quantity: number;
-  unit: string;
-  estimatedPrice?: number;
-  currency?: string;
-  category: string;
-  isCurrent: boolean;
-  isBought: boolean;
-  isDeleted: boolean;
-}
-
 export interface User {
   id: string;
   name: string;
   avatarUrl?: string;
-}
-
-export interface AISuggestion {
-  id: string;
-  name: string;
-  quantity: number;
-  estimatedPrice: number;
-  category: string;
 }
 
 export interface HistoryItem {
