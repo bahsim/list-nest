@@ -22,14 +22,18 @@ import Divider from '@mui/material/Divider';
  * @param categories - List of categories.
  * @param units - List of units.
  * @param currencies - List of currencies.
+ * @param title - Dialog title.
+ * @param actionLabel - Main action button label.
  */
 export interface AddEditItemModalProps {
-  item?: AddEditItemInput;
+  item: AddEditItemInput | null;
   onSave: (input: AddEditItemInput) => void;
   onCancel: () => void;
   categories: string[];
   units: string[];
   aiSuggestions?: AISuggestion[];
+  title: string;
+  actionLabel: string;
 }
 
 export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
@@ -39,6 +43,8 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
   categories,
   units,
   aiSuggestions,
+  title,
+  actionLabel,
 }) => {
   // Define all default values in one place, now that units/categories are available
   const DEFAULT_ITEM_VALUES = {
@@ -134,7 +140,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
 
   return (
     <Dialog open onClose={onCancel} maxWidth="xs" fullWidth>
-      <DialogTitle>{item ? 'Edit Item' : 'Add Item'}</DialogTitle>
+      <DialogTitle>{title}</DialogTitle>
       <Divider sx={{ borderColor: (theme) => alpha(theme.palette.divider, 0.3), mb: 0 }} />
       <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: 0, pt: 1, pb: 1 }}>
         {/* Always show Name */}
@@ -302,12 +308,12 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
             </Box>
           </Box>
         )}
-        {error && <Alert severity="error" sx={{ fontSize: '1.1rem', fontWeight: 500 }}>{error}</Alert>}
+        {error && <Alert severity="error" sx={{ fontSize: '0.95rem', fontWeight: 500 }}>{error}</Alert>}
       </DialogContent>
       <Divider sx={{ borderColor: (theme) => alpha(theme.palette.divider, 0.3), mb: 1 }} />
       <DialogActions>
         <Button variant="contained" color="primary" onClick={handleSaveClick}>
-          Save
+          {actionLabel}
         </Button>
         <Button onClick={onCancel} variant="outlined">
           Cancel

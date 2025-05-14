@@ -18,6 +18,17 @@ import { MainListProvider } from '../features/main-list/main-list-context';
 import { MainLayout } from '../layouts/main-layout';
 import { isItemExpanded } from '../features/base-list/utility';
 
+const MODAL_TITLES = {
+  add: 'Add Item',
+  edit: 'Edit Item',
+  complete: 'Complete Item',
+} as const;
+const MODAL_ACTION_LABELS = {
+  add: 'Create',
+  edit: 'Save',
+  complete: 'Complete',
+} as const;
+
 const MainListView: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('list');
   const [items, setItems] = useState<MainListItem[]>([]);
@@ -28,11 +39,13 @@ const MainListView: React.FC = () => {
     itemId: string;
   } | null>(null);
   const [editingItem, setEditingItem] = useState<MainListItem | null>(null);
+  const [modalMode, setModalMode] = useState<'add' | 'edit' | 'complete'>('add');
 
   // Handlers
   const handleNewItem = (): void => {
     setEditingItem(null);
     setIsAddEditModalOpen(true);
+    setModalMode('add');
   };
   const handleSaveItem = (input: any): void => {
     // TODO: Replace with real add/edit logic
@@ -46,10 +59,12 @@ const MainListView: React.FC = () => {
     });
     setIsAddEditModalOpen(false);
     setEditingItem(null);
+    setModalMode('add');
   };
   const handleCancelAdd = (): void => {
     setIsAddEditModalOpen(false);
     setEditingItem(null);
+    setModalMode('add');
   };
   const handleToggleCategory = (category: string): void => {
     setSelectedCategories((prev) =>
@@ -68,9 +83,14 @@ const MainListView: React.FC = () => {
   const handleEditItem = (item: MainListItem): void => {
     setEditingItem(item);
     setIsAddEditModalOpen(true);
+    setModalMode('edit');
   };
   const handleDeleteItem = (item: MainListItem): void => {};
-  const handleToggleBought = (item: MainListItem): void => {};
+  const handleToggleBought = (item: MainListItem): void => {
+    setEditingItem(item);
+    setIsAddEditModalOpen(true);
+    setModalMode('complete');
+  };
   const handleToggleCurrent = (item: MainListItem): void => {};
   const handleRestoreItem = (item: MainListItem): void => {};
   const handleSaveNote = (id: string, note: string): void => {};
@@ -186,7 +206,9 @@ const MainListView: React.FC = () => {
             onCancel={handleCancelAdd}
             categories={mockCategories}
             units={mockUnits}
-            item={editingItem || undefined}
+            item={editingItem}
+            title={MODAL_TITLES[modalMode] || ''}
+            actionLabel={MODAL_ACTION_LABELS[modalMode] || ''}
           />
         )}
       </MainListProvider>
