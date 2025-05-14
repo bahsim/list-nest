@@ -34,7 +34,7 @@ export const MainItemExpanded: React.FC<MainItemExpandedProps> = ({ item, group 
     ).toFixed(2)}`;
   }, []);
 
-  const { isAddingNote, noteInput, setNoteInput, openAddNote, openEditNote, saveNote, cancelNote } =
+  const { isAddingNote, noteInput, setNoteInput, openEditNote, saveNote, cancelNote } =
     useNoteInput(item, handleSaveNote);
 
   if (!isExpanded) {
@@ -118,9 +118,7 @@ export const MainItemExpanded: React.FC<MainItemExpandedProps> = ({ item, group 
         </>
       )}
       {/* Second row: all actions centered */}
-      {!isAddingNote && (
-        <ItemActionButtons item={item} isAddingNote={isAddingNote} onAddNoteOpen={openAddNote} />
-      )}
+      {!isAddingNote && <ItemActionButtons item={item} />}
     </Box>
   );
 }; 
