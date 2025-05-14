@@ -67,11 +67,13 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
 
   // Track which fields are open
   const [openFields, setOpenFields] = React.useState<{
+    name: boolean;
     quantity: boolean;
     estimatedPrice: boolean;
     notes: boolean;
     category: boolean;
   }>({
+    name: true,
     quantity: false,
     estimatedPrice: false,
     notes: false,
@@ -82,10 +84,13 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
   React.useEffect(() => {
     if (item) {
       setOpenFields({
-        quantity: Boolean(Number.isFinite(item.quantity)),
-        estimatedPrice: !!item.estimatedPrice,
-        notes: !!item.notes?.trim(),
-        category: !!item.category,
+        name: !item.name,
+        quantity: !(Boolean(Number.isFinite(item.quantity)) || DEFAULT_ITEM_VALUES.quantity),
+        estimatedPrice: !(
+          Boolean(Number.isFinite(item.estimatedPrice)) || DEFAULT_ITEM_VALUES.estimatedPrice
+        ),
+        notes: !(Boolean(item.notes?.trim()) || DEFAULT_ITEM_VALUES.notes),
+        category: !(Boolean(item.category) || DEFAULT_ITEM_VALUES.category),
       });
     }
   }, [item]);
@@ -132,14 +137,24 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
       <Box component="form" onSubmit={handleSave}>
         <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
           {/* Always show Name */}
-          <TextField
-            name="name"
-            label="Item name"
-            value={fields.name}
-            onChange={handleChange}
-            fullWidth
-            required
-          />
+          {openFields.name ? (
+            <TextField
+              name="name"
+              label="Name"
+              value={fields.name}
+              onChange={handleChange}
+              sx={{ background: (theme) => theme.palette.background.note }}
+              fullWidth
+              required
+              autoFocus
+            />
+          ) : (
+            <FieldDisplay
+              label="Name"
+              value={fields.name}
+              onClick={() => handleOpenField('name')}
+            />
+          )}
           {/* Quantity field */}
           {openFields.quantity ? (
             <Box sx={{ display: 'flex', gap: 1 }}>
@@ -150,7 +165,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
                 value={fields.quantity}
                 onChange={handleChange}
                 fullWidth
-                sx={{ flex: 1 }}
+                sx={{ flex: 1, background: (theme) => theme.palette.background.note }}
                 autoFocus
               />
               <TextField
@@ -160,7 +175,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
                 value={fields.unit}
                 onChange={handleChange}
                 fullWidth
-                sx={{ flex: 1 }}
+                sx={{ flex: 1, background: (theme) => theme.palette.background.note }}
               >
                 {units.map((u) => (
                   <MenuItem key={u} value={u}>
@@ -169,7 +184,8 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
                 ))}
               </TextField>
             </Box>
-          ) : (fields.quantity || DEFAULT_ITEM_VALUES.quantity) && (fields.unit || DEFAULT_ITEM_VALUES.unit) ? (
+          ) : (fields.quantity || DEFAULT_ITEM_VALUES.quantity) &&
+            (fields.unit || DEFAULT_ITEM_VALUES.unit) ? (
             <FieldDisplay
               label="Quantity"
               value={`${fields.quantity || DEFAULT_ITEM_VALUES.quantity} ${fields.unit || DEFAULT_ITEM_VALUES.unit}`}
@@ -188,6 +204,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
               type="number"
               fullWidth
               autoFocus
+              sx={{ background: (theme) => theme.palette.background.note }}
             />
           ) : fields.estimatedPrice || DEFAULT_ITEM_VALUES.estimatedPrice ? (
             <FieldDisplay
@@ -209,6 +226,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
               multiline
               minRows={2}
               autoFocus
+              sx={{ background: (theme) => theme.palette.background.note }}
             />
           ) : fields.notes || DEFAULT_ITEM_VALUES.notes ? (
             <FieldDisplay
@@ -228,7 +246,14 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
               value={fields.category}
               onInputChange={(_, newValue) => setFields({ ...fields, category: newValue })}
               renderInput={(params) => (
-                <TextField {...params} name="category" label="Category" fullWidth autoFocus />
+                <TextField
+                  {...params}
+                  name="category"
+                  label="Category"
+                  fullWidth
+                  autoFocus
+                  sx={{ background: (theme) => theme.palette.background.note }}
+                />
               )}
             />
           ) : fields.category || DEFAULT_ITEM_VALUES.category ? (
@@ -271,4 +296,4 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
       </Box>
     </Dialog>
   );
-}; 
+};

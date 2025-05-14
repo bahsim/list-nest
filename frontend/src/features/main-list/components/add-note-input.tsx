@@ -33,7 +33,7 @@ const AddNoteInput: React.FC<AddNoteInputProps> = ({
       variant="outlined"
       sx={{
         width: '100%',
-        background: '#FFF8ED',
+        background: (theme) => theme.palette.background.note,
         borderRadius: 2,
       }}
       autoFocus={autoFocus}

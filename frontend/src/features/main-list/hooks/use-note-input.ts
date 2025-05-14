@@ -6,30 +6,41 @@ import type { MainListItem } from '../types';
  * @param item - The shopping list item.
  * @param handleSaveNote - Function to save the note.
  */
-export function useNoteInput(item: MainListItem, handleSaveNote: (id: string, note: string) => void) {
+export function useNoteInput(
+  item: MainListItem,
+  handleSaveNote: (id: string, note: string) => void,
+) {
   const [isAddingNote, setIsAddingNote] = useState(false);
   const [noteInput, setNoteInput] = useState('');
-  const openAddNote = () => {
-    setIsAddingNote(true);
-    setNoteInput('');
-  };
+
   const openEditNote = () => {
     setIsAddingNote(true);
     setNoteInput(item.notes || '');
   };
+
   const saveNote = () => {
     handleSaveNote(item.id, noteInput.trim());
     setIsAddingNote(false);
   };
+
   const cancelNote = () => {
     setIsAddingNote(false);
     setNoteInput('');
   };
+
   useEffect(() => {
     if (!isAddingNote && noteInput.trim() !== '') {
       handleSaveNote(item.id, noteInput.trim());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAddingNote]);
-  return { isAddingNote, noteInput, setNoteInput, openAddNote, openEditNote, saveNote, cancelNote };
-} 
+
+  return {
+    isAddingNote,
+    noteInput,
+    setNoteInput,
+    openEditNote,
+    saveNote,
+    cancelNote,
+  };
+}

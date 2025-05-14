@@ -59,7 +59,7 @@ export const FieldDisplay: React.FC<FieldDisplayProps> = ({ label, value, multil
           </IconButton>
         ) : (
           <IconButton size="small" tabIndex={-1} sx={{ ml: 1 }} aria-label={`Edit ${label}`}>
-            <EditIcon fontSize="small" />
+            <EditIcon fontSize="small" sx={{ color: 'action.active', opacity: 0.8, fontSize: 18 }} />
           </IconButton>
         )
       )}
