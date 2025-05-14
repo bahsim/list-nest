@@ -135,8 +135,8 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
   return (
     <Dialog open onClose={onCancel} maxWidth="xs" fullWidth>
       <DialogTitle>{item ? 'Edit Item' : 'Add Item'}</DialogTitle>
-      <Divider sx={{ borderColor: (theme) => alpha(theme.palette.divider, 0.3), mb: 1 }} />
-      <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+      <Divider sx={{ borderColor: (theme) => alpha(theme.palette.divider, 0.3), mb: 0 }} />
+      <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: 0, pt: 1, pb: 1 }}>
         {/* Always show Name */}
         {openFields.name ? (
           <TextField
@@ -144,7 +144,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
             label="Name"
             value={fields.name}
             onChange={handleChange}
-            sx={{ background: (theme) => theme.palette.background.note }}
+            sx={{ background: (theme) => theme.palette.background.note, my: 1 }}
             fullWidth
             required
             autoFocus
@@ -170,7 +170,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
               value={fields.quantity}
               onChange={handleChange}
               fullWidth
-              sx={{ flex: 1, background: (theme) => theme.palette.background.note }}
+              sx={{ flex: 1, background: (theme) => theme.palette.background.note, my: 1 }}
               autoFocus
               onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}
             />
@@ -181,7 +181,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
               value={fields.unit}
               onChange={handleChange}
               fullWidth
-              sx={{ flex: 1, background: (theme) => theme.palette.background.note }}
+              sx={{ flex: 1, background: (theme) => theme.palette.background.note, my: 1 }}
               onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}
             >
               {units.map((u) => (
@@ -214,7 +214,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
             type="number"
             fullWidth
             autoFocus
-            sx={{ background: (theme) => theme.palette.background.note }}
+            sx={{ background: (theme) => theme.palette.background.note, my: 1 }}
             onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}
           />
         ) : fields.estimatedPrice || DEFAULT_ITEM_VALUES.estimatedPrice ? (
@@ -240,7 +240,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
             multiline
             minRows={2}
             autoFocus
-            sx={{ background: (theme) => theme.palette.background.note }}
+            sx={{ background: (theme) => theme.palette.background.note, my: 1 }}
             onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}
           />
         ) : fields.notes || DEFAULT_ITEM_VALUES.notes ? (
@@ -270,7 +270,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
                 label="Category"
                 fullWidth
                 autoFocus
-                sx={{ background: (theme) => theme.palette.background.note }}
+                sx={{ background: (theme) => theme.palette.background.note, my: 1 }}
                 onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}
               />
             )}
