@@ -23,6 +23,14 @@ export interface User {
   avatarUrl?: string;
 }
 
+export interface AISuggestion {
+  id: string;
+  name: string;
+  quantity: number;
+  estimatedPrice: number;
+  category: string;
+}
+
 export interface HistoryItem {
   id: string;
   name: string;
