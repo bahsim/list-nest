@@ -1,4 +1,5 @@
-import type { MainListItem, User } from '@ui-kit/components/types';
+import type { MainListItem } from '../types';
+import type { User } from '@ui-kit/components/types';
 
 export const mockUser: User = {
   id: '1',
@@ -14,7 +15,7 @@ export const mockItems: MainListItem[] = [
     id: '1',
     name: 'Milkkkkkk kkkkkkkkk kkkk and some other stuff',
     quantity: 2000,
-    unit: 'L',
+    unit: 'l',
     category: 'Dairy',
     isBought: false,
     isCurrent: false,
@@ -71,7 +72,7 @@ export const mockItems: MainListItem[] = [
     id: '5',
     name: 'Beer',
     quantity: 1,
-    unit: 'L',
+    unit: 'l',
     category: 'Alcohol',
     isBought: true,
     isCurrent: true,
@@ -85,7 +86,7 @@ export const mockItems: MainListItem[] = [
     id: '6',
     name: 'Beer',
     quantity: 1,
-    unit: 'L',
+    unit: 'l',
     category: 'Alcohol',
     isBought: false,
     isCurrent: true,
@@ -99,7 +100,7 @@ export const mockItems: MainListItem[] = [
     id: '7',
     name: 'Other',
     quantity: 1,
-    unit: 'L',
+    unit: 'l',
     category: '',
     isBought: false,
     isCurrent: false,

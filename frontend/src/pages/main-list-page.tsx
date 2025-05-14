@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { AddEditItemModal } from '../features/main-list/components/add-edit-item-modal';
 import Box from '@mui/material/Box';
 import EmptyState from '@ui-kit/components/atomic/empty-state/empty-state';
-import type { MainListItem } from '@ui-kit/components/types';
+import type { MainListItem } from '../features/main-list/types';
 import {
   filterByCategory,
   getUniqueCategories,

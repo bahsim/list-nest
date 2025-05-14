@@ -5,7 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
 import RestoreIcon from '@mui/icons-material/Restore';
-import type { MainListItem } from '@ui-kit/components/types';
+import type { MainListItem } from '../types';
 import { useMainListContext } from '../main-list-context';
 
 /**
