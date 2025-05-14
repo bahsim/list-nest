@@ -101,8 +101,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
     setFields({ ...fields, [e.target.name]: e.target.value });
   };
 
-  const handleSave = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSaveClick = () => {
     if (!fields.name) {
       setError('Name is required');
       return;
@@ -137,179 +136,183 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
     <Dialog open onClose={onCancel} maxWidth="xs" fullWidth>
       <DialogTitle>{item ? 'Edit Item' : 'Add Item'}</DialogTitle>
       <Divider sx={{ borderColor: (theme) => alpha(theme.palette.divider, 0.3), mb: 1 }} />
-      <Box component="form" onSubmit={handleSave}>
-        <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-          {/* Always show Name */}
-          {openFields.name ? (
-            <TextField
-              name="name"
+      <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+        {/* Always show Name */}
+        {openFields.name ? (
+          <TextField
+            name="name"
+            label="Name"
+            value={fields.name}
+            onChange={handleChange}
+            sx={{ background: (theme) => theme.palette.background.note }}
+            fullWidth
+            required
+            autoFocus
+            onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}
+          />
+        ) : (
+          <>
+            <FieldDisplay
               label="Name"
               value={fields.name}
-              onChange={handleChange}
-              sx={{ background: (theme) => theme.palette.background.note }}
-              fullWidth
-              required
-              autoFocus
+              onClick={() => handleOpenField('name')}
             />
-          ) : (
-            <>
-              <FieldDisplay
-                label="Name"
-                value={fields.name}
-                onClick={() => handleOpenField('name')}
-              />
-              <Divider sx={{ borderColor: (theme) => alpha(theme.palette.divider, 0.3), mb: 1 }} />
-            </>
-          )}
-          {/* Quantity field */}
-          {openFields.quantity ? (
-            <Box sx={{ display: 'flex', gap: 1 }}>
-              <TextField
-                type="number"
-                name="quantity"
-                label="Quantity"
-                value={fields.quantity}
-                onChange={handleChange}
-                fullWidth
-                sx={{ flex: 1, background: (theme) => theme.palette.background.note }}
-                autoFocus
-              />
-              <TextField
-                select
-                name="unit"
-                label="Unit"
-                value={fields.unit}
-                onChange={handleChange}
-                fullWidth
-                sx={{ flex: 1, background: (theme) => theme.palette.background.note }}
-              >
-                {units.map((u) => (
-                  <MenuItem key={u} value={u}>
-                    {u}
-                  </MenuItem>
-                ))}
-              </TextField>
-            </Box>
-          ) : (fields.quantity || DEFAULT_ITEM_VALUES.quantity) &&
-            (fields.unit || DEFAULT_ITEM_VALUES.unit) ? (
-            <>
-              <FieldDisplay
-                label="Quantity"
-                value={`${fields.quantity || DEFAULT_ITEM_VALUES.quantity} ${fields.unit || DEFAULT_ITEM_VALUES.unit}`}
-                onClick={() => handleOpenField('quantity')}
-              />
-              <Divider sx={{ borderColor: (theme) => alpha(theme.palette.divider, 0.3), mb: 1 }} />
-            </>
-          ) : (
-            renderActionChip('quantity', 'Add quantity')
-          )}
-          {/* Estimated Price field */}
-          {openFields.estimatedPrice ? (
+            <Divider sx={{ borderColor: (theme) => alpha(theme.palette.divider, 0.3), mb: 1 }} />
+          </>
+        )}
+        {/* Quantity field */}
+        {openFields.quantity ? (
+          <Box sx={{ display: 'flex', gap: 1 }}>
             <TextField
-              name="estimatedPrice"
-              label="Estimated Price"
-              value={fields.estimatedPrice || ''}
-              onChange={handleChange}
               type="number"
-              fullWidth
-              autoFocus
-              sx={{ background: (theme) => theme.palette.background.note }}
-            />
-          ) : fields.estimatedPrice || DEFAULT_ITEM_VALUES.estimatedPrice ? (
-            <>
-              <FieldDisplay
-                label="Estimated Price"
-                value={fields.estimatedPrice ?? DEFAULT_ITEM_VALUES.estimatedPrice ?? ''}
-                onClick={() => handleOpenField('estimatedPrice')}
-              />
-              <Divider sx={{ borderColor: (theme) => alpha(theme.palette.divider, 0.3), mb: 1 }} />
-            </>
-          ) : (
-            renderActionChip('estimatedPrice', 'Add price')
-          )}
-          {/* Notes field */}
-          {openFields.notes ? (
-            <TextField
-              name="notes"
-              label="Notes"
-              value={fields.notes || ''}
+              name="quantity"
+              label="Quantity"
+              value={fields.quantity}
               onChange={handleChange}
               fullWidth
-              multiline
-              minRows={2}
+              sx={{ flex: 1, background: (theme) => theme.palette.background.note }}
               autoFocus
-              sx={{ background: (theme) => theme.palette.background.note }}
+              onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}
             />
-          ) : fields.notes || DEFAULT_ITEM_VALUES.notes ? (
-            <>
-              <FieldDisplay
-                label="Notes"
-                value={fields.notes || DEFAULT_ITEM_VALUES.notes}
-                multiline
-                onClick={() => handleOpenField('notes')}
-              />
-              <Divider sx={{ borderColor: (theme) => alpha(theme.palette.divider, 0.3), mb: 1 }} />
-            </>
-          ) : (
-            renderActionChip('notes', 'Add note')
-          )}
-          {/* Category field */}
-          {openFields.category ? (
-            <Autocomplete
-              freeSolo
-              options={categories}
-              value={fields.category}
-              onInputChange={(_, newValue) => setFields({ ...fields, category: newValue })}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  name="category"
-                  label="Category"
-                  fullWidth
-                  autoFocus
-                  sx={{ background: (theme) => theme.palette.background.note }}
-                />
-              )}
-            />
-          ) : fields.category || DEFAULT_ITEM_VALUES.category ? (
+            <TextField
+              select
+              name="unit"
+              label="Unit"
+              value={fields.unit}
+              onChange={handleChange}
+              fullWidth
+              sx={{ flex: 1, background: (theme) => theme.palette.background.note }}
+              onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}
+            >
+              {units.map((u) => (
+                <MenuItem key={u} value={u}>
+                  {u}
+                </MenuItem>
+              ))}
+            </TextField>
+          </Box>
+        ) : (fields.quantity || DEFAULT_ITEM_VALUES.quantity) &&
+          (fields.unit || DEFAULT_ITEM_VALUES.unit) ? (
+          <>
             <FieldDisplay
-              label="Category"
-              value={fields.category || DEFAULT_ITEM_VALUES.category}
-              onClick={() => handleOpenField('category')}
+              label="Quantity"
+              value={`${fields.quantity || DEFAULT_ITEM_VALUES.quantity} ${fields.unit || DEFAULT_ITEM_VALUES.unit}`}
+              onClick={() => handleOpenField('quantity')}
             />
-          ) : (
-            renderActionChip('category', 'Add category')
-          )}
-          {/* AI Suggestions */}
-          {aiSuggestions && aiSuggestions.length > 0 && (
-            <Box>
-              <Box sx={{ fontWeight: 'bold', mb: 1 }}>AI Suggestions:</Box>
-              <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                {aiSuggestions.map((s) => (
-                  <Button
-                    key={s.id}
-                    variant="outlined"
-                    size="small"
-                    onClick={() => handleAISuggestion(s)}
-                  >
-                    {s.name}
-                  </Button>
-                ))}
-              </Box>
+            <Divider sx={{ borderColor: (theme) => alpha(theme.palette.divider, 0.3), mb: 1 }} />
+          </>
+        ) : (
+          renderActionChip('quantity', 'Add quantity')
+        )}
+        {/* Estimated Price field */}
+        {openFields.estimatedPrice ? (
+          <TextField
+            name="estimatedPrice"
+            label="Estimated Price"
+            value={fields.estimatedPrice || ''}
+            onChange={handleChange}
+            type="number"
+            fullWidth
+            autoFocus
+            sx={{ background: (theme) => theme.palette.background.note }}
+            onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}
+          />
+        ) : fields.estimatedPrice || DEFAULT_ITEM_VALUES.estimatedPrice ? (
+          <>
+            <FieldDisplay
+              label="Estimated Price"
+              value={fields.estimatedPrice ?? DEFAULT_ITEM_VALUES.estimatedPrice ?? ''}
+              onClick={() => handleOpenField('estimatedPrice')}
+            />
+            <Divider sx={{ borderColor: (theme) => alpha(theme.palette.divider, 0.3), mb: 1 }} />
+          </>
+        ) : (
+          renderActionChip('estimatedPrice', 'Add price')
+        )}
+        {/* Notes field */}
+        {openFields.notes ? (
+          <TextField
+            name="notes"
+            label="Notes"
+            value={fields.notes || ''}
+            onChange={handleChange}
+            fullWidth
+            multiline
+            minRows={2}
+            autoFocus
+            sx={{ background: (theme) => theme.palette.background.note }}
+            onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}
+          />
+        ) : fields.notes || DEFAULT_ITEM_VALUES.notes ? (
+          <>
+            <FieldDisplay
+              label="Notes"
+              value={fields.notes || DEFAULT_ITEM_VALUES.notes}
+              multiline
+              onClick={() => handleOpenField('notes')}
+            />
+            <Divider sx={{ borderColor: (theme) => alpha(theme.palette.divider, 0.3), mb: 1 }} />
+          </>
+        ) : (
+          renderActionChip('notes', 'Add note')
+        )}
+        {/* Category field */}
+        {openFields.category ? (
+          <Autocomplete
+            freeSolo
+            options={categories}
+            value={fields.category}
+            onInputChange={(_, newValue) => setFields({ ...fields, category: newValue })}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                name="category"
+                label="Category"
+                fullWidth
+                autoFocus
+                sx={{ background: (theme) => theme.palette.background.note }}
+                onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}
+              />
+            )}
+          />
+        ) : fields.category || DEFAULT_ITEM_VALUES.category ? (
+          <FieldDisplay
+            label="Category"
+            value={fields.category || DEFAULT_ITEM_VALUES.category}
+            onClick={() => handleOpenField('category')}
+          />
+        ) : (
+          renderActionChip('category', 'Add category')
+        )}
+        {/* AI Suggestions */}
+        {aiSuggestions && aiSuggestions.length > 0 && (
+          <Box>
+            <Box sx={{ fontWeight: 'bold', mb: 1 }}>AI Suggestions:</Box>
+            <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+              {aiSuggestions.map((s) => (
+                <Button
+                  key={s.id}
+                  variant="outlined"
+                  size="small"
+                  onClick={() => handleAISuggestion(s)}
+                >
+                  {s.name}
+                </Button>
+              ))}
             </Box>
-          )}
-          {error && <Alert severity="error">{error}</Alert>}
-        </DialogContent>
-        <Divider sx={{ borderColor: (theme) => alpha(theme.palette.divider, 0.3), mb: 1 }} />
-        <DialogActions>
-          <Button type="submit" variant="contained" color="primary">
-            Save
-          </Button>
-          <Button onClick={onCancel} variant="outlined">
-            Cancel
-          </Button>
-        </DialogActions>
-      </Box>
+          </Box>
+        )}
+        {error && <Alert severity="error" sx={{ fontSize: '1.1rem', fontWeight: 500 }}>{error}</Alert>}
+      </DialogContent>
+      <Divider sx={{ borderColor: (theme) => alpha(theme.palette.divider, 0.3), mb: 1 }} />
+      <DialogActions>
+        <Button variant="contained" color="primary" onClick={handleSaveClick}>
+          Save
+        </Button>
+        <Button onClick={onCancel} variant="outlined">
+          Cancel
+        </Button>
+      </DialogActions>
     </Dialog>
   );
 };
