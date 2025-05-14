@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { AddEditItemModal } from '../features/main-list/components/add-edit-item-modal';
 import Box from '@mui/material/Box';
 import EmptyState from '@ui-kit/components/atomic/empty-state/empty-state';
-import type { ShoppingListItem } from '@ui-kit/components/types';
+import type { MainListItem } from '@ui-kit/components/types';
 import {
   filterByCategory,
   getUniqueCategories,
@@ -10,7 +10,7 @@ import {
   getGroupSum,
 } from '../features/main-list/utils/utils';
 import { CategoryFilterChips } from '../features/main-list/components/category-filter-chips';
-import { ShoppingList } from '../features/main-list/shopping-list';
+import { MainList } from '../features/main-list/main-list';
 import { AddItemFab } from '../features/main-list/components/add-item-fab';
 import { mockUser, mockCategories, mockUnits, mockItems } from '../features/main-list/utils/mock-data';
 import { Typography } from '@mui/material';
@@ -20,14 +20,14 @@ import { isItemExpanded } from '../features/base-list/utility';
 
 const MainListView: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('list');
-  const [items, setItems] = useState<ShoppingListItem[]>([]);
+  const [items, setItems] = useState<MainListItem[]>([]);
   const [isAddEditModalOpen, setIsAddEditModalOpen] = useState<boolean>(false);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [expandedItem, setExpandedItem] = useState<{
     group: 'current' | 'all';
     itemId: string;
   } | null>(null);
-  const [editingItem, setEditingItem] = useState<ShoppingListItem | null>(null);
+  const [editingItem, setEditingItem] = useState<MainListItem | null>(null);
 
   // Handlers
   const handleNewItem = (): void => {
@@ -65,14 +65,14 @@ const MainListView: React.FC = () => {
   };
 
   // ShoppingList handlers (stubbed, replace with real logic)
-  const handleEditItem = (item: ShoppingListItem): void => {
+  const handleEditItem = (item: MainListItem): void => {
     setEditingItem(item);
     setIsAddEditModalOpen(true);
   };
-  const handleDeleteItem = (item: ShoppingListItem): void => {};
-  const handleToggleBought = (item: ShoppingListItem): void => {};
-  const handleToggleCurrent = (item: ShoppingListItem): void => {};
-  const handleRestoreItem = (item: ShoppingListItem): void => {};
+  const handleDeleteItem = (item: MainListItem): void => {};
+  const handleToggleBought = (item: MainListItem): void => {};
+  const handleToggleCurrent = (item: MainListItem): void => {};
+  const handleRestoreItem = (item: MainListItem): void => {};
   const handleSaveNote = (id: string, note: string): void => {};
 
   // Derived data
@@ -143,7 +143,7 @@ const MainListView: React.FC = () => {
                     ${getGroupSum(filteredCurrentItems)}
                   </Typography>
                 </Box>
-                <ShoppingList
+                <MainList
                   items={filteredCurrentItems}
                   sx={{ width: '100%', maxWidth: 600, px: 1 }}
                   group="current"
@@ -172,7 +172,7 @@ const MainListView: React.FC = () => {
                     ${getGroupSum(filteredItems)}
                   </Typography>
                 </Box>
-                <ShoppingList items={filteredItems} sx={{ width: '100%', maxWidth: 600, px: 1 }} group="all" />
+                <MainList items={filteredItems} sx={{ width: '100%', maxWidth: 600, px: 1 }} group="all" />
               </>
             )}
           </>

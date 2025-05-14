@@ -1,9 +1,9 @@
-import type { ShoppingListItem } from '@ui-kit/components/types';
+import type { MainListItem } from '@ui-kit/components/types';
 
 /**
  * Filter items by selected categories. If none selected, return all.
  */
-export function filterByCategory(list: ShoppingListItem[], selectedCategories: string[]): ShoppingListItem[] {
+export function filterByCategory(list: MainListItem[], selectedCategories: string[]): MainListItem[] {
   if (selectedCategories.length === 0) return list;
   return list.filter((item) => selectedCategories.includes(item.category));
 }
@@ -11,7 +11,7 @@ export function filterByCategory(list: ShoppingListItem[], selectedCategories: s
 /**
  * Get unique categories from items list, replacing empty category with 'Other'.
  */
-export function getUniqueCategories(items: ShoppingListItem[]): string[] {
+export function getUniqueCategories(items: MainListItem[]): string[] {
   const categories = Array.from(new Set(items.map(item => item.category)));
   return categories.includes('') ? [...categories.filter(c => c !== ''), 'Other'] : categories;
 }
@@ -26,6 +26,6 @@ export function getCategoryValue(label: string): string {
 /**
  * Get sum of estimatedPrice for a group.
  */
-export function getGroupSum(group: ShoppingListItem[]): number {
+export function getGroupSum(group: MainListItem[]): number {
   return group.reduce((sum, item) => sum + (item.estimatedPrice || 0), 0);
 } 

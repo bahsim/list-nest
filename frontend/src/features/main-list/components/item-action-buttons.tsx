@@ -5,7 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
 import RestoreIcon from '@mui/icons-material/Restore';
-import type { ShoppingListItem } from '@ui-kit/components/types';
+import type { MainListItem } from '@ui-kit/components/types';
 import { useMainListContext } from '../main-list-context';
 
 /**
@@ -16,7 +16,7 @@ import { useMainListContext } from '../main-list-context';
  * @param onAddNote - Add note handler.
  */
 interface ItemActionButtonsProps {
-  item: ShoppingListItem;
+  item: MainListItem;
   isAddingNote: boolean;
   onAddNoteOpen: () => void;
 }

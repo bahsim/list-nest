@@ -1,24 +1,24 @@
 import * as React from 'react';
-import type { ShoppingListItem } from '@ui-kit/components/types';
+import type { MainListItem } from '@ui-kit/components/types';
 import type { SxProps, Theme } from '@mui/material/styles';
 import { BaseList } from '../base-list/base-list';
-import { ShoppingListItemCard } from './components/shopping-list-item-card';
+import { MainListItemCard } from './components/main-list-item-card';
 
 /**
- * ShoppingList component for displaying a list of shopping items using BaseList.
+ * MainList component for displaying a list of shopping items using BaseList.
  * Uses context for actions and expanded item.
  * @param items - Array of shopping list items.
  * @param sx - Style overrides.
  * @param group - Group of the shopping list.
  */
-export interface ShoppingListProps {
-  items: ShoppingListItem[];
+export interface MainListProps {
+  items: MainListItem[];
   sx?: SxProps<Theme>;
   group: 'current' | 'all';
 }
 
-export const ShoppingList: React.FC<ShoppingListProps> = ({ items, sx, group }) => {
-  const getPriority = (item: ShoppingListItem): number => {
+export const MainList: React.FC<MainListProps> = ({ items, sx, group }) => {
+  const getPriority = (item: MainListItem): number => {
     if (!item.isBought && !item.isDeleted) return 1; // Normal
     if (item.isBought && !item.isDeleted) return 2; // Bought
     if (!item.isBought && item.isDeleted) return 3; // Deleted
@@ -29,7 +29,7 @@ export const ShoppingList: React.FC<ShoppingListProps> = ({ items, sx, group }) 
   return (
     <BaseList
       items={sortedItems}
-      renderItem={(item) => <ShoppingListItemCard item={item} group={group} />}
+      renderItem={(item) => <MainListItemCard item={item} group={group} />}
       sx={sx}
     />
   );

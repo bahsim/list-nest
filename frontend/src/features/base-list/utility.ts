@@ -1,4 +1,4 @@
-import type { ShoppingListItem } from '@ui-kit/components/types';
+import type { MainListItem } from '@ui-kit/components/types';
 
 /**
  * Checks if the given item (or itemId) is expanded for the specified group.
@@ -6,7 +6,7 @@ import type { ShoppingListItem } from '@ui-kit/components/types';
 export function isItemExpanded(
   expandedItem: { group: string; itemId: string } | null,
   group: string,
-  itemOrId: ShoppingListItem | string
+  itemOrId: MainListItem | string
 ): boolean {
   const itemId = typeof itemOrId === 'string' ? itemOrId : itemOrId.id;
   return !!expandedItem && expandedItem.group === group && expandedItem.itemId === itemId;

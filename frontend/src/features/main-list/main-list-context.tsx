@@ -1,16 +1,16 @@
 import React, { createContext, useContext } from 'react';
-import type { ShoppingListItem } from '@ui-kit/components/types';
+import type { MainListItem } from '@ui-kit/components/types';
 
 /**
  * MainListContextProps defines the contract for main list actions and state.
  */
 export interface MainListContextProps {
   expandedItem: { group: 'current' | 'all'; itemId: string } | null;
-  handleEditItem: (item: ShoppingListItem) => void;
-  handleDeleteItem: (item: ShoppingListItem) => void;
-  handleToggleBought: (item: ShoppingListItem) => void;
-  handleToggleCurrent: (item: ShoppingListItem) => void;
-  handleRestoreItem: (item: ShoppingListItem) => void;
+  handleEditItem: (item: MainListItem) => void;
+  handleDeleteItem: (item: MainListItem) => void;
+  handleToggleBought: (item: MainListItem) => void;
+  handleToggleCurrent: (item: MainListItem) => void;
+  handleRestoreItem: (item: MainListItem) => void;
   handleSaveNote: (id: string, note: string) => void;
   handleExpandItem: (group: 'current' | 'all', itemId: string) => void;
 }

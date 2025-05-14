@@ -1,6 +1,6 @@
 // Shared types for Family Grocery App UI Kit
 
-export interface ShoppingListItem {
+export interface MainListItem {
   id: string;
   name: string;
   quantity: number;

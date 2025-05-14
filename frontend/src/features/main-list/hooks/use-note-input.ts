@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import type { ShoppingListItem } from '@ui-kit/components/types';
+import type { MainListItem } from '@ui-kit/components/types';
 
 /**
  * useNoteInput manages note input state and handlers for a shopping list item.
  * @param item - The shopping list item.
  * @param handleSaveNote - Function to save the note.
  */
-export function useNoteInput(item: ShoppingListItem, handleSaveNote: (id: string, note: string) => void) {
+export function useNoteInput(item: MainListItem, handleSaveNote: (id: string, note: string) => void) {
   const [isAddingNote, setIsAddingNote] = useState(false);
   const [noteInput, setNoteInput] = useState('');
   const openAddNote = () => {

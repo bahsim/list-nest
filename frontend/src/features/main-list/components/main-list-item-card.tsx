@@ -1,12 +1,12 @@
 import * as React from 'react';
-import type { ShoppingListItem } from '@ui-kit/components/types';
+import type { MainListItem } from '@ui-kit/components/types';
 import { type Theme } from '@mui/material/styles';
 import CheckIcon from '@mui/icons-material/CheckCircleOutline';
 import StarIcon from '@mui/icons-material/Star';
 import RestoreIcon from '@mui/icons-material/Restore';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import { BaseListItemCard } from '../../base-list/base-list-item-card';
-import { ShoppingItemExpanded } from './shopping-item-expanded';
+import { MainItemExpanded } from './main-item-expanded';
 import { useMainListContext } from '../main-list-context';
 import { isItemExpanded } from '../../base-list/utility';
 
@@ -16,12 +16,12 @@ import { isItemExpanded } from '../../base-list/utility';
  * @param item - The shopping list item.
  * @param group - The group of the shopping list item.
  */
-export interface ShoppingListItemCardProps {
-  item: ShoppingListItem;
+export interface MainListItemCardProps {
+  item: MainListItem;
   group: 'current' | 'all';
 }
 
-export const ShoppingListItemCard: React.FC<ShoppingListItemCardProps> = ({ item, group }) => {
+export const MainListItemCard: React.FC<MainListItemCardProps> = ({ item, group }) => {
   const {
     handleToggleBought,
     handleToggleCurrent,
@@ -91,7 +91,7 @@ export const ShoppingListItemCard: React.FC<ShoppingListItemCardProps> = ({ item
       onSwipeLeft={handleSwipeLeft}
       onSwipeRight={handleSwipeRight}
       getSwipeVisuals={getSwipeVisuals}
-      renderExpandedContent={<ShoppingItemExpanded item={item} group={group} />}
+      renderExpandedContent={<MainItemExpanded item={item} group={group} />}
     />
   );
 }; 

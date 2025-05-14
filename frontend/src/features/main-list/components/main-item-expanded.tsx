@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Box, Switch, Divider } from '@mui/material';
-import type { ShoppingListItem } from '@ui-kit/components/types';
+import type { MainListItem } from '@ui-kit/components/types';
 import { alpha } from '@mui/material/styles';
 import { useCallback } from 'react';
 import AddNoteInput from './add-note-input';
@@ -11,21 +11,21 @@ import { useNoteInput } from '../hooks/use-note-input';
 import { isItemExpanded } from '../../base-list/utility';
 
 /**
- * ShoppingItemExpanded displays expanded details and actions for a shopping list item.
+ * MainItemExpanded displays expanded details and actions for a shopping list item.
  * Uses context for all actions and expansion state.
  * @param item - The shopping list item.
  * @param group - The group of the shopping list item.
  */
-export interface ShoppingItemExpandedProps {
-  item: ShoppingListItem;
+export interface MainItemExpandedProps {
+  item: MainListItem;
   group: 'current' | 'all';
 }
 
-export const ShoppingItemExpanded: React.FC<ShoppingItemExpandedProps> = ({ item, group }) => {
+export const MainItemExpanded: React.FC<MainItemExpandedProps> = ({ item, group }) => {
   const { handleToggleCurrent, handleSaveNote, expandedItem } = useMainListContext();
   const isExpanded = isItemExpanded(expandedItem, group, item);
 
-  const getCostInfo = useCallback((item: ShoppingListItem): string => {
+  const getCostInfo = useCallback((item: MainListItem): string => {
     if (!item.quantity || !item.estimatedPrice) {
       return '';
     }
