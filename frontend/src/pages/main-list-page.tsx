@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AddEditItemModal } from '../features/main-list/add-edit-item-modal';
+import { AddEditItemModal } from '../features/main-list/components/add-edit-item-modal';
 import Box from '@mui/material/Box';
 import EmptyState from '@ui-kit/components/atomic/empty-state/empty-state';
 import type { ShoppingListItem } from '@ui-kit/components/types';
@@ -8,11 +8,11 @@ import {
   getUniqueCategories,
   getCategoryValue,
   getGroupSum,
-} from '../features/main-list/utils';
-import { CategoryFilterChips } from '../features/main-list/category-filter-chips';
+} from '../features/main-list/utils/utils';
+import { CategoryFilterChips } from '../features/main-list/components/category-filter-chips';
 import { ShoppingList } from '../features/main-list/shopping-list';
-import { AddItemFab } from '../features/main-list/add-item-fab';
-import { mockUser, mockCategories, mockUnits, mockItems } from '../features/main-list/mock-data';
+import { AddItemFab } from '../features/main-list/components/add-item-fab';
+import { mockUser, mockCategories, mockUnits, mockItems } from '../features/main-list/utils/mock-data';
 import { Typography } from '@mui/material';
 import { MainListProvider } from '../features/main-list/main-list-context';
 import { MainLayout } from '../layouts/main-layout';

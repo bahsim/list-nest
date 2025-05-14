@@ -6,7 +6,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
 import RestoreIcon from '@mui/icons-material/Restore';
 import type { ShoppingListItem } from '@ui-kit/components/types';
-import { useMainListContext } from './main-list-context';
+import { useMainListContext } from '../main-list-context';
 
 /**
  * ItemActionButtons renders action buttons for a shopping list item.
@@ -137,4 +137,4 @@ const ItemActionButtons: React.FC<ItemActionButtonsProps> = ({ item, isAddingNot
   );
 };
 
-export default ItemActionButtons;
+export default ItemActionButtons; 

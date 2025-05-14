@@ -5,10 +5,10 @@ import CheckIcon from '@mui/icons-material/CheckCircleOutline';
 import StarIcon from '@mui/icons-material/Star';
 import RestoreIcon from '@mui/icons-material/Restore';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
-import { BaseListItemCard } from '../base-list/base-list-item-card';
+import { BaseListItemCard } from '../../base-list/base-list-item-card';
 import { ShoppingItemExpanded } from './shopping-item-expanded';
-import { useMainListContext } from './main-list-context';
-import { isItemExpanded } from '../base-list/utility';
+import { useMainListContext } from '../main-list-context';
+import { isItemExpanded } from '../../base-list/utility';
 
 /**
  * ShoppingListItemCard displays a single shopping list item with actions.
@@ -94,4 +94,4 @@ export const ShoppingListItemCard: React.FC<ShoppingListItemCardProps> = ({ item
       renderExpandedContent={<ShoppingItemExpanded item={item} group={group} />}
     />
   );
-};
+}; 

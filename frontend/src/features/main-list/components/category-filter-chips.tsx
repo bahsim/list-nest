@@ -2,7 +2,7 @@ import React from 'react';
 import Chip from '@mui/material/Chip';
 import Box from '@mui/material/Box';
 import { alpha, useTheme } from '@mui/material/styles';
-import type { CategoryFilterChipsProps } from './types';
+import type { CategoryFilterChipsProps } from '../types';
 
 /**
  * Renders filter chips for categories with a brand-style group container and label.

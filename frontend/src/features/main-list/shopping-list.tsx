@@ -2,8 +2,7 @@ import * as React from 'react';
 import type { ShoppingListItem } from '@ui-kit/components/types';
 import type { SxProps, Theme } from '@mui/material/styles';
 import { BaseList } from '../base-list/base-list';
-import { ShoppingListItemCard } from './shopping-list-item-card';
-import { useMainListContext } from './main-list-context';
+import { ShoppingListItemCard } from './components/shopping-list-item-card';
 
 /**
  * ShoppingList component for displaying a list of shopping items using BaseList.
