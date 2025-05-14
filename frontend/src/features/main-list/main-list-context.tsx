@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from 'react';
-import type { MainListItem } from '@ui-kit/components/types';
+import type { MainListItem } from './types';
 
 /**
  * MainListContextProps defines the contract for main list actions and state.

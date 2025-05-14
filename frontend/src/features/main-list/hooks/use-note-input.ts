@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import type { MainListItem } from '@ui-kit/components/types';
+import type { MainListItem } from '../types';
 
 /**
  * useNoteInput manages note input state and handlers for a shopping list item.

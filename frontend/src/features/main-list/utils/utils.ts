@@ -1,4 +1,4 @@
-import type { MainListItem } from '@ui-kit/components/types';
+import type { MainListItem } from '../types';
 
 /**
  * Filter items by selected categories. If none selected, return all.

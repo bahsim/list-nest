@@ -29,7 +29,7 @@ export const MainListItemCard: React.FC<MainListItemCardProps> = ({ item, group 
     handleExpandItem,
     expandedItem,
   } = useMainListContext();
-  const isExpanded = isItemExpanded(expandedItem, group, item);
+  const isExpanded = isItemExpanded(expandedItem, group, item.id);
   const onExpand = () => handleExpandItem(group, item.id);
   const getSwipeVisuals = ({ direction, theme }: { direction: 'left' | 'right'; theme: Theme }) => {
     if (direction === 'left') {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { MainListItem } from '@ui-kit/components/types';
+import type { MainListItem } from './types';
 import type { SxProps, Theme } from '@mui/material/styles';
 import { BaseList } from '../base-list/base-list';
 import { MainListItemCard } from './components/main-list-item-card';

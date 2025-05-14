@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Box, Switch, Divider } from '@mui/material';
-import type { MainListItem } from '@ui-kit/components/types';
+import type { MainListItem } from '../types';
 import { alpha } from '@mui/material/styles';
 import { useCallback } from 'react';
 import AddNoteInput from './add-note-input';
@@ -23,7 +23,7 @@ export interface MainItemExpandedProps {
 
 export const MainItemExpanded: React.FC<MainItemExpandedProps> = ({ item, group }) => {
   const { handleToggleCurrent, handleSaveNote, expandedItem } = useMainListContext();
-  const isExpanded = isItemExpanded(expandedItem, group, item);
+  const isExpanded = isItemExpanded(expandedItem, group, item.id);
 
   const getCostInfo = useCallback((item: MainListItem): string => {
     if (!item.quantity || !item.estimatedPrice) {
