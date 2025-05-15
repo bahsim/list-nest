@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconButton } from '@mui/material';
 
-interface ActionIconButtonProps {
+export interface ActionIconButtonProps {
   onClick: (e: React.MouseEvent) => void;
   color: 'secondary' | 'info' | 'error';
   icon: React.ReactNode;
@@ -9,7 +9,7 @@ interface ActionIconButtonProps {
   [key: string]: unknown;
 }
 
-const ActionIconButton: React.FC<ActionIconButtonProps> = ({
+export const ActionIconButton: React.FC<ActionIconButtonProps> = ({
   onClick,
   color,
   icon,
@@ -33,6 +33,4 @@ const ActionIconButton: React.FC<ActionIconButtonProps> = ({
   >
     {icon}
   </IconButton>
-) : null;
-
-export default ActionIconButton; 
+) : null; 

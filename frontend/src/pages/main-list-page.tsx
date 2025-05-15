@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { AddEditItemModal } from '../features/main-list/components/add-edit-item-modal';
 import Box from '@mui/material/Box';
 import EmptyState from '@ui-kit/components/atomic/empty-state/empty-state';
-import type { MainListItem } from '../features/shared/types';
+import type { MainListItem } from '../entities/list/types';
 import {
   filterByCategory,
   getUniqueCategories,
@@ -14,7 +14,7 @@ import { MainList } from '../features/main-list/main-list';
 import { AddItemFab } from '../features/main-list/components/add-item-fab';
 import { mockUser, mockCategories, mockUnits, mockItems } from '../features/main-list/utils/mock-data';
 import { Typography } from '@mui/material';
-import { MainListProvider } from '../features/shared/main-list-context';
+import { MainListProvider } from '../entities/list/main-list-context';
 import { MainLayout } from '../layouts/main-layout';
 import { isItemExpanded } from '../features/base-list/utility';
 import Dialog from '@mui/material/Dialog';

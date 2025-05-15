@@ -1,6 +1,6 @@
 import React from 'react';
 import { ActivityLog } from './ActivityLog';
-import type { Activity } from '../../types';
+import type { Activity } from 'src/entities/user/types';
 
 export default {
   title: 'organism/ActivityLog',

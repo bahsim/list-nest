@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { User } from '../../types';
+import type { User } from 'src/entities/user/types';
 import styles from './UserProfileDropdown.module.scss';
 
 /**

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { MainListItem } from '../shared/types';
+import type { MainListItem } from '../../entities/list/types';
 import { type Theme } from '@mui/material/styles';
 import CheckIcon from '@mui/icons-material/CheckCircleOutline';
 import StarIcon from '@mui/icons-material/Star';
@@ -7,7 +7,7 @@ import RestoreIcon from '@mui/icons-material/Restore';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import { BaseListItemCard } from '../base-list/base-list-item-card';
 import { MainItemExpanded } from './main-item-expanded';
-import { useMainListContext } from '../shared/main-list-context';
+import { useMainListContext } from '../../entities/list/main-list-context';
 import { isItemExpanded } from '../base-list/utility';
 
 /**

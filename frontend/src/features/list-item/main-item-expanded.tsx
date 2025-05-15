@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { Box, Switch, Divider } from '@mui/material';
-import type { MainListItem } from '../shared/types';
+import type { MainListItem } from '../../entities/list/types';
 import { alpha } from '@mui/material/styles';
 import { useCallback } from 'react';
-import AddNoteInput from './add-note-input';
-import NoteDisplay from './note-display';
+import { AddNoteInput } from '../../shared/ui-kit/add-note-input';
+import { NoteDisplay } from '../../shared/ui-kit/note-display';
 import ItemActionButtons from './item-action-buttons';
-import { useMainListContext } from '../shared/main-list-context';
-import { useNoteInput } from '../shared/hooks/use-note-input';
+import { useMainListContext } from '../../entities/list/main-list-context';
+import { useNoteInput } from '../../entities/list/use-note-input';
 import { isItemExpanded } from '../base-list/utility';
 
 /**
@@ -121,4 +121,4 @@ export const MainItemExpanded: React.FC<MainItemExpandedProps> = ({ item, group 
       {!isAddingNote && <ItemActionButtons item={item} />}
     </Box>
   );
-}; 
+};

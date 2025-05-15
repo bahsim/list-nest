@@ -1,6 +1,6 @@
 import { HeaderBar } from './header-bar';
 import type { Meta, StoryObj } from '@storybook/react';
-import type { User } from '../../types';
+import type { User } from 'src/entities/user/types';
 
 const mockUser: User = {
   id: '1',

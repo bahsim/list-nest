@@ -1,6 +1,3 @@
-/**
- * MainListItem interface for a shopping list item.
- */
 export interface MainListItem {
   id: string;
   name: string;
@@ -18,26 +15,6 @@ export interface MainListItem {
   notes?: string;
 }
 
-/**
- * Props for CategoryFilterChips.
- */
-export interface CategoryFilterChipsProps {
-  categories: string[];
-  selectedCategories: string[];
-  onToggleCategory: (category: string) => void;
-  getCategoryValue: (label: string) => string;
-}
-
-/**
- * Props for AddItemFab.
- */
-export interface AddItemFabProps {
-  onClick: () => void;
-}
-
-/**
- * Input type for adding or editing a shopping list item.
- */
 export interface AddEditItemInput {
   id?: string;
   name: string;
@@ -52,9 +29,6 @@ export interface AddEditItemInput {
   notes?: string;
 }
 
-/**
- * AI suggestion for a shopping list item.
- */
 export interface AISuggestion {
   id: string;
   name: string;

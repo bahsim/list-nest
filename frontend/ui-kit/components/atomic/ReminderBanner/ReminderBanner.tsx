@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { Reminder } from '../../types';
+// import type { Reminder } from '../../types';
 import styles from './ReminderBanner.module.scss';
 
 /**
@@ -11,6 +11,12 @@ export interface ReminderBannerProps {
   reminders: Reminder[];
   onAdd: (reminderId: string) => void;
 }
+
+type Reminder = {
+  id: string;
+  text: string;
+  onAdd: () => void;
+};
 
 export const ReminderBanner: React.FC<ReminderBannerProps> = ({ reminders, onAdd }) => (
   <div className={styles.banner}>

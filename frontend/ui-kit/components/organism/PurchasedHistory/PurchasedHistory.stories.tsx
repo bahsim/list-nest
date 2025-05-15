@@ -1,6 +1,6 @@
 import React from 'react';
 import { PurchasedHistory } from './PurchasedHistory';
-import type { HistoryItem } from '../../types';
+import type { HistoryItem } from 'src/entities/history-list/types';
 import { action } from '@storybook/addon-actions';
 import type { PurchasedHistoryProps } from './PurchasedHistory';
 

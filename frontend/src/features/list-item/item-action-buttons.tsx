@@ -4,9 +4,9 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import RestoreIcon from '@mui/icons-material/Restore';
-import type { MainListItem } from '../shared/types';
-import { useMainListContext } from '../shared/main-list-context';
-import ActionIconButton from './action-icon-button';
+import type { MainListItem } from '../../entities/list/types';
+import { useMainListContext } from '../../entities/list/main-list-context';
+import { ActionIconButton } from '../../shared/ui-kit/action-icon-button';
 
 /**
  * ItemActionButtons renders action buttons for a shopping list item.

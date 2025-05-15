@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { BaseList } from '../base-list/base-list';
 import { HistoryListItemCard } from './history-list-item-card';
-import type { HistoryItem } from './types';
+import type { HistoryItem } from '../../entities/history-list/types';
 
 export interface HistoryListProps {
   items: HistoryItem[];

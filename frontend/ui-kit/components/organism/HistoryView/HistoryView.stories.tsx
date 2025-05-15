@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { HistoryView } from './HistoryView';
 import type { Meta, StoryObj } from '@storybook/react';
-import type { HistoryGroup, HistoryAnalytics } from '../../types';
+import type { HistoryGroup, HistoryAnalytics } from 'src/entities/history-list/types';
 
 const mockGroups: HistoryGroup[] = [
   {

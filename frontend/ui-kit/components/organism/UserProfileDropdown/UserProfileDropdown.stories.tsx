@@ -1,6 +1,6 @@
 import React from 'react';
 import { UserProfileDropdown } from './UserProfileDropdown';
-import type { User } from '../../types';
+import type { User } from 'src/entities/user/types';
 import { action } from '@storybook/addon-actions';
 import type { UserProfileDropdownProps } from './UserProfileDropdown';
 

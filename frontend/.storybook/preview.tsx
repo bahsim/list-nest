@@ -2,7 +2,7 @@ import * as React from 'react';
 import type { Preview } from '@storybook/react'
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import listNestTheme from '../src/theme-listnest';
+import listNestTheme from '../src/shared/theme-listnest';
 
 const preview: Preview = {
   parameters: {

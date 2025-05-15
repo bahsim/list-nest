@@ -1,6 +1,6 @@
 import React from 'react';
 import { AISuggestionCard } from './AISuggestionCard';
-import type { AISuggestion } from '../../types';
+import type { AISuggestion } from 'src/entities/list/types';
 
 export default {
   title: 'atomic/AISuggestionCard',

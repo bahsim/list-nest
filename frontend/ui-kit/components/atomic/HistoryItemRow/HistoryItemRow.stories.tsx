@@ -1,6 +1,7 @@
 import React from 'react';
 import { HistoryItemRow } from './HistoryItemRow';
-import type { HistoryItem, User } from '../../types';
+import type { HistoryItem } from 'src/entities/history-list/types';
+import type { User } from 'src/entities/user/types';
 
 export default {
   title: 'atomic/HistoryItemRow',

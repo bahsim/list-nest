@@ -4,7 +4,8 @@ import { SearchBar } from '../../components/atomic/SearchBar/SearchBar';
 import { FilterBar } from '../../components/molecule/FilterBar/FilterBar';
 import { HistoryView } from '../../components/organism/HistoryView/HistoryView';
 import { FooterNav } from '../../components/organism/footer-nav/footer-nav';
-import type { HistoryGroup, HistoryAnalytics, User } from '../../components/types';
+import type { HistoryGroup, HistoryAnalytics } from 'src/entities/history-list/types';
+import type { User } from 'src/entities/user/types';
 import { SPACING } from '../../tokens/spacing';
 
 export const HistoryPage: React.FC = () => {

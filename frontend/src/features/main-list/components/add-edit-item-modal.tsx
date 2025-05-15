@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import MenuItem from '@mui/material/MenuItem';
-import type { AddEditItemInput, AISuggestion } from '../../shared/types';
+import type { AddEditItemInput, AISuggestion } from '../../../entities/list/types';
 import Autocomplete from '@mui/material/Autocomplete';
 import { FieldDisplay } from '@ui-kit/components/molecule/field-display';
 import { alpha } from '@mui/material/styles';

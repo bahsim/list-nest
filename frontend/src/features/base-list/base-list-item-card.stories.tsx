@@ -8,7 +8,7 @@ export default {
   component: BaseListItemCard,
 };
 
-const getSwipeVisuals = ({ direction, theme }: any) => ({
+const getSwipeVisuals = ({ direction, theme }: { direction: 'left' | 'right'; theme: any }) => ({
   icon: InfoIcon,
   background: direction === 'left' ? theme.palette.error.main : theme.palette.success.main,
 });

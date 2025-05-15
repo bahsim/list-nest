@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import type { MainListItem } from '../../shared/types';
+import type { MainListItem } from './types';
 
 /**
  * useNoteInput manages note input state and handlers for a shopping list item.
@@ -43,4 +43,4 @@ export function useNoteInput(
     saveNote,
     cancelNote,
   };
-}
+} 

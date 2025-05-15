@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { HistoryGroup, HistoryAnalytics } from '../../types';
+import type { HistoryGroup, HistoryAnalytics } from 'src/entities/history-list/types';
 import { AnalyticsSummaryPanel } from '../AnalyticsSummaryPanel/AnalyticsSummaryPanel';
 import styles from './HistoryView.module.scss';
 

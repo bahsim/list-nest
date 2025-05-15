@@ -1,6 +1,12 @@
 import React from 'react';
 import { ReminderBanner } from './ReminderBanner';
-import type { Reminder } from '../../types';
+// import type { Reminder } from '../../types';
+
+type Reminder = {
+  id: string;
+  text: string;
+  onAdd: () => void;
+};
 
 export default {
   title: 'atomic/ReminderBanner',
