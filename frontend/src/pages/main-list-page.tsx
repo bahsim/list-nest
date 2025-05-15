@@ -1,11 +1,11 @@
 import React from 'react';
-import { mockCategories, mockUnits } from '../features/main-list/utils/mock-data';
-import { useMainList } from '../features/main-list/hooks/use-main-list';
-import { MainListWidget } from '../widgets/main-list-widget/main-list-widget';
+import { mockCategories, mockUnits } from '@/features/main-list/utils/mock-data';
+import { useMainList } from '@/features/main-list/hooks/use-main-list';
+import { MainListWidget } from '@/widgets/main-list-widget/main-list-widget';
 import {
   MainListDataProvider,
   useMainListData,
-} from '../features/main-list/providers/main-list-data-provider';
+} from '@/features/main-list/providers/main-list-data-provider';
 
 export const MainListView: React.FC = () => {
   return (

@@ -1,4 +1,4 @@
-import type { MainListItem } from '../../../entities/list/types';
+import type { MainListItem } from '@/entities/list/types';
 
 /**
  * Filter items by selected categories. If none selected, return all.

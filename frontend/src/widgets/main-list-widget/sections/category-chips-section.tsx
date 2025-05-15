@@ -1,5 +1,5 @@
 import React from 'react';
-import { CategoryFilterChips } from '../../../features/main-list/components/category-filter-chips';
+import { CategoryFilterChips } from '@/features/main-list/components/category-filter-chips';
 
 interface CategoryChipsSectionProps {
   show: boolean;

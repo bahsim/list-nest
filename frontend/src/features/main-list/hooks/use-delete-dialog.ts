@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { MainListItem } from '../../../entities/list/types';
+import type { MainListItem } from '@/entities/list/types';
 
 export const useDeleteDialog = (setItems: (fn: (prev: MainListItem[]) => MainListItem[]) => void) => {
   const [deletingItem, setDeletingItem] = useState<MainListItem | null>(null);

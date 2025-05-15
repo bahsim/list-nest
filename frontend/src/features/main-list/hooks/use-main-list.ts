@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import type { MainListItem } from '../../../entities/list/types';
+import type { MainListItem } from '@/entities/list/types';
 import {
   filterByCategory,
   getUniqueCategories,

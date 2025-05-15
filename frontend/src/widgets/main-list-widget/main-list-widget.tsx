@@ -1,10 +1,10 @@
 import React from 'react';
 import { EmptyState } from '@ui-kit/components/atomic/empty-state/empty-state';
-import { AddItemFab } from '../../features/main-list/components/add-item-fab';
-import { AddEditItemModal } from '../../features/main-list/components/add-edit-item-modal';
-import { RestoreDialog } from '../../features/main-list/components/restore-dialog';
-import { DeleteDialog } from '../../features/main-list/components/delete-dialog';
-import { MainListProvider } from '../../entities/list/main-list-context';
+import { AddItemFab } from '@/features/main-list/components/add-item-fab';
+import { AddEditItemModal } from '@/features/main-list/components/add-edit-item-modal';
+import { RestoreDialog } from '@/features/main-list/components/restore-dialog';
+import { DeleteDialog } from '@/features/main-list/components/delete-dialog';
+import { MainListProvider } from '@/entities/list/main-list-context';
 import { CurrentGroup } from './sections/current-group';
 import { AllGroup } from './sections/all-group';
 import { CategoryChipsSection } from './sections/category-chips-section';

@@ -4,8 +4,8 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import RestoreIcon from '@mui/icons-material/Restore';
-import type { MainListItem } from '../../entities/list/types';
-import { useMainListContext } from '../../entities/list/main-list-context';
+import type { MainListItem } from '@/entities/list/types';
+import { useMainListContext } from '@/entities/list/main-list-context';
 import { ActionIconButton } from '@ui-kit/components/atomic/action-icon-button';
 
 /**

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import type { AISuggestion } from '../../../../entities/list/types';
+import type { AISuggestion } from '@/entities/list/types';
 
 interface AISuggestionsFieldProps {
   aiSuggestions: AISuggestion[];

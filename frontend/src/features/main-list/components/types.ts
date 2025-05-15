@@ -1,4 +1,4 @@
-import type { AddEditItemInput, AISuggestion } from '../../../entities/list/types';
+import type { AddEditItemInput, AISuggestion } from '@/entities/list/types';
 
 export interface AddEditItemModalProps {
   item: AddEditItemInput | null;

@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { Box, Switch, Divider } from '@mui/material';
-import type { MainListItem } from '../../entities/list/types';
+import type { MainListItem } from '@/entities/list/types';
 import { alpha } from '@mui/material/styles';
 import { useCallback } from 'react';
 import { AddNoteInput } from '@ui-kit/components/molecule/add-note-input';
 import { NoteDisplay } from '@ui-kit/components/molecule/note-display';
 import { ItemActionButtons } from './item-action-buttons';
-import { useMainListContext } from '../../entities/list/main-list-context';
-import { useNoteInput } from '../../entities/list/use-note-input';
-import { isItemExpanded } from '../base-list/utility';
+import { useMainListContext } from '@/entities/list/main-list-context';
+import { useNoteInput } from '@/entities/list/use-note-input';
+import { isItemExpanded } from '@/entities/list/base-list/utility';
 
 /**
  * MainItemExpanded displays expanded details and actions for a shopping list item.

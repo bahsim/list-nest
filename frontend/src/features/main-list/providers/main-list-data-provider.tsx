@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from 'react';
-import type { MainListItem } from '../../../entities/list/types';
+import type { MainListItem } from '@/entities/list/types';
 import { mockItems } from '../utils/mock-data';
 
 interface MainListDataContextProps {

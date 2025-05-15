@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { AddEditItemInput, AISuggestion } from '../../../entities/list/types';
+import type { AddEditItemInput, AISuggestion } from '@/entities/list/types';
 
 export const useAddEditItemModal = (item: AddEditItemInput | null, units: string[]) => {
   const DEFAULT_ITEM_VALUES = React.useMemo(() => ({

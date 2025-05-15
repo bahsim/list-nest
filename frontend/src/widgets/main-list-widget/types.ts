@@ -1,4 +1,4 @@
-import type { MainListItem } from '../../entities/list/types';
+import type { MainListItem } from '@/entities/list/types';
 
 export interface ListBag {
   items: MainListItem[];

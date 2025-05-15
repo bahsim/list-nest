@@ -1,5 +1,5 @@
-import type { MainListItem } from '../../../entities/list/types';
-import type { User } from '../../../entities/user/types';
+import type { MainListItem } from '@/entities/list/types';
+import type { User } from '@/entities/user/types';
 
 export const mockUser: User = {
   id: '1',

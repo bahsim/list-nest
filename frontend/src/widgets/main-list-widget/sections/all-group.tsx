@@ -1,6 +1,6 @@
 import React from 'react';
-import { MainList } from '../../../features/main-list/main-list';
-import type { MainListItem } from '../../../entities/list/types';
+import { MainList } from '@/features/main-list/main-list';
+import type { MainListItem } from '@/entities/list/types';
 import { GroupHeader } from './group-header';
 
 interface AllGroupProps {

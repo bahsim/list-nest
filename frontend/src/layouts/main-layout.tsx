@@ -1,7 +1,7 @@
 import React from 'react';
-import { HeaderBar } from '../widgets/header-bar';
-import { FooterNav } from '../widgets/footer-nav';
-import type { User } from '../entities/user/types';
+import { HeaderBar } from '@/widgets/header-bar';
+import { FooterNav } from '@/widgets/footer-nav';
+import type { User } from '@/entities/user/types';
 import Box from '@mui/material/Box';
 
 /**
