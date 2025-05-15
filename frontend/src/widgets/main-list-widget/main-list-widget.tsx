@@ -1,15 +1,14 @@
 import React from 'react';
-import Box from '@mui/material/Box';
 import { EmptyState } from '@ui-kit/components/atomic/empty-state/empty-state';
-import { Typography } from '@mui/material';
-import { CategoryFilterChips } from '../features/main-list/components/category-filter-chips';
-import { MainList } from '../features/main-list/main-list';
-import { AddItemFab } from '../features/main-list/components/add-item-fab';
-import { AddEditItemModal } from '../features/main-list/components/add-edit-item-modal';
-import { RestoreDialog } from '../features/main-list/components/restore-dialog';
-import { DeleteDialog } from '../features/main-list/components/delete-dialog';
-import { MainListProvider } from '../entities/list/main-list-context';
-import type { MainListItem } from '../entities/list/types';
+import { AddItemFab } from '../../features/main-list/components/add-item-fab';
+import { AddEditItemModal } from '../../features/main-list/components/add-edit-item-modal';
+import { RestoreDialog } from '../../features/main-list/components/restore-dialog';
+import { DeleteDialog } from '../../features/main-list/components/delete-dialog';
+import { MainListProvider } from '../../entities/list/main-list-context';
+import type { MainListItem } from '../../entities/list/types';
+import { CurrentGroup } from './sections/current-group';
+import { AllGroup } from './sections/all-group';
+import { CategoryChipsSection } from './sections/category-chips-section';
 
 const MODAL_TITLES = {
   add: 'Add Item',
@@ -88,15 +87,13 @@ export const MainListWidget: React.FC<MainListWidgetProps> = ({
       handleExpandItem: list.handleExpandItem,
     }}
   >
-    {/* Category Filter Chips */}
-    {list.items.length > 0 && list.uniqueCategories.length > 1 && (
-      <CategoryFilterChips
-        categories={list.uniqueCategories}
-        selectedCategories={list.selectedCategories}
-        onToggleCategory={list.onToggleCategory}
-        getCategoryValue={list.getCategoryValue}
-      />
-    )}
+    <CategoryChipsSection
+      show={list.items.length > 0 && list.uniqueCategories.length > 1}
+      uniqueCategories={list.uniqueCategories}
+      selectedCategories={list.selectedCategories}
+      onToggleCategory={list.onToggleCategory}
+      getCategoryValue={list.getCategoryValue}
+    />
     {list.items.length === 0 ? (
       <EmptyState
         title="No items yet"
@@ -107,69 +104,15 @@ export const MainListWidget: React.FC<MainListWidgetProps> = ({
       />
     ) : (
       <>
-        {/* Current Group */}
         {list.filteredCurrentItems.length > 0 && (
-          <>
-            <Box
-              sx={{
-                width: '100%',
-                maxWidth: 600,
-                px: 1.5,
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                mt: 0.5,
-                mb: 0.5,
-              }}
-            >
-              <Typography variant="subtitle2" color="text.secondary">
-                Current
-              </Typography>
-              <Typography variant="subtitle2" color="text.secondary">
-                ${list.getGroupSum(list.filteredCurrentItems)}
-              </Typography>
-            </Box>
-            <MainList
-              items={list.filteredCurrentItems}
-              sx={{ width: '100%', maxWidth: 600, px: 1 }}
-              group="current"
-            />
-          </>
+          <CurrentGroup items={list.filteredCurrentItems} getGroupSum={list.getGroupSum} />
         )}
-        {/* All Group */}
         {list.filteredItems.length > 0 && (
-          <>
-            <Box
-              sx={{
-                width: '100%',
-                maxWidth: 600,
-                px: 1.5,
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                mt: 0.5,
-                mb: 0.5,
-              }}
-            >
-              <Typography variant="subtitle2" color="text.secondary">
-                All
-              </Typography>
-              <Typography variant="subtitle2" color="text.secondary">
-                ${list.getGroupSum(list.filteredItems)}
-              </Typography>
-            </Box>
-            <MainList
-              items={list.filteredItems}
-              sx={{ width: '100%', maxWidth: 600, px: 1 }}
-              group="all"
-            />
-          </>
+          <AllGroup items={list.filteredItems} getGroupSum={list.getGroupSum} />
         )}
       </>
     )}
-    {/* FAB */}
     {list.items.length > 0 && <AddItemFab onClick={list.handleNewItem} />}
-    {/* Modal */}
     {modal.isAddEditModalOpen && (
       <AddEditItemModal
         onSave={modal.handleSaveItem}
@@ -181,14 +124,12 @@ export const MainListWidget: React.FC<MainListWidgetProps> = ({
         actionLabel={MODAL_ACTION_LABELS[modal.modalMode]}
       />
     )}
-    {/* Restore Confirmation Dialog */}
     <RestoreDialog
       open={dialogs.isRestoreDialogOpen}
       onClose={dialogs.cancelRestoreItem}
       onConfirm={dialogs.confirmRestoreItem}
       item={dialogs.restoringItem}
     />
-    {/* Delete Confirmation Dialog */}
     <DeleteDialog
       open={dialogs.isDeleteDialogOpen}
       onClose={dialogs.cancelDeleteItem}
@@ -196,4 +137,4 @@ export const MainListWidget: React.FC<MainListWidgetProps> = ({
       item={dialogs.deletingItem}
     />
   </MainListProvider>
-);
+); 
