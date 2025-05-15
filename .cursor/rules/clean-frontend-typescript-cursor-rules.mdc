@@ -97,7 +97,7 @@ alwaysApply: true
 - CSP headers. Validate all external data.
 - Releases: semver, tag, maintain CHANGELOG.
 - Onboarding: keep guide and ADRs up to date.
-
+- No default exports. Use named exports only.
 
 
 
