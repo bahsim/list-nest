@@ -5,69 +5,11 @@ import { AddEditItemModal } from '../../features/main-list/components/add-edit-i
 import { RestoreDialog } from '../../features/main-list/components/restore-dialog';
 import { DeleteDialog } from '../../features/main-list/components/delete-dialog';
 import { MainListProvider } from '../../entities/list/main-list-context';
-import type { MainListItem } from '../../entities/list/types';
 import { CurrentGroup } from './sections/current-group';
 import { AllGroup } from './sections/all-group';
 import { CategoryChipsSection } from './sections/category-chips-section';
-
-const MODAL_TITLES = {
-  add: 'Add Item',
-  edit: 'Edit Item',
-  complete: 'Complete Item',
-} as const;
-const MODAL_ACTION_LABELS = {
-  add: 'Create',
-  edit: 'Save',
-  complete: 'Complete',
-} as const;
-
-interface ListBag {
-  items: MainListItem[];
-  uniqueCategories: string[];
-  selectedCategories: string[];
-  onToggleCategory: (category: string) => void;
-  getCategoryValue: (cat: string) => string;
-  filteredItems: MainListItem[];
-  filteredCurrentItems: MainListItem[];
-  getGroupSum: (items: MainListItem[]) => number;
-  expandedItem: any;
-  handleEditItem: (item: MainListItem) => void;
-  handleDeleteItem: (item: MainListItem) => void;
-  handleToggleBought: (item: MainListItem) => void;
-  handleToggleCurrent: (item: MainListItem) => void;
-  handleRestoreItem: (item: MainListItem) => void;
-  handleSaveNote: (id: string, note: string) => void;
-  handleExpandItem: (group: 'current' | 'all', itemId: string) => void;
-  handleNewItem: () => void;
-}
-interface ModalBag {
-  isAddEditModalOpen: boolean;
-  handleSaveItem: (input: any) => void;
-  handleCancelAdd: () => void;
-  editingItem: MainListItem | null;
-  modalMode: 'add' | 'edit' | 'complete';
-}
-interface DialogsBag {
-  restoringItem: MainListItem | null;
-  isRestoreDialogOpen: boolean;
-  confirmRestoreItem: () => void;
-  cancelRestoreItem: () => void;
-  deletingItem: MainListItem | null;
-  isDeleteDialogOpen: boolean;
-  confirmDeleteItem: () => void;
-  cancelDeleteItem: () => void;
-}
-interface MockDataBag {
-  mockCategories: string[];
-  mockUnits: string[];
-}
-
-interface MainListWidgetProps {
-  list: ListBag;
-  modal: ModalBag;
-  dialogs: DialogsBag;
-  mockData: MockDataBag;
-}
+import { MODAL_TITLES, MODAL_ACTION_LABELS } from './constants';
+import type { MainListWidgetProps } from './types';
 
 export const MainListWidget: React.FC<MainListWidgetProps> = ({
   list,
@@ -137,4 +79,4 @@ export const MainListWidget: React.FC<MainListWidgetProps> = ({
       item={dialogs.deletingItem}
     />
   </MainListProvider>
-); 
+);
