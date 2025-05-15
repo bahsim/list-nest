@@ -1,11 +1,12 @@
 import React from 'react';
-import { Box, IconButton } from '@mui/material';
+import { Box } from '@mui/material';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import RestoreIcon from '@mui/icons-material/Restore';
 import type { MainListItem } from '../types';
 import { useMainListContext } from '../main-list-context';
+import ActionIconButton from './action-icon-button';
 
 /**
  * ItemActionButtons renders action buttons for a shopping list item.
@@ -17,19 +18,32 @@ interface ItemActionButtonsProps {
 }
 
 const ItemActionButtons: React.FC<ItemActionButtonsProps> = ({ item }) => {
-  const { handleEditItem, handleDeleteItem, handleToggleBought } = useMainListContext();
+  const { handleEditItem, handleDeleteItem, handleToggleBought, handleRestoreItem } =
+    useMainListContext();
+
   const handleToggleBoughtClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    handleToggleBought(item);
+    if (item.isBought) {
+      handleRestoreItem(item);
+    } else {
+      handleToggleBought(item);
+    }
   };
+
   const handleEditClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     handleEditItem(item);
   };
+
   const handleDeleteClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    handleDeleteItem(item);
+    if (item.isDeleted) {
+      handleRestoreItem(item);
+    } else {
+      handleDeleteItem(item);
+    }
   };
+
   return (
     <Box
       sx={{
@@ -40,70 +54,26 @@ const ItemActionButtons: React.FC<ItemActionButtonsProps> = ({ item }) => {
         width: '100%',
       }}
     >
-      {/* Complete */}
-      {!item.isDeleted && (
-        <IconButton
-          onClick={handleToggleBoughtClick}
-          color="secondary"
-          size="medium"
-          sx={{
-            width: 40,
-            height: 40,
-            borderRadius: '50%',
-            background: (theme) => theme.palette.secondary.light,
-            '&:hover': {
-              background: (theme) => theme.palette.secondary.light,
-            },
-          }}
-        >
-          {item.isBought ? (
-            <RestoreIcon sx={{ color: '#fff' }} />
-          ) : (
-            <CheckCircleOutlineIcon sx={{ color: '#fff' }} />
-          )}
-        </IconButton>
-      )}
-      {/* Edit */}
-      {!item.isBought && !item.isDeleted && (
-        <IconButton
-          onClick={handleEditClick}
-          color="info"
-          size="medium"
-          sx={{
-            width: 40,
-            height: 40,
-            borderRadius: '50%',
-            background: (theme) => theme.palette.info.light,
-            '&:hover': {
-              background: (theme) => theme.palette.info.light,
-            },
-          }}
-        >
-          <EditIcon sx={{ color: '#fff' }} />
-        </IconButton>
-      )}
-      {/* Delete */}
-      {!item.isBought && (
-        <IconButton
-          onClick={handleDeleteClick}
-          color="error"
-          size="medium"
-          sx={{
-            width: 40,
-            height: 40,
-            borderRadius: '50%',
-            background: (theme) => theme.palette.error.light,
-          }}
-        >
-          {item.isDeleted ? (
-            <RestoreIcon sx={{ color: '#fff' }} />
-          ) : (
-            <DeleteIcon sx={{ color: '#fff' }} />
-          )}
-        </IconButton>
-      )}
+      <ActionIconButton
+        onClick={handleToggleBoughtClick}
+        color="secondary"
+        icon={item.isBought ? <RestoreIcon sx={{ color: '#fff' }} /> : <CheckCircleOutlineIcon sx={{ color: '#fff' }} />}
+        show={!item.isDeleted}
+      />
+      <ActionIconButton
+        onClick={handleEditClick}
+        color="info"
+        icon={<EditIcon sx={{ color: '#fff' }} />}
+        show={!item.isBought && !item.isDeleted}
+      />
+      <ActionIconButton
+        onClick={handleDeleteClick}
+        color="error"
+        icon={item.isDeleted ? <RestoreIcon sx={{ color: '#fff' }} /> : <DeleteIcon sx={{ color: '#fff' }} />}
+        show={!item.isBought}
+      />
     </Box>
   );
 };
 
-export default ItemActionButtons; 
+export default ItemActionButtons;

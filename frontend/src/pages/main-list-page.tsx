@@ -17,6 +17,11 @@ import { Typography } from '@mui/material';
 import { MainListProvider } from '../features/main-list/main-list-context';
 import { MainLayout } from '../layouts/main-layout';
 import { isItemExpanded } from '../features/base-list/utility';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import Button from '@mui/material/Button';
 
 const MODAL_TITLES = {
   add: 'Add Item',
@@ -40,6 +45,8 @@ const MainListView: React.FC = () => {
   } | null>(null);
   const [editingItem, setEditingItem] = useState<MainListItem | null>(null);
   const [modalMode, setModalMode] = useState<'add' | 'edit' | 'complete'>('add');
+  const [restoringItem, setRestoringItem] = useState<MainListItem | null>(null);
+  const [isRestoreDialogOpen, setIsRestoreDialogOpen] = useState(false);
 
   // Handlers
   const handleNewItem = (): void => {
@@ -92,7 +99,22 @@ const MainListView: React.FC = () => {
     setModalMode('complete');
   };
   const handleToggleCurrent = (item: MainListItem): void => {};
-  const handleRestoreItem = (item: MainListItem): void => {};
+  const handleRestoreItem = (item: MainListItem): void => {
+    setRestoringItem(item);
+    setIsRestoreDialogOpen(true);
+  };
+  const confirmRestoreItem = () => {
+    if (restoringItem) {
+      // TODO: Add real restore logic here
+      // Example: setItems(prev => prev.map(i => i.id === restoringItem.id ? { ...i, isDeleted: false } : i));
+    }
+    setIsRestoreDialogOpen(false);
+    setRestoringItem(null);
+  };
+  const cancelRestoreItem = () => {
+    setIsRestoreDialogOpen(false);
+    setRestoringItem(null);
+  };
   const handleSaveNote = (id: string, note: string): void => {};
 
   // Derived data
@@ -211,6 +233,21 @@ const MainListView: React.FC = () => {
             actionLabel={MODAL_ACTION_LABELS[modalMode] || ''}
           />
         )}
+        {/* Restore Confirmation Dialog */}
+        <Dialog open={isRestoreDialogOpen} onClose={cancelRestoreItem}>
+          <DialogTitle>Restore this item?</DialogTitle>
+          <DialogContent>
+            Are you sure you want to restore
+            {restoringItem && (
+              <strong> {restoringItem.name}</strong>
+            )}
+            ? This will move the item back to your active list.
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={cancelRestoreItem} variant="outlined">Cancel</Button>
+            <Button onClick={confirmRestoreItem} variant="contained" color="primary">Restore</Button>
+          </DialogActions>
+        </Dialog>
       </MainListProvider>
     </MainLayout>
   );

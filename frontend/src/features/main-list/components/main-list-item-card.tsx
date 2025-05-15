@@ -73,7 +73,7 @@ export const MainListItemCard: React.FC<MainListItemCardProps> = ({ item, group 
     if (item.isDeleted) {
       handleRestoreItem(item);
     } else if (item.isBought) {
-      handleToggleBought(item);
+      handleRestoreItem(item);
     } else {
       handleToggleBought(item);
     }
