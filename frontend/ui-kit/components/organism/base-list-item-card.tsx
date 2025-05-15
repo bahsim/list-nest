@@ -261,38 +261,48 @@ export const BaseListItemCard: React.FC<BaseListItemCardProps> = React.memo(
         >
           <CardContent
             sx={{
-              width: '100%',
-              p: 1,
-              pb: 1,
+              flex: 1,
               display: 'flex',
-              alignItems: 'flex-start',
-              gap: 1,
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              width: '100%',
+              p: `${theme.spacing(1)} !important`,
             }}
           >
-            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', pt: 0.5 }}>
-              {checked ? (
-                <CheckCircleOutlineIcon color="success" />
+            <Typography
+              variant={isExpanded ? 'subtitle1' : 'body1'}
+              sx={{
+                px: 1,
+                textDecoration: (disabled || checked) ? 'line-through' : 'none',
+                fontWeight: highlighted ? 700 : 400,
+                display: 'flex',
+                alignItems: 'center',
+                gap: 1,
+              }}
+            >
+              {/* Icon for bought, deleted, or active (placeholder) */}
+              {disabled ? (
+                <CancelOutlinedIcon sx={{ color: theme.palette.error.main, fontSize: 20 }} />
+              ) : checked ? (
+                <CheckCircleOutlineIcon sx={{ color: theme.palette.secondary.main, fontSize: 20 }} />
               ) : (
-                <RadioButtonUncheckedIcon color="disabled" />
+                <RadioButtonUncheckedIcon sx={{ color: theme.palette.text.secondary, fontSize: 20 }} />
               )}
-              {disabled && <CancelOutlinedIcon color="error" sx={{ mt: 0.5 }} />}
-            </Box>
-            <Box sx={{ flex: 1, minWidth: 0 }}>
-              <Typography variant="subtitle1" noWrap sx={{ fontWeight: 600 }}>
-                {title}
+              {title}
+            </Typography>
+            {secondaryText && (
+              <Typography
+                variant="body1"
+                color="text.primary"
+                sx={{ ml: 2, px: 1, textAlign: 'right', minWidth: 75 }}
+              >
+                {secondaryText}
               </Typography>
-              {secondaryText && (
-                <Typography variant="body2" color="text.secondary" noWrap>
-                  {secondaryText}
-                </Typography>
-              )}
-              {renderExpandedContent && (
-                <Collapse in={isExpanded} timeout="auto" unmountOnExit>
-                  {renderExpandedContent}
-                </Collapse>
-              )}
-            </Box>
+            )}
           </CardContent>
+          <Collapse in={isExpanded} timeout="auto" sx={{ width: '100%' }} unmountOnExit>
+            {renderExpandedContent}
+          </Collapse>
         </Card>
       </Box>
     );
