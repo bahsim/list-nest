@@ -1,7 +1,7 @@
 import React from 'react';
 import { HeaderBar } from '@ui-kit/components/organism/header-bar/header-bar';
 import { FooterNav } from '@ui-kit/components/organism/footer-nav/footer-nav';
-import type { User } from '@ui-kit/components/types';
+import type { User } from '../entities/user/types';
 import Box from '@mui/material/Box';
 
 /**

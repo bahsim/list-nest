@@ -2,8 +2,13 @@ import React from 'react';
 import Chip from '@mui/material/Chip';
 import Box from '@mui/material/Box';
 import { alpha, useTheme } from '@mui/material/styles';
-import type { CategoryFilterChipsProps } from '../../shared/types';
 
+interface CategoryFilterChipsProps {
+  categories: string[];
+  selectedCategories: string[];
+  onToggleCategory: (category: string) => void;
+  getCategoryValue: (category: string) => string;
+}
 /**
  * Renders filter chips for categories with a brand-style group container and label.
  */

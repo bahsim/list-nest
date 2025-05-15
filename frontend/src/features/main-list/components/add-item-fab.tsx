@@ -1,7 +1,13 @@
 import React from 'react';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
-import type { AddItemFabProps } from '../../shared/types';
+
+/**
+ * Props for AddItemFab.
+ */
+export interface AddItemFabProps {
+  onClick: () => void;
+}
 
 /**
  * Floating action button for adding an item.

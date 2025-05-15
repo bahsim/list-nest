@@ -9,6 +9,10 @@ export interface HistoryItem {
   purchasedAt: Date;
   checkedOffBy: string;
   isDeleted: boolean;
+  isRestored: boolean;
+  notes: string;
+  unit: string;
+  date: string;
 }
 
 export interface HistoryGroup {
