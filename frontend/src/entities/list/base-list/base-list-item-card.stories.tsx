@@ -1,5 +1,5 @@
 import React from 'react';
-import { BaseListItemCard } from '../../widgets/base-list-item-card';
+import { BaseListItemCard } from '@/widgets/base-list-item-card';
 import { Box } from '@mui/material';
 import InfoIcon from '@mui/icons-material/Info';
 
