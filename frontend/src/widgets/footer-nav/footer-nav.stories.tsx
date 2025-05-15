@@ -1,7 +1,6 @@
 import React from 'react';
-import { FooterNav } from './footer-nav';
+import { FooterNav, type FooterNavProps } from './footer-nav';
 import { action } from '@storybook/addon-actions';
-import type { FooterNavProps } from './footer-nav';
 
 export default {
   title: 'organism/FooterNav',

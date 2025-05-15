@@ -5,7 +5,6 @@ import ListAltIcon from '@mui/icons-material/ListAltRounded';
 import BarChartIcon from '@mui/icons-material/BarChartRounded';
 import HistoryIcon from '@mui/icons-material/HistoryRounded';
 import SettingsIcon from '@mui/icons-material/SettingsRounded';
-import styles from './footer-nav.module.scss';
 import Box from '@mui/material/Box';
 import type { SxProps, Theme } from '@mui/material/styles';
 
@@ -44,13 +43,16 @@ export const FooterNav: React.FC<FooterNavProps> = ({ activeTab, onTabChange, sx
     }}
   >
     <BottomNavigation
-      className={styles.footerNav}
       value={activeTab}
       onChange={(_, newValue) => onTabChange(newValue)}
       showLabels
       sx={{
         borderTop: theme => `1px solid ${theme.palette.divider}`,
         bgcolor: theme => theme.palette.background.default,
+        px: 0,
+        py: 0,
+        minHeight: 56,
+        boxShadow: theme => theme.shadows[1],
       }}
     >
       {tabs.map(tab => (

@@ -4,7 +4,6 @@ import Toolbar from '@mui/material/Toolbar';
 import Box from '@mui/material/Box';
 // import { Avatar } from '../../atomic/avatar';
 import Typography from '@mui/material/Typography';
-import styles from './header-bar.module.scss';
 
 // NOTE: Update the logo path as needed for your build setup. Assumes '/apple-touch-icon.png' in public root.
 const logo = '/favicon-96x96.png';
@@ -28,13 +27,20 @@ export interface HeaderBarProps {
 export const HeaderBar: React.FC<HeaderBarProps> = ({ user, onSettings }) => (
   <Box sx={{ position: 'absolute', top: 0, left: 0, right: 0, height: 56, zIndex: 2 }}>
     <AppBar position="static" elevation={0} color="default" sx={{ borderBottom: theme => `1px solid ${theme.palette.divider}` }}>
-      <Toolbar className={styles.headerBar__toolbar}>
-        <div className={styles.headerBar__left}>
+      <Toolbar
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          minHeight: 56,
+        }}
+      >
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
           <img src={logo} alt="App Logo" style={{ width: 54, height: 54, borderRadius: 10 }} />
           <Typography variant="h6" color="inherit" sx={{ fontWeight: 700, letterSpacing: 1 }}>
             ListNest
           </Typography>
-        </div>
+        </Box>
         {/* <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           {user.avatarUrl ? (
             <Avatar name={user.name} avatarUrl={user.avatarUrl} size={32} />

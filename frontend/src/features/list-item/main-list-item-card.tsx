@@ -5,7 +5,7 @@ import CheckIcon from '@mui/icons-material/CheckCircleOutline';
 import StarIcon from '@mui/icons-material/Star';
 import RestoreIcon from '@mui/icons-material/Restore';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
-import { BaseListItemCard } from '@ui-kit/components/organism/base-list-item-card';
+import { BaseListItemCard } from '../../widgets/base-list-item-card';
 import { MainItemExpanded } from './main-item-expanded';
 import { useMainListContext } from '../../entities/list/main-list-context';
 import { isItemExpanded } from '../base-list/utility';
