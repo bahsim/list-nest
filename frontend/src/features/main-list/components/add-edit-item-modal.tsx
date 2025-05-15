@@ -88,19 +88,6 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
     category: false,
   });
 
-  // // Open fields with values on mount (edit mode)
-  // React.useEffect(() => {
-  //   if (item) {
-  //     setOpenFields({
-  //       name: !item.name,
-  //       quantity: !Number.isFinite(item.quantity),
-  //       estimatedPrice: !Number.isFinite(item.estimatedPrice),
-  //       notes: !item.notes?.trim(),
-  //       category: !item.category,
-  //     });
-  //   }
-  // }, [item]);
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFields({ ...fields, [e.target.name]: e.target.value });
   };

@@ -1,0 +1,1 @@
+export const SWIPE_ACTION_THRESHOLD = 80; 
