@@ -19,6 +19,10 @@ const mockItem: HistoryItem = {
   checkedOffBy: 'user-1',
   isBought: true,
   isDeleted: false,
+  isRestored: false,
+  notes: 'This is a note for the item, it can be very long and contain a lot of information',
+  unit: 'l',
+  date: '2021-01-01',
 };
 
 const mockUser: User = {

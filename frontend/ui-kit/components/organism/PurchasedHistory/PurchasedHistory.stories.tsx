@@ -21,6 +21,10 @@ const mockItems: HistoryItem[] = [
     isDeleted: false,
     purchasedAt: new Date(),
     checkedOffBy: 'user-1',
+    isRestored: false,
+    notes: 'This is a note for the item, it can be very long and contain a lot of information',
+    unit: 'l',
+    date: '2021-01-01',
   },
   {
     id: 'h2',
@@ -33,6 +37,10 @@ const mockItems: HistoryItem[] = [
     isDeleted: false,
     purchasedAt: new Date(),
     checkedOffBy: 'user-2',
+    isRestored: false,
+    notes: 'This is a note for the item, it can be very long and contain a lot of information',
+    unit: 'pcs',
+    date: '2021-01-01',
   },
 ];
 
