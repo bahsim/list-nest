@@ -11,28 +11,101 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 
+/**
+ * Usage Example:
+ * <BaseListItemCard
+ *   title="Milk"
+ *   checked={true}
+ *   highlighted={false}
+ *   onToggle={() => {}}
+ *   onClick={() => {}}
+ *   onSwipeLeft={() => {}}
+ *   onSwipeRight={() => {}}
+ *   getSwipeVisuals={({ direction, theme }) => ({ icon: MyIcon, background: theme.palette.error.main })}
+ * />
+ */
+
+/**
+ * Props for BaseListItemCard.
+ */
 export interface BaseListItemCardProps {
+  /**
+   * Main title or label.
+   */
   readonly title: string;
+  /**
+   * Optional secondary text.
+   */
   readonly secondaryText?: string;
+  /**
+   * Whether the item is checked (e.g., bought).
+   */
   readonly checked?: boolean;
+  /**
+   * Whether the item is highlighted (e.g., current).
+   */
   readonly highlighted?: boolean;
+  /**
+   * Whether the item is disabled (e.g., deleted).
+   */
   readonly disabled?: boolean;
+  /**
+   * Handler for checkbox toggle.
+   */
   readonly onToggle?: () => void;
+  /**
+   * Handler for main click/edit.
+   */
   readonly onClick?: () => void;
+  /**
+   * Handler for swipe left.
+   */
   readonly onSwipeLeft?: () => void;
+  /**
+   * Handler for swipe right.
+   */
   readonly onSwipeRight?: () => void;
+  /**
+   * Function to get swipe visuals (icon component, background) based on swipe state.
+   */
   readonly getSwipeVisuals?: (args: { direction: 'left' | 'right'; theme: Theme }) => {
     icon: React.ElementType;
     background: string;
   };
+  /**
+   * Optional style overrides.
+   */
   readonly sx?: SxProps<Theme>;
+  /**
+   * Whether the card is expanded to show extra content (controlled mode only).
+   */
   readonly isExpanded: boolean;
+  /**
+   * Handler to expand/collapse the card (controlled mode only).
+   */
   readonly onExpand: () => void;
+  /**
+   * Optional render prop for expanded content below the card content.
+   */
   readonly renderExpandedContent?: React.ReactNode;
 }
 
+/**
+ * Minimum swipe distance in pixels to trigger swipe action.
+ */
 export const SWIPE_ACTION_THRESHOLD = 80;
+/**
+ * Alpha value for highlighted background (0.13 ~ 22 hex).
+ */
 
+/**
+ * Custom hook to encapsulate swipe logic for list item cards.
+ * @param onSwipeLeft - Handler for swipe left action.
+ * @param onSwipeRight - Handler for swipe right action.
+ * @param getSwipeVisuals - Function to get swipe visuals.
+ * @param theme - Current theme.
+ * @returns { translateX, swipeHandlers, absX, actionIcon, actionBg }
+ */
 function useListItemSwipe({
   onSwipeLeft,
   onSwipeRight,
@@ -83,6 +156,9 @@ function useListItemSwipe({
   return { translateX, swipeHandlers, absX, actionIcon, actionBg };
 }
 
+/**
+ * A generic, dumb list item card for use in lists. Handles layout, calls handlers, no business logic.
+ */
 export const BaseListItemCard: React.FC<BaseListItemCardProps> = React.memo(
   ({
     title,
@@ -183,29 +259,52 @@ export const BaseListItemCard: React.FC<BaseListItemCardProps> = React.memo(
           }}
           onClick={handleCardClick}
         >
-          <CardContent sx={{ width: '100%', p: 1, pb: 1, display: 'flex', alignItems: 'center', gap: 1 }}>
-            <Box sx={{ flex: 1, minWidth: 0 }}>
-              <Typography variant="subtitle1" noWrap sx={{ fontWeight: 600 }}>
-                {title}
-              </Typography>
-              {secondaryText && (
-                <Typography variant="body2" color="text.secondary" noWrap>
-                  {secondaryText}
-                </Typography>
+          <CardContent
+            sx={{
+              flex: 1,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              width: '100%',
+              p: `${theme.spacing(1)} !important`,
+            }}
+          >
+            <Typography
+              variant={isExpanded ? 'subtitle1' : 'body1'}
+              sx={{
+                px: 1,
+                textDecoration: (disabled || checked) ? 'line-through' : 'none',
+                fontWeight: highlighted ? 700 : 400,
+                display: 'flex',
+                alignItems: 'center',
+                gap: 1,
+              }}
+            >
+              {/* Icon for bought, deleted, or active (placeholder) */}
+              {disabled ? (
+                <CancelOutlinedIcon sx={{ color: theme.palette.error.main, fontSize: 20 }} />
+              ) : checked ? (
+                <CheckCircleOutlineIcon sx={{ color: theme.palette.secondary.main, fontSize: 20 }} />
+              ) : (
+                <RadioButtonUncheckedIcon sx={{ color: theme.palette.text.secondary, fontSize: 20 }} />
               )}
-            </Box>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-              {checked ? <CheckCircleOutlineIcon color="success" /> : <RadioButtonUncheckedIcon color="disabled" />}
-              {disabled && <CancelOutlinedIcon color="error" />}
-            </Box>
+              {title}
+            </Typography>
+            {secondaryText && (
+              <Typography
+                variant="body1"
+                color="text.primary"
+                sx={{ ml: 2, px: 1, textAlign: 'right', minWidth: 75 }}
+              >
+                {secondaryText}
+              </Typography>
+            )}
           </CardContent>
-          {renderExpandedContent && (
-            <Collapse in={isExpanded} timeout="auto" unmountOnExit>
-              {renderExpandedContent}
-            </Collapse>
-          )}
+          <Collapse in={isExpanded} timeout="auto" sx={{ width: '100%' }} unmountOnExit>
+            {renderExpandedContent}
+          </Collapse>
         </Card>
       </Box>
     );
   },
-); 
+);

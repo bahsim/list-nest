@@ -6,7 +6,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import RestoreIcon from '@mui/icons-material/Restore';
 import type { MainListItem } from '../../entities/list/types';
 import { useMainListContext } from '../../entities/list/main-list-context';
-import { ActionIconButton } from '../../shared/ui-kit/action-icon-button';
+import { ActionIconButton } from '@ui-kit/components/atomic/action-icon-button';
 
 /**
  * ItemActionButtons renders action buttons for a shopping list item.

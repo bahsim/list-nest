@@ -1,1 +1,1 @@
-export { NoteDisplay } from '../../shared/ui-kit/note-display'; 
+export { NoteDisplay } from '@ui-kit/components/molecule/note-display'; 

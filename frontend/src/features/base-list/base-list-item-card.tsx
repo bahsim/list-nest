@@ -1,1 +1,1 @@
-export { BaseListItemCard } from '../../shared/ui-kit/base-list-item-card';
+export { BaseListItemCard } from '@ui-kit/components/organism/base-list-item-card';

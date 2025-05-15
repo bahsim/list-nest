@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { BaseListItemCard } from './base-list-item-card';
-import type { BaseListItemCardProps } from '../../shared/ui-kit/base-list-item-card';
+import type { BaseListItemCardProps } from '@ui-kit/components/organism/base-list-item-card';
 import '@testing-library/jest-dom';
 
 const defaultProps: BaseListItemCardProps = {

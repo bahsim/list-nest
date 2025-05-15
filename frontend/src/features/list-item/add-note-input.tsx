@@ -1,1 +1,1 @@
-export { AddNoteInput } from '../../shared/ui-kit/add-note-input'; 
+export { AddNoteInput } from '@ui-kit/components/molecule/add-note-input'; 

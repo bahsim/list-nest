@@ -27,7 +27,7 @@ Here’s a high-impact, stepwise refactor plan to start implementing FSA (Featur
   - `widgets/` (composite UI blocks, e.g., header, sidebar)
   - `features/` (business features, e.g., main-list, list-item)
   - `entities/` (domain models, context, logic, e.g., user, item)
-  - `shared/` (UI kit, utils, constants, hooks, types, themes)
+  - `shared/` (utils, constants, hooks, types, themes)
 
 ---
 

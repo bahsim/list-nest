@@ -81,27 +81,25 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
     notes: boolean;
     category: boolean;
   }>({
-    name: true,
+    name: !item?.name,
     quantity: false,
     estimatedPrice: false,
     notes: false,
     category: false,
   });
 
-  // Open fields with values on mount (edit mode)
-  React.useEffect(() => {
-    if (item) {
-      setOpenFields({
-        name: !item.name,
-        quantity: !(Boolean(Number.isFinite(item.quantity)) || DEFAULT_ITEM_VALUES.quantity),
-        estimatedPrice: !(
-          Boolean(Number.isFinite(item.estimatedPrice)) || DEFAULT_ITEM_VALUES.estimatedPrice
-        ),
-        notes: !(Boolean(item.notes?.trim()) || DEFAULT_ITEM_VALUES.notes),
-        category: !(Boolean(item.category) || DEFAULT_ITEM_VALUES.category),
-      });
-    }
-  }, [item]);
+  // // Open fields with values on mount (edit mode)
+  // React.useEffect(() => {
+  //   if (item) {
+  //     setOpenFields({
+  //       name: !item.name,
+  //       quantity: !Number.isFinite(item.quantity),
+  //       estimatedPrice: !Number.isFinite(item.estimatedPrice),
+  //       notes: !item.notes?.trim(),
+  //       category: !item.category,
+  //     });
+  //   }
+  // }, [item]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFields({ ...fields, [e.target.name]: e.target.value });
@@ -154,7 +152,9 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
             fullWidth
             required
             autoFocus
-            onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') e.preventDefault();
+            }}
           />
         ) : (
           <>
@@ -178,7 +178,9 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
               fullWidth
               sx={{ flex: 1, background: (theme) => theme.palette.background.note, my: 1 }}
               autoFocus
-              onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') e.preventDefault();
+              }}
             />
             <TextField
               select
@@ -188,7 +190,9 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
               onChange={handleChange}
               fullWidth
               sx={{ flex: 1, background: (theme) => theme.palette.background.note, my: 1 }}
-              onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') e.preventDefault();
+              }}
             >
               {units.map((u) => (
                 <MenuItem key={u} value={u}>
@@ -221,7 +225,9 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
             fullWidth
             autoFocus
             sx={{ background: (theme) => theme.palette.background.note, my: 1 }}
-            onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') e.preventDefault();
+            }}
           />
         ) : fields.estimatedPrice || DEFAULT_ITEM_VALUES.estimatedPrice ? (
           <>
@@ -247,7 +253,9 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
             minRows={2}
             autoFocus
             sx={{ background: (theme) => theme.palette.background.note, my: 1 }}
-            onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') e.preventDefault();
+            }}
           />
         ) : fields.notes || DEFAULT_ITEM_VALUES.notes ? (
           <>
@@ -277,7 +285,9 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
                 fullWidth
                 autoFocus
                 sx={{ background: (theme) => theme.palette.background.note, my: 1 }}
-                onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') e.preventDefault();
+                }}
               />
             )}
           />
@@ -308,7 +318,11 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
             </Box>
           </Box>
         )}
-        {error && <Alert severity="error" sx={{ fontSize: '0.95rem', fontWeight: 500 }}>{error}</Alert>}
+        {error && (
+          <Alert severity="error" sx={{ fontSize: '0.95rem', fontWeight: 500 }}>
+            {error}
+          </Alert>
+        )}
       </DialogContent>
       <Divider sx={{ borderColor: (theme) => alpha(theme.palette.divider, 0.3), mb: 1 }} />
       <DialogActions>
