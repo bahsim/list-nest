@@ -1,4 +1,4 @@
-import type { MainListItem } from '../types';
+import type { MainListItem } from '../../shared/types';
 
 /**
  * Filter items by selected categories. If none selected, return all.

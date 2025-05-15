@@ -1,8 +1,8 @@
 import * as React from 'react';
-import type { MainListItem } from './types';
+import type { MainListItem } from '../shared/types';
 import type { SxProps, Theme } from '@mui/material/styles';
 import { BaseList } from '../base-list/base-list';
-import { MainListItemCard } from './components/main-list-item-card';
+import { MainListItemCard } from '../list-item/main-list-item-card';
 
 /**
  * MainList component for displaying a list of shopping items using BaseList.

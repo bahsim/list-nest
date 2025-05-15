@@ -4,8 +4,8 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import RestoreIcon from '@mui/icons-material/Restore';
-import type { MainListItem } from '../types';
-import { useMainListContext } from '../main-list-context';
+import type { MainListItem } from '../shared/types';
+import { useMainListContext } from '../shared/main-list-context';
 import ActionIconButton from './action-icon-button';
 
 /**

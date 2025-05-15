@@ -1,4 +1,4 @@
-import type { MainListItem } from '../types';
+import type { MainListItem } from '../../shared/types';
 import type { User } from '@ui-kit/components/types';
 
 export const mockUser: User = {

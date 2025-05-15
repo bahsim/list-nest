@@ -1,14 +1,14 @@
 import * as React from 'react';
-import type { MainListItem } from '../types';
+import type { MainListItem } from '../shared/types';
 import { type Theme } from '@mui/material/styles';
 import CheckIcon from '@mui/icons-material/CheckCircleOutline';
 import StarIcon from '@mui/icons-material/Star';
 import RestoreIcon from '@mui/icons-material/Restore';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
-import { BaseListItemCard } from '../../base-list/base-list-item-card';
+import { BaseListItemCard } from '../base-list/base-list-item-card';
 import { MainItemExpanded } from './main-item-expanded';
-import { useMainListContext } from '../main-list-context';
-import { isItemExpanded } from '../../base-list/utility';
+import { useMainListContext } from '../shared/main-list-context';
+import { isItemExpanded } from '../base-list/utility';
 
 /**
  * ShoppingListItemCard displays a single shopping list item with actions.
