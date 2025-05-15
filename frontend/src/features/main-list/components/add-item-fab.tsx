@@ -32,6 +32,4 @@ export const AddItemFab: React.FC<AddItemFabProps> = ({ onClick }) => (
   >
     <AddIcon />
   </Fab>
-);
-
-export default AddItemFab; 
+); 

@@ -60,7 +60,7 @@ declare module '@mui/material/styles' {
   }
 }
 
-const listNestTheme = createTheme({
+export const listNestTheme = createTheme({
   palette: {
     mode: 'light',
     primary: {
@@ -172,6 +172,4 @@ const listNestTheme = createTheme({
     },
   },
   highlightAlpha: HIGHLIGHT_ALPHA,
-});
-
-export default listNestTheme; 
+}); 

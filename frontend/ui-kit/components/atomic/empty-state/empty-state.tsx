@@ -19,7 +19,7 @@ export interface EmptyStateProps {
   imageAlt: string;
 }
 
-const EmptyState: React.FC<EmptyStateProps> = ({ title, description, buttonLabel, onButtonClick, imageAlt }) => (
+export const EmptyState: React.FC<EmptyStateProps> = ({ title, description, buttonLabel, onButtonClick, imageAlt }) => (
   <Box
     textAlign="center"
     display="flex"
@@ -40,6 +40,4 @@ const EmptyState: React.FC<EmptyStateProps> = ({ title, description, buttonLabel
     <Typography variant="body1" color="text.primary">{description}</Typography>
     <Button variant="contained" color="primary" sx={{ mt: 2 }} onClick={onButtonClick}>{buttonLabel}</Button>
   </Box>
-);
-
-export default EmptyState; 
+); 

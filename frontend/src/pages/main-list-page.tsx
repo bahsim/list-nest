@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AddEditItemModal } from '../features/main-list/components/add-edit-item-modal';
 import Box from '@mui/material/Box';
-import EmptyState from '@ui-kit/components/atomic/empty-state/empty-state';
+import { EmptyState } from '@ui-kit/components/atomic/empty-state/empty-state';
 import type { MainListItem } from '../entities/list/types';
 import {
   filterByCategory,
@@ -34,7 +34,7 @@ const MODAL_ACTION_LABELS = {
   complete: 'Complete',
 } as const;
 
-const MainListView: React.FC = () => {
+export const MainListView: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('list');
   const [items, setItems] = useState<MainListItem[]>([]);
   const [isAddEditModalOpen, setIsAddEditModalOpen] = useState<boolean>(false);
@@ -252,5 +252,3 @@ const MainListView: React.FC = () => {
     </MainLayout>
   );
 };
-
-export default MainListView;

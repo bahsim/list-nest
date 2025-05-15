@@ -101,6 +101,4 @@ export const CategoryFilterChips: React.FC<CategoryFilterChipsProps> = ({
       </Box>
     </Box>
   );
-};
-
-export default CategoryFilterChips; 
+}; 

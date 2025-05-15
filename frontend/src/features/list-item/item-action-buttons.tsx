@@ -17,7 +17,7 @@ interface ItemActionButtonsProps {
   item: MainListItem;
 }
 
-const ItemActionButtons: React.FC<ItemActionButtonsProps> = ({ item }) => {
+export const ItemActionButtons: React.FC<ItemActionButtonsProps> = ({ item }) => {
   const { handleEditItem, handleDeleteItem, handleToggleBought, handleRestoreItem } =
     useMainListContext();
 
@@ -75,5 +75,3 @@ const ItemActionButtons: React.FC<ItemActionButtonsProps> = ({ item }) => {
     </Box>
   );
 };
-
-export default ItemActionButtons;
