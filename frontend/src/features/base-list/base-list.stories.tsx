@@ -1,6 +1,6 @@
 import React from 'react';
 import { BaseList } from './base-list';
-import { BaseListItemCard } from './base-list-item-card';
+import { BaseListItemCard } from '@ui-kit/components/organism/base-list-item-card';
 import { Box } from '@mui/material';
 import InfoIcon from '@mui/icons-material/Info';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';

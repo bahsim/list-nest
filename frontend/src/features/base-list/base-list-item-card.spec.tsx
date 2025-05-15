@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { BaseListItemCard } from './base-list-item-card';
+import { BaseListItemCard } from '@ui-kit/components/organism/base-list-item-card';
 import type { BaseListItemCardProps } from '@ui-kit/components/organism/base-list-item-card';
 import '@testing-library/jest-dom';
 

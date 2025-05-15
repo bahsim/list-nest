@@ -1,1 +1,0 @@
-export { NoteDisplay } from '@ui-kit/components/molecule/note-display'; 

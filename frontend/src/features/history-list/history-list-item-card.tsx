@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BaseListItemCard } from '../base-list/base-list-item-card';
+import { BaseListItemCard } from '@ui-kit/components/organism/base-list-item-card';
 import type { HistoryItem } from '../../entities/history-list/types';
 
 export interface HistoryListItemCardProps {

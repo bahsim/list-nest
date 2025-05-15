@@ -1,1 +1,0 @@
-export { AddNoteInput } from '@ui-kit/components/molecule/add-note-input'; 
