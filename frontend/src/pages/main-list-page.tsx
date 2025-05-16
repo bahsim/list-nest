@@ -7,9 +7,8 @@ import {
   useMainListData,
 } from '@/features/main-list/providers/main-list-data-provider';
 
-export const MainListPage: React.FC = () => <MainListView />;
 
-const MainListView: React.FC = () => {
+export const MainListPage: React.FC = () => {
   return (
     <MainListDataProvider>
       <MainListViewInner />
