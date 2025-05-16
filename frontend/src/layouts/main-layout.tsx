@@ -8,27 +8,19 @@ import Box from '@mui/material/Box';
  * MainLayout wraps page content with HeaderBar and FooterNav.
  * @param user - The user object for HeaderBar.
  * @param onSettings - Settings handler for HeaderBar.
- * @param activeTab - The active tab for FooterNav.
- * @param onTabChange - Tab change handler for FooterNav.
  * @param children - Page content.
  */
 export interface MainLayoutProps {
   user: User;
-  onSettings: () => void;
-  activeTab: string;
-  onTabChange: (tab: string) => void;
   children: React.ReactNode;
 }
 
 export const MainLayout: React.FC<MainLayoutProps> = ({
   user,
-  onSettings,
-  activeTab,
-  onTabChange,
   children,
 }) => (
   <>
-    <HeaderBar user={user} onSettings={onSettings} />
+    <HeaderBar user={user} />
     {/* Main Content (scrollable) */}
     <Box
       sx={{
@@ -48,6 +40,6 @@ export const MainLayout: React.FC<MainLayoutProps> = ({
     >
       {children}
     </Box>
-    <FooterNav activeTab={activeTab} onTabChange={onTabChange} />
+    <FooterNav />
   </>
 );

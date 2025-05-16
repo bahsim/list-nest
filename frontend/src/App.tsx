@@ -1,4 +1,21 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { MainListPage } from './pages/main-list-page';
+import { AnalyticsPage } from './pages/analytics-page';
+import { HistoryPage } from './pages/history-page';
+import { SettingsPage } from './pages/settings-page';
+import { MainLayout } from '@/layouts/main-layout';
+import { mockUser } from '@/features/main-list/utils/mock-data';
 
-export const App: React.FC = () => <MainListPage />;
+export const App: React.FC = () => (
+  <BrowserRouter>
+    <MainLayout user={mockUser}>
+      <Routes>
+        <Route path="/" element={<MainListPage />} />
+        <Route path="/analytics" element={<AnalyticsPage />} />
+        <Route path="/history" element={<HistoryPage />} />
+        <Route path="/settings" element={<SettingsPage />} />
+      </Routes>
+    </MainLayout>
+  </BrowserRouter>
+);

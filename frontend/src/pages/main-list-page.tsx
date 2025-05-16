@@ -6,25 +6,8 @@ import {
   MainListDataProvider,
   useMainListData,
 } from '@/features/main-list/providers/main-list-data-provider';
-import { MainLayout } from '@/layouts/main-layout';
-import { mockUser } from '@/features/main-list/utils/mock-data';
-import { useState } from 'react';
 
-export const MainListPage: React.FC = () => {
-  const [activeTab, setActiveTab] = useState('main');
-  const handleTabChange = (tab: string) => setActiveTab(tab);
-  const handleSettings = () => {};
-  return (
-    <MainLayout
-      user={mockUser}
-      onSettings={handleSettings}
-      activeTab={activeTab}
-      onTabChange={handleTabChange}
-    >
-      <MainListView />
-    </MainLayout>
-  );
-};
+export const MainListPage: React.FC = () => <MainListView />;
 
 const MainListView: React.FC = () => {
   return (
@@ -37,6 +20,7 @@ const MainListView: React.FC = () => {
 const MainListViewInner: React.FC = () => {
   const { initialItems } = useMainListData();
   const mainList = useMainList(initialItems);
+  
   return (
     <MainListWidget
       list={{

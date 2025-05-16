@@ -21,10 +21,9 @@ export interface User {
 
 export interface HeaderBarProps {
   user: User;
-  onSettings: () => void;
 }
 
-export const HeaderBar: React.FC<HeaderBarProps> = ({ user, onSettings }) => (
+export const HeaderBar: React.FC<HeaderBarProps> = ({ user }) => (
   <Box sx={{ position: 'absolute', top: 0, left: 0, right: 0, height: 56, zIndex: 2 }}>
     <AppBar position="static" elevation={0} color="default" sx={{ borderBottom: theme => `1px solid ${theme.palette.divider}` }}>
       <Toolbar
