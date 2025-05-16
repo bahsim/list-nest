@@ -19,6 +19,5 @@ type Story = StoryObj<typeof HeaderBar>;
 export const Default: Story = {
   args: {
     user: mockUser,
-    onSettings: () => alert('Settings clicked'),
   },
 }; 
