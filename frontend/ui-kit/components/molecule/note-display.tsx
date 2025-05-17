@@ -5,12 +5,15 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 
 export interface NoteDisplayProps {
   note: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export const NoteDisplay: React.FC<NoteDisplayProps> = ({ note, onClick }) => (
   <ButtonBase
-    onClick={e => { e.stopPropagation(); onClick(); }}
+    onClick={(e) => {
+      e.stopPropagation();
+      onClick?.();
+    }}
     sx={{
       display: 'flex',
       alignItems: 'center',
@@ -22,12 +25,12 @@ export const NoteDisplay: React.FC<NoteDisplayProps> = ({ note, onClick }) => (
       py: 0.5,
       width: 'fit-content',
       background: 'none',
-      '&:hover': { background: theme => theme.palette.action.hover },
+      '&:hover': { background: (theme) => theme.palette.action.hover },
     }}
   >
     <Typography variant="subtitle2" sx={{ textAlign: 'left' }}>
       {note}
     </Typography>
-    <EditOutlinedIcon sx={{ fontSize: 16, opacity: 0.6 }} />
+    {onClick && <EditOutlinedIcon sx={{ fontSize: 16, opacity: 0.6 }} />}
   </ButtonBase>
-); 
+);

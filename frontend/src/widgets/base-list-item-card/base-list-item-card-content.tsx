@@ -14,59 +14,13 @@ export const BaseListItemCardContent: React.FC<BaseListItemCardContentProps> = (
   secondaryText,
   checked,
   highlighted,
-  disabled,
+  completed,
+  canceled,
   isExpanded,
-  onSwipeLeft,
-  onSwipeRight,
-  handleToggle,
-  handleCardClick,
   theme,
-  translateX,
-  onClick,
   renderExpandedContent,
 }) => (
-  <Card
-    variant="outlined"
-    role="listitem"
-    aria-checked={checked}
-    aria-disabled={disabled}
-    tabIndex={0}
-    onKeyDown={(e) => {
-      if ((e.key === ' ' || e.key === 'Enter') && !disabled) {
-        handleToggle();
-      }
-      if (e.key === 'ArrowLeft' && onSwipeLeft) {
-        onSwipeLeft();
-      }
-      if (e.key === 'ArrowRight' && onSwipeRight) {
-        onSwipeRight();
-      }
-    }}
-    sx={{
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      background: isExpanded ? alpha(theme.palette.secondary.light, theme.highlightAlpha) : 'transparent',
-      boxShadow: highlighted ? theme.shadows[3] : theme.shadows[1],
-      border: '0.5px solid rgba(146,122,125,0.3)',
-      position: 'relative',
-      cursor: 'pointer',
-      transform: `translateX(${translateX}px)`,
-      zIndex: 1,
-      transition:
-        translateX === 0
-          ? 'box-shadow 0.2s, background 0.2s, opacity 0.2s, border-color 0.2s, transform 0.2s, height 0.3s'
-          : 'none',
-      minHeight: 56,
-      height: 'auto',
-      overflow: 'visible',
-      borderRadius: 2,
-      mb: 1,
-      p: 1,
-      WebkitTapHighlightColor: 'transparent',
-    }}
-    onClick={handleCardClick}
-  >
+  <>
     <CardContent
       sx={{
         flex: 1,
@@ -81,7 +35,7 @@ export const BaseListItemCardContent: React.FC<BaseListItemCardContentProps> = (
         variant={isExpanded ? 'subtitle1' : 'body1'}
         sx={{
           px: 1,
-          textDecoration: (disabled || checked) ? 'line-through' : 'none',
+          textDecoration: completed ? 'line-through' : 'none',
           fontWeight: highlighted ? 700 : 400,
           display: 'flex',
           alignItems: 'center',
@@ -89,7 +43,7 @@ export const BaseListItemCardContent: React.FC<BaseListItemCardContentProps> = (
         }}
       >
         {/* Icon for bought, deleted, or active (placeholder) */}
-        {disabled ? (
+        {canceled ? (
           <CancelOutlinedIcon sx={{ color: theme.palette.error.main, fontSize: 20 }} />
         ) : checked ? (
           <CheckCircleOutlineIcon sx={{ color: theme.palette.secondary.main, fontSize: 20 }} />
@@ -111,5 +65,5 @@ export const BaseListItemCardContent: React.FC<BaseListItemCardContentProps> = (
     <Collapse in={isExpanded} timeout="auto" sx={{ width: '100%' }} unmountOnExit>
       {renderExpandedContent}
     </Collapse>
-  </Card>
+  </>
 ); 

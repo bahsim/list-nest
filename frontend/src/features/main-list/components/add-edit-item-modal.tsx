@@ -4,9 +4,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
-import { alpha } from '@mui/material/styles';
-import Divider from '@mui/material/Divider';
-import type { AddEditItemModalProps } from './types';
+import { SectionDivider } from '@ui-kit/components/atomic/SectionDivider';
+import type { AddEditItemModalProps } from '@/shared/ui/list/types';
 import {
   NameField,
   QuantityField,
@@ -15,8 +14,8 @@ import {
   CategoryField,
   AISuggestionsField,
   ErrorAlertField,
-} from './fields';
-import { useAddEditItemModal } from './use-add-edit-item-modal';
+} from '@/shared/ui/list/fields';
+import { useAddEditItemModal } from '@/features/main-list/hooks/use-add-edit-item-modal';
 
 /**
  * AddEditItemModal for adding or editing a shopping list item.
@@ -41,8 +40,6 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
   const {
     fields,
     setFields,
-    openFields,
-    setOpenFields,
     error,
     handleChange,
     handleAISuggestion,
@@ -50,10 +47,19 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
     DEFAULT_ITEM_VALUES,
   } = useAddEditItemModal(item, units);
 
+  // Move openFields state here (UI-only)
+  const [openFields, setOpenFields] = React.useState({
+    name: !item?.name,
+    quantity: false,
+    estimatedPrice: false,
+    notes: false,
+    category: false,
+  });
+
   return (
     <Dialog open onClose={onCancel} maxWidth="xs" fullWidth>
       <DialogTitle>{title}</DialogTitle>
-      <Divider sx={{ borderColor: (theme) => alpha(theme.palette.divider, 0.3), mb: 0 }} />
+      <SectionDivider />
       <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: 0, pt: 1, pb: 1 }}>
         <NameField
           value={fields.name}
@@ -96,7 +102,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
         <AISuggestionsField aiSuggestions={aiSuggestions ?? []} onSelect={handleAISuggestion} />
         <ErrorAlertField error={error} />
       </DialogContent>
-      <Divider sx={{ borderColor: (theme) => alpha(theme.palette.divider, 0.3), mb: 1 }} />
+      <SectionDivider sx={{ mb: 1 }} />
       <DialogActions>
         <Button variant="contained" color="primary" onClick={() => handleSaveClick(onSave)}>
           {actionLabel}

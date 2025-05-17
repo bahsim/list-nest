@@ -9,6 +9,7 @@ const defaultProps: BaseListItemCardProps = {
   onClick: jest.fn(),
   onSwipeLeft: jest.fn(),
   onSwipeRight: jest.fn(),
+  secondaryText: 'Secondary',
   getSwipeVisuals: () => ({
     icon: () => <span data-testid="swipe-icon" />,
     background: 'red',
@@ -54,7 +55,7 @@ describe('BaseListItemCard', () => {
 
   it('sets accessibility attributes', () => {
     const { getAllByRole } = render(
-      <BaseListItemCard {...defaultProps} checked disabled />
+      <BaseListItemCard {...defaultProps} checked canceled />
     );
     // Check the wrapper div with role="checkbox"
     const [wrapper] = getAllByRole('checkbox');

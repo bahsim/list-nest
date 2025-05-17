@@ -33,6 +33,7 @@ export const Checked = () => (
   <Box width={400}>
     <BaseListItemCard
       title="Eggs"
+      secondaryText="12"
       checked
       onToggle={() => alert('Toggled')}
       getSwipeVisuals={getSwipeVisuals}
@@ -46,6 +47,7 @@ export const Highlighted = () => (
   <Box width={400}>
     <BaseListItemCard
       title="Bread"
+      secondaryText="12"
       highlighted
       onClick={() => alert('Clicked')}
       getSwipeVisuals={getSwipeVisuals}
@@ -59,7 +61,8 @@ export const Disabled = () => (
   <Box width={400}>
     <BaseListItemCard
       title="Butter"
-      disabled
+      secondaryText="12"
+      canceled
       onToggle={() => alert('Toggled')}
       getSwipeVisuals={getSwipeVisuals}
       isExpanded={false}

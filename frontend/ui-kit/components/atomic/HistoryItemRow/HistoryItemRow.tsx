@@ -1,6 +1,6 @@
 import * as React from 'react';
-import type { HistoryItem } from 'src/entities/history-list/types';
-import type { User } from 'src/entities/user/types';
+import type { ListItem } from '@/entities/list/types';
+import type { User } from '@/entities/user/types';
 import styles from './HistoryItemRow.module.scss';
 import StarIcon from '@mui/icons-material/StarRounded';
 import RestoreIcon from '@mui/icons-material/RestoreRounded';
@@ -12,7 +12,7 @@ import RestoreIcon from '@mui/icons-material/RestoreRounded';
  * @param onRestore - Restore handler.
  */
 export interface HistoryItemRowProps {
-  item: HistoryItem;
+  item: ListItem;
   user?: User;
   onRestore: (itemId: string) => void;
 }

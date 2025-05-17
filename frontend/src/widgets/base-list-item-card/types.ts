@@ -12,7 +12,7 @@ export interface BaseListItemCardProps {
   /**
    * Optional secondary text.
    */
-  readonly secondaryText?: string;
+  readonly secondaryText: string | null;
   /**
    * Whether the item is checked (e.g., bought).
    */
@@ -24,7 +24,11 @@ export interface BaseListItemCardProps {
   /**
    * Whether the item is disabled (e.g., deleted).
    */
-  readonly disabled?: boolean;
+  readonly canceled?: boolean;
+  /**
+   * Whether the item is completed (e.g., bought).
+   */
+  readonly completed?: boolean;
   /**
    * Handler for checkbox toggle.
    */
@@ -71,14 +75,9 @@ export interface BaseListItemCardContentProps {
   secondaryText?: string;
   checked: boolean;
   highlighted: boolean;
-  disabled: boolean;
+  completed: boolean;
+  canceled: boolean;
   isExpanded: boolean;
-  onSwipeLeft?: () => void;
-  onSwipeRight?: () => void;
-  handleToggle: () => void;
-  handleCardClick: (e: React.MouseEvent) => void;
   theme: Theme;
-  translateX: number;
-  onClick?: () => void;
   renderExpandedContent?: React.ReactNode;
 } 

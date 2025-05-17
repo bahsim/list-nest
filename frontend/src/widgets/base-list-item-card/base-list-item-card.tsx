@@ -1,23 +1,11 @@
 import * as React from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import { alpha } from '@mui/material/styles';
 import type { BaseListItemCardProps } from './types';
 import { useListItemSwipe } from './use-list-item-swipe';
 import { BaseListItemCardContent } from './base-list-item-card-content';
-
-/**
- * Usage Example:
- * <BaseListItemCard
- *   title="Milk"
- *   checked={true}
- *   highlighted={false}
- *   onToggle={() => {}}
- *   onClick={() => {}}
- *   onSwipeLeft={() => {}}
- *   onSwipeRight={() => {}}
- *   getSwipeVisuals={({ direction, theme }) => ({ icon: MyIcon, background: theme.palette.error.main })}
- * />
- */
 
 /**
  * A generic, dumb list item card for use in lists. Handles layout, calls handlers, no business logic.
@@ -28,9 +16,9 @@ export const BaseListItemCard: React.FC<BaseListItemCardProps> = React.memo(
     secondaryText,
     checked = false,
     highlighted = false,
-    disabled = false,
+    canceled = false,
+    completed = false,
     onToggle,
-    onClick,
     onSwipeLeft,
     onSwipeRight,
     getSwipeVisuals,
@@ -55,10 +43,56 @@ export const BaseListItemCard: React.FC<BaseListItemCardProps> = React.memo(
 
     const handleCardClick = (e: React.MouseEvent) => {
       onExpand();
-      if (onClick) {
-        onClick();
-      }
     };
+
+    const renderCardContent = (translateXValue: number) => (
+      <Card
+        variant="outlined"
+        role="listitem"
+        tabIndex={0}
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          background: isExpanded ? alpha(theme.palette.secondary.light, theme.highlightAlpha) : 'transparent',
+          boxShadow: theme.shadows[3],
+          border: '0.5px solid rgba(146,122,125,0.3)',
+          position: 'relative',
+          cursor: 'pointer',
+          transform: `translateX(${translateXValue}px)`,
+          zIndex: 1,
+          transition:
+            translateXValue === 0
+              ? 'box-shadow 0.2s, background 0.2s, opacity 0.2s, border-color 0.2s, transform 0.2s, height 0.3s'
+              : 'none',
+          minHeight: 56,
+          height: 'auto',
+          overflow: 'visible',
+          borderRadius: 2,
+          mb: 1,
+          p: 1,
+          WebkitTapHighlightColor: 'transparent',
+        }}
+        onClick={handleCardClick}
+      >
+        <BaseListItemCardContent
+          title={title}
+          secondaryText={secondaryText ?? ''}
+          checked={checked}
+          highlighted={highlighted}
+          canceled={canceled}
+          completed={completed}
+          isExpanded={isExpanded}
+          theme={theme}
+          renderExpandedContent={renderExpandedContent}
+        />
+      </Card>
+    );
+
+    // If no swipe handlers/visuals, render only the content (no swipe, no background)
+    if (!onSwipeLeft && !onSwipeRight && !getSwipeVisuals) {
+      return renderCardContent(0);
+    }
 
     return (
       <Box sx={{ position: 'relative', mb: theme.spacing(1), ...sx }} {...swipeHandlers}>
@@ -80,22 +114,7 @@ export const BaseListItemCard: React.FC<BaseListItemCardProps> = React.memo(
         >
           {actionIcon}
         </Box>
-        <BaseListItemCardContent
-          title={title}
-          secondaryText={secondaryText}
-          checked={checked}
-          highlighted={highlighted}
-          disabled={disabled}
-          isExpanded={isExpanded}
-          onSwipeLeft={onSwipeLeft}
-          onSwipeRight={onSwipeRight}
-          handleToggle={handleToggle}
-          handleCardClick={handleCardClick}
-          theme={theme}
-          translateX={translateX}
-          onClick={onClick}
-          renderExpandedContent={renderExpandedContent}
-        />
+        {renderCardContent(translateX)}
       </Box>
     );
   },

@@ -1,9 +1,9 @@
 import React, { createContext, useContext } from 'react';
-import type { MainListItem } from '@/entities/list/types';
+import type { ListItem } from '@/entities/list/types';
 import { mockItems } from '../utils/mock-data';
 
 interface MainListDataContextProps {
-  initialItems: MainListItem[];
+  initialItems: ListItem[];
 }
 
 const MainListDataContext = createContext<MainListDataContextProps | undefined>(undefined);

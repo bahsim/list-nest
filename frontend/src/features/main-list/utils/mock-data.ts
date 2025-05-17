@@ -1,4 +1,4 @@
-import type { MainListItem } from '@/entities/list/types';
+import type { ListItem } from '@/entities/list/types';
 import type { User } from '@/entities/user/types';
 
 export const mockUser: User = {
@@ -10,7 +10,7 @@ export const mockUser: User = {
 export const mockCategories: string[] = ['Produce', 'Bakery', 'Dairy', 'Meat', 'Snacks'];
 export const mockUnits: string[] = ['pcs', 'kg', 'g', 'l', 'pack'];
 
-export const mockItems: MainListItem[] = [
+export const mockItems: ListItem[] = [
   {
     id: '1',
     name: 'Milkkkkkk kkkkkkkkk kkkk and some other stuff',
@@ -22,9 +22,10 @@ export const mockItems: MainListItem[] = [
     isDeleted: false,
     estimatedPrice: 100,
     currency: 'USD',
-    addedBy: 'Alice',
     addedAt: new Date(),
     notes: 'This is a note for the item, it can be very long and contain a lot of information',
+    boughtAt: new Date(),
+    deletedAt: null,
   },
   {
     id: '2',
@@ -37,8 +38,10 @@ export const mockItems: MainListItem[] = [
     isDeleted: false,
     estimatedPrice: 5,
     currency: 'USD',
-    addedBy: 'Alice',
     addedAt: new Date(),
+    boughtAt: new Date(),
+    deletedAt: null,
+    notes: '',
   },
   {
     id: '3',
@@ -51,8 +54,10 @@ export const mockItems: MainListItem[] = [
     isDeleted: false,
     estimatedPrice: 10,
     currency: 'USD',
-    addedBy: 'Alice',
     addedAt: new Date(),
+    boughtAt: new Date(),
+    deletedAt: null,
+    notes: '',
   },
   {
     id: '4',
@@ -65,8 +70,10 @@ export const mockItems: MainListItem[] = [
     isDeleted: false,
     estimatedPrice: 10,
     currency: 'USD',
-    addedBy: 'Alice',
     addedAt: new Date(),
+    boughtAt: new Date(),
+    deletedAt: null,
+    notes: '',
   },
   {
     id: '5',
@@ -79,8 +86,10 @@ export const mockItems: MainListItem[] = [
     isDeleted: false,
     estimatedPrice: 10,
     currency: 'USD',
-    addedBy: 'Alice',
     addedAt: new Date(),
+    boughtAt: new Date(),
+    deletedAt: null,
+    notes: '',
   },
   {
     id: '6',
@@ -93,8 +102,10 @@ export const mockItems: MainListItem[] = [
     isDeleted: true,
     estimatedPrice: 10,
     currency: 'USD',
-    addedBy: 'Alice',
     addedAt: new Date(),
+    boughtAt: new Date(),
+    deletedAt: null,
+    notes: '',
   },
   {
     id: '7',
@@ -107,7 +118,9 @@ export const mockItems: MainListItem[] = [
     isDeleted: false,
     estimatedPrice: 0,
     currency: 'USD',
-    addedBy: 'Alice',
     addedAt: new Date(),
-  }
-]; 
+    boughtAt: new Date(),
+    deletedAt: null,
+    notes: '',
+  },
+];

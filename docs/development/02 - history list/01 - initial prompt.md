@@ -141,3 +141,104 @@ You want to avoid unnecessary work and just deep-clone the main-list-page and it
 **Ready to execute steps 1–4? (delete stub, deep copy, then adapt)**  
 If yes, I’ll start with the file operations.  
 If you want to skip any step or want a specific adaptation, let me know.
+
+
+---
+
+### Prompt
+
+@history-list-page.tsx 
+@01 - initial prompt.md 
+Pass once more time, find not cloned files and finish deep-cloning
+clue: name or path contain "main list" phrase in various combinations
+
+let's break on several steps
+first step - define not cloned files 
+start from @history-list-page.tsx  and go on though children and other imports
+
+### Result
+
+Here’s a **precise, pro-level breakdown** of all main-list dependencies in `history-list-page.tsx` and its children, including every import and usage:
+
+---
+
+### 1. **Direct Imports in `history-list-page.tsx`**
+- `@/features/main-list/utils/mock-data` → mockCategories, mockUnits
+- `@/features/main-list/hooks/use-main-list` → useMainList
+- `@/widgets/main-list-widget/main-list-widget` → MainListWidget
+- `@/features/main-list/providers/main-list-data-provider` → MainListDataProvider, useMainListData
+
+---
+
+### 2. **Children/Widget Imports in `main-list-widget` (now `history-list-widget`)**
+- `@/features/main-list/components/add-item-fab` → AddItemFab
+- `@/features/main-list/components/add-edit-item-modal` → AddEditItemModal
+- `@/features/main-list/components/restore-dialog` → RestoreDialog
+- `@/features/main-list/components/delete-dialog` → DeleteDialog
+- `@/entities/list/main-list-context` → MainListProvider
+- `@/features/main-list/main-list` → MainList (used in group sections)
+- `@/features/main-list/components/category-filter-chips` → CategoryFilterChips
+
+---
+
+### 3. **Types/Props**
+- `@/entities/list/types` → MainListItem (used in types and props)
+- `MainListWidgetProps`, `ListBag`, etc. (all types in main-list-widget/types.ts)
+
+---
+
+### 4. **Constants**
+- `main-list-widget/constants.ts` → MODAL_TITLES, MODAL_ACTION_LABELS
+
+---
+
+### 5. **Sections**
+- `sections/current-group.tsx` (uses MainList, MainListItem, GroupHeader)
+- `sections/all-group.tsx` (uses MainList, MainListItem, GroupHeader)
+- `sections/category-chips-section.tsx` (uses CategoryFilterChips)
+- `sections/group-header.tsx` (no main-list dependency, but used by above)
+
+---
+
+### 6. **Provider**
+- `main-list-data-provider.tsx` (exports MainListDataProvider, useMainListData, uses MainListItem, mockItems)
+
+---
+
+### 7. **Utils**
+- `main-list/utils/mock-data.ts` (mockItems, mockCategories, mockUnits)
+
+---
+
+### 8. **Summary Table (with useMainListData included)**
+
+| Main List Path/Name                                         | History List Path/Name (should be)                | Used In                        |
+|-------------------------------------------------------------|---------------------------------------------------|--------------------------------|
+| features/main-list/utils/mock-data                          | features/history-list/utils/mock-data             | history-list-page, provider    |
+| features/main-list/hooks/use-main-list                      | features/history-list/hooks/use-history-list      | history-list-page              |
+| widgets/main-list-widget/main-list-widget                   | widgets/history-list-widget/history-list-widget   | history-list-page              |
+| features/main-list/providers/main-list-data-provider        | features/history-list/providers/history-list-data-provider | history-list-page, provider    |
+| features/main-list/components/add-item-fab                  | features/history-list/components/add-item-fab     | widget                         |
+| features/main-list/components/add-edit-item-modal           | features/history-list/components/add-edit-item-modal | widget                      |
+| features/main-list/components/restore-dialog                | features/history-list/components/restore-dialog   | widget                         |
+| features/main-list/components/delete-dialog                 | features/history-list/components/delete-dialog    | widget                         |
+| entities/list/main-list-context                             | entities/history-list/history-list-context        | widget                         |
+| features/main-list/main-list                                | features/history-list/history-list                | widget sections                |
+| features/main-list/components/category-filter-chips         | features/history-list/components/category-filter-chips | widget sections           |
+| entities/list/types                                         | entities/history-list/types                       | types, props                   |
+| widgets/main-list-widget/types.ts                           | widgets/history-list-widget/types.ts              | widget                         |
+| widgets/main-list-widget/constants.ts                       | widgets/history-list-widget/constants.ts          | widget                         |
+| widgets/main-list-widget/sections/current-group.tsx         | widgets/history-list-widget/sections/date-group.tsx | widget sections             |
+| widgets/main-list-widget/sections/all-group.tsx             | widgets/history-list-widget/sections/date-group.tsx | widget sections             |
+| widgets/main-list-widget/sections/category-chips-section.tsx| widgets/history-list-widget/sections/category-chips-section.tsx | widget sections      |
+| widgets/main-list-widget/sections/group-header.tsx          | widgets/history-list-widget/sections/group-header.tsx | widget sections           |
+
+---
+
+**All of these must be cloned/renamed and all imports in the new history-list files must be updated accordingly.**
+
+**Ready for step 2:**
+- Clone/rename all the above files/folders for history-list if not already done.
+- Update all imports in the new history-list files to use the new paths/types.
+
+Want to proceed with the cloning and import update for all these files?
