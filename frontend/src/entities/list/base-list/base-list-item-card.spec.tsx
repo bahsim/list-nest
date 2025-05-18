@@ -5,7 +5,6 @@ import '@testing-library/jest-dom';
 
 const defaultProps: BaseListItemCardProps = {
   title: 'Test Item',
-  onToggle: jest.fn(),
   onClick: jest.fn(),
   onSwipeLeft: jest.fn(),
   onSwipeRight: jest.fn(),
@@ -34,7 +33,7 @@ describe('BaseListItemCard', () => {
   it('calls onToggle when checkbox is clicked', () => {
     const onToggle = jest.fn();
     const { getAllByRole } = render(
-      <BaseListItemCard {...defaultProps} onToggle={onToggle} />
+      <BaseListItemCard {...defaultProps} />
     );
     // Click the input[type="checkbox"]
     const input = document.querySelector('input[type="checkbox"]');

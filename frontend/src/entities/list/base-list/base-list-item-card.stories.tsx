@@ -20,7 +20,6 @@ export const Default = () => (
       secondaryText="2L"
       checked={false}
       highlighted={false}
-      onToggle={() => alert('Toggled')}
       onClick={() => alert('Clicked')}
       getSwipeVisuals={getSwipeVisuals}
       isExpanded={false}
@@ -35,7 +34,6 @@ export const Checked = () => (
       title="Eggs"
       secondaryText="12"
       checked
-      onToggle={() => alert('Toggled')}
       getSwipeVisuals={getSwipeVisuals}
       isExpanded={false}
       onExpand={() => alert('Expanded')}
@@ -63,10 +61,9 @@ export const Disabled = () => (
       title="Butter"
       secondaryText="12"
       canceled
-      onToggle={() => alert('Toggled')}
       getSwipeVisuals={getSwipeVisuals}
       isExpanded={false}
       onExpand={() => alert('Expanded')}
     />
   </Box>
-); 
+);
