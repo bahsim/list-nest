@@ -18,7 +18,6 @@ export const BaseListItemCard: React.FC<BaseListItemCardProps> = React.memo(
     highlighted = false,
     canceled = false,
     completed = false,
-    onToggle,
     onSwipeLeft,
     onSwipeRight,
     getSwipeVisuals,
@@ -28,11 +27,6 @@ export const BaseListItemCard: React.FC<BaseListItemCardProps> = React.memo(
     renderExpandedContent,
   }) => {
     const theme = useTheme();
-    const handleToggle = React.useCallback(() => {
-      if (onToggle) {
-        onToggle();
-      }
-    }, [onToggle]);
 
     const { translateX, swipeHandlers, actionIcon, actionBg } = useListItemSwipe({
       onSwipeLeft,
@@ -90,7 +84,7 @@ export const BaseListItemCard: React.FC<BaseListItemCardProps> = React.memo(
     );
 
     // If no swipe handlers/visuals, render only the content (no swipe, no background)
-    if (!onSwipeLeft && !onSwipeRight && !getSwipeVisuals) {
+    if ((!onSwipeLeft && !onSwipeRight && !getSwipeVisuals) || isExpanded) {
       return renderCardContent(0);
     }
 

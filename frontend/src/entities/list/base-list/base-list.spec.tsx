@@ -5,19 +5,39 @@ import '@testing-library/jest-dom';
 
 describe('BaseList', () => {
   it('renders items using renderItem', () => {
-    const items = ['a', 'b', 'c'];
+    const grouppedItems = [
+      {
+        label: 'a',
+        items: [
+          { id: 'a' },
+          { id: 'b' },
+          { id: 'c' },
+        ],
+      },
+    ];
     const { getByText } = render(
-      <BaseList items={items} renderItem={(item) => <span>{item}</span>} />
+      <BaseList
+        grouppedItems={grouppedItems}
+        renderItem={(item, groupLabel) => <span key={item.id}>{item.id} in {groupLabel}</span>}
+      />
     );
-    items.forEach((item) => {
-      expect(getByText(item)).not.toBeNull();
+    grouppedItems.forEach((groupObj) => {
+      expect(getByText(groupObj.label)).not.toBeNull();
     });
   });
 
   it('applies sx prop', () => {
-    const items = ['x'];
+    const grouppedItems = [
+      {
+        label: 'group1',
+        items: [{ id: 'x' }],
+      },
+    ];
     const { container } = render(
-      <BaseList items={items} renderItem={(item) => <span>{item}</span>} sx={{ background: 'red' }} />
+      <BaseList
+        grouppedItems={grouppedItems}
+        renderItem={(item) => <span key={item.id}>{item.id}</span>}
+      />
     );
     const list = container.querySelector('ul');
     expect(list).not.toBeNull();
@@ -28,8 +48,14 @@ describe('BaseList', () => {
   });
 
   it('renders nothing for empty items', () => {
+    const grouppedItems = [
+      {
+        label: 'empty',
+        items: [],
+      },
+    ];
     const { container } = render(
-      <BaseList items={[]} renderItem={() => <span>should not render</span>} />
+      <BaseList grouppedItems={grouppedItems} renderItem={() => <span>should not render</span>} />
     );
     // Only the List element should be present
     expect(container.querySelectorAll('li').length).toBe(0);

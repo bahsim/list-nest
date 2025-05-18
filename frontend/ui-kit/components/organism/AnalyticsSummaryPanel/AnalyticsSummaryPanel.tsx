@@ -1,6 +1,12 @@
 import * as React from 'react';
-import type { HistoryAnalytics } from 'src/entities/history-list/types';
 import styles from './AnalyticsSummaryPanel.module.scss';
+
+export interface HistoryAnalytics {
+  totalItems: number;
+  totalSpending: number;
+  frequentItems: { name: string; count: number }[];
+  categoryBreakdown: { category: string; percent: number }[];
+}
 
 /**
  * AnalyticsSummaryPanel displays a summary of analytics for history view.

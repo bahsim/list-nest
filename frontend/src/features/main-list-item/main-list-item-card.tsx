@@ -93,7 +93,6 @@ export const MainListItemCard: React.FC<MainListItemCardProps> = ({
       highlighted={item.isCurrent}
       canceled={item.isDeleted}
       completed={item.isDeleted || item.isBought}
-      onToggle={() => onToggleBought(item)}
       onSwipeLeft={handleSwipeLeft}
       onSwipeRight={handleSwipeRight}
       getSwipeVisuals={getSwipeVisuals}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { AnalyticsSummaryPanel } from './AnalyticsSummaryPanel';
-import type { HistoryAnalytics } from 'src/entities/history-list/types';
+import type { HistoryAnalytics } from './AnalyticsSummaryPanel';
 import type { AnalyticsSummaryPanelProps } from './AnalyticsSummaryPanel';
 
 export default {

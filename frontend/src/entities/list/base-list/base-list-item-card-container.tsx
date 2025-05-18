@@ -15,7 +15,6 @@ export interface BaseListItemCardContainerProps {
   completed: boolean;
   secondaryText: string;
   renderExpandedContent: React.ReactNode;
-  onToggle?: () => void;
   onSwipeLeft?: () => void;
   onSwipeRight?: () => void;
   getSwipeVisuals?: (args: any) => any;
@@ -32,7 +31,6 @@ export const BaseListItemCardContainer: React.FC<BaseListItemCardContainerProps>
   completed,
   secondaryText,
   renderExpandedContent,
-  onToggle,
   onSwipeLeft,
   onSwipeRight,
   getSwipeVisuals,
@@ -48,7 +46,6 @@ export const BaseListItemCardContainer: React.FC<BaseListItemCardContainerProps>
       highlighted={highlighted}
       canceled={canceled}
       completed={completed}
-      onToggle={onToggle}
       isExpanded={isExpanded}
       onExpand={handleExpand}
       onSwipeLeft={onSwipeLeft}

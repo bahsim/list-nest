@@ -30,10 +30,6 @@ export interface BaseListItemCardProps {
    */
   readonly completed?: boolean;
   /**
-   * Handler for checkbox toggle.
-   */
-  readonly onToggle?: () => void;
-  /**
    * Handler for main click/edit.
    */
   readonly onClick?: () => void;
