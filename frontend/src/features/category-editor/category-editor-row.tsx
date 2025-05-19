@@ -157,6 +157,7 @@ export const CategoryEditorRow: React.FC<CategoryEditorRowProps> = React.memo(({
               borderRadius: theme.shape.borderRadius / 4,
               border: '2px solid #eee',
               mr: theme.spacing(1.5),
+              ml: theme.spacing(1),
               flexShrink: 0,
               background: CATEGORY_COLORS[cat.color],
               transition: 'background 0.2s',

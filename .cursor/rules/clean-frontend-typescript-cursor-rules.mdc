@@ -98,7 +98,7 @@ alwaysApply: true
 - Releases: semver, tag, maintain CHANGELOG.
 - Onboarding: keep guide and ADRs up to date.
 - No default exports. Use named exports only.
-
+- Windows PowerShell doesn't support && for chaining commands like bash.
 
 
 

@@ -94,6 +94,8 @@ Generate code, corrections, and refactorings that comply with the basic principl
 - Write acceptance tests for each module.
   - Follow the Given-When-Then convention.
 
+- Windows PowerShell doesn't support && for chaining commands like bash.
+
 
   ## Specific to NestJS
 
