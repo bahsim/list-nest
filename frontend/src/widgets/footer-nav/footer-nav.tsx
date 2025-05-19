@@ -9,6 +9,7 @@ import Box from '@mui/material/Box';
 import type { SxProps, Theme } from '@mui/material/styles';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useCallback } from 'react';
+import { goToMainPage, goToRouteReplace } from '@/shared/utils/navigation';
 
 /**
  * FooterNav displays bottom navigation for main app sections.
@@ -33,10 +34,10 @@ export const FooterNav: React.FC<FooterNavProps> = ({ sx }) => {
   const handleTabChange = useCallback((_: unknown, newValue: string) => {
     const tab = tabs.find(t => t.key === newValue);
     if (tab) {
-      if (location.pathname === '/') {
-        navigate(tab.route);
-      } else {
-        navigate(tab.route, { replace: true });
+      if (tab.route === '/') {
+        goToMainPage(navigate);
+      } else if (tab.route.startsWith('/')) {
+        goToRouteReplace(navigate, tab.route);
       }
     }
   }, [location.pathname, navigate]);

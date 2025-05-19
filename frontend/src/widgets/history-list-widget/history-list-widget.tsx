@@ -8,6 +8,7 @@ import { HistoryListItemCard } from '@/features/history-list-item/history-list-i
 import { useListExpansion } from '@/shared/hooks/list-expansion-context';
 import { DateRangeModal, DateRangeButton } from '@/features/history-list/components';
 import { useNavigate } from 'react-router-dom';
+import { goToMainPage } from '@/shared/utils/navigation';
 
 export const HistoryListWidget: React.FC<HistoryListWidgetProps> = ({
   listData,
@@ -48,7 +49,7 @@ export const HistoryListWidget: React.FC<HistoryListWidgetProps> = ({
           title={EMPTY_STATE_CONFIG.title}
           description={EMPTY_STATE_CONFIG.description}
           buttonLabel={EMPTY_STATE_CONFIG.buttonLabel}
-          onButtonClick={() => navigate('/', { replace: true })}
+          onButtonClick={() => goToMainPage(navigate)}
           imageAlt={EMPTY_STATE_CONFIG.imageAlt}
         />
       ) : (
