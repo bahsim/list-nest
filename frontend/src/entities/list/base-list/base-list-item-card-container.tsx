@@ -3,6 +3,7 @@ import type { ListItem } from '@/entities/list/types';
 import type { ExpandedItem } from '@/entities/list/types/expanded-item';
 import { BaseListItemCard } from '@/widgets/base-list-item-card';
 import { isItemExpanded } from './utility';
+import { getCategoryColorByName } from '@/features/main-list/utils/mock-data';
 
 export interface BaseListItemCardContainerProps {
   item: ListItem;
@@ -52,6 +53,7 @@ export const BaseListItemCardContainer: React.FC<BaseListItemCardContainerProps>
       onSwipeRight={onSwipeRight}
       getSwipeVisuals={getSwipeVisuals}
       renderExpandedContent={renderExpandedContent}
+      categoryColor={getCategoryColorByName(item.category)}
     />
   );
 }; 

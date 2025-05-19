@@ -64,6 +64,10 @@ export interface BaseListItemCardProps {
    * Optional render prop for expanded content below the card content.
    */
   readonly renderExpandedContent?: React.ReactNode;
+  /**
+   * Optional background color for the category.
+   */
+  readonly categoryColor?: string;
 }
 
 export interface BaseListItemCardContentProps {

@@ -2,6 +2,7 @@ import React from 'react';
 import { getCategoryValue } from '@/shared/utils/list-utils';
 import { FilterChip } from '../filter-chip/filter-chip';
 import { FilterChipBar } from '../filter-chip/filter-chip-bar';
+import { getCategoryColorByName } from '@/features/main-list/utils/mock-data';
 
 interface CategoryFilterChipsProps {
   categories: string[];
@@ -21,7 +22,10 @@ export const CategoryFilterChips: React.FC<CategoryFilterChipsProps> = ({
       <FilterChip
         key={label}
         label={label}
-        color="primary"
+        color="secondary"
+        sx={{
+          border: `2px solid ${getCategoryColorByName(label)}`,
+        }}
         selected={selectedCategories.includes(getCategoryValue(label))}
         onClick={() => onToggleCategory(getCategoryValue(label))}
       />

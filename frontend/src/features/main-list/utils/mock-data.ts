@@ -1,5 +1,7 @@
 import type { ListItem } from '@/entities/list/types';
 import type { User } from '@/entities/user/types';
+import { CATEGORY_COLORS } from '@/shared/constants/category-colors';
+import type { Category } from '@/shared/types/category';
 
 export const mockUser: User = {
   id: '1',
@@ -9,6 +11,15 @@ export const mockUser: User = {
 
 export const mockCategories: string[] = ['Produce', 'Bakery', 'Dairy', 'Meat', 'Snacks'];
 export const mockUnits: string[] = ['pcs', 'kg', 'g', 'l', 'pack'];
+
+export const mockCategoriesWithColors: Category[] = [
+  { name: 'Produce', color: 'SAGE' },
+  { name: 'Bakery', color: 'MAUVE' },
+    { name: 'Dairy', color: 'CREAM' },
+  { name: 'Meat', color: 'CORAL' },
+  { name: 'Snacks', color: 'SKY' },
+  { name: 'Alcohol', color: 'SKY' },
+];
 
 export const mockItems: ListItem[] = [
   {
@@ -110,3 +121,8 @@ export const mockItems: ListItem[] = [
     notes: '',
   },
 ];
+
+export const getCategoryColorByName = (name: string): string => {
+  const found = mockCategoriesWithColors.find(cat => cat.name === name);
+  return found ? CATEGORY_COLORS[found.color] : CATEGORY_COLORS.SAGE;
+};
