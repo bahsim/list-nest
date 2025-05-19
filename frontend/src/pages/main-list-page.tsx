@@ -68,7 +68,7 @@ const MainListViewInner: React.FC = () => {
     } else {
       mainList.setItems((prev: ListItem[]) => [
         ...prev,
-        { ...input, id: crypto.randomUUID(), addedAt: new Date(), boughtAt: null, deletedAt: null },
+        { ...input, id: crypto.randomUUID(), addedAt: new Date(), boughtAt: null, deletedAt: null, isCurrent: false },
       ]);
     }
     setIsAddEditModalOpen(false);
