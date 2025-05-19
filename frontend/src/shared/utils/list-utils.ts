@@ -31,3 +31,13 @@ export function getCategoryValue(label: string): string {
 export function getGroupSum<T>(group: T[], getValue: (item: T) => number | undefined): number {
   return group.reduce((sum, item) => sum + (getValue(item) || 0), 0);
 }
+
+/**
+ * Returns true if the item is bought (boughtAt !== null)
+ */
+export const isBought = (item: { boughtAt: Date | null }): boolean => item.boughtAt !== null;
+
+/**
+ * Returns true if the item is deleted (deletedAt !== null)
+ */
+export const isDeleted = (item: { deletedAt: Date | null }): boolean => item.deletedAt !== null;

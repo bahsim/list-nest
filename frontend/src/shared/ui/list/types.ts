@@ -11,4 +11,9 @@ export interface AddEditItemModalProps {
   actionLabel: string;
 }
 
+export interface ViewItemModalProps {
+  item: ListItem | null;
+  onClose: () => void;
+}
+
 export type OpenFieldKey = 'name' | 'quantity' | 'estimatedPrice' | 'notes' | 'category';

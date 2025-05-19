@@ -36,8 +36,8 @@ export const EmptyState: React.FC<EmptyStateProps> = ({ title, description, butt
         style={{ width: '100%', height: 'auto', display: 'block', maxWidth: '100vw' }}
       />
     </Box>
-    <Typography variant="h5" color="primary.main" fontWeight={700} gutterBottom>{title}</Typography>
-    <Typography variant="body1" color="text.primary">{description}</Typography>
+    <Typography variant="h5" color="primary.main" fontWeight={700} gutterBottom px={2}>{title}</Typography>
+    <Typography variant="body1" color="text.primary" px={2}>{description}</Typography>
     <Button variant="contained" color="primary" sx={{ mt: 2 }} onClick={onButtonClick}>{buttonLabel}</Button>
   </Box>
 ); 

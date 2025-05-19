@@ -17,13 +17,15 @@ import { ExpandedSection } from '@/shared/components/expanded-section';
  * Now props-driven, no context usage.
  * @param item - The shopping list item.
  * @param expandedItem - current expanded item
+ * @param onViewItem - callback function to view item
  */
 export interface HistoryItemExpandedProps {
   item: ListItem;
   expandedItem: ExpandedItem | null;
+  onViewItem?: (item: ListItem) => void;
 }
 
-export const HistoryItemExpanded: React.FC<HistoryItemExpandedProps> = ({ item, expandedItem }) => {
+export const HistoryItemExpanded: React.FC<HistoryItemExpandedProps> = ({ item, expandedItem, onViewItem }) => {
   const isExpanded = isItemExpanded({ expandedItem, itemId: item.id });
 
   if (!isExpanded) {
@@ -45,7 +47,10 @@ export const HistoryItemExpanded: React.FC<HistoryItemExpandedProps> = ({ item, 
         }}
       >
         <ActionIconButton
-          onClick={(e) => e.stopPropagation()}
+          onClick={(e) => {
+            e.stopPropagation();
+            if (onViewItem) onViewItem(item);
+          }}
           color="info"
           icon={<DescriptionIcon sx={{ color: '#fff' }} />}
         />

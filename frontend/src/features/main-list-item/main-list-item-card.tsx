@@ -8,6 +8,7 @@ import RestoreIcon from '@mui/icons-material/Restore';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import { MainItemExpanded } from './main-item-expanded';
 import { BaseListItemCardContainer } from '@/entities/list/base-list/base-list-item-card-container';
+import { isBought, isDeleted } from '@/shared/utils/list-utils';
 
 /**
  * ShoppingListItemCard displays a single shopping list item with actions.
@@ -53,13 +54,13 @@ export const MainListItemCard: React.FC<MainListItemCardProps> = ({
         background: theme.palette.warning.light,
       };
     } else {
-      if (item.isDeleted) {
+      if (isDeleted(item)) {
         return {
           icon: RestoreIcon,
           background: theme.palette.error.light,
         };
       }
-      if (item.isBought) {
+      if (isBought(item)) {
         return {
           icon: RestoreIcon,
           background: theme.palette.secondary.light,
@@ -75,9 +76,9 @@ export const MainListItemCard: React.FC<MainListItemCardProps> = ({
     onToggleCurrent(item);
   };
   const handleSwipeRight = () => {
-    if (item.isDeleted) {
+    if (isDeleted(item)) {
       onRestoreItem(item);
-    } else if (item.isBought) {
+    } else if (isBought(item)) {
       onRestoreItem(item);
     } else {
       onToggleBought(item);
@@ -89,10 +90,10 @@ export const MainListItemCard: React.FC<MainListItemCardProps> = ({
       group={group}
       expandedItem={expandedItem}
       onExpand={onExpand}
-      checked={item.isBought}
+      checked={isBought(item)}
       highlighted={item.isCurrent}
-      canceled={item.isDeleted}
-      completed={item.isDeleted || item.isBought}
+      canceled={isDeleted(item)}
+      completed={isDeleted(item) || isBought(item)}
       onSwipeLeft={handleSwipeLeft}
       onSwipeRight={handleSwipeRight}
       getSwipeVisuals={getSwipeVisuals}

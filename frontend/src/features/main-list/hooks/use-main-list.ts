@@ -22,7 +22,14 @@ export const useMainList = (initialItems: ListItem[] = []) => {
 
   const handleToggleBought = (item: ListItem) => {
     setItems((prevItems) =>
-      prevItems.map((i) => (i.id === item.id ? { ...i, isBought: !i.isBought } : i))
+      prevItems.map((i) =>
+        i.id === item.id
+          ? {
+              ...i,
+              boughtAt: i.boughtAt === null ? new Date() : null,
+            }
+          : i
+      )
     );
   };
 

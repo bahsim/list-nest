@@ -1,5 +1,6 @@
 import type { ListItem } from '@/entities/list/types';
 import { UseItemDialogResult } from '@/shared/hooks/use-item-dialog';
+import { AddItemInput } from '@/entities/list/types';
 
 export interface ListBag {
   items: ListItem[];
@@ -30,10 +31,8 @@ export interface MockDataBag {
 export interface MainListWidgetProps {
   list: ListBag;
   categoryFilter: CategoryFilterBag;
-  modal: ModalBag;
   dialogs: {
     restoreDialog: UseItemDialogResult<ListItem>;
     deleteDialog: UseItemDialogResult<ListItem>;
   };
-  mockData: MockDataBag;
 } 

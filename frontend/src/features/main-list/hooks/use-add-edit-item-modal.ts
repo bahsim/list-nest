@@ -4,8 +4,6 @@ import {
   UNIT_DEFAULT,
   ESTIMATED_PRICE_DEFAULT,
   NOTES_DEFAULT,
-  IS_CURRENT_DEFAULT,
-  IS_BOUGHT_DEFAULT,
   CATEGORY_DEFAULT,
   CURRENCY,
 } from '@/entities/list/constants';
@@ -18,9 +16,6 @@ export const useAddEditItemModal = (item: AddItemInput | ListItem | null, units:
     estimatedPrice: ESTIMATED_PRICE_DEFAULT,
     notes: NOTES_DEFAULT,
     category: CATEGORY_DEFAULT,
-    isCurrent: IS_CURRENT_DEFAULT,
-    isBought: IS_BOUGHT_DEFAULT,
-    isDeleted: false,
     currency: CURRENCY,
   };
 

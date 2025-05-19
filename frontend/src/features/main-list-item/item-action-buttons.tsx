@@ -6,6 +6,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import RestoreIcon from '@mui/icons-material/Restore';
 import type { ListItem } from '@/entities/list/types';
 import { ActionIconButton } from '@ui-kit/components/atomic/action-icon-button';
+import { isBought, isDeleted } from '@/shared/utils/list-utils';
 
 /**
  * ItemActionButtons renders action buttons for a shopping list item.
@@ -33,7 +34,7 @@ export const ItemActionButtons: React.FC<ItemActionButtonsProps> = ({
 }) => {
   const handleToggleBoughtClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (item.isBought) {
+    if (isBought(item)) {
       handleRestoreItem(item);
     } else {
       handleToggleBought(item);
@@ -47,7 +48,7 @@ export const ItemActionButtons: React.FC<ItemActionButtonsProps> = ({
 
   const handleDeleteClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (item.isDeleted) {
+    if (isDeleted(item)) {
       handleRestoreItem(item);
     } else {
       handleDeleteItem(item);
@@ -67,20 +68,20 @@ export const ItemActionButtons: React.FC<ItemActionButtonsProps> = ({
       <ActionIconButton
         onClick={handleToggleBoughtClick}
         color="secondary"
-        icon={item.isBought ? <RestoreIcon sx={{ color: '#fff' }} /> : <CheckCircleOutlineIcon sx={{ color: '#fff' }} />}
-        show={!item.isDeleted}
+        icon={isBought(item) ? <RestoreIcon sx={{ color: '#fff' }} /> : <CheckCircleOutlineIcon sx={{ color: '#fff' }} />}
+        show={!isDeleted(item)}
       />
       <ActionIconButton
         onClick={handleEditClick}
         color="info"
         icon={<EditIcon sx={{ color: '#fff' }} />}
-        show={!item.isBought && !item.isDeleted}
+        show={!isBought(item) && !isDeleted(item)}
       />
       <ActionIconButton
         onClick={handleDeleteClick}
         color="error"
-        icon={item.isDeleted ? <RestoreIcon sx={{ color: '#fff' }} /> : <DeleteIcon sx={{ color: '#fff' }} />}
-        show={!item.isBought}
+        icon={isDeleted(item) ? <RestoreIcon sx={{ color: '#fff' }} /> : <DeleteIcon sx={{ color: '#fff' }} />}
+        show={!isBought(item)}
       />
     </Box>
   );

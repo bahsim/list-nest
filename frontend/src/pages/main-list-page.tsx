@@ -6,10 +6,12 @@ import {
   MainListDataProvider,
   useMainListData,
 } from '@/features/main-list/providers/main-list-data-provider';
-import type { ListItem } from '@/entities/list/types';
+import type { ListItem, AddItemInput } from '@/entities/list/types';
 import { ListExpansionProvider } from '@/shared/hooks/list-expansion-context';
 import { MainListActionsProvider } from '@/features/main-list/providers/main-list-actions-context';
 import { useCategoryFilter } from '@/shared/hooks/use-category-filter';
+import { AddEditItemModal } from '@/features/main-list/components/add-edit-item-modal';
+import { MODAL_TITLES, MODAL_ACTION_LABELS } from '@/widgets/main-list-widget/constants';
 
 export const MainListPage: React.FC = () => {
   return (
@@ -25,7 +27,7 @@ const MainListViewInner: React.FC = () => {
 
   // Modal state (UI-only)
   const [isAddEditModalOpen, setIsAddEditModalOpen] = React.useState(false);
-  const [editingItem, setEditingItem] = React.useState(null as ListItem | null);
+  const [editingItem, setEditingItem] = React.useState<AddItemInput | ListItem | null>(null);
   const [modalMode, setModalMode] = React.useState<'add' | 'edit' | 'complete'>('add');
 
   // Category filter
@@ -58,15 +60,17 @@ const MainListViewInner: React.FC = () => {
     setModalMode('complete');
   };
 
-  const handleSaveItem = (input: ListItem) => {
-    if (editingItem) {
+  const handleSaveItem = (input: AddItemInput | ListItem) => {
+    if (editingItem && 'id' in editingItem) {
       mainList.setItems((prev: ListItem[]) =>
         prev.map((i) => (i.id === editingItem.id ? { ...i, ...input } : i)),
       );
     } else {
-      mainList.setItems((prev: ListItem[]) => [...prev, input]);
+      mainList.setItems((prev: ListItem[]) => [
+        ...prev,
+        { ...input, id: crypto.randomUUID(), addedAt: new Date(), boughtAt: null, deletedAt: null },
+      ]);
     }
-
     setIsAddEditModalOpen(false);
     setEditingItem(null);
     setModalMode('add');
@@ -102,19 +106,19 @@ const MainListViewInner: React.FC = () => {
             selectedCategories,
             onToggleCategory: handleToggleCategory,
           }}
-          modal={{
-            isAddEditModalOpen,
-            handleSaveItem,
-            handleCancelAdd,
-            editingItem,
-            modalMode,
-          }}
           dialogs={mainList.dialogs}
-          mockData={{
-            mockCategories,
-            mockUnits,
-          }}
         />
+        {isAddEditModalOpen && (
+          <AddEditItemModal
+            onSave={handleSaveItem}
+            onCancel={handleCancelAdd}
+            categories={mockCategories}
+            units={mockUnits}
+            item={editingItem}
+            title={MODAL_TITLES[modalMode]}
+            actionLabel={MODAL_ACTION_LABELS[modalMode]}
+          />
+        )}
       </ListExpansionProvider>
     </MainListActionsProvider>
   );

@@ -17,4 +17,8 @@ export interface HistoryListWidgetProps {
     handleDateRangeChange: (range: DateRange<Date>, preset: string | null) => void;
     getRangeLabel: () => string;
   };
+  onViewItem: (item: ListItem) => void;
+  dateModalOpen: boolean;
+  onOpenDateModal: () => void;
+  onCloseDateModal: () => void;
 } 

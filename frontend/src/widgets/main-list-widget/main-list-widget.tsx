@@ -18,13 +18,17 @@ import { useMainListActions } from '@/features/main-list/providers/main-list-act
 
 export const MainListWidget: React.FC<MainListWidgetProps> = ({
   list,
-  modal,  
   dialogs,
-  mockData,
   categoryFilter,
 }) => {
   const { expandedItem, handleExpandItem } = useListExpansion();
-  const { handleToggleBought, handleToggleCurrent, handleRestoreItem, handleEditItem, handleDeleteItem } = useMainListActions();
+  const {
+    handleToggleBought,
+    handleToggleCurrent,
+    handleRestoreItem,
+    handleEditItem,
+    handleDeleteItem,
+  } = useMainListActions();
   const mappedExpandedItem = expandedItem
     ? { group: expandedItem.group, id: expandedItem.itemId }
     : null;
@@ -80,18 +84,6 @@ export const MainListWidget: React.FC<MainListWidgetProps> = ({
       )}
       {list.items.length > 0 && (
         <AddFab onClick={list.handleNewItem} icon={<AddIcon />} ariaLabel="Add Item" />
-      )}
-      {/* add edit modal */}
-      {modal.isAddEditModalOpen && (
-        <AddEditItemModal
-          onSave={modal.handleSaveItem}
-          onCancel={modal.handleCancelAdd}
-          categories={mockData.mockCategories}
-          units={mockData.mockUnits}
-          item={modal.editingItem}
-          title={MODAL_TITLES[modal.modalMode]}
-          actionLabel={MODAL_ACTION_LABELS[modal.modalMode]}
-        />
       )}
       {/* restore dialog */}
       <ConfirmDialog

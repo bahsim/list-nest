@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { EmptyState } from '@ui-kit/components/atomic/empty-state/empty-state';
 import { EMPTY_STATE_CONFIG } from './empty-state-config';
 import { CategoryFilterChips } from '@/shared/ui/list/category-filter-chips';
@@ -7,29 +7,31 @@ import { BaseList } from '@/entities/list/base-list/base-list';
 import { HistoryListItemCard } from '@/features/history-list-item/history-list-item-card';
 import { useListExpansion } from '@/shared/hooks/list-expansion-context';
 import { DateRangeModal, DateRangeButton } from '@/features/history-list/components';
+import { useNavigate } from 'react-router-dom';
 
 export const HistoryListWidget: React.FC<HistoryListWidgetProps> = ({
   listData,
   categoryFilter,
   dateFilter,
+  onViewItem,
+  dateModalOpen,
+  onOpenDateModal,
+  onCloseDateModal,
 }) => {
   const { expandedItem, handleExpandItem } = useListExpansion();
-  const [dateModalOpen, setDateModalOpen] = useState(false);
   const mappedExpandedItem = expandedItem
     ? { group: expandedItem.group, id: expandedItem.itemId }
     : null;
+  const navigate = useNavigate();
 
   return (
     <>
       {listData.items.length > 0 && (
-        <DateRangeButton
-          label={dateFilter.getRangeLabel()}
-          onClick={() => setDateModalOpen(true)}
-        />
+        <DateRangeButton label={dateFilter.getRangeLabel()} onClick={onOpenDateModal} />
       )}
       <DateRangeModal
         open={dateModalOpen}
-        onClose={() => setDateModalOpen(false)}
+        onClose={onCloseDateModal}
         selectedRange={dateFilter.selectedDateRange}
         selectedPreset={dateFilter.selectedDatePreset}
         onChange={dateFilter.handleDateRangeChange}
@@ -46,7 +48,7 @@ export const HistoryListWidget: React.FC<HistoryListWidgetProps> = ({
           title={EMPTY_STATE_CONFIG.title}
           description={EMPTY_STATE_CONFIG.description}
           buttonLabel={EMPTY_STATE_CONFIG.buttonLabel}
-          onButtonClick={() => {}}
+          onButtonClick={() => navigate('/', { replace: true })}
           imageAlt={EMPTY_STATE_CONFIG.imageAlt}
         />
       ) : (
@@ -57,6 +59,7 @@ export const HistoryListWidget: React.FC<HistoryListWidgetProps> = ({
               item={item}
               expandedItem={mappedExpandedItem}
               onExpand={handleExpandItem}
+              onViewItem={onViewItem}
             />
           )}
         />

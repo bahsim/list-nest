@@ -5,9 +5,6 @@ export interface ListItemCore {
   estimatedPrice: number;
   currency: string;
   category: string;
-  isCurrent: boolean;
-  isBought: boolean;
-  isDeleted: boolean;
   notes: string;
 }
 
@@ -18,6 +15,7 @@ export interface ListItem extends ListItemCore {
   addedAt: Date | null;
   boughtAt: Date | null;
   deletedAt: Date | null;
+  isCurrent: boolean;
 }
 
 export interface AISuggestion {
@@ -26,4 +24,4 @@ export interface AISuggestion {
   quantity: number;
   estimatedPrice: number;
   category: string;
-} 
+}
