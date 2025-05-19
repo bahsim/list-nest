@@ -18,9 +18,10 @@ import { useMainListActions } from '@/features/main-list/providers/main-list-act
 
 export const MainListWidget: React.FC<MainListWidgetProps> = ({
   list,
-  modal,
+  modal,  
   dialogs,
   mockData,
+  categoryFilter,
 }) => {
   const { expandedItem, handleExpandItem } = useListExpansion();
   const { handleToggleBought, handleToggleCurrent, handleRestoreItem, handleEditItem, handleDeleteItem } = useMainListActions();
@@ -43,11 +44,11 @@ export const MainListWidget: React.FC<MainListWidgetProps> = ({
   return (
     <>
       {/* category chips section */}
-      {list.items.length > 0 && list.uniqueCategories.length > 1 && (
+      {list.items.length > 0 && categoryFilter.uniqueCategories.length > 1 && (
         <CategoryFilterChips
-          categories={list.uniqueCategories}
-          selectedCategories={list.selectedCategories}
-          onToggleCategory={list.onToggleCategory}
+          categories={categoryFilter.uniqueCategories}
+          selectedCategories={categoryFilter.selectedCategories}
+          onToggleCategory={categoryFilter.onToggleCategory}
         />
       )}
       {/* empty state */}

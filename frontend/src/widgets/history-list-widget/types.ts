@@ -1,9 +1,20 @@
 import type { ListItem } from '@/entities/list/types';
+import type { DateRange } from '@/shared/types/date-range';
 
 export interface HistoryListWidgetProps {
-  items: ListItem[];
-  uniqueCategories: string[];
-  selectedCategories: string[];
-  onToggleCategory: (category: string) => void;
-  itemsGroupedByDate: { label: string; items: ListItem[] }[];
+  listData: {
+    items: ListItem[];
+    filteredGroups: { label: string; items: ListItem[] }[];
+  };
+  categoryFilter: {
+    uniqueCategories: string[];
+    selectedCategories: string[];
+    onToggleCategory: (category: string) => void;
+  };
+  dateFilter: {
+    selectedDateRange: DateRange<Date>;
+    selectedDatePreset: string | null;
+    handleDateRangeChange: (range: DateRange<Date>, preset: string | null) => void;
+    getRangeLabel: () => string;
+  };
 } 

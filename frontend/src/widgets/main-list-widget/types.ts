@@ -3,13 +3,17 @@ import { UseItemDialogResult } from '@/shared/hooks/use-item-dialog';
 
 export interface ListBag {
   items: ListItem[];
-  uniqueCategories: string[];
-  selectedCategories: string[];
-  onToggleCategory: (category: string) => void;
   filteredItems: ListItem[];
   filteredCurrentItems: ListItem[];
   handleNewItem: () => void;
 }
+
+export interface CategoryFilterBag {
+  uniqueCategories: string[];
+  selectedCategories: string[];
+  onToggleCategory: (category: string) => void;
+}
+
 export interface ModalBag {
   isAddEditModalOpen: boolean;
   handleSaveItem: (input: any) => void;
@@ -25,6 +29,7 @@ export interface MockDataBag {
 
 export interface MainListWidgetProps {
   list: ListBag;
+  categoryFilter: CategoryFilterBag;
   modal: ModalBag;
   dialogs: {
     restoreDialog: UseItemDialogResult<ListItem>;

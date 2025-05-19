@@ -1,0 +1,1 @@
+export type DateRange<T = Date> = [T | null, T | null]; 

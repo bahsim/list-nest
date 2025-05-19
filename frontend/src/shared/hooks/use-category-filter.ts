@@ -10,7 +10,7 @@ export function useCategoryFilter<T>(items: T[], getCategory: (item: T) => strin
     );
   };
 
-  const filteredItems = useMemo(
+  const filteredItemsByCategory = useMemo(
     () => filterByCategory(items, selectedCategories, getCategory),
     [items, selectedCategories, getCategory],
   );
@@ -22,9 +22,8 @@ export function useCategoryFilter<T>(items: T[], getCategory: (item: T) => strin
 
   return {
     selectedCategories,
-    setSelectedCategories,
     handleToggleCategory,
-    filteredItems,
+    filteredItemsByCategory,
     uniqueCategories,
   };
 } 

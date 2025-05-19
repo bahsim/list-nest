@@ -24,21 +24,31 @@ export interface BaseListProps<T> {
 /**
  * A generic, dumb list for use in features. Handles layout, no business logic.
  */
-export function BaseList<T extends { id?: string }>(
-  { grouppedItems, renderItem }: BaseListProps<T>
-) {
+export function BaseList<T extends { id?: string }>({
+  grouppedItems,
+  renderItem,
+}: BaseListProps<T>) {
   return (
     <>
       {grouppedItems.map((group) => (
         <React.Fragment key={group.label}>
-          <GroupHeader label={group.label} rightContent={group.rightContent} />
-          <List sx={{ width: '100%', maxWidth: 600, px: 1 }} disablePadding>
-            {group.items.map((item, i) => (
-              <ListItem key={item.id ?? i} disableGutters disablePadding sx={{ display: 'block' }}>
-                {renderItem(item, group.label)}
-              </ListItem>
-            ))}
-          </List>
+          {group.items.length > 0 && (
+            <React.Fragment key={group.label}>
+              <GroupHeader label={group.label} rightContent={group.rightContent} />
+              <List sx={{ width: '100%', maxWidth: 600, px: 1 }} disablePadding>
+                {group.items.map((item, i) => (
+                  <ListItem
+                    key={item.id ?? i}
+                    disableGutters
+                    disablePadding
+                    sx={{ display: 'block' }}
+                  >
+                    {renderItem(item, group.label)}
+                  </ListItem>
+                ))}
+              </List>
+            </React.Fragment>
+          )}
         </React.Fragment>
       ))}
     </>
