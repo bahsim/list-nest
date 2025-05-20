@@ -9,7 +9,7 @@ import { mockItems } from '@/features/history-list/utils/mock-data';
 import { ViewItemModal } from '@/features/history-list/components/view-item-modal';
 import type { ListItem } from '@/entities/list/types';
 
-const initialItems: ListItem[] = [];
+const initialItems: ListItem[] = mockItems;
 
 export const HistoryListPage: React.FC = () => {
   const {

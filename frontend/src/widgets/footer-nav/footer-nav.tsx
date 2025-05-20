@@ -45,12 +45,14 @@ export const FooterNav: React.FC<FooterNavProps> = ({ sx }) => {
   return (
     <Box
       sx={{
-        position: 'absolute',
+        position: 'fixed',
         left: 0,
         right: 0,
         bottom: 0,
+        width: '100%',
         height: 56,
-        zIndex: 2,
+        zIndex: 100,
+        paddingBottom: 'env(safe-area-inset-bottom)',
         ...sx,
       }}
     >
