@@ -7,9 +7,9 @@ import CategoryIcon from '@mui/icons-material/Category';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import LanguageIcon from '@mui/icons-material/Language';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
+import { LanguageSelector } from '@/features/language-selector';
 
 // TODO:
-// Add currency selector
 // Add language selector
 // Add reset button
 
@@ -18,6 +18,7 @@ type TabType = 'categories' | 'currency' | 'language' | 'reset';
 export const SettingsPage: React.FC = () => {
   const [expanded, setExpanded] = useState<TabType | null>(null);
   const [currency, setCurrency] = useState('USD');
+  const [language, setLanguage] = useState('en');
 
   return (
     <Box sx={{ maxWidth: 480, mx: 'auto', py: 3, px: 1, width: '100%' }}>
@@ -43,10 +44,7 @@ export const SettingsPage: React.FC = () => {
         onExpand={() => setExpanded(expanded === 'language' ? null : 'language')}
         icon={<LanguageIcon sx={{ color: '#7b1fa2' }} />}
       >
-        {/* LanguageSelector placeholder */}
-        <Typography variant="body2" color="text.secondary">
-          Language selector coming soon…
-        </Typography>
+        <LanguageSelector value={language} onChange={setLanguage} label="Language" />
       </SettingsSection>
       <SettingsSection
         title="Reset"
