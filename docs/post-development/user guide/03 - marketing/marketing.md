@@ -1,3 +1,8 @@
+Absolutely. Here’s a pro-level, self-selling marketing article for ListNest, using your real screenshots as visual proof points. This is designed for your website, Product Hunt, LinkedIn, or a press release.  
+**You can copy-paste this into your CMS, blog, or PDF.**
+
+---
+
 # Meet ListNest: The Smartest, Most Collaborative Grocery App for Modern Families
 
 ---
@@ -24,7 +29,7 @@ ListNest is the next-gen, GenAI-powered grocery app that transforms how families
 
 No more clutter. See what you need, what’s done, and what’s next—at a glance.
 
-![Main List](main-list.png)
+![Main List](user-guide-images/main-list.png)
 
 ---
 
@@ -33,7 +38,7 @@ No more clutter. See what you need, what’s done, and what’s next—at a glan
 Adding new groceries is lightning-fast.  
 Smart fields, categories, and notes make it effortless.
 
-![Add Item](add-item.png)
+![Add Item](user-guide-images/add-item.png)
 
 ---
 
@@ -42,7 +47,7 @@ Smart fields, categories, and notes make it effortless.
 Tap any item for full details, notes, and quick actions.  
 Edit, mark as bought, or delete with a single tap.
 
-![Expanded Item](expanded-item.png)
+![Expanded Item](user-guide-images/expanded-item.png)
 
 ---
 
@@ -51,7 +56,7 @@ Edit, mark as bought, or delete with a single tap.
 Accidentally deleted or bought something?  
 Restore it instantly—no more lost items.
 
-![Restore Item](restore-confirmation.png)
+![Restore Item](user-guide-images/restore-confimation.png)
 
 ---
 
@@ -59,7 +64,7 @@ Restore it instantly—no more lost items.
 
 See your full purchase history, filter by date or category, and analyze your habits.
 
-![History List](history-list.png)
+![History List](user-guide-images/history-list.png)
 
 ---
 
@@ -68,7 +73,7 @@ See your full purchase history, filter by date or category, and analyze your hab
 Personalize your list with custom categories and colors.  
 Perfect for every family’s unique style.
 
-![Categories List](categories-list.png)
+![Categories List](user-guide-images/categories-list.png)
 
 ---
 
@@ -78,7 +83,7 @@ Perfect for every family’s unique style.
 - **Real-time:** Changes sync instantly for everyone.
 - **Simple navigation:** Everything is one tap away.
 
-![Footer Navigation](footer-list.png)
+![Footer Navigation](user-guide-images/footer-list.png)
 
 ---
 
@@ -102,3 +107,9 @@ Ready to make grocery shopping smarter, faster, and more fun?
 
 ListNest is built by families, for families—using the latest GenAI and real-time tech.  
 Join the future of shopping. Your fridge (and your wallet) will thank you.
+
+---
+
+**Want a PDF version or a custom landing page? Let me know!**  
+This copy is ready for your blog, landing page, or social media campaign.  
+If you want a more emotional, humorous, or technical angle, just say the word!
