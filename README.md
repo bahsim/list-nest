@@ -33,4 +33,16 @@ A GenAI-powered collaborative grocery shopping app for families. All household m
 - Basic GenAI suggestion (1-2 items from history)
 - Simple UI: view, add, edit, remove, mark as bought
 
+## MVP Description (User-Focused)
+
+ListNest is a collaborative grocery shopping app designed for families. The MVP focuses on core list management, real-time collaboration, and simple organization. Users can add, edit, and categorize items, track what's bought, and view their shopping history. The interface is mobile-first, intuitive, and supports basic category management.
+
+**Key MVP Features:**
+- Add, edit, and delete grocery items
+- Mark items as bought or restore them
+- Organize items by custom categories
+- View purchase history, filter by date/category
+- Simple, responsive UI for mobile use
+
 > See `/pre-development/Planning/02 - MVP scope.md` and `/pre-development/Discovery/01 - app idea v2.md` for more details. 
+
