@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import { CategoryEditor } from '@/features/category-editor';
 import { SettingsSection } from '@/widgets/settings-section';
 import { CurrencySelector } from '@/features/currency-selector';
@@ -8,6 +8,8 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import LanguageIcon from '@mui/icons-material/Language';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import { LanguageSelector } from '@/features/language-selector';
+import { useItemDialog } from '@/shared/hooks/use-item-dialog';
+import { SettingsResetSection } from '@/widgets/settings-reset-section';
 
 // TODO:
 // Add language selector
@@ -52,10 +54,7 @@ export const SettingsPage: React.FC = () => {
         onExpand={() => setExpanded(expanded === 'reset' ? null : 'reset')}
         icon={<RestartAltIcon sx={{ color: '#d32f2f' }} />}
       >
-        {/* ResetButton placeholder */}
-        <Typography variant="body2" color="error">
-          Reset functionality coming soon…
-        </Typography>
+        <SettingsResetSection />
       </SettingsSection>
     </Box>
   );

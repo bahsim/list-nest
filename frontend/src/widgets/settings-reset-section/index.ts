@@ -1,0 +1,1 @@
+export { SettingsResetSection } from './settings-reset-section'; 
