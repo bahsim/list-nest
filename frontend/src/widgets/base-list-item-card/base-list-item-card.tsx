@@ -51,7 +51,7 @@ export const BaseListItemCard: React.FC<BaseListItemCardProps> = React.memo(
           alignItems: 'center',
           background: isExpanded ? alpha(theme.palette.secondary.light, theme.highlightAlpha) : 'transparent',
           boxShadow: theme.shadows[3],
-          border: categoryColor ? `2px solid ${categoryColor}` : `0.5px solid rgba(146,122,125,0.3)`,
+          border: categoryColor ? `1px solid ${categoryColor}` : `0.5px solid rgba(146,122,125,0.3)`,
           position: 'relative',
           cursor: 'pointer',
           transform: `translateX(${translateXValue}px)`,
