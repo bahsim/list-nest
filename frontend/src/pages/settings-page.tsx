@@ -8,12 +8,7 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import LanguageIcon from '@mui/icons-material/Language';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import { LanguageSelector } from '@/features/language-selector';
-import { useItemDialog } from '@/shared/hooks/use-item-dialog';
 import { SettingsResetSection } from '@/widgets/settings-reset-section';
-
-// TODO:
-// Add language selector
-// Add reset button
 
 type TabType = 'categories' | 'currency' | 'language' | 'reset';
 
