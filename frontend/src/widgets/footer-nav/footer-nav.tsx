@@ -50,9 +50,7 @@ export const FooterNav: React.FC<FooterNavProps> = ({ sx }) => {
         right: 0,
         bottom: 0,
         width: '100%',
-        height: 56,
         zIndex: 100,
-        paddingBottom: 'env(safe-area-inset-bottom)',
         ...sx,
       }}
     >
@@ -67,6 +65,7 @@ export const FooterNav: React.FC<FooterNavProps> = ({ sx }) => {
           py: 0,
           minHeight: 56,
           boxShadow: theme => theme.shadows[1],
+          paddingBottom: 'env(safe-area-inset-bottom)',
         }}
       >
         {tabs.map(tab => (
