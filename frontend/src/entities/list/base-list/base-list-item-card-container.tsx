@@ -2,7 +2,7 @@ import * as React from 'react';
 import type { ListItem } from '@/entities/list/types';
 import type { ExpandedItem } from '@/entities/list/types/expanded-item';
 import { BaseListItemCard } from '@/widgets/base-list-item-card';
-import { isItemExpanded } from './utility';
+import { isItemExpanded } from '@/shared/utils/list-utils';
 import { getCategoryColorByName } from '@/features/main-list/utils/mock-data';
 
 export interface BaseListItemCardContainerProps {

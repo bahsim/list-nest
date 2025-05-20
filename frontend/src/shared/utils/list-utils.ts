@@ -41,3 +41,24 @@ export const isBought = (item: { boughtAt: Date | null }): boolean => item.bough
  * Returns true if the item is deleted (deletedAt !== null)
  */
 export const isDeleted = (item: { deletedAt: Date | null }): boolean => item.deletedAt !== null;
+
+/**
+ * Checks if the given item (or itemId) is expanded for the specified group.
+ * @param expandedItem - The currently expanded item (or null)
+ * @param group - The group label (default: 'non-group')
+ * @param itemId - The id of the item to check
+ * @returns true if the item is expanded in the given group
+ */
+export interface IsItemExpandedProps {
+  expandedItem: { group: string; id: string } | null;
+  group?: string;
+  itemId: string;
+}
+
+export const isItemExpanded = ({
+  expandedItem,
+  group = 'non-group',
+  itemId,
+}: IsItemExpandedProps): boolean => {
+  return !!expandedItem && expandedItem.group === group && expandedItem.id === itemId;
+};

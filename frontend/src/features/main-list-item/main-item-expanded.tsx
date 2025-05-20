@@ -1,13 +1,10 @@
 import * as React from 'react';
-import { Box, Switch } from '@mui/material';
+import { Box } from '@mui/material';
 import type { ListItem } from '@/entities/list/types';
 import type { ExpandedItem } from '@/entities/list/types/expanded-item';
-import { AddNoteInput } from '@ui-kit/components/molecule/add-note-input';
-import { NoteDisplay } from '@ui-kit/components/molecule/note-display';
 import { ItemActionButtons } from './item-action-buttons';
 import { useEditableInput } from '@/shared/hooks/use-editable-input';
-import { isItemExpanded } from '@/entities/list/base-list/utility';
-import { formatItemCost } from '@/entities/list';
+import { isItemExpanded } from '@/shared/utils/list-utils';
 import { SectionDivider } from '@ui-kit/components/atomic/SectionDivider';
 import { ItemCostDisplay } from '@/shared/components/item-cost-display';
 import { ItemNotesSection } from '@/shared/components/item-notes-section';
