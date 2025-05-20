@@ -2,6 +2,8 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
+import { alpha } from '@mui/material/styles';
+import { useTheme } from '@mui/material/styles';
 
 /**
  * FieldDisplay displays a label and value, optionally editable.
@@ -19,7 +21,15 @@ export interface FieldDisplayProps {
   icon?: React.ReactNode;
 }
 
-export const FieldDisplay: React.FC<FieldDisplayProps> = ({ label, value, multiline, onClick, icon }) => {
+export const FieldDisplay: React.FC<FieldDisplayProps> = ({
+  label,
+  value,
+  multiline,
+  onClick,
+  icon,
+}) => {
+  const theme = useTheme();
+
   return (
     <Box
       sx={{
@@ -30,39 +40,77 @@ export const FieldDisplay: React.FC<FieldDisplayProps> = ({ label, value, multil
         cursor: onClick ? 'pointer' : 'default',
         borderRadius: 2,
         transition: 'background 0.2s',
-        '&:hover': onClick ? { background: 'rgba(74,144,226,0.08)' } : undefined,
-        '&:focus-within': onClick ? { outline: '2px solid #4A90E2' } : undefined,
+        '&:hover': onClick
+          ? { background: (theme) => alpha(theme.palette.primary.light, 0.08) }
+          : undefined,
+        '&:focus-within': onClick
+          ? { outline: (theme) => `2px solid ${theme.palette.primary.main}` }
+          : undefined,
       }}
       tabIndex={onClick ? 0 : -1}
       role={onClick ? 'button' : undefined}
       aria-label={onClick ? `Edit ${label}` : undefined}
       onClick={onClick}
-      onKeyDown={onClick ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onClick(); } } : undefined}
+      onKeyDown={
+        onClick
+          ? (e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                onClick();
+              }
+            }
+          : undefined
+      }
     >
       <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
         {multiline ? (
           <>
-            <Box sx={{ fontFamily: 'Nunito', fontWeight: 700, color: 'text.secondary', fontSize: 16 }}>{label}</Box>
-            <Box sx={{ fontFamily: 'Nunito', fontWeight: 400, color: 'text.primary', fontSize: 16, width: '100%', whiteSpace: 'pre-line' }}>{value}</Box>
+            <Box
+              sx={{ fontFamily: 'Nunito', fontWeight: 700, color: 'text.secondary', fontSize: 16 }}
+            >
+              {label}
+            </Box>
+            <Box
+              sx={{
+                fontFamily: 'Nunito',
+                fontWeight: 400,
+                color: 'text.primary',
+                fontSize: 16,
+                width: '100%',
+                whiteSpace: 'pre-line',
+              }}
+            >
+              {value}
+            </Box>
           </>
         ) : (
           <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1 }}>
-            <Box sx={{ fontFamily: 'Nunito', fontWeight: 700, color: 'text.secondary', fontSize: 16 }}>{label}:</Box>
-            <Box sx={{ fontFamily: 'Nunito', fontWeight: 400, color: 'text.primary', fontSize: 16 }}>{value}</Box>
+            <Box
+              sx={{ fontFamily: 'Nunito', fontWeight: 700, color: 'text.secondary', fontSize: 16 }}
+            >
+              {label}:
+            </Box>
+            <Box
+              sx={{ fontFamily: 'Nunito', fontWeight: 400, color: 'text.primary', fontSize: 16 }}
+            >
+              {value}
+            </Box>
           </Box>
         )}
       </Box>
-      {onClick && (
-        icon ? (
+      {onClick &&
+        (icon ? (
           <IconButton size="small" tabIndex={-1} sx={{ ml: 1 }} aria-label={`Edit ${label}`}>
             {icon}
           </IconButton>
         ) : (
           <IconButton size="small" tabIndex={-1} sx={{ ml: 1 }} aria-label={`Edit ${label}`}>
-            <EditIcon fontSize="small" sx={{ color: 'action.active', opacity: 0.8, fontSize: 18 }} />
+            <EditIcon
+              fontSize="small"
+              sx={{ color: 'action.active', opacity: 0.8, fontSize: 18 }}
+            />
           </IconButton>
-        )
-      )}
+        ))}
     </Box>
   );
-}; 
+};

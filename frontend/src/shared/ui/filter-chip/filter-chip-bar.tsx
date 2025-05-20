@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, useTheme, alpha } from '@mui/material';
+import { alpha as muiAlpha } from '@mui/material/styles';
 
 interface FilterChipBarProps {
   children: React.ReactNode;
@@ -12,7 +13,7 @@ export const FilterChipBar: React.FC<FilterChipBarProps> = ({ children, classNam
     <Box sx={{ mt: 1, px: 1, maxWidth: 600, width: '100%' }} className={className}>
       <Box
         sx={{
-          border: '0.5px solid rgba(146,122,125,0.3)',
+          border: (theme) => `0.5px solid ${muiAlpha(theme.palette.divider, 0.3)}`,
           background: alpha(theme.palette.secondary.light, theme.highlightAlpha),
           borderRadius: 2,
           py: 1,

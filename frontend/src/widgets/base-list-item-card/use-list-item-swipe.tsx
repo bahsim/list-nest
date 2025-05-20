@@ -19,7 +19,10 @@ export const useListItemSwipe = ({
 }: {
   onSwipeLeft?: () => void;
   onSwipeRight?: () => void;
-  getSwipeVisuals?: (args: { direction: 'left' | 'right'; theme: Theme }) => { icon: React.ElementType; background: string };
+  getSwipeVisuals?: (args: { direction: 'left' | 'right'; theme: Theme }) => {
+    icon: React.ElementType;
+    background: string;
+  };
   theme: Theme;
 }) => {
   const [translateX, setTranslateX] = React.useState(0);
@@ -54,9 +57,16 @@ export const useListItemSwipe = ({
     const IconComponent = visuals.icon;
     const opacity = Math.min(absX / 80, 1);
     actionIcon = (
-      <IconComponent sx={{ fontSize: 32, color: '#fff', opacity, transition: 'opacity 0.1s' }} />
+      <IconComponent
+        sx={{
+          fontSize: 32,
+          color: (theme) => theme.palette.common.white,
+          opacity,
+          transition: 'opacity 0.1s',
+        }}
+      />
     );
     actionBg = absX > 10 ? visuals.background : 'transparent';
   }
   return { translateX, swipeHandlers, absX, actionIcon, actionBg };
-}; 
+};

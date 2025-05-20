@@ -23,7 +23,11 @@ export interface HistoryItemExpandedProps {
   onViewItem?: (item: ListItem) => void;
 }
 
-export const HistoryItemExpanded: React.FC<HistoryItemExpandedProps> = ({ item, expandedItem, onViewItem }) => {
+export const HistoryItemExpanded: React.FC<HistoryItemExpandedProps> = ({
+  item,
+  expandedItem,
+  onViewItem,
+}) => {
   const isExpanded = isItemExpanded({ expandedItem, itemId: item.id });
 
   if (!isExpanded) {
@@ -50,7 +54,7 @@ export const HistoryItemExpanded: React.FC<HistoryItemExpandedProps> = ({ item, 
             if (onViewItem) onViewItem(item);
           }}
           color="info"
-          icon={<DescriptionIcon sx={{ color: '#fff' }} />}
+          icon={<DescriptionIcon sx={{ color: (theme) => theme.palette.common.white }} />}
         />
       </Box>
     </ExpandedSection>

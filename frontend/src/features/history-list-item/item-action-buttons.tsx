@@ -33,7 +33,7 @@ export const ItemActionButtons: React.FC<ItemActionButtonsProps> = ({ item }) =>
       <ActionIconButton
         onClick={handleEditClick}
         color="info"
-        icon={<EditIcon sx={{ color: '#fff' }} />}
+        icon={<EditIcon sx={{ color: (theme) => theme.palette.common.white }} />}
         show={!isBought(item) && !isDeleted(item)}
       />
     </Box>

@@ -38,6 +38,8 @@ const muiShadows: any = [
 
 // Custom highlight alpha for list items
 const HIGHLIGHT_ALPHA = 0.07;
+// Alpha for primary hover backgrounds (used in interactive elements)
+const PRIMARY_HOVER_ALPHA = 0.15;
 
 declare module '@mui/material/styles' {
   interface PaletteBackground {

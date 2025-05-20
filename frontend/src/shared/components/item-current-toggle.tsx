@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Box, Switch } from '@mui/material';
 import type { ListItem } from '@/entities/list/types';
+import { useTheme, alpha } from '@mui/material/styles';
 
 export interface ItemCurrentToggleProps {
   item: ListItem;
@@ -9,7 +10,7 @@ export interface ItemCurrentToggleProps {
 
 export const ItemCurrentToggle: React.FC<ItemCurrentToggleProps> = ({ item, onToggle }) => (
   <Box
-    onClick={e => {
+    onClick={(e) => {
       e.stopPropagation();
       onToggle(item);
     }}
@@ -23,7 +24,7 @@ export const ItemCurrentToggle: React.FC<ItemCurrentToggleProps> = ({ item, onTo
       py: 0.5,
       borderRadius: 2,
       transition: 'background 0.2s',
-      '&:hover': { background: 'rgba(25, 118, 210, 0.08)' },
+      '&:hover': (theme) => ({ background: alpha(theme.palette.primary.light, 0.15) }),
     }}
   >
     <Switch
@@ -33,4 +34,4 @@ export const ItemCurrentToggle: React.FC<ItemCurrentToggleProps> = ({ item, onTo
       slotProps={{ input: { 'aria-label': 'Current toggle' } }}
     />
   </Box>
-); 
+);

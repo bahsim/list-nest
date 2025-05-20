@@ -23,7 +23,7 @@ export const SettingsPage: React.FC = () => {
         title="Categories"
         expanded={expanded === 'categories'}
         onExpand={() => setExpanded(expanded === 'categories' ? null : 'categories')}
-        icon={<CategoryIcon sx={{ color: '#1976d2' }} />}
+        icon={<CategoryIcon sx={{ color: (theme) => theme.palette.primary.main }} />}
       >
         <CategoryEditor />
       </SettingsSection>
@@ -31,7 +31,7 @@ export const SettingsPage: React.FC = () => {
         title="Currency"
         expanded={expanded === 'currency'}
         onExpand={() => setExpanded(expanded === 'currency' ? null : 'currency')}
-        icon={<AttachMoneyIcon sx={{ color: '#388e3c' }} />}
+        icon={<AttachMoneyIcon sx={{ color: (theme) => theme.palette.success.main }} />}
       >
         <CurrencySelector value={currency} onChange={setCurrency} />
       </SettingsSection>
@@ -39,7 +39,7 @@ export const SettingsPage: React.FC = () => {
         title="Language"
         expanded={expanded === 'language'}
         onExpand={() => setExpanded(expanded === 'language' ? null : 'language')}
-        icon={<LanguageIcon sx={{ color: '#7b1fa2' }} />}
+        icon={<LanguageIcon sx={{ color: (theme) => theme.palette.secondary.main }} />}
       >
         <LanguageSelector value={language} onChange={setLanguage} label="Language" />
       </SettingsSection>
@@ -47,7 +47,7 @@ export const SettingsPage: React.FC = () => {
         title="Reset"
         expanded={expanded === 'reset'}
         onExpand={() => setExpanded(expanded === 'reset' ? null : 'reset')}
-        icon={<RestartAltIcon sx={{ color: '#d32f2f' }} />}
+        icon={<RestartAltIcon sx={{ color: (theme) => theme.palette.error.main }} />}
       >
         <SettingsResetSection />
       </SettingsSection>

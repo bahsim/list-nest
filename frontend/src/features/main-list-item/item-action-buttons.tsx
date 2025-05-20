@@ -68,19 +68,31 @@ export const ItemActionButtons: React.FC<ItemActionButtonsProps> = ({
       <ActionIconButton
         onClick={handleToggleBoughtClick}
         color="secondary"
-        icon={isBought(item) ? <RestoreIcon sx={{ color: '#fff' }} /> : <CheckCircleOutlineIcon sx={{ color: '#fff' }} />}
+        icon={
+          isBought(item) ? (
+            <RestoreIcon sx={{ color: (theme) => theme.palette.common.white }} />
+          ) : (
+            <CheckCircleOutlineIcon sx={{ color: (theme) => theme.palette.common.white }} />
+          )
+        }
         show={!isDeleted(item)}
       />
       <ActionIconButton
         onClick={handleEditClick}
         color="info"
-        icon={<EditIcon sx={{ color: '#fff' }} />}
+        icon={<EditIcon sx={{ color: (theme) => theme.palette.common.white }} />}
         show={!isBought(item) && !isDeleted(item)}
       />
       <ActionIconButton
         onClick={handleDeleteClick}
         color="error"
-        icon={isDeleted(item) ? <RestoreIcon sx={{ color: '#fff' }} /> : <DeleteIcon sx={{ color: '#fff' }} />}
+        icon={
+          isDeleted(item) ? (
+            <RestoreIcon sx={{ color: (theme) => theme.palette.common.white }} />
+          ) : (
+            <DeleteIcon sx={{ color: (theme) => theme.palette.common.white }} />
+          )
+        }
         show={!isBought(item)}
       />
     </Box>

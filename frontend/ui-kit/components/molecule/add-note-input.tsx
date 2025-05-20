@@ -21,7 +21,7 @@ export const AddNoteInput: React.FC<AddNoteInputProps> = ({
   <Box sx={{ mb: 1 }}>
     <TextField
       value={value}
-      onChange={e => onChange(e.target.value)}
+      onChange={(e) => onChange(e.target.value)}
       placeholder="Enter note..."
       size="small"
       variant="outlined"
@@ -34,14 +34,17 @@ export const AddNoteInput: React.FC<AddNoteInputProps> = ({
       multiline
       minRows={2}
       maxRows={6}
-      onClick={e => e.stopPropagation()}
+      onClick={(e) => e.stopPropagation()}
     />
     <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 2, mt: 1 }}>
       {/* Save (Coral) */}
       <Tooltip title="Save (Coral)">
         <span>
           <IconButton
-            onClick={e => { e.stopPropagation(); onSave(); }}
+            onClick={(e) => {
+              e.stopPropagation();
+              onSave();
+            }}
             color="primary"
             size="medium"
             sx={{
@@ -54,13 +57,16 @@ export const AddNoteInput: React.FC<AddNoteInputProps> = ({
               },
             }}
           >
-            <CheckIcon sx={{ color: '#fff' }} />
+            <CheckIcon sx={{ color: (theme) => theme.palette.common.white }} />
           </IconButton>
         </span>
       </Tooltip>
       <Tooltip title="Cancel">
         <IconButton
-          onClick={e => { e.stopPropagation(); onCancel(); }}
+          onClick={(e) => {
+            e.stopPropagation();
+            onCancel();
+          }}
           color="inherit"
           size="medium"
           sx={{
@@ -69,13 +75,13 @@ export const AddNoteInput: React.FC<AddNoteInputProps> = ({
             borderRadius: '50%',
             background: 'none',
             '&:hover': {
-              background: theme => theme.palette.action.hover,
+              background: (theme) => theme.palette.action.hover,
             },
           }}
         >
-          <CloseIcon sx={{ color: theme => theme.palette.text.secondary }} />
+          <CloseIcon sx={{ color: (theme) => theme.palette.text.secondary }} />
         </IconButton>
       </Tooltip>
     </Box>
   </Box>
-); 
+);
