@@ -12,7 +12,8 @@ export const ExpandedSection: React.FC<ExpandedSectionProps> = ({ children, divi
   <Box
     sx={{
       width: '100%',
-      px: 1,
+      px: 2,
+      pb: 1,
       display: 'flex',
       flexDirection: 'column',
       ...sx,
