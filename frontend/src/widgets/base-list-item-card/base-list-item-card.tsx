@@ -65,6 +65,7 @@ export const BaseListItemCard: React.FC<BaseListItemCardProps> = React.memo(
           overflow: 'visible',
           mb: 1,
           p: 1,
+          px: 0,
           WebkitTapHighlightColor: 'transparent',
         }}
         onClick={handleCardClick}
