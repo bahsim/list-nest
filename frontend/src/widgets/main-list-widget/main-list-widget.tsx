@@ -153,6 +153,7 @@ export const MainListWidget: React.FC<MainListWidgetProps> = ({
             <AddEditItemModal
               onSave={handleSaveItem}
               onClose={handleCloseModal}
+              currency={currency}
               categories={categories}
               item={editingItem}
               title={MODAL_TITLES[mode]}
