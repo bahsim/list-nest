@@ -8,11 +8,14 @@
 import { useState, useEffect } from 'react';
 import { localStorageUtil } from '@/shared/utils/local-storage';
 
-export const usePersistentState = <T>(key: string, initial: T): [T, (v: T | ((prev: T) => T)) => void] => {
+export const usePersistentState = <T>(
+  key: string,
+  initial: T,
+): [T, (v: T | ((prev: T) => T)) => void] => {
   const [state, setState] = useState<T>(() => localStorageUtil.get<T>(key, initial) ?? initial);
 
   const setPersistentState = (value: T | ((prev: T) => T)) => {
-    setState(prev => {
+    setState((prev) => {
       const next = typeof value === 'function' ? (value as (prev: T) => T)(prev) : value;
       return next;
     });
@@ -23,4 +26,4 @@ export const usePersistentState = <T>(key: string, initial: T): [T, (v: T | ((pr
   }, [key, state]);
 
   return [state, setPersistentState];
-}; 
+};

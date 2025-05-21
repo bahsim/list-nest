@@ -2,38 +2,6 @@ import type { ListItem } from '@/entities/list/types';
 import { UseItemDialogResult } from '@/shared/hooks/use-item-dialog';
 import { AddItemInput } from '@/entities/list/types';
 
-export interface ListBag {
-  items: ListItem[];
-  filteredItems: ListItem[];
-  filteredCurrentItems: ListItem[];
-  handleNewItem: () => void;
-}
-
-export interface CategoryFilterBag {
-  uniqueCategories: string[];
-  selectedCategories: string[];
-  toggleCategory: (category: string) => void;
-}
-
-export interface ModalBag {
-  isAddEditModalOpen: boolean;
-  handleSaveItem: (input: any) => void;
-  handleCancelAdd: () => void;
-  editingItem: ListItem | null;
-  modalMode: 'add' | 'edit' | 'complete';
-}
-
-export interface MockDataBag {
-  mockCategories: string[];
-  mockUnits: string[];
-}
-
-export interface MainListGroup {
-  label: string;
-  items: ListItem[];
-  rightContent: string;
-}
-
 export interface MainListWidgetProps {
   items: ListItem[];
   currency: string;
@@ -47,4 +15,4 @@ export interface MainListWidgetProps {
   handleAddItem: (input: AddItemInput | ListItem) => void;
   handleEditItem: (input: AddItemInput | ListItem) => void;
   handleCompleteItem: (input: AddItemInput | ListItem) => void;
-} 
+}

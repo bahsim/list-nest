@@ -8,7 +8,6 @@ export const mockUser: User = {
 };
 
 export const mockCategories: string[] = ['Produce', 'Bakery', 'Dairy', 'Meat', 'Snacks', 'Alcohol', 'Frozen', 'Pantry'];
-export const mockUnits: string[] = ['pcs', 'kg', 'g', 'l', 'pack', 'box'];
 
 const now = new Date();
 const daysAgo = (n: number) => new Date(now.getTime() - n * 24 * 60 * 60 * 1000);
