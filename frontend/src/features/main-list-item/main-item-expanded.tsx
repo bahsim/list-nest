@@ -10,6 +10,8 @@ import { ItemCostDisplay } from '@/shared/components/item-cost-display';
 import { ItemNotesSection } from '@/shared/components/item-notes-section';
 import { ItemCurrentToggle } from '@/shared/components/item-current-toggle';
 import { ExpandedSection } from '@/shared/components/expanded-section';
+import { CURRENCY_KEY } from '@/shared/constants/storage-keys';
+import { usePersistentState } from '@/shared/hooks/use-persistent-state';
 
 /**
  * MainItemExpanded displays expanded details and actions for a shopping list item.
@@ -45,7 +47,8 @@ export const MainItemExpanded: React.FC<MainItemExpandedProps> = ({
 }) => {
   const isExpanded = isItemExpanded({ expandedItem, group, itemId: item.id });
   const noteInput = useEditableInput(item.id, item.notes || '', handleSaveNote);
-
+  const [currency] = usePersistentState(CURRENCY_KEY, 'USD');
+  
   if (!isExpanded) {
     return null;
   }
@@ -54,7 +57,7 @@ export const MainItemExpanded: React.FC<MainItemExpandedProps> = ({
     <ExpandedSection>
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <ItemCurrentToggle item={item} onToggle={handleToggleCurrent} />
-        <ItemCostDisplay item={item} />
+        <ItemCostDisplay item={item} currency={currency} />
       </Box>
       <SectionDivider sx={{ mb: 1 }} />
       <ItemNotesSection

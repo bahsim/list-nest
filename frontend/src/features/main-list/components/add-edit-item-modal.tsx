@@ -16,6 +16,7 @@ import {
   ErrorAlertField,
 } from '@/shared/ui/list/fields';
 import { useAddEditItemModal } from '@/features/main-list/hooks/use-add-edit-item-modal';
+import { UNITS } from '@/shared/constants/units';
 
 /**
  * AddEditItemModal for adding or editing a shopping list item.
@@ -30,9 +31,8 @@ import { useAddEditItemModal } from '@/features/main-list/hooks/use-add-edit-ite
 export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
   item,
   onSave,
-  onCancel,
+  onClose,
   categories,
-  units,
   aiSuggestions,
   title,
   actionLabel,
@@ -45,7 +45,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
     handleAISuggestion,
     handleSaveClick,
     DEFAULT_ITEM_VALUES,
-  } = useAddEditItemModal(item, units);
+  } = useAddEditItemModal(item, UNITS);
 
   // Move openFields state here (UI-only)
   const [openFields, setOpenFields] = React.useState({
@@ -57,7 +57,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
   });
 
   return (
-    <Dialog open onClose={onCancel} maxWidth="xs" fullWidth>
+    <Dialog open onClose={onClose} maxWidth="xs" fullWidth>
       <DialogTitle>{title}</DialogTitle>
       <SectionDivider />
       <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: 0, pt: 1, pb: 1 }}>
@@ -71,7 +71,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
           quantity={fields.quantity}
           unit={fields.unit}
           open={openFields.quantity}
-          units={units}
+          units={UNITS}
           onChange={handleChange}
           onOpen={() => setOpenFields((prev) => ({ ...prev, quantity: true }))}
           defaultQuantity={DEFAULT_ITEM_VALUES.quantity}
@@ -107,7 +107,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
         <Button variant="contained" color="primary" onClick={() => handleSaveClick(onSave)}>
           {actionLabel}
         </Button>
-        <Button onClick={onCancel} variant="outlined">
+        <Button onClick={onClose} variant="outlined">
           Cancel
         </Button>
       </DialogActions>

@@ -9,6 +9,8 @@ import { SectionDivider } from '@ui-kit/components/atomic/SectionDivider';
 import { ItemCostDisplay } from '@/shared/components/item-cost-display';
 import { ItemNotesSection } from '@/shared/components/item-notes-section';
 import { ExpandedSection } from '@/shared/components/expanded-section';
+import { usePersistentState } from '@/shared/hooks/use-persistent-state';
+import { CURRENCY_KEY } from '@/shared/constants/storage-keys';
 
 /**
  * HistoryItemExpanded displays expanded details and actions for a shopping list item.
@@ -29,14 +31,14 @@ export const HistoryItemExpanded: React.FC<HistoryItemExpandedProps> = ({
   onViewItem,
 }) => {
   const isExpanded = isItemExpanded({ expandedItem, itemId: item.id });
-
+  const [currency] = usePersistentState(CURRENCY_KEY, 'USD');
   if (!isExpanded) {
     return null;
   }
 
   return (
     <ExpandedSection>
-      <ItemCostDisplay item={item} />
+      <ItemCostDisplay item={item} currency={currency} />
       <SectionDivider sx={{ mb: 1 }} />
       <ItemNotesSection item={item} />
       <Box

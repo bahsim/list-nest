@@ -3,7 +3,6 @@ export interface ListItemCore {
   quantity: number;
   unit: string;
   estimatedPrice: number;
-  currency: string;
   category: string;
   notes: string;
 }

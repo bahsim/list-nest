@@ -62,3 +62,7 @@ export const isItemExpanded = ({
 }: IsItemExpandedProps): boolean => {
   return !!expandedItem && expandedItem.group === group && expandedItem.id === itemId;
 };
+
+export const isEditingItem = (item: unknown): item is { id: string } => {
+  return !!item && typeof item === 'object' && 'id' in item;
+};

@@ -5,10 +5,7 @@ import { useHistoryDateFilter } from './use-history-date-filter';
 import { DatePresetLabel } from '@/shared/constants/date-presets';
 import { getDefaultRange, getRangeLabel } from '@/shared/utils/date';
 
-export const useHistoryDateFilterState = (
-  items: ListItem[],
-) => {
-  const [dateModalOpen, setDateModalOpen] = useState(false);
+export const useHistoryDateFilterState = (items: ListItem[]) => {
   const [selectedDateRange, setSelectedDateRange] = useState<DateRange<Date>>(getDefaultRange());
   const [selectedDatePreset, setSelectedDatePreset] = useState<DatePresetLabel | string>(
     DatePresetLabel.Week,
@@ -25,8 +22,6 @@ export const useHistoryDateFilterState = (
   const filteredItemsByDate = useHistoryDateFilter(items, selectedDateRange);
 
   return {
-    dateModalOpen,
-    setDateModalOpen,
     selectedDateRange,
     selectedDatePreset,
     handleDateRangeChange,

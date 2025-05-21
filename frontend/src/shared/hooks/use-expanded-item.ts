@@ -9,8 +9,12 @@ export function useExpandedItem<TId = string, TGroup = string>() {
     );
   };
 
+  const mappedExpandedItem = expandedItem
+    ? { group: expandedItem.group, id: expandedItem.itemId }
+    : null;
+
   return {
-    expandedItem,
+    expandedItem: mappedExpandedItem,
     handleExpandItem,
   };
 }

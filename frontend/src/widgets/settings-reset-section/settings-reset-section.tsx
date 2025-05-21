@@ -11,7 +11,8 @@ export const SettingsResetSection: React.FC = () => {
       <Button
         variant="outlined"
         color="error"
-        onClick={() => resetDialog.handleOpen()}
+        // @ts-ignore
+        onClick={() => resetDialog.handleOpen({}, () => {})}
         aria-label="Reset History"
       >
         Reset History

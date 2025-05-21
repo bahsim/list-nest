@@ -1,50 +1,87 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { EmptyState } from '@ui-kit/components/atomic/empty-state/empty-state';
 import { EMPTY_STATE_CONFIG } from './empty-state-config';
 import { CategoryFilterChips } from '@/shared/ui/list/category-filter-chips';
 import type { HistoryListWidgetProps } from './types';
 import { BaseList } from '@/entities/list/base-list/base-list';
 import { HistoryListItemCard } from '@/features/history-list-item/history-list-item-card';
-import { useListExpansion } from '@/shared/hooks/list-expansion-context';
 import { DateRangeModal, DateRangeButton } from '@/features/history-list/components';
 import { useNavigate } from 'react-router-dom';
 import { goToMainPage } from '@/shared/utils/navigation';
+import { useExpandedItem } from '@/shared/hooks/use-expanded-item';
+import { ViewItemModal } from '@/features/history-list/components/view-item-modal';
+import type { ListItem } from '@/entities/list/types';
+import { useCategoryFilter } from '@/shared/hooks/use-category-filter';
+import { useHistoryDateFilterState } from '@/features/history-list/hooks/use-history-date-filter-state';
+import { useModal } from '@/shared/hooks/use-modal';
+import { groupHistoryItems } from '@/features/history-list-item/utils';
 
-export const HistoryListWidget: React.FC<HistoryListWidgetProps> = ({
-  listData,
-  categoryFilter,
-  dateFilter,
-  onViewItem,
-  dateModalOpen,
-  onOpenDateModal,
-  onCloseDateModal,
-}) => {
-  const { expandedItem, handleExpandItem } = useListExpansion();
-  const mappedExpandedItem = expandedItem
-    ? { group: expandedItem.group, id: expandedItem.itemId }
-    : null;
+export const HistoryListWidget: React.FC<HistoryListWidgetProps> = ({ items, currency }) => {
   const navigate = useNavigate();
+
+  // List expansion
+  const { expandedItem, handleExpandItem } = useExpandedItem();
+
+  // Date filter modal
+  const {
+    open: dateModalOpen,
+    openModal: handleOpenDateModal,
+    closeModal: handleCloseDateModal,
+  } = useModal();
+
+  // Date filter logic
+  const {
+    selectedDateRange,
+    selectedDatePreset,
+    handleDateRangeChange,
+    getRangeLabel,
+    filteredItemsByDate,
+  } = useHistoryDateFilterState(items);
+
+  // Category filter logic
+  const { selectedCategories, toggleCategory, filteredItemsByCategory, uniqueCategories } =
+    useCategoryFilter(filteredItemsByDate, (item) => item.category);
+
+  // Grouping logic
+  const itemsGroupedByDate = React.useMemo(
+    () => groupHistoryItems(filteredItemsByCategory, currency),
+    [filteredItemsByCategory, currency],
+  );
+
+  // Modal state and handlers
+  const [viewModalOpen, setViewModalOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<ListItem | null>(null);
+
+  const handleViewItem = (item: ListItem) => {
+    setSelectedItem(item);
+    setViewModalOpen(true);
+  };
+
+  const handleCloseViewModal = () => {
+    setViewModalOpen(false);
+    setSelectedItem(null);
+  };
 
   return (
     <>
-      {listData.items.length > 0 && (
-        <DateRangeButton label={dateFilter.getRangeLabel()} onClick={onOpenDateModal} />
+      {items.length > 0 && (
+        <DateRangeButton label={getRangeLabel()} onClick={handleOpenDateModal} />
       )}
       <DateRangeModal
         open={dateModalOpen}
-        onClose={onCloseDateModal}
-        selectedRange={dateFilter.selectedDateRange}
-        selectedPreset={dateFilter.selectedDatePreset}
-        onChange={dateFilter.handleDateRangeChange}
+        onClose={handleCloseDateModal}
+        selectedRange={selectedDateRange}
+        selectedPreset={selectedDatePreset}
+        onChange={handleDateRangeChange}
       />
-      {categoryFilter.uniqueCategories.length > 1 && (
+      {uniqueCategories.length > 1 && (
         <CategoryFilterChips
-          categories={categoryFilter.uniqueCategories}
-          selectedCategories={categoryFilter.selectedCategories}
-          onToggleCategory={categoryFilter.onToggleCategory}
+          categories={uniqueCategories}
+          selectedCategories={selectedCategories}
+          onToggleCategory={toggleCategory}
         />
       )}
-      {listData.items.length === 0 ? (
+      {items.length === 0 ? (
         <EmptyState
           title={EMPTY_STATE_CONFIG.title}
           description={EMPTY_STATE_CONFIG.description}
@@ -54,17 +91,18 @@ export const HistoryListWidget: React.FC<HistoryListWidgetProps> = ({
         />
       ) : (
         <BaseList
-          grouppedItems={listData.filteredGroups}
+          grouppedItems={itemsGroupedByDate}
           renderItem={(item) => (
             <HistoryListItemCard
               item={item}
-              expandedItem={mappedExpandedItem}
+              expandedItem={expandedItem}
               onExpand={handleExpandItem}
-              onViewItem={onViewItem}
+              onViewItem={handleViewItem}
             />
           )}
         />
       )}
+      {viewModalOpen && <ViewItemModal item={selectedItem} onClose={handleCloseViewModal} />}
     </>
   );
 };

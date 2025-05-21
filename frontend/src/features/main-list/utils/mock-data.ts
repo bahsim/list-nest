@@ -10,7 +10,6 @@ export const mockUser: User = {
 };
 
 export const mockCategories: string[] = ['Produce', 'Bakery', 'Dairy', 'Meat', 'Snacks'];
-export const mockUnits: string[] = ['pcs', 'kg', 'g', 'l', 'pack'];
 
 export const mockCategoriesWithColors: Category[] = [
   { name: 'Produce', color: 'SAGE' },
@@ -30,7 +29,6 @@ export const mockItems: ListItem[] = [
     category: 'Dairy',
     isCurrent: false,
     estimatedPrice: 100,
-    currency: 'USD',
     addedAt: new Date(),
     notes: 'This is a note for the item, it can be very long and contain a lot of information',
     boughtAt: null,
@@ -44,7 +42,6 @@ export const mockItems: ListItem[] = [
     category: 'Bakery',
     isCurrent: true,
     estimatedPrice: 5,
-    currency: 'USD',
     addedAt: new Date(),
     boughtAt: null,
     deletedAt: null,
@@ -58,7 +55,6 @@ export const mockItems: ListItem[] = [
     category: 'Dairy',
     isCurrent: false,
     estimatedPrice: 10,
-    currency: 'USD',
     addedAt: new Date(),
     boughtAt: null,
     deletedAt: null,
@@ -72,7 +68,6 @@ export const mockItems: ListItem[] = [
     category: 'Meat',
     isCurrent: false,
     estimatedPrice: 10,
-    currency: 'USD',
     addedAt: new Date(),
     boughtAt: null,
     deletedAt: null,
@@ -86,7 +81,6 @@ export const mockItems: ListItem[] = [
     category: 'Alcohol',
     isCurrent: true,
     estimatedPrice: 10,
-    currency: 'USD',
     addedAt: new Date(),
     boughtAt: new Date(),
     deletedAt: null,
@@ -100,7 +94,6 @@ export const mockItems: ListItem[] = [
     category: 'Alcohol',
     isCurrent: true,
     estimatedPrice: 10,
-    currency: 'USD',
     addedAt: new Date(),
     boughtAt: null,
     deletedAt: new Date(),
@@ -114,7 +107,6 @@ export const mockItems: ListItem[] = [
     category: '',
     isCurrent: false,
     estimatedPrice: 0,
-    currency: 'USD',
     addedAt: new Date(),
     boughtAt: null,
     deletedAt: null,

@@ -6,7 +6,7 @@ import { useState } from 'react';
 export interface UseItemDialogResult<T> {
   targetItem: T | null;
   isDialogOpen: boolean;
-  handleOpen: (item: T) => void;
+  handleOpen: (item: T, onConfirm: (item: T) => void) => void;
   confirm: () => void;
   cancel: () => void;
 }
@@ -18,15 +18,18 @@ export interface UseItemDialogResult<T> {
 export function useItemDialog<T>(): UseItemDialogResult<T> {
   const [targetItem, setTargetItem] = useState<T | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [onConfirm, setOnConfirm] = useState<((item: T) => void) | null>(null);
 
-  const handleOpen = (item: T) => {
+  const handleOpen = (item: T, onConfirm: (item: T) => void) => {
     setTargetItem(item);
     setIsDialogOpen(true);
+    setOnConfirm(() => onConfirm);
   };
 
   const confirm = () => {
     setIsDialogOpen(false);
     // Consumer should handle mutation using targetItem
+    targetItem && onConfirm?.(targetItem);
     setTargetItem(null);
   };
 
@@ -42,4 +45,4 @@ export function useItemDialog<T>(): UseItemDialogResult<T> {
     confirm,
     cancel,
   };
-} 
+}

@@ -4,7 +4,7 @@ import { filterByCategory, getUniqueCategories } from '@/shared/utils/list-utils
 export function useCategoryFilter<T>(items: T[], getCategory: (item: T) => string) {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
-  const handleToggleCategory = (category: string) => {
+  const toggleCategory = (category: string) => {
     setSelectedCategories((prev) =>
       prev.includes(category) ? prev.filter((c) => c !== category) : [...prev, category],
     );
@@ -22,7 +22,7 @@ export function useCategoryFilter<T>(items: T[], getCategory: (item: T) => strin
 
   return {
     selectedCategories,
-    handleToggleCategory,
+    toggleCategory,
     filteredItemsByCategory,
     uniqueCategories,
   };

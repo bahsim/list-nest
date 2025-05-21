@@ -12,7 +12,7 @@ export interface ListBag {
 export interface CategoryFilterBag {
   uniqueCategories: string[];
   selectedCategories: string[];
-  onToggleCategory: (category: string) => void;
+  toggleCategory: (category: string) => void;
 }
 
 export interface ModalBag {
@@ -28,11 +28,23 @@ export interface MockDataBag {
   mockUnits: string[];
 }
 
+export interface MainListGroup {
+  label: string;
+  items: ListItem[];
+  rightContent: string;
+}
+
 export interface MainListWidgetProps {
-  list: ListBag;
-  categoryFilter: CategoryFilterBag;
-  dialogs: {
-    restoreDialog: UseItemDialogResult<ListItem>;
-    deleteDialog: UseItemDialogResult<ListItem>;
-  };
+  items: ListItem[];
+  currency: string;
+  categories: string[];
+  restoreDialog: UseItemDialogResult<ListItem>;
+  deleteDialog: UseItemDialogResult<ListItem>;
+  handleToggleCurrent: (item: ListItem) => void;
+  handleRestoreItem: (item: ListItem) => void;
+  handleDeleteItem: (item: ListItem) => void;
+  handleSaveNote: (id: string, note: string) => void;
+  handleAddItem: (input: AddItemInput | ListItem) => void;
+  handleEditItem: (input: AddItemInput | ListItem) => void;
+  handleCompleteItem: (input: AddItemInput | ListItem) => void;
 } 

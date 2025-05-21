@@ -1,0 +1,1 @@
+export const UNITS: string[] = ['pcs', 'kg', 'g', 'l', 'pack']; 

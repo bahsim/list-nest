@@ -9,12 +9,14 @@ import LanguageIcon from '@mui/icons-material/Language';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import { LanguageSelector } from '@/features/language-selector';
 import { SettingsResetSection } from '@/widgets/settings-reset-section';
+import { usePersistentState } from '@/shared/hooks/use-persistent-state';
+import { CURRENCY_KEY } from '@/shared/constants/storage-keys';
 
 type TabType = 'categories' | 'currency' | 'language' | 'reset';
 
 export const SettingsPage: React.FC = () => {
   const [expanded, setExpanded] = useState<TabType | null>(null);
-  const [currency, setCurrency] = useState('USD');
+  const [currency, setCurrency] = usePersistentState(CURRENCY_KEY, 'USD');
   const [language, setLanguage] = useState('en');
 
   return (

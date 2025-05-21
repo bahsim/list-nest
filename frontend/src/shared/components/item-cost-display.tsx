@@ -9,10 +9,11 @@ import { formatItemCost } from '@/entities/list';
  */
 export interface ItemCostDisplayProps {
   item: ListItem;
+  currency: string;
   sx?: object;
 }
 
-export const ItemCostDisplay: React.FC<ItemCostDisplayProps> = ({ item, sx }) => (
+export const ItemCostDisplay: React.FC<ItemCostDisplayProps> = ({ item, sx, currency }) => (
   <Box
     sx={{
       color: 'text.primary',
@@ -27,6 +28,6 @@ export const ItemCostDisplay: React.FC<ItemCostDisplayProps> = ({ item, sx }) =>
       ...sx,
     }}
   >
-    {formatItemCost(item)}
+    {formatItemCost(item, currency)}
   </Box>
 ); 

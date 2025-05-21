@@ -24,9 +24,9 @@ export interface MainListItemCardProps {
   onToggleBought: (item: ListItem) => void;
   onToggleCurrent: (item: ListItem) => void;
   onRestoreItem: (item: ListItem) => void;
-  onSaveNote?: (note: string) => void;
-  onEditItem?: (item: ListItem) => void;
-  onDeleteItem?: (item: ListItem) => void;
+  onSaveNote: (id: string, note: string) => void;
+  onEditItem: (item: ListItem) => void;
+  onDeleteItem: (item: ListItem) => void;
 }
 
 export const MainListItemCard: React.FC<MainListItemCardProps> = ({
@@ -103,12 +103,12 @@ export const MainListItemCard: React.FC<MainListItemCardProps> = ({
           item={item}
           group={group}
           handleToggleCurrent={onToggleCurrent}
-          handleSaveNote={typeof onSaveNote === 'function' ? onSaveNote : () => {}}
+          handleSaveNote={onSaveNote}
           expandedItem={expandedItem}
-          handleEditItem={typeof onEditItem === 'function' ? onEditItem : () => {}}
-          handleDeleteItem={typeof onDeleteItem === 'function' ? onDeleteItem : () => {}}
-          handleToggleBought={typeof onToggleBought === 'function' ? onToggleBought : () => {}}
-          handleRestoreItem={typeof onRestoreItem === 'function' ? onRestoreItem : () => {}}
+          handleEditItem={onEditItem}
+          handleDeleteItem={onDeleteItem}
+          handleToggleBought={onToggleBought}
+          handleRestoreItem={onRestoreItem}
         />
       }
     />

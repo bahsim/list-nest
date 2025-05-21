@@ -13,7 +13,7 @@ export interface BaseListProps<T> {
   grouppedItems: {
     label: string;
     items: T[];
-    rightContent?: React.ReactNode;
+    rightContent: React.ReactNode;
   }[];
   /**
    * Render function for each item.

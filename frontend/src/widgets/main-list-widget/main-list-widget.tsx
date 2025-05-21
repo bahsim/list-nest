@@ -1,67 +1,122 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import { EmptyState } from '@ui-kit/components/atomic/empty-state/empty-state';
 import { AddFab } from '@ui-kit/components/atomic/AddFab';
 import AddIcon from '@mui/icons-material/Add';
-import { AddEditItemModal } from '@/features/main-list/components/add-edit-item-modal';
 import { ConfirmDialog } from '@/shared/ui/list/confirm-dialog';
 import { CategoryFilterChips } from '@/shared/ui/list/category-filter-chips';
-import { MODAL_TITLES, MODAL_ACTION_LABELS } from './constants';
 import { EMPTY_STATE_CONFIG } from './empty-state-config';
 import type { MainListWidgetProps } from './types';
 import { DIALOG_CONFIG } from './dialog-config';
-import { getGroupSum } from '@/shared/utils/list-utils';
-import { sortListItemsByPriority } from '@/entities/list/utils/sort-list-items-by-priority';
 import { BaseList } from '@/entities/list/base-list/base-list';
 import { MainListItemCard } from '@/features/main-list-item/main-list-item-card';
-import { useListExpansion } from '@/shared/hooks/list-expansion-context';
-import { useMainListActions } from '@/features/main-list/providers/main-list-actions-context';
+import { useCategoryFilter } from '@/shared/hooks/use-category-filter';
+import { getMainListGroups } from '@/features/main-list/utils/group-list-items';
+import { AddEditItemModal } from '@/features/main-list/components/add-edit-item-modal';
+import { MODAL_TITLES, MODAL_ACTION_LABELS } from '@/widgets/main-list-widget/constants';
+import type { ListItem, AddItemInput } from '@/entities/list/types';
+import { useExpandedItem } from '@/shared/hooks/use-expanded-item';
+
+// Modal mode types and constants (moved from page)
+type ModalMode = 'add' | 'edit' | 'complete';
+
+const MODAL_MODES: ModalMode[] = ['add', 'edit', 'complete'];
+
+const modalModes: Record<string, ModalMode> = {
+  COMPLETE: 'complete',
+  EDIT: 'edit',
+  ADD: 'add',
+};
 
 export const MainListWidget: React.FC<MainListWidgetProps> = ({
-  list,
-  dialogs,
-  categoryFilter,
+  items,
+  currency,
+  categories,
+  restoreDialog,
+  deleteDialog,
+  handleToggleCurrent,
+  handleRestoreItem,
+  handleDeleteItem,
+  handleSaveNote,
+  handleAddItem,
+  handleEditItem,
+  handleCompleteItem,
 }) => {
-  const { expandedItem, handleExpandItem } = useListExpansion();
-  const {
-    handleToggleBought,
-    handleToggleCurrent,
-    handleRestoreItem,
-    handleEditItem,
-    handleDeleteItem,
-  } = useMainListActions();
-  const mappedExpandedItem = expandedItem
-    ? { group: expandedItem.group, id: expandedItem.itemId }
-    : null;
-  const grouppedItems = [
-    {
-      label: 'current',
-      items: sortListItemsByPriority(list.filteredCurrentItems),
-      rightContent: getGroupSum(list.filteredCurrentItems, (item) => item.estimatedPrice),
-    },
-    {
-      label: 'all',
-      items: sortListItemsByPriority(list.filteredItems),
-      rightContent: getGroupSum(list.filteredItems, (item) => item.estimatedPrice),
-    },
-  ];
+  // List expansion
+  const { expandedItem, handleExpandItem } = useExpandedItem();
+
+  // Category filter logic
+  const { selectedCategories, toggleCategory, filteredItemsByCategory, uniqueCategories } =
+    useCategoryFilter(items, (item) => item.category);
+
+  // Current items
+  const filteredCurrentItems = useMemo(
+    () => filteredItemsByCategory.filter((item) => item.isCurrent),
+    [filteredItemsByCategory],
+  );
+
+  // Grouping logic
+  const grouppedItems = getMainListGroups({
+    currentItems: filteredCurrentItems,
+    items: filteredItemsByCategory,
+    currency,
+  });
+
+  // Modal state (moved from page)
+  const [editingItem, setEditingItem] = useState<AddItemInput | ListItem | null>(null);
+  const [modalMode, setModalMode] = useState<ModalMode | null>(null);
+
+  // Modal handlers (moved from page)
+  const handleNewItem = () => {
+    setEditingItem(null);
+    setModalMode(modalModes.ADD);
+  };
+
+  const handleEditItemLocal = (item: ListItem) => {
+    setEditingItem(item);
+    setModalMode(modalModes.EDIT);
+  };
+
+  const handleToggleBought = (item: ListItem) => {
+    setEditingItem(item);
+    setModalMode(modalModes.COMPLETE);
+  };
+
+  const modalHandlers: Record<ModalMode, (input: AddItemInput | ListItem) => void> = {
+    add: (input) => handleAddItem(input),
+    edit: (input) => handleEditItem(input),
+    complete: (input) => handleCompleteItem(input),
+  };
+
+  const handleSaveItem = (input: AddItemInput | ListItem) => {
+    if (modalMode && modalMode in modalHandlers) {
+      modalHandlers[modalMode](input);
+    }
+    setEditingItem(null);
+    setModalMode(null);
+  };
+
+  const handleCloseModal = () => {
+    setEditingItem(null);
+    setModalMode(null);
+  };
 
   return (
     <>
       {/* category chips section */}
-      {list.items.length > 0 && categoryFilter.uniqueCategories.length > 1 && (
+      {items.length > 0 && uniqueCategories.length > 1 && (
         <CategoryFilterChips
-          categories={categoryFilter.uniqueCategories}
-          selectedCategories={categoryFilter.selectedCategories}
-          onToggleCategory={categoryFilter.onToggleCategory}
+          categories={uniqueCategories}
+          selectedCategories={selectedCategories}
+          onToggleCategory={toggleCategory}
         />
       )}
       {/* empty state */}
-      {list.items.length === 0 ? (
+      {items.length === 0 ? (
         <EmptyState
           title={EMPTY_STATE_CONFIG.title}
           description={EMPTY_STATE_CONFIG.description}
           buttonLabel={EMPTY_STATE_CONFIG.buttonLabel}
-          onButtonClick={list.handleNewItem}
+          onButtonClick={handleNewItem}
           imageAlt={EMPTY_STATE_CONFIG.imageAlt}
         />
       ) : (
@@ -71,37 +126,52 @@ export const MainListWidget: React.FC<MainListWidgetProps> = ({
             <MainListItemCard
               item={item}
               group={groupLabel}
-              expandedItem={mappedExpandedItem}
+              expandedItem={expandedItem}
               onExpand={handleExpandItem}
               onToggleBought={handleToggleBought}
               onToggleCurrent={handleToggleCurrent}
               onRestoreItem={handleRestoreItem}
-              onEditItem={typeof handleEditItem === 'function' ? handleEditItem : undefined}
-              onDeleteItem={typeof handleDeleteItem === 'function' ? handleDeleteItem : undefined}
+              onEditItem={handleEditItemLocal}
+              onDeleteItem={handleDeleteItem}
+              onSaveNote={handleSaveNote}
             />
           )}
         />
       )}
-      {list.items.length > 0 && (
-        <AddFab onClick={list.handleNewItem} icon={<AddIcon />} ariaLabel="Add Item" />
+      {items.length > 0 && (
+        <AddFab onClick={handleNewItem} icon={<AddIcon />} ariaLabel="Add Item" />
+      )}
+      {/* Add/Edit/Complete modal */}
+      {MODAL_MODES.map(
+        (mode) =>
+          modalMode === mode && (
+            <AddEditItemModal
+              onSave={handleSaveItem}
+              onClose={handleCloseModal}
+              categories={categories}
+              item={editingItem}
+              title={MODAL_TITLES[mode]}
+              actionLabel={MODAL_ACTION_LABELS[mode]}
+            />
+          ),
       )}
       {/* restore dialog */}
       <ConfirmDialog
-        open={dialogs.restoreDialog.isDialogOpen}
-        onClose={dialogs.restoreDialog.cancel}
-        onConfirm={dialogs.restoreDialog.confirm}
+        open={restoreDialog.isDialogOpen}
+        onClose={restoreDialog.cancel}
+        onConfirm={restoreDialog.confirm}
         title={DIALOG_CONFIG.restore.title}
-        content={DIALOG_CONFIG.restore.getContent(dialogs.restoreDialog.targetItem)}
+        content={DIALOG_CONFIG.restore.getContent(restoreDialog.targetItem)}
         confirmLabel={DIALOG_CONFIG.restore.confirmLabel}
         confirmColor={DIALOG_CONFIG.restore.confirmColor}
       />
       {/* delete dialog */}
       <ConfirmDialog
-        open={dialogs.deleteDialog.isDialogOpen}
-        onClose={dialogs.deleteDialog.cancel}
-        onConfirm={dialogs.deleteDialog.confirm}
+        open={deleteDialog.isDialogOpen}
+        onClose={deleteDialog.cancel}
+        onConfirm={deleteDialog.confirm}
         title={DIALOG_CONFIG.delete.title}
-        content={DIALOG_CONFIG.delete.getContent(dialogs.deleteDialog.targetItem)}
+        content={DIALOG_CONFIG.delete.getContent(deleteDialog.targetItem)}
         confirmLabel={DIALOG_CONFIG.delete.confirmLabel}
         confirmColor={DIALOG_CONFIG.delete.confirmColor}
       />
