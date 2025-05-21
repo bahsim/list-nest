@@ -15,6 +15,7 @@ import { AddEditItemModal } from '@/features/main-list/components/add-edit-item-
 import { MODAL_TITLES, MODAL_ACTION_LABELS } from '@/widgets/main-list-widget/constants';
 import type { ListItem, AddItemInput } from '@/entities/list/types';
 import { useExpandedItem } from '@/shared/hooks/use-expanded-item';
+import { filterActiveOrTodayItems, normalizeListItems } from '@/features/history-list-item/utils';
 
 // Modal mode types and constants (moved from page)
 type ModalMode = 'add' | 'edit' | 'complete';
@@ -44,9 +45,12 @@ export const MainListWidget: React.FC<MainListWidgetProps> = ({
   // List expansion
   const { expandedItem, handleExpandItem } = useExpandedItem();
 
+  // filter active or today items
+  const filteredItems = useMemo(() => filterActiveOrTodayItems(items), [items]);
+
   // Category filter logic
   const { selectedCategories, toggleCategory, filteredItemsByCategory, uniqueCategories } =
-    useCategoryFilter(items, (item) => item.category);
+    useCategoryFilter(filteredItems, (item) => item.category);
 
   // Current items
   const filteredCurrentItems = useMemo(
