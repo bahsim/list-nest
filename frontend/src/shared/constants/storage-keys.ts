@@ -4,6 +4,6 @@
 export const CURRENCY_KEY = 'listnest-currency';
 export const LIST_ITEMS_KEY = 'listnest-items';
 export const CATEGORIES_KEY = 'listnest-categories';
+export const LANGUAGE_KEY = 'listnest-language';
 // Add more keys as needed, e.g.:
-// export const LANGUAGE_KEY = 'listnest-language';
 // export const ORDERS_KEY = 'listnest-orders'; 
