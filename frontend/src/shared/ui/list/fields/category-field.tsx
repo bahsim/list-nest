@@ -4,6 +4,7 @@ import { ActionChipField } from './action-chip-field';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { Category } from '@/shared/types/category';
+import { useTranslation } from 'react-i18next';
 
 interface CategoryFieldProps {
   value: string;
@@ -21,8 +22,9 @@ export const CategoryField: React.FC<CategoryFieldProps> = ({
   onInputChange,
   onOpen,
   defaultValue,
-}) =>
-  open ? (
+}) => {
+  const { t } = useTranslation();
+  return open ? (
     <Select
       value={value}
       onChange={(e) => onInputChange(e.target.value as string)}
@@ -34,7 +36,7 @@ export const CategoryField: React.FC<CategoryFieldProps> = ({
       MenuProps={{ PaperProps: { sx: { maxHeight: 200 } } }}
     >
       <MenuItem value="" disabled>
-        Category
+        {t('fields.category')}
       </MenuItem>
       {categories.map((cat) => (
         <MenuItem key={cat.name} value={cat.name}>
@@ -43,7 +45,8 @@ export const CategoryField: React.FC<CategoryFieldProps> = ({
       ))}
     </Select>
   ) : value || defaultValue ? (
-    <FieldDisplay label="Category" value={value || defaultValue} onClick={onOpen} />
+    <FieldDisplay label={t('fields.category')} value={value || defaultValue} onClick={onOpen} />
   ) : (
-    <ActionChipField label="Add category" onClick={onOpen} />
+    <ActionChipField label={t('fields.addCategory')} onClick={onOpen} />
   );
+};

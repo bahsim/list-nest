@@ -17,6 +17,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { CATEGORY_COLORS, CategoryColor } from '@/shared/constants/category-colors';
 import { Category } from '@/shared/types/category';
+import { useTranslation } from 'react-i18next';
 
 interface CategoryEditorRowProps {
   cat: Category;
@@ -46,6 +47,7 @@ export const CategoryEditorRow: React.FC<CategoryEditorRowProps> = React.memo(
   }) => {
     const theme = useTheme();
     const inputRef = useRef<HTMLInputElement>(null);
+    const { t } = useTranslation();
 
     useEffect(() => {
       if (isEditing && autoFocus && inputRef.current) {
@@ -83,7 +85,7 @@ export const CategoryEditorRow: React.FC<CategoryEditorRowProps> = React.memo(
         }}
         onClick={() => !isEditing && onEdit()}
         tabIndex={0}
-        aria-label={isEditing ? `Editing ${cat.name}` : `Edit ${cat.name}`}
+        aria-label={isEditing ? t('categoryEditor.editing', { name: cat.name }) : t('categoryEditor.edit', { name: cat.name })}
         role="listitem"
       >
         {isEditing ? (
@@ -110,16 +112,16 @@ export const CategoryEditorRow: React.FC<CategoryEditorRowProps> = React.memo(
               inputRef={inputRef}
               onKeyDown={handleKeyDown}
               slotProps={{
-                input: { 'aria-label': 'Category name', style: { minWidth: 80 } },
+                input: { 'aria-label': t('categoryEditor.categoryName'), style: { minWidth: 80 } },
               }}
               sx={{ flex: 1, mb: { xs: 1, sm: 0 } }}
             />
             <FormControl size="small" sx={{ minWidth: 120, mb: { xs: 1, sm: 0 } }}>
-              <InputLabel id={`color-label-${idx}`}>Color</InputLabel>
+              <InputLabel id={`color-label-${idx}`}>{t('categoryEditor.color')}</InputLabel>
               <Select
                 labelId={`color-label-${idx}`}
                 value={editValue?.color || ''}
-                label="Color"
+                label={t('categoryEditor.color')}
                 onChange={(e) => onEditChange('color', e.target.value as CategoryColor)}
               >
                 {Object.entries(CATEGORY_COLORS).map(([key, val]) => (
@@ -148,13 +150,13 @@ export const CategoryEditorRow: React.FC<CategoryEditorRowProps> = React.memo(
                 justifyContent: { xs: 'flex-end', sm: 'center' },
               }}
             >
-              <IconButton aria-label="Save" onClick={onSave} size="large">
+              <IconButton aria-label={t('common.save')} onClick={onSave} size="large">
                 <CheckIcon color="success" sx={{ fontWeight: 700 }} />
               </IconButton>
-              <IconButton aria-label="Cancel" onClick={onCancel} size="large">
+              <IconButton aria-label={t('common.cancel')} onClick={onCancel} size="large">
                 <CloseIcon color="action" fontSize="small" />
               </IconButton>
-              <IconButton aria-label="Delete" onClick={onDelete} size="large">
+              <IconButton aria-label={t('common.delete')} onClick={onDelete} size="large">
                 <DeleteIcon color="error" />
               </IconButton>
             </Box>
@@ -186,7 +188,7 @@ export const CategoryEditorRow: React.FC<CategoryEditorRowProps> = React.memo(
             </Typography>
             <IconButton
               onClick={onEdit}
-              aria-label={`Edit ${cat.name}`}
+              aria-label={t('categoryEditor.edit', { name: cat.name })}
               size="medium"
               sx={{ ml: 1 }}
             >

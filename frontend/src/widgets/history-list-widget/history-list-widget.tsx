@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { EmptyState } from '@ui-kit/components/atomic/empty-state/empty-state';
-import { EMPTY_STATE_CONFIG } from './empty-state-config';
 import { CategoryFilterChips } from '@/shared/ui/list/category-filter-chips';
 import type { HistoryListWidgetProps } from './types';
 import { BaseList } from '@/entities/list/base-list/base-list';
@@ -15,9 +14,12 @@ import { useCategoryFilter } from '@/shared/hooks/use-category-filter';
 import { useHistoryDateFilterState } from '@/features/history-list/hooks/use-history-date-filter-state';
 import { useModal } from '@/shared/hooks/use-modal';
 import { groupHistoryItems } from '@/features/history-list-item/utils';
+import { useTranslation } from 'react-i18next';
+import { getDatePresetTranslationKey } from '@/shared/constants/date-presets';
 
 export const HistoryListWidget: React.FC<HistoryListWidgetProps> = ({ items, currency, categories }) => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   // List expansion
   const { expandedItem, handleExpandItem } = useExpandedItem();
@@ -34,7 +36,6 @@ export const HistoryListWidget: React.FC<HistoryListWidgetProps> = ({ items, cur
     selectedDateRange,
     selectedDatePreset,
     handleDateRangeChange,
-    getRangeLabel,
     filteredItemsByDate,
   } = useHistoryDateFilterState(items);
 
@@ -65,7 +66,10 @@ export const HistoryListWidget: React.FC<HistoryListWidgetProps> = ({ items, cur
   return (
     <>
       {items.length > 0 && (
-        <DateRangeButton label={getRangeLabel()} onClick={handleOpenDateModal} />
+        <DateRangeButton
+          label={selectedDatePreset ? t(getDatePresetTranslationKey(selectedDatePreset)) : t('dateRangeModal.custom')}
+          onClick={handleOpenDateModal}
+        />
       )}
       <DateRangeModal
         open={dateModalOpen}
@@ -83,11 +87,11 @@ export const HistoryListWidget: React.FC<HistoryListWidgetProps> = ({ items, cur
       )}
       {items.length === 0 ? (
         <EmptyState
-          title={EMPTY_STATE_CONFIG.title}
-          description={EMPTY_STATE_CONFIG.description}
-          buttonLabel={EMPTY_STATE_CONFIG.buttonLabel}
+          title={t('emptyState.noHistory')}
+          description={t('emptyState.noHistoryDescription')}
+          buttonLabel={t('emptyState.backToList')}
           onButtonClick={() => goToMainPage(navigate)}
-          imageAlt={EMPTY_STATE_CONFIG.imageAlt}
+          imageAlt={t('emptyState.noHistoryAlt')}
         />
       ) : (
         <BaseList

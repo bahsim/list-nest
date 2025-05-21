@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import type { DateRange } from '@/shared/types/date-range';
-import { DATE_PRESETS } from '@/shared/constants/date-presets';
+import { DATE_PRESETS, getDatePresetTranslationKey } from '@/shared/constants/date-presets';
 import { FilterChip } from '@/shared/ui/filter-chip/filter-chip';
 import { FilterChipBar } from '@/shared/ui/filter-chip/filter-chip-bar';
+import { useTranslation } from 'react-i18next';
 
 export interface DateRangeModalProps {
   open: boolean;
@@ -23,6 +24,7 @@ export const DateRangeModal: React.FC<DateRangeModalProps> = ({
   onChange,
   selectedPreset,
 }) => {
+  const { t } = useTranslation();
   const [localPreset, setLocalPreset] = useState<string | null>(selectedPreset);
   const [localRange, setLocalRange] = useState<DateRange<Date>>(selectedRange ?? [null, null]);
 
@@ -53,29 +55,29 @@ export const DateRangeModal: React.FC<DateRangeModalProps> = ({
 
   return (
     <Dialog open={open} onClose={onClose} aria-labelledby="date-range-modal-title">
-      <DialogTitle id="date-range-modal-title">Select Date Range</DialogTitle>
+      <DialogTitle id="date-range-modal-title">{t('dateRangeModal.title')}</DialogTitle>
       <DialogContent>
         <FilterChipBar>
           {DATE_PRESETS.map((preset) => (
             <FilterChip
               key={preset.label}
               selected={localPreset === preset.label}
-              label={preset.label}
+              label={t(getDatePresetTranslationKey(preset.label))}
               onClick={() => handlePreset(preset.label)}
-              ariaLabel={`Select ${preset.label}`}
+              ariaLabel={t('dateRangeModal.selectPreset', { label: t(getDatePresetTranslationKey(preset.label)) })}
               role="button"
             />
           ))}
           <FilterChip
-            key={CUSTOM_LABEL}
-            selected={localPreset === CUSTOM_LABEL}
-            label={CUSTOM_LABEL}
-            onClick={() => setLocalPreset(CUSTOM_LABEL)}
-            ariaLabel="Select custom range"
+            key={t('dateRangeModal.custom')}
+            selected={localPreset === t('dateRangeModal.custom')}
+            label={t('dateRangeModal.custom')}
+            onClick={() => setLocalPreset(t('dateRangeModal.custom'))}
+            ariaLabel={t('dateRangeModal.selectCustom')}
             role="button"
           />
         </FilterChipBar>
-        {localPreset === CUSTOM_LABEL && (
+        {localPreset === t('dateRangeModal.custom') && (
           <Box
             sx={{
               display: 'flex',
@@ -86,10 +88,10 @@ export const DateRangeModal: React.FC<DateRangeModalProps> = ({
               width: '100%',
             }}
             role="group"
-            aria-label="Custom date range pickers"
+            aria-label={t('dateRangeModal.customPickers')}
           >
             <DatePicker
-              label="From"
+              label={t('dateRangeModal.from')}
               value={start}
               onChange={(date) => setLocalRange([date, end])}
               maxDate={end || undefined}
@@ -97,12 +99,12 @@ export const DateRangeModal: React.FC<DateRangeModalProps> = ({
                 textField: {
                   size: 'small',
                   sx: { minWidth: 120, width: '100%' },
-                  'aria-label': 'From date',
+                  'aria-label': t('dateRangeModal.fromDate'),
                 },
               }}
             />
             <DatePicker
-              label="To"
+              label={t('dateRangeModal.to')}
               value={end}
               onChange={(date) => setLocalRange([start, date])}
               minDate={start || undefined}
@@ -110,7 +112,7 @@ export const DateRangeModal: React.FC<DateRangeModalProps> = ({
                 textField: {
                   size: 'small',
                   sx: { minWidth: 120, width: '100%' },
-                  'aria-label': 'To date',
+                  'aria-label': t('dateRangeModal.toDate'),
                 },
               }}
             />
@@ -118,10 +120,10 @@ export const DateRangeModal: React.FC<DateRangeModalProps> = ({
         )}
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>Cancel</Button>
-        {localPreset === CUSTOM_LABEL && (
+        <Button onClick={onClose}>{t('common.cancel')}</Button>
+        {localPreset === t('dateRangeModal.custom') && (
           <Button onClick={handleCustomApply} variant="contained" disabled={!start || !end}>
-            Apply
+            {t('common.apply')}
           </Button>
         )}
       </DialogActions>

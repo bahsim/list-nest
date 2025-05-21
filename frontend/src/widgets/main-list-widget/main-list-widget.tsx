@@ -4,7 +4,6 @@ import { AddFab } from '@ui-kit/components/atomic/AddFab';
 import AddIcon from '@mui/icons-material/Add';
 import { ConfirmDialog } from '@/shared/ui/list/confirm-dialog';
 import { CategoryFilterChips } from '@/shared/ui/list/category-filter-chips';
-import { EMPTY_STATE_CONFIG } from './empty-state-config';
 import type { MainListWidgetProps } from './types';
 import { DIALOG_CONFIG } from './dialog-config';
 import { BaseList } from '@/entities/list/base-list/base-list';
@@ -16,6 +15,7 @@ import { MODAL_TITLES, MODAL_ACTION_LABELS } from '@/widgets/main-list-widget/co
 import type { ListItem, AddItemInput } from '@/entities/list/types';
 import { useExpandedItem } from '@/shared/hooks/use-expanded-item';
 import { filterActiveOrTodayItems } from '@/features/history-list-item/utils';
+import { useTranslation } from 'react-i18next';
 
 // Modal mode types and constants (moved from page)
 type ModalMode = 'add' | 'edit' | 'complete';
@@ -42,6 +42,7 @@ export const MainListWidget: React.FC<MainListWidgetProps> = ({
   handleEditItem,
   handleCompleteItem,
 }) => {
+  const { t } = useTranslation();
   // List expansion
   const { expandedItem, handleExpandItem } = useExpandedItem();
 
@@ -63,6 +64,7 @@ export const MainListWidget: React.FC<MainListWidgetProps> = ({
     currentItems: filteredCurrentItems,
     items: filteredItemsByCategory,
     currency,
+    t,
   });
 
   // Modal state (moved from page)
@@ -117,11 +119,11 @@ export const MainListWidget: React.FC<MainListWidgetProps> = ({
       {/* empty state */}
       {items.length === 0 ? (
         <EmptyState
-          title={EMPTY_STATE_CONFIG.title}
-          description={EMPTY_STATE_CONFIG.description}
-          buttonLabel={EMPTY_STATE_CONFIG.buttonLabel}
+          title={t('emptyState.noItems')}
+          description={t('emptyState.addFirstItem')}
+          buttonLabel={t('emptyState.addFirstItemButton')}
           onButtonClick={handleNewItem}
-          imageAlt={EMPTY_STATE_CONFIG.imageAlt}
+          imageAlt={t('emptyState.noItemsAlt')}
         />
       ) : (
         <BaseList
@@ -145,7 +147,7 @@ export const MainListWidget: React.FC<MainListWidgetProps> = ({
         />
       )}
       {items.length > 0 && (
-        <AddFab onClick={handleNewItem} icon={<AddIcon />} ariaLabel="Add Item" />
+        <AddFab onClick={handleNewItem} icon={<AddIcon />} ariaLabel={t('mainList.addItemAria')} />
       )}
       {/* Add/Edit/Complete modal */}
       {MODAL_MODES.map(
@@ -157,8 +159,8 @@ export const MainListWidget: React.FC<MainListWidgetProps> = ({
               currency={currency}
               categories={categories}
               item={editingItem}
-              title={MODAL_TITLES[mode]}
-              actionLabel={MODAL_ACTION_LABELS[mode]}
+              title={t(MODAL_TITLES[mode])}
+              actionLabel={t(MODAL_ACTION_LABELS[mode])}
             />
           ),
       )}
@@ -167,9 +169,9 @@ export const MainListWidget: React.FC<MainListWidgetProps> = ({
         open={restoreDialog.isDialogOpen}
         onClose={restoreDialog.cancel}
         onConfirm={restoreDialog.confirm}
-        title={DIALOG_CONFIG.restore.title}
+        title={t(DIALOG_CONFIG.restore.title)}
         content={DIALOG_CONFIG.restore.getContent(restoreDialog.targetItem)}
-        confirmLabel={DIALOG_CONFIG.restore.confirmLabel}
+        confirmLabel={t(DIALOG_CONFIG.restore.confirmLabel)}
         confirmColor={DIALOG_CONFIG.restore.confirmColor}
       />
       {/* delete dialog */}

@@ -2,12 +2,11 @@ import React from 'react';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
-import DialogActions from '@mui/material/DialogActions';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { CurrencySelector } from '@/features/currency-selector';
 import { LanguageSelector } from '@/features/language-selector';
 import { Box } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   open: boolean;
@@ -26,6 +25,7 @@ export const InitialSettingsDialog: React.FC<Props> = ({
   setLanguage,
   onClose,
 }) => {
+  const { t } = useTranslation();
   const canClose = Boolean(currency) && Boolean(language);
 
   const handleClose = (_event: object, reason?: string) => {
@@ -34,17 +34,17 @@ export const InitialSettingsDialog: React.FC<Props> = ({
 
   return (
     <Dialog open={open} onClose={handleClose}>
-      <DialogTitle>Set Your Preferences</DialogTitle>
+      <DialogTitle>{t('settingsDialog.title')}</DialogTitle>
       <DialogContent>
         <Typography variant="body1" sx={{ mb: 2 }}>
-          Please select your preferred currency and language to continue.
+          {t('settingsDialog.description')}
         </Typography>
         <CurrencySelector value={currency} onChange={setCurrency} />
         <Box sx={{ mt: 2 }} />
-        <LanguageSelector value={language} onChange={setLanguage} label="Language" />
+        <LanguageSelector value={language} onChange={setLanguage} label={t('settingsDialog.languageLabel')} />
         {(!currency || !language) && (
           <Typography color="error" variant="caption" sx={{ mt: 2, display: 'block' }}>
-            Both fields are required.
+            {t('settingsDialog.requiredFields')}
           </Typography>
         )}
       </DialogContent>

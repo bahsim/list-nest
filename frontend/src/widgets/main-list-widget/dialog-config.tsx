@@ -1,32 +1,39 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
-const getRestoreContent = (item: any): React.ReactNode => (
-  <>
-    Are you sure you want to restore
-    {item && <strong> {item.name}</strong>}
-    ? This will move the item back to your active list.
-  </>
-);
+const getRestoreContent = (item: any): React.ReactNode => {
+  const { t } = useTranslation();
+  return (
+    <>
+      {t('dialog.restoreContent.part1')}
+      {item && <strong> {item.name}</strong>}
+      {t('dialog.restoreContent.part2')}
+    </>
+  );
+};
 
-const getDeleteContent = (item: any): React.ReactNode => (
-  <>
-    Are you sure you want to delete
-    {item && <strong> {item.name}</strong>}
-    ? This will move the item to deleted state. You can restore it later.
-  </>
-);
+const getDeleteContent = (item: any): React.ReactNode => {
+  const { t } = useTranslation();
+  return (
+    <>
+      {t('dialog.deleteContent.part1')}
+      {item && <strong> {item.name}</strong>}
+      {t('dialog.deleteContent.part2')}
+    </>
+  );
+};
 
 export const DIALOG_CONFIG = {
   restore: {
-    title: 'Restore this item?',
+    title: 'dialog.restoreTitle',
     getContent: getRestoreContent,
-    confirmLabel: 'Restore',
+    confirmLabel: 'dialog.restore',
     confirmColor: 'primary' as const,
   },
   delete: {
-    title: 'Delete this item?',
+    title: 'dialog.deleteTitle',
     getContent: getDeleteContent,
-    confirmLabel: 'Delete',
+    confirmLabel: 'dialog.delete',
     confirmColor: 'error' as const,
   },
 }; 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, useTheme } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import { useTranslation } from 'react-i18next';
 
 interface CategoryEditorAddButtonProps {
   onClick: () => void;
@@ -9,6 +10,7 @@ interface CategoryEditorAddButtonProps {
 
 export const CategoryEditorAddButton: React.FC<CategoryEditorAddButtonProps> = ({ onClick, disabled }) => {
   const theme = useTheme();
+  const { t } = useTranslation();
   return (
     <Button
       variant="outlined"
@@ -17,10 +19,10 @@ export const CategoryEditorAddButton: React.FC<CategoryEditorAddButtonProps> = (
       onClick={onClick}
       sx={{ mt: 2, borderRadius: theme.shape.borderRadius / 4, minHeight: 48, fontWeight: 700 }}
       fullWidth
-      aria-label="Add Category"
+      aria-label={t('categoryEditor.addCategory')}
       disabled={disabled}
     >
-      Add Category
+      {t('categoryEditor.addCategory')}
     </Button>
   );
 }; 

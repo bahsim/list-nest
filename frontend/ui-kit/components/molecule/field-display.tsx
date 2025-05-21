@@ -4,6 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import { alpha } from '@mui/material/styles';
 import { useTheme } from '@mui/material/styles';
+import { useTranslation } from 'react-i18next';
 
 /**
  * FieldDisplay displays a label and value, optionally editable.
@@ -29,6 +30,7 @@ export const FieldDisplay: React.FC<FieldDisplayProps> = ({
   icon,
 }) => {
   const theme = useTheme();
+  const { t } = useTranslation();
 
   return (
     <Box
@@ -49,7 +51,7 @@ export const FieldDisplay: React.FC<FieldDisplayProps> = ({
       }}
       tabIndex={onClick ? 0 : -1}
       role={onClick ? 'button' : undefined}
-      aria-label={onClick ? `Edit ${label}` : undefined}
+      aria-label={onClick ? t('fieldDisplay.edit', { label }) : undefined}
       onClick={onClick}
       onKeyDown={
         onClick
@@ -100,11 +102,11 @@ export const FieldDisplay: React.FC<FieldDisplayProps> = ({
       </Box>
       {onClick &&
         (icon ? (
-          <IconButton size="small" tabIndex={-1} sx={{ ml: 1 }} aria-label={`Edit ${label}`}>
+          <IconButton size="small" tabIndex={-1} sx={{ ml: 1 }} aria-label={t('fieldDisplay.edit', { label })}>
             {icon}
           </IconButton>
         ) : (
-          <IconButton size="small" tabIndex={-1} sx={{ ml: 1 }} aria-label={`Edit ${label}`}>
+          <IconButton size="small" tabIndex={-1} sx={{ ml: 1 }} aria-label={t('fieldDisplay.edit', { label })}>
             <EditIcon
               fontSize="small"
               sx={{ color: 'action.active', opacity: 0.8, fontSize: 18 }}

@@ -2,9 +2,11 @@ import React from 'react';
 import { Box, Button, DialogContentText } from '@mui/material';
 import { ConfirmDialog } from '@/shared/ui/list/confirm-dialog';
 import { useItemDialog } from '@/shared/hooks/use-item-dialog';
+import { useTranslation } from 'react-i18next';
 
 export const SettingsResetSection: React.FC = () => {
   const resetDialog = useItemDialog<void>();
+  const { t } = useTranslation();
 
   return (
     <Box display="flex" flexDirection="column" gap={2}>
@@ -13,21 +15,21 @@ export const SettingsResetSection: React.FC = () => {
         color="error"
         // @ts-ignore
         onClick={() => resetDialog.handleOpen({}, () => {})}
-        aria-label="Reset History"
+        aria-label={t('resetSection.resetHistoryAria')}
       >
-        Reset Categories
+        {t('resetSection.resetCategories')}
       </Button>
       <ConfirmDialog
         open={resetDialog.isDialogOpen}
         onClose={resetDialog.cancel}
         onConfirm={resetDialog.confirm}
-        title="Confirm Reset"
+        title={t('resetSection.confirmReset')}
         content={
           <DialogContentText>
-            Are you sure you want to clear all categories? This cannot be undone.
+            {t('resetSection.confirmCategories')}
           </DialogContentText>
         }
-        confirmLabel="Confirm"
+        confirmLabel={t('resetSection.confirm')}
         confirmColor="error"
       />
       <Button
@@ -35,21 +37,21 @@ export const SettingsResetSection: React.FC = () => {
         color="error"
         // @ts-ignore
         onClick={() => resetDialog.handleOpen({}, () => {})}
-        aria-label="Reset History"
+        aria-label={t('resetSection.resetHistoryAria')}
       >
-        Reset History
+        {t('resetSection.resetHistory')}
       </Button>
       <ConfirmDialog
         open={resetDialog.isDialogOpen}
         onClose={resetDialog.cancel}
         onConfirm={resetDialog.confirm}
-        title="Confirm Reset"
+        title={t('resetSection.confirmReset')}
         content={
           <DialogContentText>
-            Are you sure you want to clear all history? This cannot be undone.
+            {t('resetSection.confirmHistory')}
           </DialogContentText>
         }
-        confirmLabel="Confirm"
+        confirmLabel={t('resetSection.confirm')}
         confirmColor="error"
       />
     </Box>

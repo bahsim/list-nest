@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Box } from '@mui/material';
 import { CategoryEditor } from '@/features/category-editor';
 import { SettingsSection } from '@/widgets/settings-section';
@@ -10,19 +10,30 @@ import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import { LanguageSelector } from '@/features/language-selector';
 import { SettingsResetSection } from '@/widgets/settings-reset-section';
 import { usePersistentState } from '@/shared/hooks/use-persistent-state';
-import { CURRENCY_KEY } from '@/shared/constants/storage-keys';
+import { CURRENCY_KEY, LANGUAGE_KEY } from '@/shared/constants/storage-keys';
+import i18n from '@/shared/config/i18n/i18n';
+import { useTranslation } from 'react-i18next';
 
 type TabType = 'categories' | 'currency' | 'language' | 'reset';
 
+const savedLang = localStorage.getItem(LANGUAGE_KEY) || 'en';
+
 export const SettingsPage: React.FC = () => {
   const [expanded, setExpanded] = useState<TabType | null>(null);
-  const [currency, setCurrency] = usePersistentState(CURRENCY_KEY, 'USD');
-  const [language, setLanguage] = useState('en');
+  const [currency, setCurrency] = usePersistentState(CURRENCY_KEY, '');
+  const [language, setLanguageRaw] = usePersistentState(LANGUAGE_KEY, savedLang);
+  
+  const setLanguage = useCallback((lang: string) => {
+    setLanguageRaw(lang);
+    i18n.changeLanguage(lang);
+  }, [setLanguageRaw]);
+
+  const { t } = useTranslation();
 
   return (
     <Box sx={{ maxWidth: 480, mx: 'auto', py: 3, px: 1, width: '100%' }}>
       <SettingsSection
-        title="Categories"
+        title={t('settings.categories')}
         expanded={expanded === 'categories'}
         onExpand={() => setExpanded(expanded === 'categories' ? null : 'categories')}
         icon={<CategoryIcon sx={{ color: (theme) => theme.palette.primary.main }} />}
@@ -30,7 +41,7 @@ export const SettingsPage: React.FC = () => {
         <CategoryEditor />
       </SettingsSection>
       <SettingsSection
-        title="Currency"
+        title={t('settings.currency')}
         expanded={expanded === 'currency'}
         onExpand={() => setExpanded(expanded === 'currency' ? null : 'currency')}
         icon={<AttachMoneyIcon sx={{ color: (theme) => theme.palette.success.main }} />}
@@ -38,7 +49,7 @@ export const SettingsPage: React.FC = () => {
         <CurrencySelector value={currency} onChange={setCurrency} />
       </SettingsSection>
       <SettingsSection
-        title="Language"
+        title={t('settings.language')}
         expanded={expanded === 'language'}
         onExpand={() => setExpanded(expanded === 'language' ? null : 'language')}
         icon={<LanguageIcon sx={{ color: (theme) => theme.palette.secondary.main }} />}
@@ -46,7 +57,7 @@ export const SettingsPage: React.FC = () => {
         <LanguageSelector value={language} onChange={setLanguage} label="Language" />
       </SettingsSection>
       <SettingsSection
-        title="Reset"
+        title={t('settings.reset')}
         expanded={expanded === 'reset'}
         onExpand={() => setExpanded(expanded === 'reset' ? null : 'reset')}
         icon={<RestartAltIcon sx={{ color: (theme) => theme.palette.error.main }} />}

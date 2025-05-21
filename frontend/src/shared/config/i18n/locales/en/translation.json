@@ -1,0 +1,142 @@
+{
+  "settings": {
+    "categories": "Categories",
+    "currency": "Currency",
+    "language": "Language",
+    "reset": "Reset"
+  },
+  "dialog": {
+    "restoreTitle": "Restore this item?",
+    "deleteTitle": "Delete this item?",
+    "restore": "Restore",
+    "delete": "Delete",
+    "restoreContent": {
+      "part1": "Are you sure you want to restore",
+      "part2": "? This will move the item back to your active list."
+    },
+    "deleteContent": {
+      "part1": "Are you sure you want to delete",
+      "part2": "? This will move the item to deleted state. You can restore it later."
+    }
+  },
+  "settingsDialog": {
+    "title": "Set Your Preferences",
+    "description": "Please select your preferred currency and language to continue.",
+    "languageLabel": "Language",
+    "requiredFields": "Both fields are required."
+  },
+  "common": {
+    "cancel": "Cancel",
+    "close": "Close",
+    "apply": "Apply"
+  },
+  "currencySelector": {
+    "label": "Currency"
+  },
+  "fields": {
+    "estimatedPrice": "Estimated Price",
+    "addPrice": "Add price",
+    "category": "Category",
+    "addCategory": "Add category",
+    "notes": "Notes",
+    "addNote": "Add note",
+    "quantity": "Quantity",
+    "addQuantity": "Add quantity",
+    "unit": "Unit",
+    "name": "Name",
+    "aiSuggestions": "AI Suggestions:"
+  },
+  "resetSection": {
+    "resetCategories": "Reset Categories",
+    "resetHistory": "Reset History",
+    "resetHistoryAria": "Reset History",
+    "confirmReset": "Confirm Reset",
+    "confirmCategories": "Are you sure you want to clear all categories? This cannot be undone.",
+    "confirmHistory": "Are you sure you want to clear all history? This cannot be undone.",
+    "confirm": "Confirm"
+  },
+  "emptyState": {
+    "noItems": "No items yet",
+    "addFirstItem": "Add your first item to this list.",
+    "addFirstItemButton": "Add First Item",
+    "noItemsAlt": "No items yet",
+    "noHistory": "No History Yet",
+    "noHistoryDescription": "Once you buy or delete items, they'll appear here for future reference.",
+    "backToList": "Back to List",
+    "noHistoryAlt": "No history items illustration"
+  },
+  "modalTitles": {
+    "add": "Add Item",
+    "edit": "Edit Item",
+    "complete": "Complete Item"
+  },
+  "modalActions": {
+    "create": "Create",
+    "save": "Save",
+    "complete": "Complete"
+  },
+  "mainList": {
+    "addItemAria": "Add Item"
+  },
+  "userProfile": {
+    "profile": "Profile",
+    "logout": "Logout",
+    "arrowUp": "▲",
+    "arrowDown": "▼"
+  },
+  "viewItem": {
+    "title": "View Item"
+  },
+  "categoryEditor": {
+    "color": "Color",
+    "categoryName": "Category name",
+    "edit": "Edit {{name}}",
+    "editing": "Editing {{name}}",
+    "addCategory": "Add Category"
+  },
+  "dateFilter": {
+    "dateRange": "Date Range",
+    "filterBy": "Filter by {{label}}",
+    "dateRangePickers": "Date range pickers",
+    "from": "From",
+    "to": "To",
+    "fromDate": "From date",
+    "toDate": "To date"
+  },
+  "dateRangeModal": {
+    "title": "Select Date Range",
+    "custom": "Custom",
+    "selectPreset": "Select {{label}}",
+    "selectCustom": "Select custom range",
+    "customPickers": "Custom date range pickers",
+    "from": "From",
+    "to": "To",
+    "fromDate": "From date",
+    "toDate": "To date"
+  },
+  "aiSuggestions": {
+    "show": "Show AI Suggestions",
+    "label": "AI Suggestions"
+  },
+  "historyItem": {
+    "restore": "Restore"
+  },
+  "fieldDisplay": {
+    "edit": "Edit {{label}}"
+  },
+  "analyticsPage": {
+    "title": "Analytics",
+    "comingSoon": "Coming soon..."
+  },
+  "datePresets": {
+    "week": "Week",
+    "month": "Month",
+    "threeMonths": "3 Months",
+    "halfYear": "Half Year",
+    "year": "Year"
+  },
+  "mainListGroups": {
+    "current": "Current",
+    "all": "All"
+  }
+} 

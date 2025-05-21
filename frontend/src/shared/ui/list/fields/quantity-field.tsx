@@ -5,6 +5,7 @@ import { alpha } from '@mui/material/styles';
 import { FieldDisplay } from '@ui-kit/components/molecule/field-display';
 import { ActionChipField } from './action-chip-field';
 import { SectionDivider } from '@ui-kit/components/atomic/SectionDivider';
+import { useTranslation } from 'react-i18next';
 
 interface QuantityFieldProps {
   quantity: number;
@@ -26,13 +27,14 @@ export const QuantityField: React.FC<QuantityFieldProps> = ({
   onOpen,
   defaultQuantity,
   defaultUnit,
-}) =>
-  open ? (
+}) => {
+  const { t } = useTranslation();
+  return open ? (
     <div style={{ display: 'flex', gap: 8 }}>
       <TextField
         type="number"
         name="quantity"
-        label="Quantity"
+        label={t('fields.quantity')}
         value={quantity}
         onChange={onChange}
         fullWidth
@@ -45,7 +47,7 @@ export const QuantityField: React.FC<QuantityFieldProps> = ({
       <TextField
         select
         name="unit"
-        label="Unit"
+        label={t('fields.unit')}
         value={unit}
         onChange={onChange}
         fullWidth
@@ -64,14 +66,15 @@ export const QuantityField: React.FC<QuantityFieldProps> = ({
   ) : (quantity || defaultQuantity) && (unit || defaultUnit) ? (
     <>
       <FieldDisplay
-        label="Quantity"
+        label={t('fields.quantity')}
         value={`${quantity || defaultQuantity} ${unit || defaultUnit}`}
         onClick={onOpen}
       />
       <SectionDivider sx={{ mb: 1 }} />
     </>
   ) : (
-    <ActionChipField label="Add quantity" onClick={onOpen} />
+    <ActionChipField label={t('fields.addQuantity')} onClick={onOpen} />
   );
+};
 
 export default QuantityField; 

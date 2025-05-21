@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { HeaderBar } from '@/widgets/header-bar';
 import { FooterNav } from '@/widgets/footer-nav';
 import type { User } from '@/entities/user/types';
@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import { usePersistentState } from '@/shared/hooks/use-persistent-state';
 import { CURRENCY_KEY, LANGUAGE_KEY } from '@/shared/constants/storage-keys';
 import { InitialSettingsDialog } from '@/features/initial-settings-dialog/initial-settings-dialog';
+import i18n from '@/shared/config/i18n/i18n';
 
 /**
  * MainLayout wraps page content with HeaderBar and FooterNav.
@@ -23,7 +24,16 @@ export const MainLayout: React.FC<MainLayoutProps> = ({
   children,
 }) => {
   const [currency, setCurrency] = usePersistentState(CURRENCY_KEY, '');
-  const [language, setLanguage] = usePersistentState(LANGUAGE_KEY, '');
+  const [language, setLanguageRaw] = usePersistentState(LANGUAGE_KEY, '');
+  
+  const setLanguage = React.useCallback((lang: string) => {
+    setLanguageRaw(lang);
+    i18n.changeLanguage(lang);
+  }, [setLanguageRaw]);
+
+  useEffect(() => {
+    i18n.changeLanguage(language);
+  }, [language]);
 
   const showDialog = !currency || !language;
 

@@ -56,4 +56,21 @@ export const DATE_PRESETS = [
       return [from, to];
     },
   },
-] as const; 
+] as const;
+
+export const getDatePresetTranslationKey = (label: DatePresetLabel): string => {
+  switch (label) {
+    case DatePresetLabel.Week:
+      return 'datePresets.week';
+    case DatePresetLabel.Month:
+      return 'datePresets.month';
+    case DatePresetLabel.ThreeMonths:
+      return 'datePresets.threeMonths';
+    case DatePresetLabel.HalfYear:
+      return 'datePresets.halfYear';
+    case DatePresetLabel.Year:
+      return 'datePresets.year';
+    default:
+      return label;
+  }
+}; 

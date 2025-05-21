@@ -1,0 +1,158 @@
+{
+  "settings": {
+    "categories": "Категории",
+    "currency": "Валюта",
+    "language": "Язык",
+    "reset": "Сброс"
+  },
+  "dialog": {
+    "restoreTitle": "Восстановить эту запись?",
+    "deleteTitle": "Удалить эту запись?",
+    "restore": "Восстановить",
+    "delete": "Удалить",
+    "restoreContent": {
+      "part1": "Вы уверены, что хотите восстановить",
+      "part2": "? Это переместит запись обратно в ваш активный список."
+    },
+    "deleteContent": {
+      "part1": "Вы уверены, что хотите удалить",
+      "part2": "? Это переместит запись в удалённые. Вы сможете восстановить её позже."
+    }
+  },
+  "settingsDialog": {
+    "title": "Выберите настройки",
+    "description": "Пожалуйста, выберите предпочитаемую валюту и язык для продолжения.",
+    "languageLabel": "Язык",
+    "requiredFields": "Оба поля обязательны."
+  },
+  "common": {
+    "cancel": "Отмена",
+    "close": "Закрыть",
+    "apply": "Применить"
+  },
+  "currencySelector": {
+    "label": "Валюта"
+  },
+  "fields": {
+    "estimatedPrice": "Оценочная цена",
+    "addPrice": "Добавить цену",
+    "category": "Категория",
+    "addCategory": "Добавить категорию",
+    "notes": "Заметки",
+    "addNote": "Добавить заметку",
+    "quantity": "Количество",
+    "addQuantity": "Добавить количество",
+    "unit": "Ед. изм.",
+    "name": "Название",
+    "aiSuggestions": "AI-подсказки:"
+  },
+  "resetSection": {
+    "resetCategories": "Сбросить категории",
+    "resetHistory": "Сбросить историю",
+    "resetHistoryAria": "Сбросить историю",
+    "confirmReset": "Подтвердите сброс",
+    "confirmCategories": "Вы уверены, что хотите очистить все категории? Это действие необратимо.",
+    "confirmHistory": "Вы уверены, что хотите очистить всю историю? Это действие необратимо.",
+    "confirm": "Подтвердить"
+  },
+  "emptyState": {
+    "noItems": "Пока нет записей",
+    "addFirstItem": "Добавьте первую запись в этот список.",
+    "addFirstItemButton": "Добавить первую запись",
+    "noItemsAlt": "Пока нет записей",
+    "noHistory": "История пуста",
+    "noHistoryDescription": "Когда вы делаете покупки или удалите записи, они появятся здесь.",
+    "backToList": "Назад к списку",
+    "noHistoryAlt": "Иллюстрация отсутствия истории"
+  },
+  "modalTitles": {
+    "add": "Добавить запись",
+    "edit": "Редактировать запись",
+    "complete": "Завершить запись"
+  },
+  "modalActions": {
+    "create": "Создать",
+    "save": "Сохранить",
+    "complete": "Завершить"
+  },
+  "mainList": {
+    "addItemAria": "Добавить запись"
+  },
+  "analytics": {
+    "summary": "Аналитика",
+    "expand": "▼",
+    "collapse": "▲",
+    "totalItems": "Всего записей",
+    "totalSpending": "Всего потрачено",
+    "frequentItems": "Частые записи",
+    "categoryBreakdown": "Категории"
+  },
+  "userProfile": {
+    "profile": "Профиль",
+    "logout": "Выйти",
+    "arrowUp": "▲",
+    "arrowDown": "▼"
+  },
+  "viewItem": {
+    "title": "Просмотр записи"
+  },
+  "categoryEditor": {
+    "color": "Цвет",
+    "categoryName": "Название категории",
+    "edit": "Редактировать {{name}}",
+    "editing": "Редактируется {{name}}",
+    "addCategory": "Добавить категорию"
+  },
+  "dateFilter": {
+    "dateRange": "Период",
+    "filterBy": "Фильтр: {{label}}",
+    "dateRangePickers": "Выбор дат",
+    "from": "С",
+    "to": "По",
+    "fromDate": "Дата начала",
+    "toDate": "Дата окончания"
+  },
+  "dateRangeModal": {
+    "title": "Выберите период",
+    "custom": "Свои даты",
+    "selectPreset": "Выбрать {{label}}",
+    "selectCustom": "Выбрать свои даты",
+    "customPickers": "Выбор своих дат",
+    "from": "С",
+    "to": "По",
+    "fromDate": "Дата начала",
+    "toDate": "Дата окончания"
+  },
+  "aiSuggestions": {
+    "show": "Показать AI-подсказки",
+    "label": "AI-подсказки"
+  },
+  "searchBar": {
+    "voiceSearch": "Голосовой поиск",
+    "mic": "микрофон"
+  },
+  "voiceInput": {
+    "voiceInput": "Голосовой ввод"
+  },
+  "historyItem": {
+    "restore": "Восстановить"
+  },
+  "fieldDisplay": {
+    "edit": "Редактировать {{label}}"
+  },
+  "analyticsPage": {
+    "title": "Аналитика",
+    "comingSoon": "Скоро будет..."
+  },
+  "datePresets": {
+    "week": "Неделя",
+    "month": "Месяц",
+    "threeMonths": "3 месяца",
+    "halfYear": "Полгода",
+    "year": "Год"
+  },
+  "mainListGroups": {
+    "current": "Текущие",
+    "all": "Все"
+  }
+} 

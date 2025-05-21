@@ -17,6 +17,7 @@ import {
 } from '@/shared/ui/list/fields';
 import { useAddEditItemModal } from '@/features/main-list/hooks/use-add-edit-item-modal';
 import { UNITS } from '@/shared/constants/units';
+import { useTranslation } from 'react-i18next';
 
 /**
  * AddEditItemModal for adding or editing a shopping list item.
@@ -39,6 +40,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
   actionLabel,
   currency,
 }) => {
+  const { t } = useTranslation();
   const {
     fields,
     setFields,
@@ -60,7 +62,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
 
   return (
     <Dialog open onClose={onClose} maxWidth="xs" fullWidth>
-      <DialogTitle>{title}</DialogTitle>
+      <DialogTitle>{t(title)}</DialogTitle>
       <SectionDivider />
       <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: 0, pt: 1, pb: 1 }}>
         <NameField
@@ -111,7 +113,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
           {actionLabel}
         </Button>
         <Button onClick={onClose} variant="outlined">
-          Cancel
+          {t('common.cancel')}
         </Button>
       </DialogActions>
     </Dialog>

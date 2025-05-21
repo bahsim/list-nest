@@ -3,6 +3,7 @@ import TextField from '@mui/material/TextField';
 import { SectionDivider } from '@ui-kit/components/atomic/SectionDivider';
 import { FieldDisplay } from '@ui-kit/components/molecule/field-display';
 import { ActionChipField } from './action-chip-field';
+import { useTranslation } from 'react-i18next';
 
 interface NotesFieldProps {
   value: string | undefined;
@@ -12,11 +13,12 @@ interface NotesFieldProps {
   defaultValue: string | undefined;
 }
 
-export const NotesField: React.FC<NotesFieldProps> = ({ value, open, onChange, onOpen, defaultValue }) =>
-  open ? (
+export const NotesField: React.FC<NotesFieldProps> = ({ value, open, onChange, onOpen, defaultValue }) => {
+  const { t } = useTranslation();
+  return open ? (
     <TextField
       name="notes"
-      label="Notes"
+      label={t('fields.notes')}
       value={value || ''}
       onChange={onChange}
       fullWidth
@@ -31,7 +33,7 @@ export const NotesField: React.FC<NotesFieldProps> = ({ value, open, onChange, o
   ) : value || defaultValue ? (
     <>
       <FieldDisplay
-        label="Notes"
+        label={t('fields.notes')}
         value={value || defaultValue || ''}
         multiline
         onClick={onOpen}
@@ -39,5 +41,6 @@ export const NotesField: React.FC<NotesFieldProps> = ({ value, open, onChange, o
       <SectionDivider sx={{ mb: 1 }} />
     </>
   ) : (
-    <ActionChipField label="Add note" onClick={onOpen} />
+    <ActionChipField label={t('fields.addNote')} onClick={onOpen} />
   );
+};

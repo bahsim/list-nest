@@ -6,6 +6,7 @@ import { ActionChipField } from './action-chip-field';
 import { usePersistentState } from '@/shared/hooks/use-persistent-state';
 import { CURRENCY_KEY } from '@/shared/constants/storage-keys';
 import { getCurrencySymbol } from '@/shared/utils/local-storage';
+import { useTranslation } from 'react-i18next';
 
 interface EstimatedPriceFieldProps {
   value: string | number | undefined;
@@ -24,10 +25,12 @@ export const EstimatedPriceField: React.FC<EstimatedPriceFieldProps> = ({
   defaultValue,
   currency,
 }) => {
+  const { t } = useTranslation();
+  
   return open ? (
     <TextField
       name="estimatedPrice"
-      label="Estimated Price"
+      label={t('fields.estimatedPrice')}
       value={value || ''}
       onChange={onChange}
       type="number"
@@ -41,13 +44,13 @@ export const EstimatedPriceField: React.FC<EstimatedPriceFieldProps> = ({
   ) : value || defaultValue ? (
     <>
       <FieldDisplay
-        label="Estimated Price"
+        label={t('fields.estimatedPrice')}
         value={`${getCurrencySymbol(currency)}${value ?? defaultValue}`}
         onClick={onOpen}
       />
       <SectionDivider sx={{ mb: 1 }} />
     </>
   ) : (
-    <ActionChipField label="Add price" onClick={onOpen} />
+    <ActionChipField label={t('fields.addPrice')} onClick={onOpen} />
   );
 };

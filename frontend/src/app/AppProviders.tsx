@@ -4,6 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { listNestTheme } from '../shared/theme-listnest';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import '../shared/config/i18n/i18n';
 
 interface AppProvidersProps {
   children: React.ReactNode;

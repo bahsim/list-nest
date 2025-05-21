@@ -2,6 +2,7 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import { SectionDivider } from '@ui-kit/components/atomic/SectionDivider';
 import { FieldDisplay } from '@ui-kit/components/molecule/field-display';
+import { useTranslation } from 'react-i18next';
 
 interface NameFieldProps {
   value: string;
@@ -10,11 +11,12 @@ interface NameFieldProps {
   onOpen: () => void;
 }
 
-export const NameField: React.FC<NameFieldProps> = ({ value, open, onChange, onOpen }) =>
-  open ? (
+export const NameField: React.FC<NameFieldProps> = ({ value, open, onChange, onOpen }) => {
+  const { t } = useTranslation();
+  return open ? (
     <TextField
       name="name"
-      label="Name"
+      label={t('fields.name')}
       value={value}
       onChange={onChange}
       sx={{ background: (theme) => theme.palette.background.note, my: 1 }}
@@ -27,7 +29,8 @@ export const NameField: React.FC<NameFieldProps> = ({ value, open, onChange, onO
     />
   ) : (
     <>
-      <FieldDisplay label="Name" value={value} onClick={onOpen} />
+      <FieldDisplay label={t('fields.name')} value={value} onClick={onOpen} />
       <SectionDivider sx={{ mb: 1 }} />
     </>
   );
+};
