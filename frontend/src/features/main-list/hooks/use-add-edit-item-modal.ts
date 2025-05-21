@@ -9,7 +9,7 @@ import {
 } from '@/entities/list/constants';
 
 export const useAddEditItemModal = (item: AddItemInput | ListItem | null, units: string[]) => {
-  const DEFAULT_ITEM_VALUES: AddItemInput = {
+  const defaultItemValues: AddItemInput = {
     name: '',
     quantity: 1,
     unit: units[0] || UNIT_DEFAULT,
@@ -19,7 +19,7 @@ export const useAddEditItemModal = (item: AddItemInput | ListItem | null, units:
   };
 
   const [fields, setFields] = React.useState<AddItemInput>(
-    (item as AddItemInput) || DEFAULT_ITEM_VALUES,
+    (item as AddItemInput) || defaultItemValues,
   );
   const [error, setError] = React.useState<string | null>(null);
 
@@ -48,6 +48,6 @@ export const useAddEditItemModal = (item: AddItemInput | ListItem | null, units:
     handleChange,
     handleAISuggestion,
     handleSaveClick,
-    DEFAULT_ITEM_VALUES,
+    defaultItemValues,
   };
 };

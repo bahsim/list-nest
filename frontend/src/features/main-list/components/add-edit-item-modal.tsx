@@ -46,7 +46,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
     handleChange,
     handleAISuggestion,
     handleSaveClick,
-    DEFAULT_ITEM_VALUES,
+    defaultItemValues,
   } = useAddEditItemModal(item, UNITS);
 
   // Move openFields state here (UI-only)
@@ -76,15 +76,15 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
           units={UNITS}
           onChange={handleChange}
           onOpen={() => setOpenFields((prev) => ({ ...prev, quantity: true }))}
-          defaultQuantity={DEFAULT_ITEM_VALUES.quantity}
-          defaultUnit={DEFAULT_ITEM_VALUES.unit}
+          defaultQuantity={defaultItemValues.quantity}
+          defaultUnit={defaultItemValues.unit}
         />
         <EstimatedPriceField
           value={fields.estimatedPrice}
           open={openFields.estimatedPrice}
           onChange={handleChange}
           onOpen={() => setOpenFields((prev) => ({ ...prev, estimatedPrice: true }))}
-          defaultValue={DEFAULT_ITEM_VALUES.estimatedPrice}
+          defaultValue={defaultItemValues.estimatedPrice}
           currency={currency}
         />
         <NotesField
@@ -92,7 +92,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
           open={openFields.notes}
           onChange={handleChange}
           onOpen={() => setOpenFields((prev) => ({ ...prev, notes: true }))}
-          defaultValue={DEFAULT_ITEM_VALUES.notes}
+          defaultValue={defaultItemValues.notes}
         />
         <CategoryField
           value={fields.category}
@@ -100,7 +100,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
           categories={categories}
           onInputChange={(newValue) => setFields({ ...fields, category: newValue })}
           onOpen={() => setOpenFields((prev) => ({ ...prev, category: true }))}
-          defaultValue={DEFAULT_ITEM_VALUES.category}
+          defaultValue={defaultItemValues.category}
         />
         <AISuggestionsField aiSuggestions={aiSuggestions ?? []} onSelect={handleAISuggestion} />
         <ErrorAlertField error={error} />

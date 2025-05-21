@@ -9,15 +9,23 @@ export const mockUser: User = {
   // avatarUrl: 'https://i.pravatar.cc/150?img=1',
 };
 
-export const mockCategories: string[] = ['Produce', 'Bakery', 'Dairy', 'Meat', 'Snacks'];
+export const mockCategories: string[] = [
+  'Produce',
+  'Bakery',
+  'Dairy',
+  'Meat',
+  'Snacks',
+  'Household',
+];
+// «Овощи и фрукты», «Выпечка», «Молочные продукты», «Мясо», «Закуски», «Бытовые товары»
 
 export const mockCategoriesWithColors: Category[] = [
   { name: 'Produce', color: 'SAGE' },
   { name: 'Bakery', color: 'MAUVE' },
-    { name: 'Dairy', color: 'CREAM' },
+  { name: 'Dairy', color: 'CREAM' },
   { name: 'Meat', color: 'CORAL' },
   { name: 'Snacks', color: 'SKY' },
-  { name: 'Alcohol', color: 'SKY' },
+  { name: 'Household', color: 'YELLOW' },
 ];
 
 export const mockItems: ListItem[] = [
@@ -75,10 +83,10 @@ export const mockItems: ListItem[] = [
   },
   {
     id: '5',
-    name: 'Beer',
+    name: 'Detergent',
     quantity: 1,
     unit: 'l',
-    category: 'Alcohol',
+    category: 'Household',
     isCurrent: true,
     estimatedPrice: 10,
     addedAt: new Date(),
@@ -88,10 +96,10 @@ export const mockItems: ListItem[] = [
   },
   {
     id: '6',
-    name: 'Beer',
+    name: 'Bleach',
     quantity: 1,
     unit: 'l',
-    category: 'Alcohol',
+    category: 'Household',
     isCurrent: true,
     estimatedPrice: 10,
     addedAt: new Date(),
@@ -115,6 +123,6 @@ export const mockItems: ListItem[] = [
 ];
 
 export const getCategoryColorByName = (name: string): string => {
-  const found = mockCategoriesWithColors.find(cat => cat.name === name);
+  const found = mockCategoriesWithColors.find((cat) => cat.name === name);
   return found ? CATEGORY_COLORS[found.color] : CATEGORY_COLORS.SAGE;
 };

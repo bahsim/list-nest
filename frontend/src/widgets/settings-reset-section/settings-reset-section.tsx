@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, DialogContentText } from '@mui/material';
+import { Box, Button, DialogContentText } from '@mui/material';
 import { ConfirmDialog } from '@/shared/ui/list/confirm-dialog';
 import { useItemDialog } from '@/shared/hooks/use-item-dialog';
 
@@ -7,7 +7,29 @@ export const SettingsResetSection: React.FC = () => {
   const resetDialog = useItemDialog<void>();
 
   return (
-    <>
+    <Box display="flex" flexDirection="column" gap={2}>
+      <Button
+        variant="outlined"
+        color="error"
+        // @ts-ignore
+        onClick={() => resetDialog.handleOpen({}, () => {})}
+        aria-label="Reset History"
+      >
+        Reset Categories
+      </Button>
+      <ConfirmDialog
+        open={resetDialog.isDialogOpen}
+        onClose={resetDialog.cancel}
+        onConfirm={resetDialog.confirm}
+        title="Confirm Reset"
+        content={
+          <DialogContentText>
+            Are you sure you want to clear all categories? This cannot be undone.
+          </DialogContentText>
+        }
+        confirmLabel="Confirm"
+        confirmColor="error"
+      />
       <Button
         variant="outlined"
         color="error"
@@ -30,6 +52,6 @@ export const SettingsResetSection: React.FC = () => {
         confirmLabel="Confirm"
         confirmColor="error"
       />
-    </>
+    </Box>
   );
 };
