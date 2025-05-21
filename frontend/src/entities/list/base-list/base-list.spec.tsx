@@ -13,6 +13,7 @@ describe('BaseList', () => {
           { id: 'b' },
           { id: 'c' },
         ],
+        rightContent: <span>right</span>,
       },
     ];
     const { getByText } = render(
@@ -31,6 +32,7 @@ describe('BaseList', () => {
       {
         label: 'group1',
         items: [{ id: 'x' }],
+        rightContent: <span>right</span>,
       },
     ];
     const { container } = render(
@@ -52,6 +54,7 @@ describe('BaseList', () => {
       {
         label: 'empty',
         items: [],
+        rightContent: <span>right</span>,
       },
     ];
     const { container } = render(

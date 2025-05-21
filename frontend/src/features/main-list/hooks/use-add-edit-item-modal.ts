@@ -16,7 +16,6 @@ export const useAddEditItemModal = (item: AddItemInput | ListItem | null, units:
     estimatedPrice: ESTIMATED_PRICE_DEFAULT,
     notes: NOTES_DEFAULT,
     category: CATEGORY_DEFAULT,
-    currency: CURRENCY,
   };
 
   const [fields, setFields] = React.useState<AddItemInput>(
