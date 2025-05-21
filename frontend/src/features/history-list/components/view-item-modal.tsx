@@ -8,21 +8,16 @@ import { SectionDivider } from '@ui-kit/components/atomic/SectionDivider';
 import type { ViewItemModalProps } from '@/shared/ui/list/types';
 import { FieldDisplay } from '@ui-kit/components/molecule/field-display';
 import { getCurrencySymbol } from '@/shared/utils/local-storage';
-import { usePersistentState } from '@/shared/hooks/use-persistent-state';
-import { CURRENCY_KEY } from '@/shared/constants/storage-keys';
 
 /**
  * AddEditItemModal for adding or editing a shopping list item.
  * @param item - The item to edit (undefined for add).
  * @param onCancel - Cancel handler.
  */
-export const ViewItemModal: React.FC<ViewItemModalProps> = ({ item, onClose }) => {
-  const [currency] = usePersistentState(CURRENCY_KEY, 'USD');
-
-  return (
-    <Dialog open onClose={onClose} maxWidth="xs" fullWidth>
-      <DialogTitle>{'View Item'}</DialogTitle>
-      <SectionDivider />
+export const ViewItemModal: React.FC<ViewItemModalProps> = ({ item, onClose, currency }) => (
+  <Dialog open onClose={onClose} maxWidth="xs" fullWidth>
+    <DialogTitle>{'View Item'}</DialogTitle>
+    <SectionDivider />
     <DialogContent sx={{ display: 'flex', flexDirection: 'column', gap: 0, pt: 1, pb: 1 }}>
       <FieldDisplay label="Name" value={item?.name || ''} />
       <SectionDivider sx={{ mb: 1 }} />
@@ -34,7 +29,10 @@ export const ViewItemModal: React.FC<ViewItemModalProps> = ({ item, onClose }) =
       )}
       {item?.estimatedPrice && (
         <>
-          <FieldDisplay label="Estimated Price" value={`${getCurrencySymbol(currency)}${item.estimatedPrice}` || ''} />
+          <FieldDisplay
+            label="Estimated Price"
+            value={`${getCurrencySymbol(currency)}${item.estimatedPrice}` || ''}
+          />
           <SectionDivider sx={{ mb: 1 }} />
         </>
       )}
@@ -50,8 +48,7 @@ export const ViewItemModal: React.FC<ViewItemModalProps> = ({ item, onClose }) =
     <DialogActions>
       <Button variant="contained" color="primary" onClick={onClose}>
         Close
-        </Button>
-      </DialogActions>
-    </Dialog>
-  );
-};
+      </Button>
+    </DialogActions>
+  </Dialog>
+);

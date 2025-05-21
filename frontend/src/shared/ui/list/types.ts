@@ -8,6 +8,7 @@ export interface AddEditItemModalProps {
   aiSuggestions?: AISuggestion[];
   title: string;
   actionLabel: string;
+  currency: string;
 }
 
 export interface ViewItemModalProps {

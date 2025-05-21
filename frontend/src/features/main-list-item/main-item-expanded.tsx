@@ -10,8 +10,6 @@ import { ItemCostDisplay } from '@/shared/components/item-cost-display';
 import { ItemNotesSection } from '@/shared/components/item-notes-section';
 import { ItemCurrentToggle } from '@/shared/components/item-current-toggle';
 import { ExpandedSection } from '@/shared/components/expanded-section';
-import { CURRENCY_KEY } from '@/shared/constants/storage-keys';
-import { usePersistentState } from '@/shared/hooks/use-persistent-state';
 
 /**
  * MainItemExpanded displays expanded details and actions for a shopping list item.
@@ -25,9 +23,10 @@ import { usePersistentState } from '@/shared/hooks/use-persistent-state';
 export interface MainItemExpandedProps {
   item: ListItem;
   group: string;
+  currency: string;
+  expandedItem: ExpandedItem | null;
   handleToggleCurrent: (item: ListItem) => void;
   handleSaveNote: (id: string, note: string) => void;
-  expandedItem: ExpandedItem | null;
   handleEditItem?: (item: ListItem) => void;
   handleDeleteItem?: (item: ListItem) => void;
   handleToggleBought?: (item: ListItem) => void;
@@ -37,9 +36,10 @@ export interface MainItemExpandedProps {
 export const MainItemExpanded: React.FC<MainItemExpandedProps> = ({
   item,
   group,
+  currency,
+  expandedItem,
   handleToggleCurrent,
   handleSaveNote,
-  expandedItem,
   handleEditItem,
   handleDeleteItem,
   handleToggleBought,
@@ -47,7 +47,6 @@ export const MainItemExpanded: React.FC<MainItemExpandedProps> = ({
 }) => {
   const isExpanded = isItemExpanded({ expandedItem, group, itemId: item.id });
   const noteInput = useEditableInput(item.id, item.notes || '', handleSaveNote);
-  const [currency] = usePersistentState(CURRENCY_KEY, 'USD');
   
   if (!isExpanded) {
     return null;

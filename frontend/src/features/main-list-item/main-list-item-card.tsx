@@ -20,6 +20,7 @@ export interface MainListItemCardProps {
   item: ListItem;
   group: string;
   expandedItem: ExpandedItem | null;
+  currency: string;
   onExpand: (group: string, id: string) => void;
   onToggleBought: (item: ListItem) => void;
   onToggleCurrent: (item: ListItem) => void;
@@ -33,6 +34,7 @@ export const MainListItemCard: React.FC<MainListItemCardProps> = ({
   item,
   group,
   expandedItem,
+  currency,
   onExpand,
   onToggleBought,
   onToggleCurrent,
@@ -102,6 +104,7 @@ export const MainListItemCard: React.FC<MainListItemCardProps> = ({
         <MainItemExpanded
           item={item}
           group={group}
+          currency={currency}
           handleToggleCurrent={onToggleCurrent}
           handleSaveNote={onSaveNote}
           expandedItem={expandedItem}

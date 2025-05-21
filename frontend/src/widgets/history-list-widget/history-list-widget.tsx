@@ -95,6 +95,7 @@ export const HistoryListWidget: React.FC<HistoryListWidgetProps> = ({ items, cur
           renderItem={(item) => (
             <HistoryListItemCard
               item={item}
+              currency={currency}
               expandedItem={expandedItem}
               onExpand={handleExpandItem}
               onViewItem={handleViewItem}
@@ -102,7 +103,9 @@ export const HistoryListWidget: React.FC<HistoryListWidgetProps> = ({ items, cur
           )}
         />
       )}
-      {viewModalOpen && <ViewItemModal item={selectedItem} onClose={handleCloseViewModal} />}
+      {viewModalOpen && (
+        <ViewItemModal item={selectedItem} onClose={handleCloseViewModal} currency={currency} />
+      )}
     </>
   );
 };

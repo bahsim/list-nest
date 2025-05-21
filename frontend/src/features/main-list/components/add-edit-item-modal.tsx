@@ -27,6 +27,7 @@ import { UNITS } from '@/shared/constants/units';
  * @param units - List of units.
  * @param title - Dialog title.
  * @param actionLabel - Main action button label.
+ * @param currency - Currency.
  */
 export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
   item,
@@ -36,6 +37,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
   aiSuggestions,
   title,
   actionLabel,
+  currency,
 }) => {
   const {
     fields,
@@ -83,6 +85,7 @@ export const AddEditItemModal: React.FC<AddEditItemModalProps> = ({
           onChange={handleChange}
           onOpen={() => setOpenFields((prev) => ({ ...prev, estimatedPrice: true }))}
           defaultValue={DEFAULT_ITEM_VALUES.estimatedPrice}
+          currency={currency}
         />
         <NotesField
           value={fields.notes}

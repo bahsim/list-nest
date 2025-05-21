@@ -16,9 +16,10 @@ export interface HistoryListItemCardProps {
   expandedItem: ExpandedItem | null;
   onExpand: (group: string, id: string) => void;
   onViewItem?: (item: ListItem) => void;
+  currency: string;
 }
 
-export const HistoryListItemCard: React.FC<HistoryListItemCardProps> = ({ item, expandedItem, onExpand, onViewItem }) => {
+export const HistoryListItemCard: React.FC<HistoryListItemCardProps> = ({ item, expandedItem, onExpand, onViewItem, currency }) => {
   return (
     <BaseListItemCardContainer
       item={item}
@@ -29,7 +30,7 @@ export const HistoryListItemCard: React.FC<HistoryListItemCardProps> = ({ item, 
       canceled={isDeleted(item)}
       completed={false}
       secondaryText={`${item.quantity} ${item.unit}`}
-      renderExpandedContent={<HistoryItemExpanded item={item} expandedItem={expandedItem} onViewItem={onViewItem} />}
+      renderExpandedContent={<HistoryItemExpanded item={item} expandedItem={expandedItem} onViewItem={onViewItem} currency={currency} />}
     />
   );
 };

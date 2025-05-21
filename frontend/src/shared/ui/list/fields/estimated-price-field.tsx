@@ -13,6 +13,7 @@ interface EstimatedPriceFieldProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   onOpen: () => void;
   defaultValue: string | number | undefined;
+  currency: string;
 }
 
 export const EstimatedPriceField: React.FC<EstimatedPriceFieldProps> = ({
@@ -21,9 +22,8 @@ export const EstimatedPriceField: React.FC<EstimatedPriceFieldProps> = ({
   onChange,
   onOpen,
   defaultValue,
+  currency,
 }) => {
-  const [currency] = usePersistentState(CURRENCY_KEY, 'USD');
-
   return open ? (
     <TextField
       name="estimatedPrice"
