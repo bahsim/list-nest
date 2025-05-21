@@ -67,7 +67,7 @@ export interface BaseListItemCardProps {
   /**
    * Optional background color for the category.
    */
-  readonly categoryColor?: string;
+  readonly borderColor?: string;
 }
 
 export interface BaseListItemCardContentProps {

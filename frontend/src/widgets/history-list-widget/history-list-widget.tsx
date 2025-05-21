@@ -16,7 +16,7 @@ import { useHistoryDateFilterState } from '@/features/history-list/hooks/use-his
 import { useModal } from '@/shared/hooks/use-modal';
 import { groupHistoryItems } from '@/features/history-list-item/utils';
 
-export const HistoryListWidget: React.FC<HistoryListWidgetProps> = ({ items, currency }) => {
+export const HistoryListWidget: React.FC<HistoryListWidgetProps> = ({ items, currency, categories }) => {
   const navigate = useNavigate();
 
   // List expansion
@@ -40,7 +40,7 @@ export const HistoryListWidget: React.FC<HistoryListWidgetProps> = ({ items, cur
 
   // Category filter logic
   const { selectedCategories, toggleCategory, filteredItemsByCategory, uniqueCategories } =
-    useCategoryFilter(filteredItemsByDate, (item) => item.category);
+    useCategoryFilter(categories, filteredItemsByDate, (item) => item.category);
 
   // Grouping logic
   const itemsGroupedByDate = React.useMemo(
@@ -74,7 +74,7 @@ export const HistoryListWidget: React.FC<HistoryListWidgetProps> = ({ items, cur
         selectedPreset={selectedDatePreset}
         onChange={handleDateRangeChange}
       />
-      {uniqueCategories.length > 1 && (
+      {uniqueCategories.length > 0 && (
         <CategoryFilterChips
           categories={uniqueCategories}
           selectedCategories={selectedCategories}
@@ -99,6 +99,7 @@ export const HistoryListWidget: React.FC<HistoryListWidgetProps> = ({ items, cur
               expandedItem={expandedItem}
               onExpand={handleExpandItem}
               onViewItem={handleViewItem}
+              categories={categories}
             />
           )}
         />

@@ -1,3 +1,5 @@
+import { Category } from '../types/category';
+
 /**
  * Filter items by a category field. If none selected, return all.
  */
@@ -13,9 +15,27 @@ export function filterByCategory<T>(
 /**
  * Get unique categories from items list, replacing empty category with 'Other'.
  */
-export function getUniqueCategories<T>(items: T[], getCategory: (item: T) => string): string[] {
+export function getUniqueCategories1<T>(
+  categoriesWithColors: Category[],
+  items: T[],
+  getCategory: (item: T) => string,
+): string[] {
   const categories = Array.from(new Set(items.map(getCategory)));
   return categories.includes('') ? [...categories.filter((c) => c !== ''), 'Other'] : categories;
+}
+
+/**
+ * Get unique categories from items list, replacing empty category with 'Other'.
+ */
+export function getUniqueCategories<T>(
+  categoriesWithColors: Category[],
+  items: T[],
+  getCategory: (item: T) => string,
+): Category[] {
+  const usedCategories = new Set(items.map(getCategory));
+  const filtered = categoriesWithColors.filter((cat) => cat && usedCategories.has(cat.name));
+  
+  return usedCategories.has('') ? [...filtered, { name: 'Other', color: 'SAGE' }] : filtered;
 }
 
 /**

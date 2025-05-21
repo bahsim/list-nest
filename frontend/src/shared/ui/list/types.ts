@@ -1,10 +1,11 @@
 import type { AddItemInput, ListItem, AISuggestion } from '@/entities/list/types';
+import { Category } from '@/shared/types/category';
 
 export interface AddEditItemModalProps {
   item: AddItemInput | ListItem | null;
   onSave: (input: AddItemInput | ListItem) => void;
   onClose: () => void;
-  categories: string[];
+  categories: Category[];
   aiSuggestions?: AISuggestion[];
   title: string;
   actionLabel: string;

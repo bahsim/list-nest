@@ -1,6 +1,5 @@
 import type { ListItem } from '@/entities/list/types';
 import type { User } from '@/entities/user/types';
-import { CATEGORY_COLORS } from '@/shared/constants/category-colors';
 import type { Category } from '@/shared/types/category';
 
 export const mockUser: User = {
@@ -8,16 +7,6 @@ export const mockUser: User = {
   name: 'Alice Johnson',
   // avatarUrl: 'https://i.pravatar.cc/150?img=1',
 };
-
-export const mockCategories: string[] = [
-  'Produce',
-  'Bakery',
-  'Dairy',
-  'Meat',
-  'Snacks',
-  'Household',
-];
-// «Овощи и фрукты», «Выпечка», «Молочные продукты», «Мясо», «Закуски», «Бытовые товары»
 
 export const mockCategoriesWithColors: Category[] = [
   { name: 'Produce', color: 'SAGE' },
@@ -121,8 +110,3 @@ export const mockItems: ListItem[] = [
     notes: '',
   },
 ];
-
-export const getCategoryColorByName = (name: string): string => {
-  const found = mockCategoriesWithColors.find((cat) => cat.name === name);
-  return found ? CATEGORY_COLORS[found.color] : CATEGORY_COLORS.SAGE;
-};

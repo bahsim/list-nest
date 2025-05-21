@@ -25,7 +25,7 @@ export const BaseListItemCard: React.FC<BaseListItemCardProps> = React.memo(
     isExpanded,
     onExpand,
     renderExpandedContent,
-    categoryColor,
+    borderColor,
   }) => {
     const theme = useTheme();
 
@@ -51,8 +51,8 @@ export const BaseListItemCard: React.FC<BaseListItemCardProps> = React.memo(
           alignItems: 'center',
           background: isExpanded ? alpha(theme.palette.secondary.light, theme.highlightAlpha) : 'transparent',
           boxShadow: theme.shadows[3],
-          border: categoryColor
-            ? `1px solid ${categoryColor}`
+          border: borderColor
+            ? `1px solid ${borderColor}`
             : (theme) => `0.5px solid ${alpha(theme.palette.divider, 0.3)}`,
           position: 'relative',
           cursor: 'pointer',

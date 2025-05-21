@@ -50,7 +50,7 @@ export const MainListWidget: React.FC<MainListWidgetProps> = ({
 
   // Category filter logic
   const { selectedCategories, toggleCategory, filteredItemsByCategory, uniqueCategories } =
-    useCategoryFilter(filteredItems, (item) => item.category);
+    useCategoryFilter(categories, filteredItems, (item) => item.category);
 
   // Current items
   const filteredCurrentItems = useMemo(
@@ -131,6 +131,7 @@ export const MainListWidget: React.FC<MainListWidgetProps> = ({
               item={item}
               group={groupLabel}
               currency={currency}
+              categories={categories}
               expandedItem={expandedItem}
               onExpand={handleExpandItem}
               onToggleBought={handleToggleBought}

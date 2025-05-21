@@ -9,6 +9,8 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import { MainItemExpanded } from './main-item-expanded';
 import { BaseListItemCardContainer } from '@/entities/list/base-list/base-list-item-card-container';
 import { isBought, isDeleted } from '@/shared/utils/list-utils';
+import { Category } from '@/shared/types/category';
+import { getCategoryColorByName } from '@/shared/utils/category-color';
 
 /**
  * ShoppingListItemCard displays a single shopping list item with actions.
@@ -21,6 +23,7 @@ export interface MainListItemCardProps {
   group: string;
   expandedItem: ExpandedItem | null;
   currency: string;
+  categories: Category[];
   onExpand: (group: string, id: string) => void;
   onToggleBought: (item: ListItem) => void;
   onToggleCurrent: (item: ListItem) => void;
@@ -35,6 +38,7 @@ export const MainListItemCard: React.FC<MainListItemCardProps> = ({
   group,
   expandedItem,
   currency,
+  categories,
   onExpand,
   onToggleBought,
   onToggleCurrent,
@@ -114,6 +118,7 @@ export const MainListItemCard: React.FC<MainListItemCardProps> = ({
           handleRestoreItem={onRestoreItem}
         />
       }
+      borderColor={getCategoryColorByName(categories, item.category)}
     />
   );
 }; 

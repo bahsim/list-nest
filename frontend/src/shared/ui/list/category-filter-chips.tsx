@@ -2,10 +2,11 @@ import React from 'react';
 import { getCategoryValue } from '@/shared/utils/list-utils';
 import { FilterChip } from '../filter-chip/filter-chip';
 import { FilterChipBar } from '../filter-chip/filter-chip-bar';
-import { getCategoryColorByName } from '@/features/main-list/utils/mock-data';
+import { getCategoryColorByName } from '@/shared/utils/category-color';
+import { Category } from '@/shared/types/category';
 
 interface CategoryFilterChipsProps {
-  categories: string[];
+  categories: Category[];
   selectedCategories: string[];
   onToggleCategory: (category: string) => void;
 }
@@ -18,16 +19,16 @@ export const CategoryFilterChips: React.FC<CategoryFilterChipsProps> = ({
   onToggleCategory,
 }) => (
   <FilterChipBar>
-    {categories.map((label) => (
+    {categories.map((category) => (
       <FilterChip
-        key={label}
-        label={label}
+        key={category.name}
+        label={category.name}
         color="secondary"
         sx={{
-          border: `2px solid ${getCategoryColorByName(label)}`,
+          border: `2px solid ${getCategoryColorByName(categories, category.name)}`,
         }}
-        selected={selectedCategories.includes(getCategoryValue(label))}
-        onClick={() => onToggleCategory(getCategoryValue(label))}
+        selected={selectedCategories.includes(getCategoryValue(category.name))}
+        onClick={() => onToggleCategory(getCategoryValue(category.name))}
       />
     ))}
   </FilterChipBar>

@@ -1,11 +1,12 @@
 import type { ListItem } from '@/entities/list/types';
 import { UseItemDialogResult } from '@/shared/hooks/use-item-dialog';
 import { AddItemInput } from '@/entities/list/types';
+import { Category } from '@/shared/types/category';
 
 export interface MainListWidgetProps {
   items: ListItem[];
   currency: string;
-  categories: string[];
+  categories: Category[];
   restoreDialog: UseItemDialogResult<ListItem>;
   deleteDialog: UseItemDialogResult<ListItem>;
   handleToggleCurrent: (item: ListItem) => void;

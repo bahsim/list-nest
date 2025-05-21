@@ -1,15 +1,14 @@
 import * as React from 'react';
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
 import { FieldDisplay } from '@ui-kit/components/molecule/field-display';
 import { ActionChipField } from './action-chip-field';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import { Category } from '@/shared/types/category';
 
 interface CategoryFieldProps {
   value: string;
   open: boolean;
-  categories: string[];
+  categories: Category[];
   onInputChange: (newValue: string) => void;
   onOpen: () => void;
   defaultValue: string;
@@ -38,8 +37,8 @@ export const CategoryField: React.FC<CategoryFieldProps> = ({
         Category
       </MenuItem>
       {categories.map((cat) => (
-        <MenuItem key={cat} value={cat}>
-          {cat}
+        <MenuItem key={cat.name} value={cat.name}>
+          {cat.name}
         </MenuItem>
       ))}
     </Select>

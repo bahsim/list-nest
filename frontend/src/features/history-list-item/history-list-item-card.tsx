@@ -4,6 +4,8 @@ import type { ExpandedItem } from '@/entities/list/types/expanded-item';
 import { HistoryItemExpanded } from './history-item-expanded';
 import { BaseListItemCardContainer } from '@/entities/list/base-list/base-list-item-card-container';
 import { isBought, isDeleted } from '@/shared/utils/list-utils';
+import { Category } from '@/shared/types/category';
+import { getCategoryColorByName } from '@/shared/utils/category-color';
 
 /**
  * ShoppingListItemCard displays a single shopping list item with actions.
@@ -17,9 +19,17 @@ export interface HistoryListItemCardProps {
   onExpand: (group: string, id: string) => void;
   onViewItem?: (item: ListItem) => void;
   currency: string;
+  categories: Category[];
 }
 
-export const HistoryListItemCard: React.FC<HistoryListItemCardProps> = ({ item, expandedItem, onExpand, onViewItem, currency }) => {
+export const HistoryListItemCard: React.FC<HistoryListItemCardProps> = ({
+  item,
+  expandedItem,
+  onExpand,
+  onViewItem,
+  currency,
+  categories,
+}) => {
   return (
     <BaseListItemCardContainer
       item={item}
@@ -30,7 +40,15 @@ export const HistoryListItemCard: React.FC<HistoryListItemCardProps> = ({ item, 
       canceled={isDeleted(item)}
       completed={false}
       secondaryText={`${item.quantity} ${item.unit}`}
-      renderExpandedContent={<HistoryItemExpanded item={item} expandedItem={expandedItem} onViewItem={onViewItem} currency={currency} />}
+      renderExpandedContent={
+        <HistoryItemExpanded
+          item={item}
+          expandedItem={expandedItem}
+          onViewItem={onViewItem}
+          currency={currency}
+        />
+      }
+      borderColor={getCategoryColorByName(categories, item.category)}
     />
   );
 };
