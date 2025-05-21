@@ -8,15 +8,6 @@ export const mockUser: User = {
   // avatarUrl: 'https://i.pravatar.cc/150?img=1',
 };
 
-export const mockCategoriesWithColors: Category[] = [
-  { name: 'Produce', color: 'SAGE' },
-  { name: 'Bakery', color: 'MAUVE' },
-  { name: 'Dairy', color: 'CREAM' },
-  { name: 'Meat', color: 'CORAL' },
-  { name: 'Snacks', color: 'SKY' },
-  { name: 'Household', color: 'YELLOW' },
-];
-
 export const mockItems: ListItem[] = [
   {
     id: '1',
