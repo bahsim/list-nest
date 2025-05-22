@@ -3,7 +3,7 @@ import { HistoryListWidget } from '@/widgets/history-list-widget/history-list-wi
 import { usePersistentState } from '@/shared/hooks/use-persistent-state';
 import type { ListItem } from '@/entities/list/types';
 import { LIST_ITEMS_KEY, CURRENCY_KEY, CATEGORIES_KEY } from '@/shared/constants/storage-keys';
-import { normalizeListItems, filterHistoryItems } from '@/features/history-list-item/utils';
+import { filterHistoryItems } from '@/features/history-list-item/utils';
 import { Category } from '@/shared/types/category';
 
 export const HistoryListPage: React.FC = () => {
@@ -11,8 +11,7 @@ export const HistoryListPage: React.FC = () => {
   const [currency] = usePersistentState(CURRENCY_KEY, 'USD');
   const [categories] = usePersistentState<Category[]>(CATEGORIES_KEY, []);
 
-  const listItems = normalizeListItems(rawListItems);
-  const filteredListItems = filterHistoryItems(listItems);
+  const filteredListItems = filterHistoryItems(rawListItems);
 
   return (
     <HistoryListWidget items={filteredListItems} currency={currency} categories={categories} />

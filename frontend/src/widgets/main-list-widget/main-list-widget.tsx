@@ -179,9 +179,9 @@ export const MainListWidget: React.FC<MainListWidgetProps> = ({
         open={deleteDialog.isDialogOpen}
         onClose={deleteDialog.cancel}
         onConfirm={deleteDialog.confirm}
-        title={DIALOG_CONFIG.delete.title}
+        title={t(DIALOG_CONFIG.delete.title)}
         content={DIALOG_CONFIG.delete.getContent(deleteDialog.targetItem)}
-        confirmLabel={DIALOG_CONFIG.delete.confirmLabel}
+        confirmLabel={t(DIALOG_CONFIG.delete.confirmLabel)}
         confirmColor={DIALOG_CONFIG.delete.confirmColor}
       />
     </>

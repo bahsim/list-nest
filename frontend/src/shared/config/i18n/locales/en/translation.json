@@ -52,8 +52,14 @@
     "resetHistoryAria": "Reset History",
     "confirmReset": "Confirm Reset",
     "confirmCategories": "Are you sure you want to clear all categories? This cannot be undone.",
+    "confirmCategoriesAria": "Confirm Reset Categories",
     "confirmHistory": "Are you sure you want to clear all history? This cannot be undone.",
-    "confirm": "Confirm"
+    "confirmHistoryAria": "Confirm Reset History",
+    "confirm": "Confirm",
+    "resetAll": "Reset All",
+    "resetAllAria": "Reset All",
+    "confirmAll": "Are you sure you want to clear all data? This cannot be undone.",
+    "confirmAllAria": "Confirm Reset All"
   },
   "emptyState": {
     "noItems": "No items yet",

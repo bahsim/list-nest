@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { Box } from '@mui/material';
 import { CategoryEditor } from '@/features/category-editor';
 import { SettingsSection } from '@/widgets/settings-section';
@@ -10,18 +10,30 @@ import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import { LanguageSelector } from '@/features/language-selector';
 import { SettingsResetSection } from '@/widgets/settings-reset-section';
 import { usePersistentState } from '@/shared/hooks/use-persistent-state';
-import { CURRENCY_KEY, LANGUAGE_KEY, CATEGORIES_KEY } from '@/shared/constants/storage-keys';
+import {
+  CURRENCY_KEY,
+  LANGUAGE_KEY,
+  CATEGORIES_KEY,
+  LIST_ITEMS_KEY,
+} from '@/shared/constants/storage-keys';
 import i18n from '@/shared/config/i18n/i18n';
 import { useTranslation } from 'react-i18next';
 import { Category } from '@/shared/types/category';
+import { ListItem } from '@/entities/list';
+import { filterActiveOrTodayItems } from '@/features/history-list-item/utils';
+import { getDefaultCategories } from '@/shared/utils/get-default-categories';
 
 type TabType = 'categories' | 'currency' | 'language' | 'reset';
 
 export const SettingsPage: React.FC = () => {
+  const { t } = useTranslation();
+
   const [expanded, setExpanded] = useState<TabType | null>(null);
   const [currency, setCurrency] = usePersistentState(CURRENCY_KEY, '');
   const [language, setLanguageRaw] = usePersistentState(LANGUAGE_KEY, '');
   const [categories, setCategories] = usePersistentState<Category[]>(CATEGORIES_KEY, []);
+  const [items, setItems] = usePersistentState<ListItem[]>(LIST_ITEMS_KEY, []);
+  const [isReload, setReload] = useState(false);
 
   const setLanguage = useCallback(
     (lang: string) => {
@@ -31,13 +43,17 @@ export const SettingsPage: React.FC = () => {
     [setLanguageRaw],
   );
 
-  const { t } = useTranslation();
+  useEffect(() => {
+    if (isReload) {
+      window.location.replace('/')
+    }
+  }, [isReload]);
 
   const handleAddCategory = (category: Category) => {
     setCategories((prev: Category[]) => [...prev, category]);
   };
 
-  const handleChangeCategory = (data: {newValue: Category, idx: number}) => {
+  const handleChangeCategory = (data: { newValue: Category; idx: number }) => {
     setCategories((prev: Category[]) =>
       prev.map((cat, idx) => (idx === data.idx ? data.newValue : cat)),
     );
@@ -45,6 +61,27 @@ export const SettingsPage: React.FC = () => {
 
   const handleDeleteCategory = (category: Category) => {
     setCategories((prev: Category[]) => prev.filter((cat) => cat.name !== category.name));
+  };
+
+  const deleteHistory = () => {
+    const result = filterActiveOrTodayItems(items);
+    setItems(result);
+  };
+
+  const handleResetCategories = () => {
+    setCategories(getDefaultCategories(language));
+  };
+
+  const handleResetHistory = () => {
+    deleteHistory();
+  };
+
+  const handleResetAll = () => {
+    handleResetCategories();
+    deleteHistory();
+    setCurrency('');
+    setLanguage('');
+    setReload(true);
   };
 
   return (
@@ -84,7 +121,11 @@ export const SettingsPage: React.FC = () => {
         onExpand={() => setExpanded(expanded === 'reset' ? null : 'reset')}
         icon={<RestartAltIcon sx={{ color: (theme) => theme.palette.error.main }} />}
       >
-        <SettingsResetSection />
+        <SettingsResetSection
+          onResetCategories={handleResetCategories}
+          onResetHistory={handleResetHistory}
+          onResetAll={handleResetAll}
+        />
       </SettingsSection>
     </Box>
   );

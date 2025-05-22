@@ -14,7 +14,7 @@ const isToday = (date: Date | null) => {
 };
 
 export const filterActiveOrTodayItems = (items: ListItem[]) =>
-  items.filter(
+  normalizeListItems(items).filter(
     (item) =>
       (item.boughtAt === null && item.deletedAt === null) ||
       isToday(item.boughtAt) ||
@@ -30,7 +30,7 @@ export const normalizeListItems = (items: ListItem[]) =>
   }));
 
 export const filterHistoryItems = (items: ListItem[]) =>
-  items.filter((item) => item.boughtAt !== null || item.deletedAt !== null);
+  normalizeListItems(items).filter((item) => item.boughtAt !== null || item.deletedAt !== null);
 
 const NO_DATE_LABEL = 'No Date';
 

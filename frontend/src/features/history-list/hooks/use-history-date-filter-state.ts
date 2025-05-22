@@ -2,8 +2,8 @@ import { useState, useCallback } from 'react';
 import type { DateRange } from '@/shared/types/date-range';
 import type { ListItem } from '@/entities/list/types';
 import { useHistoryDateFilter } from './use-history-date-filter';
-import { DatePresetLabel, getDatePresetTranslationKey } from '@/shared/constants/date-presets';
-import { getDefaultRange, getRangeLabel } from '@/shared/utils/date';
+import { DatePresetLabel } from '@/shared/constants/date-presets';
+import { getDefaultRange } from '@/shared/utils/date';
 
 export const useHistoryDateFilterState = (items: ListItem[]) => {
   const [selectedDateRange, setSelectedDateRange] = useState<DateRange<Date>>(getDefaultRange());

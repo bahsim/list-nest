@@ -7,7 +7,7 @@ import { usePersistentState } from '@/shared/hooks/use-persistent-state';
 import { CATEGORIES_KEY, CURRENCY_KEY, LANGUAGE_KEY } from '@/shared/constants/storage-keys';
 import { InitialSettingsDialog } from '@/features/initial-settings-dialog/initial-settings-dialog';
 import i18n from '@/shared/config/i18n/i18n';
-import { CATEGORIES_WITH_COLORS } from '@/shared/constants/categories';
+import { getDefaultCategories } from '@/shared/utils/get-default-categories';
 import { Category } from '@/shared/types/category';
 
 /**
@@ -36,7 +36,8 @@ export const MainLayout: React.FC<MainLayoutProps> = ({ user, children }) => {
 
   const putCategories = () => {
     if (language && !categories.length) {
-      setCategories(CATEGORIES_WITH_COLORS[language]);
+      setCategories(getDefaultCategories(language));
+      window.location.reload();
     }
   };
 

@@ -3,7 +3,6 @@ import { useMainList } from '@/features/main-list/hooks/use-main-list';
 import { MainListWidget } from '@/widgets/main-list-widget/main-list-widget';
 import { usePersistentState } from '@/shared/hooks/use-persistent-state';
 import { CATEGORIES_KEY, CURRENCY_KEY } from '@/shared/constants/storage-keys';
-import { normalizeListItems } from '@/features/history-list-item/utils';
 import { Category } from '@/shared/types/category';
 
 export const MainListPage: React.FC = () => {
@@ -11,14 +10,9 @@ export const MainListPage: React.FC = () => {
   const [currency] = usePersistentState(CURRENCY_KEY, 'USD');
   const [categories] = usePersistentState<Category[]>(CATEGORIES_KEY, []);
 
-  const normalizedItems = useMemo(
-    () => normalizeListItems(mainList.data.items),
-    [mainList.data.items],
-  );
-
   return (
     <MainListWidget
-      items={normalizedItems}
+      items={mainList.data.items}
       currency={currency}
       categories={categories}
       restoreDialog={mainList.dialogs.restoreDialog}
