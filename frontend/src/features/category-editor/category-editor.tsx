@@ -4,16 +4,14 @@ import { CategoryEditorRow } from './category-editor-row';
 import { CategoryEditorAddButton } from './category-editor-add-button';
 import { Category } from '@/shared/types/category';
 
-const DEFAULT_CATEGORIES: Category[] = [
-  { name: 'Produce asd asd sad ', color: 'SAGE' },
-  { name: 'Bakery asd sd sdfasdfasdfasdf asdf ', color: 'MAUVE' },
-  { name: 'Dairy', color: 'CREAM' },
-  { name: 'Meat', color: 'CORAL' },
-  { name: 'Snacks', color: 'SKY' },
-];
+interface CategoryEditorProps {
+  categories: Category[];
+  onChange: (data: {newValue: Category, idx: number}) => void;
+  onDelete: (category: Category) => void;
+  onAdd: (category: Category) => void;
+}
 
-export const CategoryEditor: React.FC = () => {
-  const [categories, setCategories] = useState<Category[]>(DEFAULT_CATEGORIES);
+export const CategoryEditor: React.FC<CategoryEditorProps> = ({ categories, onAdd, onChange, onDelete }) => {
   const [editIdx, setEditIdx] = useState<number | null>(null);
   const [editValue, setEditValue] = useState<Category | null>(null);
   const theme = useTheme();
@@ -31,31 +29,24 @@ export const CategoryEditor: React.FC = () => {
 
   const handleSave = () => {
     if (editIdx === null || !editValue) return;
-    setCategories((prev) => prev.map((cat, i) => (i === editIdx ? editValue : cat)));
+    onChange({newValue: editValue, idx: editIdx});
     setEditIdx(null);
     setEditValue(null);
   };
 
   const handleCancel = () => {
-    if (
-      editIdx !== null &&
-      categories[editIdx]?.name === '' &&
-      categories[editIdx]?.color === 'SAGE'
-    ) {
-      setCategories((prev) => prev.filter((_, i) => i !== editIdx));
-    }
     setEditIdx(null);
     setEditValue(null);
   };
 
   const handleAdd = () => {
-    setCategories((prev) => [...prev, { name: '', color: 'SAGE' }]);
+    onAdd({ name: '', color: 'SAGE' });
     setEditIdx(categories.length);
     setEditValue({ name: '', color: 'SAGE' });
   };
 
   const handleDelete = (idx: number) => {
-    setCategories((prev) => prev.filter((_, i) => i !== idx));
+    onDelete(categories[idx]);
     setEditIdx(null);
     setEditValue(null);
   };
