@@ -109,7 +109,7 @@ export const MainListWidget: React.FC<MainListWidgetProps> = ({
   return (
     <>
       {/* category chips section */}
-      {items.length > 0 && uniqueCategories.length > 1 && (
+      {items.length > 0 && uniqueCategories.length > 0 && (
         <CategoryFilterChips
           categories={uniqueCategories}
           selectedCategories={selectedCategories}
