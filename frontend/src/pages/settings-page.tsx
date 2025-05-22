@@ -20,7 +20,7 @@ import i18n from '@/shared/config/i18n/i18n';
 import { useTranslation } from 'react-i18next';
 import { Category } from '@/shared/types/category';
 import { ListItem } from '@/entities/list';
-import { filterActiveOrTodayItems } from '@/features/history-list-item/utils';
+import { filterActiveItems, filterActiveOrTodayItems } from '@/features/history-list-item/utils';
 import { getDefaultCategories } from '@/shared/utils/get-default-categories';
 
 type TabType = 'categories' | 'currency' | 'language' | 'reset';
@@ -45,7 +45,7 @@ export const SettingsPage: React.FC = () => {
 
   useEffect(() => {
     if (isReload) {
-      window.location.replace('/')
+      window.location.replace('/');
     }
   }, [isReload]);
 
@@ -63,22 +63,17 @@ export const SettingsPage: React.FC = () => {
     setCategories((prev: Category[]) => prev.filter((cat) => cat.name !== category.name));
   };
 
-  const deleteHistory = () => {
-    const result = filterActiveOrTodayItems(items);
-    setItems(result);
-  };
-
   const handleResetCategories = () => {
     setCategories(getDefaultCategories(language));
   };
 
   const handleResetHistory = () => {
-    deleteHistory();
+    setItems(filterActiveOrTodayItems);
   };
 
   const handleResetAll = () => {
     handleResetCategories();
-    deleteHistory();
+    setItems(filterActiveItems);
     setCurrency('');
     setLanguage('');
     setReload(true);

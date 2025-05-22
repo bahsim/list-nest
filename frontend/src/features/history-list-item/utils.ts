@@ -13,6 +13,9 @@ const isToday = (date: Date | null) => {
   );
 };
 
+export const filterActiveItems = (items: ListItem[]) =>
+  normalizeListItems(items).filter((item) => item.boughtAt === null && item.deletedAt === null);
+
 export const filterActiveOrTodayItems = (items: ListItem[]) =>
   normalizeListItems(items).filter(
     (item) =>
