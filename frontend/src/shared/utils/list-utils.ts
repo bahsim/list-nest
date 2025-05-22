@@ -32,10 +32,16 @@ export function getUniqueCategories<T>(
   items: T[],
   getCategory: (item: T) => string,
 ): Category[] {
-  const usedCategories = new Set(items.map(getCategory));
-  const filtered = categoriesWithColors.filter((cat) => cat && usedCategories.has(cat.name));
-  
-  return usedCategories.has('') ? [...filtered, { name: 'Other', color: 'SAGE' }] : filtered;
+  const usedCategories = items.map(getCategory);
+  const filtered = usedCategories.map((cat) => {
+    if (cat === '') {
+      return { name: 'Other', color: 'SAGE' as const };
+    }
+
+    return categoriesWithColors.find((c) => c.name === cat) ?? { name: cat, color: 'SAGE' as const };
+  });
+
+  return filtered;
 }
 
 /**

@@ -4,9 +4,11 @@ import { FooterNav } from '@/widgets/footer-nav';
 import type { User } from '@/entities/user/types';
 import Box from '@mui/material/Box';
 import { usePersistentState } from '@/shared/hooks/use-persistent-state';
-import { CURRENCY_KEY, LANGUAGE_KEY } from '@/shared/constants/storage-keys';
+import { CATEGORIES_KEY, CURRENCY_KEY, LANGUAGE_KEY } from '@/shared/constants/storage-keys';
 import { InitialSettingsDialog } from '@/features/initial-settings-dialog/initial-settings-dialog';
 import i18n from '@/shared/config/i18n/i18n';
+import { CATEGORIES_WITH_COLORS } from '@/shared/constants/categories';
+import { Category } from '@/shared/types/category';
 
 /**
  * MainLayout wraps page content with HeaderBar and FooterNav.
@@ -19,20 +21,32 @@ export interface MainLayoutProps {
   children: React.ReactNode;
 }
 
-export const MainLayout: React.FC<MainLayoutProps> = ({
-  user,
-  children,
-}) => {
+export const MainLayout: React.FC<MainLayoutProps> = ({ user, children }) => {
   const [currency, setCurrency] = usePersistentState(CURRENCY_KEY, '');
   const [language, setLanguageRaw] = usePersistentState(LANGUAGE_KEY, '');
-  
-  const setLanguage = React.useCallback((lang: string) => {
-    setLanguageRaw(lang);
-    i18n.changeLanguage(lang);
-  }, [setLanguageRaw]);
+  const [categories, setCategories] = usePersistentState<Category[]>(CATEGORIES_KEY, []);
+
+  const setLanguage = React.useCallback(
+    (lang: string) => {
+      setLanguageRaw(lang);
+      i18n.changeLanguage(lang);
+    },
+    [setLanguageRaw],
+  );
+
+  const putCategories = () => {
+    if (language && !categories.length) {
+      setCategories(CATEGORIES_WITH_COLORS[language]);
+    }
+  };
+
+  useEffect(() => {
+    putCategories();
+  }, []);
 
   useEffect(() => {
     i18n.changeLanguage(language);
+    putCategories();
   }, [language]);
 
   const showDialog = !currency || !language;

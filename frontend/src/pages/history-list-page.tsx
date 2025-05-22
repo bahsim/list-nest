@@ -4,12 +4,12 @@ import { usePersistentState } from '@/shared/hooks/use-persistent-state';
 import type { ListItem } from '@/entities/list/types';
 import { LIST_ITEMS_KEY, CURRENCY_KEY, CATEGORIES_KEY } from '@/shared/constants/storage-keys';
 import { normalizeListItems, filterHistoryItems } from '@/features/history-list-item/utils';
-import { CATEGORIES_WITH_COLORS } from '@/shared/constants/categories';
+import { Category } from '@/shared/types/category';
 
 export const HistoryListPage: React.FC = () => {
   const [rawListItems] = usePersistentState<ListItem[]>(LIST_ITEMS_KEY, []);
   const [currency] = usePersistentState(CURRENCY_KEY, 'USD');
-  const [categories] = usePersistentState(CATEGORIES_KEY, CATEGORIES_WITH_COLORS);
+  const [categories] = usePersistentState<Category[]>(CATEGORIES_KEY, []);
 
   const listItems = normalizeListItems(rawListItems);
   const filteredListItems = filterHistoryItems(listItems);

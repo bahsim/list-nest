@@ -17,12 +17,10 @@ import { Category } from '@/shared/types/category';
 
 type TabType = 'categories' | 'currency' | 'language' | 'reset';
 
-const savedLang = localStorage.getItem(LANGUAGE_KEY) || 'en';
-
 export const SettingsPage: React.FC = () => {
   const [expanded, setExpanded] = useState<TabType | null>(null);
   const [currency, setCurrency] = usePersistentState(CURRENCY_KEY, '');
-  const [language, setLanguageRaw] = usePersistentState(LANGUAGE_KEY, savedLang);
+  const [language, setLanguageRaw] = usePersistentState(LANGUAGE_KEY, '');
   const [categories, setCategories] = usePersistentState<Category[]>(CATEGORIES_KEY, []);
 
   const setLanguage = useCallback(

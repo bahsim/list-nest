@@ -4,12 +4,12 @@ import { MainListWidget } from '@/widgets/main-list-widget/main-list-widget';
 import { usePersistentState } from '@/shared/hooks/use-persistent-state';
 import { CATEGORIES_KEY, CURRENCY_KEY } from '@/shared/constants/storage-keys';
 import { normalizeListItems } from '@/features/history-list-item/utils';
-import { CATEGORIES_WITH_COLORS } from '@/shared/constants/categories';
+import { Category } from '@/shared/types/category';
 
 export const MainListPage: React.FC = () => {
   const mainList = useMainList();
   const [currency] = usePersistentState(CURRENCY_KEY, 'USD');
-  const [categories] = usePersistentState(CATEGORIES_KEY, CATEGORIES_WITH_COLORS);
+  const [categories] = usePersistentState<Category[]>(CATEGORIES_KEY, []);
 
   const normalizedItems = useMemo(
     () => normalizeListItems(mainList.data.items),

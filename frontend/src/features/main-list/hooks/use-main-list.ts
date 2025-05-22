@@ -4,10 +4,9 @@ import { usePersistentState } from '@/shared/hooks/use-persistent-state';
 import type { ListItem, AddItemInput } from '@/entities/list/types';
 import { LIST_ITEMS_KEY } from '@/shared/constants/storage-keys';
 import { isEditingItem } from '@/shared/utils/list-utils';
-import { mockItems } from '../utils/mock-data';
 
 export const useMainList = () => {
-  const [items, setItems] = usePersistentState<ListItem[]>(LIST_ITEMS_KEY, mockItems);
+  const [items, setItems] = usePersistentState<ListItem[]>(LIST_ITEMS_KEY, []);
   const deleteDialog = useItemDialog<ListItem>();
   const restoreDialog = useItemDialog<ListItem>();
 
