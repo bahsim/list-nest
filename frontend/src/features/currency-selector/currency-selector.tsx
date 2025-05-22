@@ -38,7 +38,7 @@ export const CurrencySelector: React.FC<CurrencySelectorProps> = ({ value, onCha
       >
         {CURRENCIES.map(currency => (
           <MenuItem key={currency.code} value={currency.code}>
-            {currency.symbol} {currency.name}
+            {currency.symbol} {t(currency.nameKey)}
           </MenuItem>
         ))}
       </Select>

@@ -10,6 +10,7 @@ import type { SxProps, Theme } from '@mui/material/styles';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useCallback } from 'react';
 import { goToMainPage, goToRouteReplace } from '@/shared/utils/navigation';
+import { useTranslation } from 'react-i18next';
 
 /**
  * FooterNav displays bottom navigation for main app sections.
@@ -20,13 +21,14 @@ export interface FooterNavProps {
 }
 
 const tabs = [
-  { key: 'list', label: 'List', icon: <ListAltIcon />, route: '/' },
-  { key: 'analytics', label: 'Analytics', icon: <BarChartIcon />, route: '/analytics' },
-  { key: 'history', label: 'History', icon: <HistoryIcon />, route: '/history' },
-  { key: 'settings', label: 'Settings', icon: <SettingsIcon />, route: '/settings' },
+  { key: 'list', labelKey: 'footerNav.list', icon: <ListAltIcon />, route: '/' },
+  { key: 'analytics', labelKey: 'footerNav.analytics', icon: <BarChartIcon />, route: '/analytics' },
+  { key: 'history', labelKey: 'footerNav.history', icon: <HistoryIcon />, route: '/history' },
+  { key: 'settings', labelKey: 'footerNav.settings', icon: <SettingsIcon />, route: '/settings' },
 ];
 
 export const FooterNav: React.FC<FooterNavProps> = ({ sx }) => {
+  const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
   const currentTab = tabs.find(tab => tab.route === location.pathname)?.key || 'list';
@@ -71,7 +73,7 @@ export const FooterNav: React.FC<FooterNavProps> = ({ sx }) => {
         {tabs.map(tab => (
           <BottomNavigationAction
             key={tab.key}
-            label={tab.label}
+            label={t(tab.labelKey)}
             value={tab.key}
             icon={tab.icon}
             sx={{

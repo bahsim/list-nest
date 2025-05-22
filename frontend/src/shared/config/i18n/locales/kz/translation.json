@@ -1,0 +1,161 @@
+{
+  "settings": {
+    "categories": "Санаттар",
+    "currency": "Валюта",
+    "language": "Тіл",
+    "reset": "Қалпына келтіру"
+  },
+  "dialog": {
+    "restoreTitle": "Бұл элементті қалпына келтіру?",
+    "deleteTitle": "Бұл элементті жою?",
+    "restore": "Қалпына келтіру",
+    "delete": "Жою",
+    "restoreContent": {
+      "part1": "Сіз бұл элементті қалпына келтіруді қалайсыз ба",
+      "part2": "? Бұл элемент белсенді тізіміңізге қайта қосылады."
+    },
+    "deleteContent": {
+      "part1": "Сіз бұл элементті жойғыңыз келетініне сенімдісіз бе",
+      "part2": "? Бұл элемент жойылған күйге өтеді. Кейінірек қалпына келтіруге болады."
+    }
+  },
+  "settingsDialog": {
+    "title": "Баптауларды орнатыңыз",
+    "description": "Жалғастыру үшін қалаған валюта мен тілді таңдаңыз.",
+    "languageLabel": "Тіл",
+    "requiredFields": "Екі өріс те міндетті."
+  },
+  "common": {
+    "cancel": "Бас тарту",
+    "close": "Жабу",
+    "apply": "Қолдану"
+  },
+  "currencySelector": {
+    "label": "Валюта"
+  },
+  "fields": {
+    "estimatedPrice": "Болжамды баға",
+    "addPrice": "Баға қосу",
+    "category": "Санат",
+    "addCategory": "Санат қосу",
+    "notes": "Ескертпелер",
+    "addNote": "Ескертпе қосу",
+    "quantity": "Саны",
+    "addQuantity": "Саны қосу",
+    "unit": "Бірлік",
+    "name": "Атауы",
+    "aiSuggestions": "AI ұсыныстары:"
+  },
+  "resetSection": {
+    "resetCategories": "Санаттарды қалпына келтіру",
+    "resetHistory": "Тарихты қалпына келтіру",
+    "resetHistoryAria": "Тарихты қалпына келтіру",
+    "confirmReset": "Қалпына келтіруді растау",
+    "confirmCategories": "Барлық санаттарды өшіргіңіз келетініне сенімдісіз бе? Бұл қайтымсыз.",
+    "confirmCategoriesAria": "Санаттарды қалпына келтіруді растау",
+    "confirmHistory": "Барлық тарихты өшіргіңіз келетініне сенімдісіз бе? Бұл қайтымсыз.",
+    "confirmHistoryAria": "Тарихты қалпына келтіруді растау",
+    "confirm": "Растау",
+    "resetAll": "Барлығын қалпына келтіру",
+    "resetAllAria": "Барлығын қалпына келтіру",
+    "confirmAll": "Барлық деректерді өшіргіңіз келетініне сенімдісіз бе? Бұл қайтымсыз.",
+    "confirmAllAria": "Барлығын қалпына келтіруді растау"
+  },
+  "emptyState": {
+    "noItems": "Әлі элементтер жоқ",
+    "addFirstItem": "Бұл тізімге бірінші элементті қосыңыз.",
+    "addFirstItemButton": "Бірінші элементті қосу",
+    "noItemsAlt": "Әлі элементтер жоқ",
+    "noHistory": "Тарих жоқ",
+    "noHistoryDescription": "Сатып алған немесе жойған элементтеріңіз осында көрсетіледі.",
+    "backToList": "Тізімге оралу",
+    "noHistoryAlt": "Тарих элементтері жоқ иллюстрация"
+  },
+  "modalTitles": {
+    "add": "Элемент қосу",
+    "edit": "Элементті өңдеу",
+    "complete": "Элементті аяқтау"
+  },
+  "modalActions": {
+    "create": "Құру",
+    "save": "Сақтау",
+    "complete": "Аяқтау"
+  },
+  "mainList": {
+    "addItemAria": "Элемент қосу"
+  },
+  "userProfile": {
+    "profile": "Профиль",
+    "logout": "Шығу",
+    "arrowUp": "▲",
+    "arrowDown": "▼"
+  },
+  "viewItem": {
+    "title": "Элементті қарау"
+  },
+  "categoryEditor": {
+    "color": "Түс",
+    "categoryName": "Санат атауы",
+    "edit": "{{name}} өңдеу",
+    "editing": "{{name}} өңделуде",
+    "addCategory": "Санат қосу"
+  },
+  "dateFilter": {
+    "dateRange": "Күн аралығы",
+    "filterBy": "{{label}} бойынша сүзгілеу",
+    "dateRangePickers": "Күн аралығы таңдағыштар",
+    "from": "Басталуы",
+    "to": "Аяқталуы",
+    "fromDate": "Басталу күні",
+    "toDate": "Аяқталу күні"
+  },
+  "dateRangeModal": {
+    "title": "Күн аралығын таңдаңыз",
+    "custom": "Өзгеше",
+    "selectPreset": "{{label}} таңдау",
+    "selectCustom": "Өзгеше аралық таңдау",
+    "customPickers": "Өзгеше күн аралығы таңдағыштар",
+    "from": "Басталуы",
+    "to": "Аяқталуы",
+    "fromDate": "Басталу күні",
+    "toDate": "Аяқталу күні"
+  },
+  "aiSuggestions": {
+    "show": "AI ұсыныстарын көрсету",
+    "label": "AI ұсыныстары"
+  },
+  "historyItem": {
+    "restore": "Қалпына келтіру"
+  },
+  "fieldDisplay": {
+    "edit": "{{label}} өңдеу"
+  },
+  "analyticsPage": {
+    "title": "Аналитика",
+    "comingSoon": "Жақында..."
+  },
+  "datePresets": {
+    "week": "Апта",
+    "month": "Ай",
+    "threeMonths": "3 ай",
+    "halfYear": "Жарты жыл",
+    "year": "Жыл"
+  },
+  "mainListGroups": {
+    "current": "Ағымдағы",
+    "all": "Барлығы"
+  },
+  "currency": {
+    "usd": "АҚШ доллары",
+    "eur": "Еуро",
+    "rub": "Ресей рублі",
+    "kzt": "Қазақстан теңгесі",
+    "gbp": "Британдық фунт"
+  },
+  "footerNav": {
+    "list": "Тізім",
+    "analytics": "Аналитика",
+    "history": "Тарих",
+    "settings": "Баптаулар"
+  }
+}

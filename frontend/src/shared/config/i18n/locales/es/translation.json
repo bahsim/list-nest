@@ -1,0 +1,161 @@
+{
+  "settings": {
+    "categories": "Categorías",
+    "currency": "Moneda",
+    "language": "Idioma",
+    "reset": "Restablecer"
+  },
+  "dialog": {
+    "restoreTitle": "¿Restaurar este elemento?",
+    "deleteTitle": "¿Eliminar este elemento?",
+    "restore": "Restaurar",
+    "delete": "Eliminar",
+    "restoreContent": {
+      "part1": "¿Está seguro de que desea restaurar",
+      "part2": "? Esto moverá el elemento de nuevo a su lista activa."
+    },
+    "deleteContent": {
+      "part1": "¿Está seguro de que desea eliminar",
+      "part2": "? Esto moverá el elemento al estado eliminado. Puede restaurarlo más tarde."
+    }
+  },
+  "settingsDialog": {
+    "title": "Establecer sus preferencias",
+    "description": "Seleccione su moneda e idioma preferidos para continuar.",
+    "languageLabel": "Idioma",
+    "requiredFields": "Ambos campos son obligatorios."
+  },
+  "common": {
+    "cancel": "Cancelar",
+    "close": "Cerrar",
+    "apply": "Aplicar"
+  },
+  "currencySelector": {
+    "label": "Moneda"
+  },
+  "fields": {
+    "estimatedPrice": "Precio estimado",
+    "addPrice": "Agregar precio",
+    "category": "Categoría",
+    "addCategory": "Agregar categoría",
+    "notes": "Notas",
+    "addNote": "Agregar nota",
+    "quantity": "Cantidad",
+    "addQuantity": "Agregar cantidad",
+    "unit": "Unidad",
+    "name": "Nombre",
+    "aiSuggestions": "Sugerencias de IA:"
+  },
+  "resetSection": {
+    "resetCategories": "Restablecer categorías",
+    "resetHistory": "Restablecer historial",
+    "resetHistoryAria": "Restablecer historial",
+    "confirmReset": "Confirmar restablecimiento",
+    "confirmCategories": "¿Está seguro de que desea borrar todas las categorías? Esto no se puede deshacer.",
+    "confirmCategoriesAria": "Confirmar restablecimiento de categorías",
+    "confirmHistory": "¿Está seguro de que desea borrar todo el historial? Esto no se puede deshacer.",
+    "confirmHistoryAria": "Confirmar restablecimiento de historial",
+    "confirm": "Confirmar",
+    "resetAll": "Restablecer todo",
+    "resetAllAria": "Restablecer todo",
+    "confirmAll": "¿Está seguro de que desea borrar todos los datos? Esto no se puede deshacer.",
+    "confirmAllAria": "Confirmar restablecimiento total"
+  },
+  "emptyState": {
+    "noItems": "Aún no hay elementos",
+    "addFirstItem": "Agregue su primer elemento a esta lista.",
+    "addFirstItemButton": "Agregar primer elemento",
+    "noItemsAlt": "Aún no hay elementos",
+    "noHistory": "Sin historial aún",
+    "noHistoryDescription": "Una vez que compre o elimine elementos, aparecerán aquí para referencia futura.",
+    "backToList": "Volver a la lista",
+    "noHistoryAlt": "Ilustración de elementos sin historial"
+  },
+  "modalTitles": {
+    "add": "Agregar elemento",
+    "edit": "Editar elemento",
+    "complete": "Completar elemento"
+  },
+  "modalActions": {
+    "create": "Crear",
+    "save": "Guardar",
+    "complete": "Completar"
+  },
+  "mainList": {
+    "addItemAria": "Agregar elemento"
+  },
+  "userProfile": {
+    "profile": "Perfil",
+    "logout": "Cerrar sesión",
+    "arrowUp": "▲",
+    "arrowDown": "▼"
+  },
+  "viewItem": {
+    "title": "Ver elemento"
+  },
+  "categoryEditor": {
+    "color": "Color",
+    "categoryName": "Nombre de la categoría",
+    "edit": "Editar {{name}}",
+    "editing": "Editando {{name}}",
+    "addCategory": "Agregar categoría"
+  },
+  "dateFilter": {
+    "dateRange": "Rango de fechas",
+    "filterBy": "Filtrar por {{label}}",
+    "dateRangePickers": "Selectores de rango de fechas",
+    "from": "Desde",
+    "to": "Hasta",
+    "fromDate": "Fecha de inicio",
+    "toDate": "Fecha de fin"
+  },
+  "dateRangeModal": {
+    "title": "Seleccionar rango de fechas",
+    "custom": "Personalizado",
+    "selectPreset": "Seleccionar {{label}}",
+    "selectCustom": "Seleccionar rango personalizado",
+    "customPickers": "Selectores de rango personalizado",
+    "from": "Desde",
+    "to": "Hasta",
+    "fromDate": "Fecha de inicio",
+    "toDate": "Fecha de fin"
+  },
+  "aiSuggestions": {
+    "show": "Mostrar sugerencias de IA",
+    "label": "Sugerencias de IA"
+  },
+  "historyItem": {
+    "restore": "Restaurar"
+  },
+  "fieldDisplay": {
+    "edit": "Editar {{label}}"
+  },
+  "analyticsPage": {
+    "title": "Analítica",
+    "comingSoon": "Próximamente..."
+  },
+  "datePresets": {
+    "week": "Semana",
+    "month": "Mes",
+    "threeMonths": "3 meses",
+    "halfYear": "Medio año",
+    "year": "Año"
+  },
+  "mainListGroups": {
+    "current": "Actual",
+    "all": "Todo"
+  },
+  "currency": {
+    "usd": "Dólar estadounidense",
+    "eur": "Euro",
+    "rub": "Rublo ruso",
+    "kzt": "Tenge kazajo",
+    "gbp": "Libra esterlina"
+  },
+  "footerNav": {
+    "list": "Lista",
+    "analytics": "Analítica",
+    "history": "Historial",
+    "settings": "Configuración"
+  }
+}

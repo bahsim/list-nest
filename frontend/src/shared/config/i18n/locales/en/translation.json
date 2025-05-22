@@ -144,5 +144,18 @@
   "mainListGroups": {
     "current": "Current",
     "all": "All"
+  },
+  "currency": {
+    "usd": "US Dollar",
+    "eur": "Euro",
+    "rub": "Russian Ruble",
+    "kzt": "Kazakhstan Tenge",
+    "gbp": "British Pound"
+  },
+  "footerNav": {
+    "list": "List",
+    "analytics": "Analytics",
+    "history": "History",
+    "settings": "Settings"
   }
-} 
+}

@@ -1,0 +1,161 @@
+{
+  "settings": {
+    "categories": "Kategoriler",
+    "currency": "Para birimi",
+    "language": "Dil",
+    "reset": "Sıfırla"
+  },
+  "dialog": {
+    "restoreTitle": "Bu öğeyi geri yükle?",
+    "deleteTitle": "Bu öğeyi sil?",
+    "restore": "Geri yükle",
+    "delete": "Sil",
+    "restoreContent": {
+      "part1": "Geri yüklemek istediğinizden emin misiniz",
+      "part2": "? Bu, öğeyi aktif listenize geri taşıyacaktır."
+    },
+    "deleteContent": {
+      "part1": "Silmek istediğinizden emin misiniz",
+      "part2": "? Bu, öğeyi silinmiş duruma taşıyacaktır. Daha sonra geri yükleyebilirsiniz."
+    }
+  },
+  "settingsDialog": {
+    "title": "Tercihlerinizi Ayarlayın",
+    "description": "Devam etmek için lütfen tercih ettiğiniz para birimini ve dili seçin.",
+    "languageLabel": "Dil",
+    "requiredFields": "Her iki alan da gereklidir."
+  },
+  "common": {
+    "cancel": "İptal",
+    "close": "Kapat",
+    "apply": "Uygula"
+  },
+  "currencySelector": {
+    "label": "Para birimi"
+  },
+  "fields": {
+    "estimatedPrice": "Tahmini Fiyat",
+    "addPrice": "Fiyat ekle",
+    "category": "Kategori",
+    "addCategory": "Kategori ekle",
+    "notes": "Notlar",
+    "addNote": "Not ekle",
+    "quantity": "Miktar",
+    "addQuantity": "Miktar ekle",
+    "unit": "Birim",
+    "name": "Ad",
+    "aiSuggestions": "AI Önerileri:"
+  },
+  "resetSection": {
+    "resetCategories": "Kategorileri sıfırla",
+    "resetHistory": "Geçmişi sıfırla",
+    "resetHistoryAria": "Geçmişi sıfırla",
+    "confirmReset": "Sıfırlamayı onayla",
+    "confirmCategories": "Tüm kategorileri silmek istediğinizden emin misiniz? Bu geri alınamaz.",
+    "confirmCategoriesAria": "Kategorileri sıfırlamayı onayla",
+    "confirmHistory": "Tüm geçmişi silmek istediğinizden emin misiniz? Bu geri alınamaz.",
+    "confirmHistoryAria": "Geçmişi sıfırlamayı onayla",
+    "confirm": "Onayla",
+    "resetAll": "Hepsini sıfırla",
+    "resetAllAria": "Hepsini sıfırla",
+    "confirmAll": "Tüm verileri silmek istediğinizden emin misiniz? Bu geri alınamaz.",
+    "confirmAllAria": "Tümünü sıfırlamayı onayla"
+  },
+  "emptyState": {
+    "noItems": "Henüz öğe yok",
+    "addFirstItem": "Bu listeye ilk öğenizi ekleyin.",
+    "addFirstItemButton": "İlk öğeyi ekle",
+    "noItemsAlt": "Henüz öğe yok",
+    "noHistory": "Henüz geçmiş yok",
+    "noHistoryDescription": "Bir şey satın aldığınızda veya öğeleri sildiğinizde, burada görüneceklerdir.",
+    "backToList": "Listeye geri dön",
+    "noHistoryAlt": "Geçmiş öğe illüstrasyonu yok"
+  },
+  "modalTitles": {
+    "add": "Öğe ekle",
+    "edit": "Öğeyi düzenle",
+    "complete": "Öğeyi tamamla"
+  },
+  "modalActions": {
+    "create": "Oluştur",
+    "save": "Kaydet",
+    "complete": "Tamamla"
+  },
+  "mainList": {
+    "addItemAria": "Öğe ekle"
+  },
+  "userProfile": {
+    "profile": "Profil",
+    "logout": "Çıkış yap",
+    "arrowUp": "▲",
+    "arrowDown": "▼"
+  },
+  "viewItem": {
+    "title": "Öğeyi görüntüle"
+  },
+  "categoryEditor": {
+    "color": "Renk",
+    "categoryName": "Kategori adı",
+    "edit": "{{name}} düzenle",
+    "editing": "{{name}} düzenleniyor",
+    "addCategory": "Kategori ekle"
+  },
+  "dateFilter": {
+    "dateRange": "Tarih aralığı",
+    "filterBy": "{{label}} ile filtrele",
+    "dateRangePickers": "Tarih aralığı seçiciler",
+    "from": "Başlangıç",
+    "to": "Bitiş",
+    "fromDate": "Başlangıç tarihi",
+    "toDate": "Bitiş tarihi"
+  },
+  "dateRangeModal": {
+    "title": "Tarih aralığı seç",
+    "custom": "Özel",
+    "selectPreset": "{{label}} seç",
+    "selectCustom": "Özel aralık seç",
+    "customPickers": "Özel tarih aralığı seçiciler",
+    "from": "Başlangıç",
+    "to": "Bitiş",
+    "fromDate": "Başlangıç tarihi",
+    "toDate": "Bitiş tarihi"
+  },
+  "aiSuggestions": {
+    "show": "AI Önerilerini Göster",
+    "label": "AI Önerileri"
+  },
+  "historyItem": {
+    "restore": "Geri yükle"
+  },
+  "fieldDisplay": {
+    "edit": "{{label}} düzenle"
+  },
+  "analyticsPage": {
+    "title": "Analitik",
+    "comingSoon": "Çok yakında..."
+  },
+  "datePresets": {
+    "week": "Hafta",
+    "month": "Ay",
+    "threeMonths": "3 Ay",
+    "halfYear": "Yarım Yıl",
+    "year": "Yıl"
+  },
+  "mainListGroups": {
+    "current": "Mevcut",
+    "all": "Tümü"
+  },
+  "currency": {
+    "usd": "Amerikan Doları",
+    "eur": "Euro",
+    "rub": "Rus Rublesi",
+    "kzt": "Kazakistan Tengesi",
+    "gbp": "İngiliz Sterlini"
+  },
+  "footerNav": {
+    "list": "Liste",
+    "analytics": "Analitik",
+    "history": "Geçmiş",
+    "settings": "Ayarlar"
+  }
+}
