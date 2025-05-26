@@ -26,20 +26,33 @@ export function getUniqueCategories1<T>(
 
 /**
  * Get unique categories from items list, replacing empty category with 'Other'.
+ * @returns array of categories with colors
+ * @description This function is used to get the unique categories from the items list.
+ * It replaces empty category with 'Other' and adds it to the array if it is not already present.
+ * It also adds the color to the category if it is not already present.
  */
 export function getUniqueCategories<T>(
   categoriesWithColors: Category[],
   items: T[],
   getCategory: (item: T) => string,
 ): Category[] {
-  const usedCategories = items.map(getCategory);
-  const filtered = usedCategories.map((cat) => {
-    if (cat === '') {
-      return { name: 'Other', color: 'SAGE' as const };
-    }
+  let usedCategories = items.map(getCategory);
+  let isOther = false;
 
-    return categoriesWithColors.find((c) => c.name === cat) ?? { name: cat, color: 'SAGE' as const };
+  if (usedCategories.includes('')) {
+    isOther = true;
+    usedCategories = usedCategories.filter((cat) => cat !== '');
+  }
+
+  const filtered = usedCategories.map((cat) => {
+    return (
+      categoriesWithColors.find((c) => c.name === cat) ?? { name: cat, color: 'SAGE' as const }
+    );
   });
+
+  if (isOther) {
+    filtered.push({ name: 'Other', color: 'SAGE' as const });
+  }
 
   return filtered;
 }
@@ -55,7 +68,7 @@ export function getCategoryValue(label: string): string {
  * Get sum of a numeric field for a group.
  */
 export function getGroupSum<T>(group: T[], getValue: (item: T) => number | undefined): number {
-  return group.reduce((sum, item) => sum + (getValue(item) || 0), 0);
+  return group.reduce((sum, item) => sum + +(getValue(item) || 0), 0);
 }
 
 /**
