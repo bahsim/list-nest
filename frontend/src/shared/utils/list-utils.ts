@@ -44,11 +44,13 @@ export function getUniqueCategories<T>(
     usedCategories = usedCategories.filter((cat) => cat !== '');
   }
 
-  const filtered = usedCategories.map((cat) => {
-    return (
-      categoriesWithColors.find((c) => c.name === cat) ?? { name: cat, color: 'SAGE' as const }
-    );
-  });
+  // Map to Category objects
+  let filtered = usedCategories.map((cat) => (
+    categoriesWithColors.find((c) => c.name === cat) ?? { name: cat, color: 'SAGE' as const }
+  ));
+
+  // Deduplicate by category name
+  filtered = filtered.filter((cat, idx, arr) => arr.findIndex((c) => c.name === cat.name) === idx);
 
   if (isOther) {
     filtered.push({ name: 'Other', color: 'SAGE' as const });

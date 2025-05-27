@@ -154,6 +154,7 @@ export const MainListWidget: React.FC<MainListWidgetProps> = ({
         (mode) =>
           modalMode === mode && (
             <AddEditItemModal
+              key={mode}
               onSave={handleSaveItem}
               onClose={handleCloseModal}
               currency={currency}

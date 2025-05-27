@@ -2,6 +2,7 @@ import type { ListItem } from '@/entities/list/types';
 import { formatDateShort } from '@/shared/utils/format-date';
 import { groupByDate } from '@/shared/utils/group-by-date';
 import { getCurrencySymbol } from '@/shared/utils/local-storage';
+import { getGroupSum } from '@/shared/utils/list-utils';
 
 const isToday = (date: Date | null) => {
   if (!date) return false;
@@ -46,5 +47,5 @@ export const groupHistoryItems = (items: ListItem[], currency: string) =>
         : NO_DATE_LABEL,
   ).map((group) => ({
     ...group,
-    rightContent: `${getCurrencySymbol(currency)} ${group.items.reduce((acc, item) => acc + item.estimatedPrice, 0)}`,
+    rightContent: `${getCurrencySymbol(currency)} ${getGroupSum(group.items, (item) => item.estimatedPrice)}`,
   }));

@@ -115,3 +115,59 @@ If yes, globally on app level or each user specific one?
 - Use global as default, user-specific as fallback/extensions
 
 Let me know if you want a schema or code example.
+
+
+## Prompt
+
+We don't need exact product, just milk, bread whte, bread brown but not exact milk prduct brand
+
+## Result
+
+If you only need generic product types (e.g., "milk", "bread white", "bread brown", "cheese", "apples") and not specific brands or SKUs, the best approach is:
+
+---
+
+### 1. **Curated Static List**
+- Maintain a static JSON/TS array of common product types in your repo.
+- Localized for Russian/Kazakh as needed.
+- Example:
+  ```ts
+  export const GENERIC_PRODUCTS = [
+    { name: 'Молоко', emoji: '🥛', category: 'Dairy' },
+    { name: 'Хлеб белый', emoji: '🍞', category: 'Bakery' },
+    { name: 'Хлеб ржаной', emoji: '🥖', category: 'Bakery' },
+    { name: 'Яблоки', emoji: '🍏', category: 'Produce' },
+    // ...
+  ];
+  ```
+- Fast, offline, no API dependency, easy to update.
+
+---
+
+### 2. **Open Food Facts (optional)**
+- You can still use Open Food Facts, but filter for generic product types (using their "categories" endpoint).
+- Example:  
+  - https://ru.openfoodfacts.org/category/breads.json
+  - https://ru.openfoodfacts.org/category/milks.json
+- Parse the "category" names, not product names.
+
+---
+
+### 3. **Hybrid**
+- Use a static list for the most common items.
+- Optionally, supplement with Open Food Facts categories for long-tail/niche items.
+
+---
+
+**Best Practice:**  
+- Use a static, curated list for generic product types.
+- Localize as needed.
+- No need for a public API if you don’t want brands/SKUs.
+
+---
+
+**Summary:**  
+- **Don’t use product search APIs for generic types.**
+- **Do use a static list, optionally enhanced with open category data.**
+
+Let me know if you want a ready-to-use list for Russian/Kazakh.
