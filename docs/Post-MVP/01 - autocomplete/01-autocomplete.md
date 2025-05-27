@@ -171,3 +171,117 @@ If you only need generic product types (e.g., "milk", "bread white", "bread brow
 - **Do use a static list, optionally enhanced with open category data.**
 
 Let me know if you want a ready-to-use list for Russian/Kazakh.
+
+---
+
+Crystal clear. Here’s a step-by-step, actionable, no-fluff guide to build a static list of common grocery items for autocompletion:
+
+---
+
+### 1. Download Open Food Facts Categories (Russian)
+
+- Go to: https://ru.openfoodfacts.org/categories
+- Scroll down to “Категории продуктов” (Categories of products).
+- Right-click → “Save As…” to save the page as `categories.html` (or just copy-paste the list into a text file).
+
+---
+
+### 2. Extract Category Names
+
+- Open `categories.html` in your browser.
+- Copy the visible list of categories (e.g., “Молоко”, “Хлеб”, “Яйца”, etc.).
+- Paste into a spreadsheet or text editor.
+
+---
+
+### 3. Manually Curate Top Items
+
+- From the list, pick the most common items (not brands, just types):  
+  Examples:  
+  - Молоко  
+  - Хлеб белый  
+  - Хлеб ржаной  
+  - Яйца  
+  - Сыр  
+  - Яблоки  
+  - Картофель  
+  - Курица  
+  - Масло сливочное  
+  - Макароны  
+  - Рис  
+  - Сахар  
+  - Соль  
+  - Чай  
+  - Кофе  
+  - Колбаса  
+  - Йогурт  
+  - Помидоры  
+  - Огурцы  
+  - Морковь  
+  - Лук  
+  - Перец  
+  - Бананы  
+  - Апельсины  
+  - Вода  
+  - Сметана  
+  - Творог  
+  - Гречка  
+  - Капуста  
+  - Мука  
+  - Печенье  
+  - Шоколад  
+  - Чипсы  
+  - Сок  
+  - Кетчуп  
+  - Майонез  
+  - Подсолнечное масло  
+  - Туалетная бумага  
+  - Мыло  
+  - Зубная паста  
+  - Шампунь  
+
+---
+
+### 4. Add Emoji and Category
+
+- For each item, assign an emoji and a category.  
+  Example table:
+
+| name                | emoji | category           |
+|---------------------|-------|--------------------|
+| Молоко              | 🥛    | Молочные продукты  |
+| Хлеб белый          | 🍞    | Выпечка            |
+| Хлеб ржаной         | 🥖    | Выпечка            |
+| Яйца                | 🥚    | Молочные продукты  |
+| Сыр                 | 🧀    | Молочные продукты  |
+| Яблоки              | 🍏    | Овощи и фрукты     |
+| Картофель           | 🥔    | Овощи и фрукты     |
+| Курица              | 🍗    | Мясо               |
+| ...                 | ...   | ...                |
+
+---
+
+### 5. Save as TypeScript/JSON
+
+- Create `src/shared/constants/generic-products.ts`:
+  ```ts
+  export const GENERIC_PRODUCTS = [
+    { name: 'Молоко', emoji: '🥛', category: 'Молочные продукты' },
+    { name: 'Хлеб белый', emoji: '🍞', category: 'Выпечка' },
+    { name: 'Хлеб ржаной', emoji: '🥖', category: 'Выпечка' },
+    { name: 'Яйца', emoji: '🥚', category: 'Молочные продукты' },
+    { name: 'Сыр', emoji: '🧀', category: 'Молочные продукты' },
+    // ...add the rest
+  ];
+  ```
+
+---
+
+### 6. Use in Autocomplete
+
+- Import this array and filter as the user types.
+
+---
+
+**Done.**  
+If you want, I can generate the full ready-to-paste array for you—just say the word.
